@@ -45,6 +45,7 @@ Aufgabenbacklog
 - Toggle light und dark mode (müsste von Anfang an beachtet werden)
 - mehrere Sprachen (müsste von Anfang an beachtet werden)
 - übersetzen von Text --> externe API (vgl. Google Übersetzer)
+- Aufgaben als Kalender-Event exportieren
 
 ## Achievments
 - Levels
@@ -69,3 +70,21 @@ Aufgabenbacklog
 - Alarm für Aufgaben einrichten
 - innerhalb WG --> wie produktiv sind die anderen
 - Healthanzeige --> Wie gut kommt man mit seinen Aufgaben hinterher
+
+## Technology
+### Frontend
+- React
+- Bootstrap Components
+- React Icons
+- React Query
+
+### Backend
+- Swagger UI
+- Express
+- typeORM
+
+### General
+- Docker / Docker-Compose
+- eslint, prettier, editor-config
+
+
