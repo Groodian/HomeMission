@@ -47,6 +47,9 @@ Aufgabenbacklog
 - übersetzen von Text --> externe API (vgl. Google Übersetzer)
 - Aufgaben als Kalender-Event exportieren
 
++ Chat box for individual WG and for all WGs (Warning, Note, Event...)
++ WG-Market for trading stuff (photos, user informations)
+
 ## Achievments
 - Levels
 - Höheres Level --> Farbe des Benutzernamens ändert sich
