@@ -1,42 +1,40 @@
-# Ideas
-- Organisierspiel einer WG --> Gamification von Verteilung von Aufgaben
-- Punktzahl für Person 
-- Account-Management (auch für mehrere WGs)
-- WGs hinzufügen
-- Profil --> einer WG beitreten / einladen oder neue WG hinzufügen
+# Idee
+- Organisierspiel für WGs --> Gamification von Aufgabenverteilung
+- Punktzahl für WG-Mitglieder basierend auf gemachten Aufgaben (Müll rausbringen etc.) 
+- Es gibt mehrere WGs, ein Nutzer ist Teil einer WG und jede WG hat Aufgaben, die erledigt werden müssen und unterschiedlich viele Punkte wert sind 
 
 ## Daten
 
 1) WG
 - mehrere User (1,...)
 - mehrere Aufgaben 
-    - es existieren schon default Aufgaben (vorgeschlagene Aufgaben) --> Aufgaben Templates
-                                --> WG hat möglichkeit die Aufgaben direkt zu löschen
+    - es existieren schon template Aufgaben (vorgeschlagene Aufgaben) die automatisch dabei sind
+                                --> WG hat möglichkeit diese Aufgaben direkt zu löschen
 - Name
-- ...
+- Aufgabenbacklog
+    - todo
+    - completed
+    - in progress
+- Joincode
 
 2) User
-- Email + display name
+- Email
+- display name
+
 3) Aufgabe
 - typ 
     - müllrausbringen
     - putzen
     - ...
-- Intervall oder einmalig
+- Serie (intervall) oder einmalig
 - Punktzahl
 --> Quittung für Aufgabe
-- assignen zu anderen Usern?
-
-Aufgabenbacklog
-- todo
-
-- completed
-- in progress
+- User assignment (optional)
 
 ## Erweiterbares Konzept
-- Geld verwalten
+- Geld Verwaltung
 - E-Mail verwaltung
-- Achievments
+- Achievements
 - Urlaub --> Wann bin ich da / nicht da
 (- Tagesplan)
 - Trend 
@@ -55,24 +53,27 @@ Aufgabenbacklog
 - Höheres Level --> Farbe des Benutzernamens ändert sich
 - Belohnung --> "Heute muss ich nicht" --> Joker wird gezogen
 - Bestrafung
+- Tatsächliche Achievements (erste Aufgabe erledigt, fünf Aufgaben an einem Tag erledigt, etc.)
 
-## User-Sicht
-1) Logging Screen
---> Einloggen oder Registrierung
-- Email + display name
-2.1) WG erstellen oder WG beitreten / einladen
-- Code eingeben --> einmaliger Code / Code resetten
+## Anwendung aus User-Sicht
+1) Login Screen
+--> Einloggen oder Registrierung (Email + display name)
+
+2.1) Screen um WG zu erstellen oder WG beitreten / einladen
+- Joincode eingeben --> einmaliger Code / Code resetten (ähnlich zu Whatsapp Gruppen)
 - Person direkt einladen --> an Profil senden / E-Mail senden
-2.2) Main
+
+2.2) Main Screen
 - Übersicht von Aufgaben
-- Kalender --> Wo sind die Tasks (vgl Google Calender / Gitlab Calender) 
+- Kalender --> Wann sind die Tasks (vgl Google Calender / Gitlab Calender) 
 - rechts/links offene Tasks 
     - ein/ausklappbar
-4) Profil/Statistiken für User/WG 
+
+4) Screen für WG Statistiken (Gesamt WG und einzelne WG-Mitglieder) 
 - Nutzerprofil innerhalb WG einsehbar
+- User innerhalb der WG --> wie produktiv ist jedes WG-Mitglied
+- Healthanzeige --> wie gut kommt die WG mit Aufgaben hinterher
 - Alarm für Aufgaben einrichten
-- innerhalb WG --> wie produktiv sind die anderen
-- Healthanzeige --> Wie gut kommt man mit seinen Aufgaben hinterher
 
 ## Technology
 ### Frontend
