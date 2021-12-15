@@ -91,4 +91,7 @@
 - Docker / Docker-Compose
 - eslint, prettier, editor-config
 
-
+## Offene Fragen
+- Wie verhindert man, dass ein Nutzer eine Aufgabe mit großer Punktzahl erstellt und abschließt?
+    - Aufgaben können nur gemeinsam abgeschlossen werden (alle müssen bestätigen)
+    - Aufgaben können nur gemeinsam erstellt werden (alle müssen bestätigen)
