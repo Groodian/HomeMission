@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Image from 'next/image';
 
-export const Home = (): JSX.Element => (
+export const Home: React.FC = () => (
   <div className="container">
     <Head>
       <title>Create Next App</title>
