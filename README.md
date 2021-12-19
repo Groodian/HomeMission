@@ -15,3 +15,7 @@ Bootstrap a developer-friendly NextJS app configured with:
 - Formatting with [Prettier](https://prettier.io/)
 - Linting, typechecking and formatting on by default using [`husky`](https://github.com/typicode/husky) for commit hooks
 - Testing with [Jest](https://jestjs.io/) and [`react-testing-library`](https://testing-library.com/docs/react-testing-library/intro)
+
+### [Next.js + Cypress](https://github.com/vercel/next.js/tree/canary/examples/with-cypress)
+
+This example shows how to configure Cypress to work with Next.js.

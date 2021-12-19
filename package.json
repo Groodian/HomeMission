@@ -1,14 +1,19 @@
 {
   "name": "wg-organisierspiel",
+  "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "type-check": "tsc --incremental --pretty --noEmit --tsBuildInfoFile ./.next/cache/.tsbuildinfo",
+    "type-check": "tsc --incremental --pretty --noEmit --tsBuildInfoFile ./.next/cache/.tsbuildinfo && tsc --project cypress/tsconfig.json",
     "format": "prettier --write .",
     "lint": "eslint . --ext ts --ext tsx --ext js",
     "test": "jest",
-    "test-all": "npm run lint && npm run type-check && npm test",
+    "cypress": "cypress open",
+    "cypress:headless": "cypress run",
+    "e2e": "start-server-and-test dev http://localhost:3000 cypress",
+    "e2e:headless": "start-server-and-test dev http://localhost:3000 cypress:headless",
+    "test-all": "npm run lint && npm run type-check && npm test && npm run e2e:headless",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -25,8 +30,10 @@
     "@typescript-eslint/eslint-plugin": "^5.7.0",
     "@typescript-eslint/parser": "^5.7.0",
     "babel-jest": "^27.0.2",
+    "cypress": "^9.1.1",
     "eslint": "^7.19.0",
     "eslint-config-prettier": "^7.2.0",
+    "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.19.0",
     "husky": "^7.0.4",
@@ -35,6 +42,7 @@
     "jest-watch-typeahead": "^0.6.1",
     "lint-staged": "^10.0.10",
     "prettier": "^2.0.2",
+    "start-server-and-test": "^1.13.1",
     "typescript": "^4.1.3"
   }
 }
