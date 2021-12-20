@@ -1,6 +1,8 @@
 import React from 'react';
-import { render, fireEvent } from '../testUtils';
-import Home from '../../pages/index';
+import Home from '../../src/pages/index';
+import { fireEvent, render } from '../testUtils';
+
+jest.mock('next/router', () => require('next-router-mock'));
 
 describe('Home page', () => {
   it('matches snapshot', () => {
