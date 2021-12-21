@@ -325,6 +325,19 @@ exports[`Home page matches snapshot 1`] = `
           Deploy →
         </h2>
       </a>
+      <div>
+        You're signed in as Baa and you're Healthy.
+        <div>
+          <input
+            placeholder="your new name..."
+            type="text"
+          />
+          <input
+            type="button"
+            value="change"
+          />
+        </div>
+      </div>
     </div>
   </div>
 </DocumentFragment>

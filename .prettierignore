@@ -3,3 +3,8 @@ node_modules
 yarn.lock
 package-lock.json
 public
+
+# graphql
+__generated__
+*.graphql.d.ts
+schema.gql

@@ -15,8 +15,15 @@
     "jsx": "preserve",
     "jsxImportSource": "@emotion/react",
     "importHelpers": true,
-    "incremental": true
+    "incremental": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true
   },
   "exclude": ["node_modules", ".next", "out", "cypress"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.js"]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.js"],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "commonjs"
+    }
+  }
 }
