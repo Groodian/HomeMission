@@ -1,22 +1,32 @@
 import { Arg, Mutation, Query, Resolver } from 'type-graphql';
 import User from '../../../entities/user';
+import databaseConnection from '../../typeorm/connection';
 
 @Resolver(User)
 export default class UserResolver {
-  private userProfile = {
-    id: String(1),
-    name: 'John Smith',
-    status: 'cached',
-  };
-
   @Query(() => User)
   async user() {
-    return this.userProfile;
+    await databaseConnection();
+
+    let user = await User.findOne();
+    if (!user) {
+      user = new User();
+      user.name = 'John Smith';
+      user.status = 'cached';
+      user = await user.save();
+    }
+
+    return user;
   }
 
   @Mutation(() => User)
   async updateName(@Arg('name') name: string) {
-    this.userProfile.name = name;
-    return this.userProfile;
+    await databaseConnection();
+
+    let user = await this.user();
+    user.name = name;
+    user = await user.save();
+
+    return user;
   }
 }

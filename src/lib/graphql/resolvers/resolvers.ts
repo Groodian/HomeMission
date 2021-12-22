@@ -1,3 +1,5 @@
 import UserResolver from './user.resolver';
 
-export const resolvers = [UserResolver] as const;
+const resolvers = [UserResolver] as const;
+
+export default resolvers;

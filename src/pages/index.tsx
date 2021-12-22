@@ -7,13 +7,10 @@ import React, { useState } from 'react';
 import Copyright from '../components/Copyright';
 import Link from '../components/Link';
 import ProTip from '../components/ProTip';
-import { initializeApollo } from '../lib/graphql/apollo-client';
 import {
-  UserDocument,
   useUpdateNameMutation,
   useUserQuery,
 } from '../lib/graphql/operations/user.graphql';
-import schema from '../lib/graphql/schema';
 
 const Home: NextPage = () => {
   const { loading, error, data } = useUserQuery();
@@ -93,19 +90,5 @@ const Home: NextPage = () => {
     </Container>
   );
 };
-
-export async function getStaticProps() {
-  const apolloClient = initializeApollo(schema);
-
-  await apolloClient.query({
-    query: UserDocument,
-  });
-
-  return {
-    props: {
-      initialApolloState: apolloClient.cache.extract(),
-    },
-  };
-}
 
 export default Home;

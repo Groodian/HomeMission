@@ -53,3 +53,7 @@ const News = () => {
 By default `**/*.graphqls` is recognized as GraphQL schema and `**/*.graphql` as GraphQL documents. If you prefer the other extensions, make sure the settings of the webpack loader in `next.config.js` and `.graphql-let.yml` are consistent.
 
 ### [TypeGraphQL](https://typegraphql.com/)
+
+### [TypeORM](https://typeorm.io/)
+
+With MySQL database.

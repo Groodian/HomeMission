@@ -1,12 +1,12 @@
 import { ApolloCache } from '@apollo/client';
 import { MockedProvider } from '@apollo/client/testing';
-import { render, RenderOptions, RenderResult } from '@testing-library/react';
+import { render, RenderOptions } from '@testing-library/react';
 
 function customRender(
   ui: JSX.Element,
   apolloCache?: ApolloCache<any>,
   options: RenderOptions = {}
-): RenderResult {
+) {
   const Providers: React.FC = ({ children }) => (
     <MockedProvider cache={apolloCache}>{children}</MockedProvider>
   );

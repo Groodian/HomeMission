@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { getApolloServerHandler } from '../../lib/graphql/apollo-server';
+import getApolloServerHandler from '../../lib/graphql/apollo-server';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const apolloServerHandler = await getApolloServerHandler();
