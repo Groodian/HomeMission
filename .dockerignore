@@ -1,0 +1,13 @@
+.husky
+.next
+cypress
+node_modules
+test
+Dockerfile
+.dockerignore
+README.md
+
+# graphql
+__generated__
+*.graphql.d.ts
+schema.gql

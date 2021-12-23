@@ -10,8 +10,17 @@ To run the application you need to install [Node.js](https://nodejs.org/) and [D
 
 ### Production
 
+Use prebuilt Docker container:
+
 1. Copy [`.env`](.env) to `/.env.local` and set a new `DATABASE_PASSWORD`.
-2. Install dependencies: `npm ci`.
+2. Login to GitLab registry: `docker login registry.code.fbi.h-da.de`.
+3. Start application: `docker-compose -f docker-compose.prod.yml --env-file=.env.local up -d`.
+4. Open in browser: `http://localhost/`.
+
+Or build locally:
+
+1. Copy [`.env`](.env) to `/.env.local` and set a new `DATABASE_PASSWORD`.
+2. Install dependencies: `npm ci --ignore-scripts`.
 3. Build application: `npm run build`.
 4. Start database: `docker-compose --env-file=.env.local up -d`.
 5. Start application: `npm start`.
@@ -21,6 +30,7 @@ To run the application you need to install [Node.js](https://nodejs.org/) and [D
 1. Install dependencies: `npm i`.
 2. Start database: `docker-compose up -d`.
 3. Start application: `npm run dev`.
+4. Open in browser: `http://localhost:3000/`.
 
 ## Contribute
 
@@ -215,6 +225,7 @@ Plugins for this project:
 - [Docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker) (See [MySQL Database in Docker](#mysql-database-in-docker))
 
 Recommended general plugins:
+
 - [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
 - [Git Graph](https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph)
 - [GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)
