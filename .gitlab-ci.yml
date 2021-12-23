@@ -1,0 +1,16 @@
+test:
+  image: node:16.11
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - node_modules/
+      - .npm/
+  stage: test
+  script:
+    - CYPRESS_CACHE_FOLDER=node_modules/.cache/Cypress npm ci
+    - npm run test:ci
+  artifacts:
+    when: always
+    reports:
+      junit:
+        - junit.xml
