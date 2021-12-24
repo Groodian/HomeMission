@@ -11,6 +11,7 @@ export default async function getApolloServerHandler() {
   if (!apolloServerHandler) {
     const apolloServer = new ApolloServer({
       schema,
+      context: (context) => context,
       plugins:
         process.env.NODE_ENV === 'production'
           ? [ApolloServerPluginLandingPageDisabled()]

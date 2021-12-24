@@ -1,4 +1,4 @@
-import { Arg, Mutation, Query, Resolver } from 'type-graphql';
+import { Arg, Authorized, Mutation, Query, Resolver } from 'type-graphql';
 import User from '../../../entities/user';
 import databaseConnection from '../../typeorm/connection';
 
@@ -19,6 +19,7 @@ export default class UserResolver {
     return user;
   }
 
+  @Authorized() // Test only authorized users may update the name
   @Mutation(() => User)
   async updateName(@Arg('name') name: string) {
     await databaseConnection();

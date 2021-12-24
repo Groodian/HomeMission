@@ -81,6 +81,8 @@ Next.js specific folders are omitted. See [Next.js](#nextjs)
       See [TypeORM](#typeorm).
       - [`connection.ts`](src/lib/typeorm/connection.ts):
         Database Connection and Config.
+    - [`auth0-auth-checker.ts`](src/lib/auth0-auth-checker.ts): Check Auth0 authentication with TypeGraphQL.
+      See [TypeGraphQL](#typegraphql) and [Auth0](#auth0).
   - [`styles/`](src/styles):
     - [`theme.ts`](src/styles/theme.ts):
       [Theming](https://mui.com/customization/theming/)
