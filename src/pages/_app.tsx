@@ -1,4 +1,5 @@
 import { ApolloProvider } from '@apollo/client';
+import { UserProvider } from '@auth0/nextjs-auth0';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
@@ -29,17 +30,22 @@ const MyApp: React.FC<MyAppProps> = ({
 
   return (
     <ApolloProvider client={apolloClient}>
-      <CacheProvider value={emotionCache}>
-        <Head>
-          <title>Change title in _app.tsx</title>
-          <meta name="viewport" content="initial-scale=1, width=device-width" />
-        </Head>
-        <ThemeProvider theme={theme}>
-          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-          <CssBaseline />
-          <Component {...pageProps} />
-        </ThemeProvider>
-      </CacheProvider>
+      <UserProvider>
+        <CacheProvider value={emotionCache}>
+          <Head>
+            <title>Change title in _app.tsx</title>
+            <meta
+              name="viewport"
+              content="initial-scale=1, width=device-width"
+            />
+          </Head>
+          <ThemeProvider theme={theme}>
+            {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+            <CssBaseline />
+            <Component {...pageProps} />
+          </ThemeProvider>
+        </CacheProvider>
+      </UserProvider>
     </ApolloProvider>
   );
 };

@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GraphQL test page matches snapshot 1`] = `
+<DocumentFragment>
+  <div>
+    You're signed in as Baa and you're Healthy.
+    <div>
+      <input
+        placeholder="your new name..."
+        type="text"
+      />
+      <input
+        type="button"
+        value="change"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;

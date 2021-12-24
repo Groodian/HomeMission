@@ -67,7 +67,7 @@ exports[`Home page matches snapshot 1`] = `
   text-decoration-color: inherit;
 }
 
-.emotion-4 {
+.emotion-7 {
   margin: 0;
   font-family: "Roboto","Helvetica","Arial",sans-serif;
   font-weight: 400;
@@ -79,7 +79,7 @@ exports[`Home page matches snapshot 1`] = `
   margin-bottom: 24px;
 }
 
-.emotion-5 {
+.emotion-8 {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -98,7 +98,7 @@ exports[`Home page matches snapshot 1`] = `
   vertical-align: middle;
 }
 
-.emotion-6 {
+.emotion-9 {
   margin: 0;
   color: #1976d2;
   -webkit-text-decoration: underline;
@@ -106,11 +106,11 @@ exports[`Home page matches snapshot 1`] = `
   text-decoration-color: rgba(25, 118, 210, 0.4);
 }
 
-.emotion-6:hover {
+.emotion-9:hover {
   text-decoration-color: inherit;
 }
 
-.emotion-7 {
+.emotion-10 {
   margin: 0;
   font-family: "Roboto","Helvetica","Arial",sans-serif;
   font-weight: 400;
@@ -121,18 +121,18 @@ exports[`Home page matches snapshot 1`] = `
   color: rgba(0, 0, 0, 0.6);
 }
 
-.emotion-8 {
+.emotion-11 {
   margin: 0;
   color: inherit;
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
 
-.emotion-8:hover {
+.emotion-11:hover {
   text-decoration-color: inherit;
 }
 
-.emotion-9 {
+.emotion-12 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -181,23 +181,23 @@ exports[`Home page matches snapshot 1`] = `
   box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12);
 }
 
-.emotion-9::-moz-focus-inner {
+.emotion-12::-moz-focus-inner {
   border-style: none;
 }
 
-.emotion-9.Mui-disabled {
+.emotion-12.Mui-disabled {
   pointer-events: none;
   cursor: default;
 }
 
 @media print {
-  .emotion-9 {
+  .emotion-12 {
     -webkit-print-color-adjust: exact;
     color-adjust: exact;
   }
 }
 
-.emotion-9:hover {
+.emotion-12:hover {
   -webkit-text-decoration: none;
   text-decoration: none;
   background-color: #1565c0;
@@ -205,26 +205,26 @@ exports[`Home page matches snapshot 1`] = `
 }
 
 @media (hover: none) {
-  .emotion-9:hover {
+  .emotion-12:hover {
     background-color: #1976d2;
   }
 }
 
-.emotion-9:active {
+.emotion-12:active {
   box-shadow: 0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12);
 }
 
-.emotion-9.Mui-focusVisible {
+.emotion-12.Mui-focusVisible {
   box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12);
 }
 
-.emotion-9.Mui-disabled {
+.emotion-12.Mui-disabled {
   color: rgba(0, 0, 0, 0.26);
   box-shadow: none;
   background-color: rgba(0, 0, 0, 0.12);
 }
 
-.emotion-10 {
+.emotion-13 {
   overflow: hidden;
   pointer-events: none;
   position: absolute;
@@ -253,12 +253,30 @@ exports[`Home page matches snapshot 1`] = `
       >
         Go to the about page
       </a>
+      <a
+        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-3"
+        href="/graphql"
+      >
+        Go to the GraphQL test page
+      </a>
+      <a
+        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-3"
+        href="/api/graphql"
+      >
+        Go to the GraphQL playground (in development mode)
+      </a>
+      <a
+        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-3"
+        href="/auth0"
+      >
+        Go to the Auth0 test page
+      </a>
       <p
-        class="MuiTypography-root MuiTypography-body1 emotion-4"
+        class="MuiTypography-root MuiTypography-body1 emotion-7"
       >
         <svg
           aria-hidden="true"
-          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium emotion-5"
+          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium emotion-8"
           focusable="false"
           viewBox="0 0 24 24"
         >
@@ -268,7 +286,7 @@ exports[`Home page matches snapshot 1`] = `
         </svg>
         Pro tip: See more 
         <a
-          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-6"
+          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-9"
           href="https://mui.com/getting-started/templates/"
         >
           templates
@@ -276,11 +294,11 @@ exports[`Home page matches snapshot 1`] = `
          on the MUI documentation.
       </p>
       <p
-        class="MuiTypography-root MuiTypography-body2 MuiTypography-alignCenter emotion-7"
+        class="MuiTypography-root MuiTypography-body2 MuiTypography-alignCenter emotion-10"
       >
         Copyright © 
         <a
-          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-8"
+          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-11"
           href="https://mui.com/"
         >
           Your Website
@@ -288,13 +306,13 @@ exports[`Home page matches snapshot 1`] = `
          2021.
       </p>
       <button
-        class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root  emotion-9"
+        class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root  emotion-12"
         tabindex="0"
         type="button"
       >
         Test Button
         <span
-          class="MuiTouchRipple-root emotion-10"
+          class="MuiTouchRipple-root emotion-13"
         />
       </button>
       <a
@@ -325,19 +343,6 @@ exports[`Home page matches snapshot 1`] = `
           Deploy →
         </h2>
       </a>
-      <div>
-        You're signed in as Baa and you're Healthy.
-        <div>
-          <input
-            placeholder="your new name..."
-            type="text"
-          />
-          <input
-            type="button"
-            value="change"
-          />
-        </div>
-      </div>
     </div>
   </div>
 </DocumentFragment>

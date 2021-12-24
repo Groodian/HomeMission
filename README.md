@@ -10,27 +10,31 @@ To run the application you need to install [Node.js](https://nodejs.org/) and [D
 
 ### Production
 
+Define secrets:
+
+1. Copy [`.env.example`](.env.example) to `/.env.local` and set a `DATABASE_PASSWORD` and `AUTH0_SECRET`.
+2. Copy the `AUTH0_CLIENT_SECRET` from [production Auth0 client](https://manage.auth0.com/dashboard/eu/wg-organisierspiel/applications/tsmSjPG8pw0w7M119EmQShEY2JayHHxS/settings).
+
 Use prebuilt Docker container:
 
-1. Copy [`.env`](.env) to `/.env.local` and set a new `DATABASE_PASSWORD`.
-2. Login to GitLab registry: `docker login registry.code.fbi.h-da.de`.
-3. Start application: `docker-compose -f docker-compose.prod.yml --env-file=.env.local up -d`.
-4. Open in browser: `http://localhost/`.
+1. Login to GitLab registry: `docker login registry.code.fbi.h-da.de`.
+2. Start application: `docker-compose -f docker-compose.prod.yml --env-file=.env.local up -d`.
+3. Open in browser: `http://localhost/`.
 
 Or build locally:
 
-1. Copy [`.env`](.env) to `/.env.local` and set a new `DATABASE_PASSWORD`.
-2. Install dependencies: `npm ci --ignore-scripts`.
-3. Build application: `npm run build`.
-4. Start database: `docker-compose --env-file=.env.local up -d`.
-5. Start application: `npm start`.
+1. Install dependencies: `npm ci --ignore-scripts`.
+2. Build application: `npm run build`.
+3. Start database: `docker-compose --env-file=.env.local up -d`.
+4. Start application: `npm start`.
 
 ### Development
 
-1. Install dependencies: `npm i`.
-2. Start database: `docker-compose up -d`.
-3. Start application: `npm run dev`.
-4. Open in browser: `http://localhost:3000/`.
+1. Copy the `AUTH0_CLIENT_SECRET` from [development Auth0 client](https://manage.auth0.com/dashboard/eu/wg-organisierspiel/applications/tsmSjPG8pw0w7M119EmQShEY2JayHHxS/settings) into `/.env.local`.
+2. Install dependencies: `npm i`.
+3. Start database: `docker-compose up -d`.
+4. Start application: `npm run dev`.
+5. Open in browser: `http://localhost:3000/`.
 
 ## Contribute
 
@@ -152,6 +156,12 @@ End to End testing framework.
 React UI library. Including the default style engine:
 
 ##### [Emotion](https://emotion.sh/)
+
+#### [Auth0](https://auth0.com/)
+
+Authentication provider. Using:
+
+##### [@auth0/nextjs-auth0](https://github.com/auth0/nextjs-auth0#readme)
 
 #### [GraphQL](https://graphql.org/)
 
