@@ -255,9 +255,9 @@ exports[`Home page matches snapshot 1`] = `
       </a>
       <a
         class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-3"
-        href="/graphql"
+        href="/roommates"
       >
-        Go to the GraphQL test page
+        Go to the Roommates test page
       </a>
       <a
         class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-3"
@@ -303,7 +303,7 @@ exports[`Home page matches snapshot 1`] = `
         >
           Your Website
         </a>
-         2021.
+         2022.
       </p>
       <button
         class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root  emotion-12"

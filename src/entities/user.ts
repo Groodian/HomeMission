@@ -1,10 +1,10 @@
 import { Field, ID, ObjectType } from 'type-graphql';
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { BaseEntity, Column, Entity, PrimaryColumn } from 'typeorm';
 
 @Entity()
 @ObjectType()
 export default class User extends BaseEntity {
-  @PrimaryGeneratedColumn()
+  @PrimaryColumn()
   @Field(() => ID)
   id!: string;
 
@@ -14,5 +14,9 @@ export default class User extends BaseEntity {
 
   @Column()
   @Field()
-  status!: string;
+  picture!: string;
+
+  @Column({ default: 0 })
+  @Field()
+  points!: number;
 }

@@ -1,11 +1,9 @@
 import { ApolloCache } from '@apollo/client';
 import { MockedProvider } from '@apollo/client/testing';
-import { UserProfile, UserProvider } from '@auth0/nextjs-auth0';
 import { render, RenderOptions } from '@testing-library/react';
 
 interface InitialState {
   apolloCache?: ApolloCache<any>;
-  user?: UserProfile;
 }
 
 function customRender(
@@ -15,7 +13,7 @@ function customRender(
 ) {
   const Providers: React.FC = ({ children }) => (
     <MockedProvider cache={initialState?.apolloCache}>
-      <UserProvider user={initialState?.user}>{children}</UserProvider>
+      {children}
     </MockedProvider>
   );
 

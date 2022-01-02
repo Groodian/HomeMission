@@ -25,8 +25,8 @@ const Home: NextPage = () => (
       <Link href="/about" color="secondary">
         Go to the about page
       </Link>
-      <Link href="/graphql" color="secondary">
-        Go to the GraphQL test page
+      <Link href="/roommates" color="secondary">
+        Go to the Roommates test page
       </Link>
       <Link href="/api/graphql" color="secondary">
         Go to the GraphQL playground (in development mode)

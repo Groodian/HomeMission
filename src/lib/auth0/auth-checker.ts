@@ -1,11 +1,6 @@
 import { getSession } from '@auth0/nextjs-auth0';
-import { NextApiRequest, NextApiResponse } from 'next';
 import { AuthChecker } from 'type-graphql';
-
-interface ContextType {
-  req: NextApiRequest;
-  res: NextApiResponse;
-}
+import { ContextType } from '../graphql/apollo-server';
 
 const auth0AuthChecker: AuthChecker<ContextType> = ({ context }) => {
   const session = getSession(context.req, context.res);

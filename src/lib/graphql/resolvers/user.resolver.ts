@@ -1,33 +1,35 @@
-import { Arg, Authorized, Mutation, Query, Resolver } from 'type-graphql';
+import { Session } from '@auth0/nextjs-auth0';
+import { Authorized, Query, Resolver } from 'type-graphql';
 import User from '../../../entities/user';
+import CurrentSession from '../../auth0/current-session';
 import databaseConnection from '../../typeorm/connection';
 
 @Resolver(User)
 export default class UserResolver {
-  @Query(() => User)
-  async user() {
+  /**
+   * Get the authenticated user from the database or null if the user is not authenticated.
+   */
+  @Query(() => User, { nullable: true })
+  async user(@CurrentSession() session?: Session) {
     await databaseConnection();
-
-    let user = await User.findOne();
-    if (!user) {
-      user = new User();
-      user.name = 'John Smith';
-      user.status = 'cached';
-      user = await user.save();
-    }
-
-    return user;
+    return User.findOne((session?.user.sub as string) || '');
   }
 
-  @Authorized() // Test only authorized users may update the name
-  @Mutation(() => User)
-  async updateName(@Arg('name') name: string) {
+  /**
+   * Get the roommates of the authenticated user (including the user himself).
+   */
+  @Authorized()
+  @Query(() => [User])
+  async roommates(@CurrentSession() _session?: Session) {
     await databaseConnection();
 
-    let user = await this.user();
-    user.name = name;
-    user = await user.save();
+    // TODO:
+    // const user = await User.findOne(session.user.sub as string, {
+    //   loadRelationIds: true,
+    // });
+    // const home = await Home.findOne(user?.home, { relations: ['users'] });
+    // return home?.users || [];
 
-    return user;
+    return User.find();
   }
 }

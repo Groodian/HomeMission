@@ -2,14 +2,16 @@ query User {
   user {
     id
     name
-    status
+    picture
+    points
   }
 }
 
-mutation UpdateName($name: String!) {
-  updateName(name: $name) {
+query Roommates {
+  roommates {
     id
     name
-    status
+    picture
+    points
   }
 }

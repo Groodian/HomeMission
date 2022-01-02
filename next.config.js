@@ -3,6 +3,10 @@ module.exports = {
     outputStandalone: true,
   },
 
+  images: {
+    domains: ['s.gravatar.com', 'lh3.googleusercontent.com'],
+  },
+
   webpack(config, options) {
     config.module.rules.push({
       test: /\.graphql$/,
