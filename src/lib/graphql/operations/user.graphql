@@ -4,17 +4,5 @@ query User {
     name
     picture
     points
-    home {
-      id
-    }
-  }
-}
-
-query Roommates {
-  roommates {
-    id
-    name
-    picture
-    points
   }
 }

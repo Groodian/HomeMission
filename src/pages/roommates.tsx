@@ -1,7 +1,7 @@
 import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 import { NextPage } from 'next';
 import Image from 'next/image';
-import { useRoommatesQuery } from '../lib/graphql/operations/user.graphql';
+import { useRoommatesQuery } from '../lib/graphql/operations/roommates.graphql';
 
 const RoommatesTest: NextPage = () => {
   const { loading, error, data } = useRoommatesQuery();
@@ -14,7 +14,7 @@ const RoommatesTest: NextPage = () => {
           {error.name}: {error.message}
         </>
       )}
-      {data && (
+      {data?.home && (
         <table>
           <tbody>
             <tr>
@@ -22,7 +22,7 @@ const RoommatesTest: NextPage = () => {
               <th>Picture</th>
               <th>Points</th>
             </tr>
-            {data.roommates.map((roommate) => (
+            {data.home.users.map((roommate) => (
               <tr key={roommate.id}>
                 <td>{roommate.name}</td>
                 <td>

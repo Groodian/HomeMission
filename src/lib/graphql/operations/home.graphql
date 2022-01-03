@@ -1,11 +1,8 @@
-query GetHomes {
-  getHomes {
+query Home {
+  home {
     id
     name
     code
-    users {
-      id
-    }
   }
 }
 
@@ -18,12 +15,9 @@ mutation CreateHome {
 }
 
 mutation JoinHome($code: String!) {
-  joinHomeByCode (code: $code) {
+  joinHomeByCode(code: $code) {
     id
-    code
     name
-    users {
-      id
-    }
+    code
   }
 }

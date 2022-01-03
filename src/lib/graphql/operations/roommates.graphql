@@ -1,0 +1,10 @@
+query Roommates {
+  home {
+    users {
+      id
+      name
+      picture
+      points
+    }
+  }
+}

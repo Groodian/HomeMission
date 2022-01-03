@@ -27,7 +27,6 @@ export default class Home extends BaseEntity {
   code!: string;
 
   @OneToMany(() => User, (user) => user.home)
-  @Field(() => [User])
   users!: User[];
 
   constructor() {

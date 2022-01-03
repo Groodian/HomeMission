@@ -1,4 +1,13 @@
-import { Arg, Authorized, Mutation, Query, Resolver } from 'type-graphql';
+import {
+  Arg,
+  Authorized,
+  FieldResolver,
+  Mutation,
+  Query,
+  Resolver,
+  ResolverInterface,
+  Root,
+} from 'type-graphql';
 import Home from '../../../entities/home';
 import User from '../../../entities/user';
 import databaseConnection from '../../typeorm/connection';
@@ -6,12 +15,35 @@ import CurrentSession from '../../auth0/current-session';
 import { Session } from '@auth0/nextjs-auth0';
 
 @Resolver(Home)
-export default class HomeResolver {
+export default class HomeResolver implements ResolverInterface<Home> {
+  /**
+   * Get the home of the authenticated user from the database or null if the user has no home.
+   */
+  @Authorized()
+  @Query(() => Home, { nullable: true })
+  async home(@CurrentSession() session?: Session) {
+    await databaseConnection();
+    const user = await User.findOne((session?.user.sub as string) || '', {
+      relations: ['home'],
+    });
+    return user?.home;
+  }
+
+  /**
+   * Only load users if required.
+   */
+  @FieldResolver(() => [User])
+  async users(@Root() home: Home) {
+    return await User.find({ where: { home: home.id } });
+  }
+
+  // TODO: Remove
+  // ! Only for testing purposes.
   /**
    * Get all homes including the users in the homes.
    */
   @Query(() => [Home])
-  async getHomes() {
+  async homes() {
     try {
       await databaseConnection();
       return await Home.find({ relations: ['users'] });
@@ -20,6 +52,7 @@ export default class HomeResolver {
     }
   }
 
+  // TODO: Create home with name
   /**
    * Create a new home and add the user to it.
    */
@@ -28,8 +61,8 @@ export default class HomeResolver {
   async createHome() {
     await databaseConnection();
     try {
-      const createdHome = await Home.save(new Home());
-      return this.addUserToHome(createdHome.id);
+      const createdHome = await new Home().save();
+      return this.addUserToHome(createdHome);
     } catch (e) {
       throw Error('Failed to create home.');
     }
@@ -44,41 +77,25 @@ export default class HomeResolver {
     await databaseConnection();
     try {
       const home = await this.getHomeByCode(code);
-      return await this.addUserToHome(home.id);
+      return await this.addUserToHome(home);
     } catch (e) {
       throw Error('Failed to add user to home. Check that the code is valid!');
     }
   }
 
-  private async addUserToHome(
-    homeId: string,
-    @CurrentSession() session?: Session
-  ) {
-    await databaseConnection();
+  private async addUserToHome(home: Home, @CurrentSession() session?: Session) {
     try {
-      // get home and user from database
-      const home = await Home.findOneOrFail(homeId);
-      const user = await User.findOneOrFail(session?.user.sub, {
-        relations: ['home'],
-      });
+      // get user from database
+      const user = await User.findOneOrFail(session?.user.sub as string);
 
-      // remove user from previous home if necessary
-      if (user.home) {
-        const previousHome = await Home.findOne(user.home.id);
-        if (previousHome) {
-          previousHome.users.filter((u: User) => u.id !== user.id);
-          await previousHome.save();
-        }
-      }
-
-      // add references
+      // add reference
       user.home = home;
-      home.users = home.users ? home.users.concat([user]) : [user];
 
-      // save both and then return the home with relations
+      // save
       await user.save();
-      await home.save();
-      return Home.findOne(home.id, { relations: ['users'] });
+
+      // return the home
+      return home;
     } catch (e) {
       throw Error(
         'Failed to add user to home. Check that both the home and user exist!'

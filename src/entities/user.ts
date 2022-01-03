@@ -22,6 +22,5 @@ export default class User extends BaseEntity {
   points!: number;
 
   @ManyToOne(() => Home, (home) => home.users)
-  @Field(() => Home, { nullable: true })
   home: Home | null | undefined;
 }
