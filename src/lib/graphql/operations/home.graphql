@@ -1,0 +1,29 @@
+query GetHomes {
+  getHomes {
+    id
+    name
+    code
+    users {
+      id
+    }
+  }
+}
+
+mutation CreateHome {
+  createHome {
+    id
+    name
+    code
+  }
+}
+
+mutation JoinHome($code: String!) {
+  joinHomeByCode (code: $code) {
+    id
+    code
+    name
+    users {
+      id
+    }
+  }
+}

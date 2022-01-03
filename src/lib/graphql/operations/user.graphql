@@ -4,6 +4,9 @@ query User {
     name
     picture
     points
+    home {
+      id
+    }
   }
 }
 
