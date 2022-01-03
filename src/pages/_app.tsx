@@ -1,6 +1,7 @@
 import { ApolloProvider } from '@apollo/client';
 import { UserProvider } from '@auth0/nextjs-auth0';
 import { CacheProvider, EmotionCache } from '@emotion/react';
+import { useMediaQuery } from '@mui/material';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
 import { GraphQLSchema } from 'graphql';
@@ -10,7 +11,8 @@ import React from 'react';
 import { useApollo } from '../lib/graphql/apollo-client';
 import schema from '../lib/graphql/schema';
 import { createEmotionCache } from '../lib/mui/emotion';
-import theme from '../styles/theme';
+import darkTheme from '../styles/dark-theme';
+import lightTheme from '../styles/light-theme';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -27,6 +29,7 @@ const MyApp: React.FC<MyAppProps> = ({
   emotionCache = clientSideEmotionCache,
 }) => {
   const apolloClient = useApollo(graphqlSchema, pageProps.initialApolloState);
+  const darkMode = useMediaQuery('(prefers-color-scheme: dark)');
 
   return (
     <ApolloProvider client={apolloClient}>
@@ -39,7 +42,7 @@ const MyApp: React.FC<MyAppProps> = ({
               content="initial-scale=1, width=device-width"
             />
           </Head>
-          <ThemeProvider theme={theme}>
+          <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
             {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
             <CssBaseline />
             <Component {...pageProps} />
