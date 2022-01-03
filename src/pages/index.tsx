@@ -34,6 +34,9 @@ const Home: NextPage = () => (
       <Link href="/auth0" color="secondary">
         Go to the Auth0 test page
       </Link>
+      <Link href="/join" color="secondary">
+        Join a home or create a new one
+      </Link>
       <ProTip />
       <Copyright />
 
