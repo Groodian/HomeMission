@@ -14,6 +14,9 @@ apolloCache.writeQuery({
         name
         picture
         points
+        home {
+          id
+        }
       }
     }
   `,
@@ -24,6 +27,7 @@ apolloCache.writeQuery({
       name: 'Baa',
       picture: '',
       points: 100,
+      home: { id: 'Bee' },
     },
   },
 });
