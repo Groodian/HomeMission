@@ -29,8 +29,18 @@ apolloCache.writeQuery({
 });
 
 describe('Auth0 test page', () => {
-  it('matches snapshot', () => {
-    const { asFragment } = render(<Auth0Test />, { apolloCache });
+  it('matches snapshot', async () => {
+    const { asFragment } = await render(<Auth0Test />, {
+      apolloCache,
+    });
+    expect(asFragment()).toMatchSnapshot();
+  });
+
+  it('matches snapshot DE', async () => {
+    const { asFragment } = await render(<Auth0Test />, {
+      apolloCache,
+      language: 'de',
+    });
     expect(asFragment()).toMatchSnapshot();
   });
 });

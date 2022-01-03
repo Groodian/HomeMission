@@ -5,6 +5,9 @@ import { useMediaQuery } from '@mui/material';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
 import { GraphQLSchema } from 'graphql';
+import { GetStaticProps } from 'next';
+import { appWithTranslation, useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import React from 'react';
@@ -28,6 +31,7 @@ const MyApp: React.FC<MyAppProps> = ({
   graphqlSchema,
   emotionCache = clientSideEmotionCache,
 }) => {
+  const { t } = useTranslation('_app');
   const apolloClient = useApollo(graphqlSchema, pageProps.initialApolloState);
   const darkMode = useMediaQuery('(prefers-color-scheme: dark)');
 
@@ -36,7 +40,7 @@ const MyApp: React.FC<MyAppProps> = ({
       <UserProvider>
         <CacheProvider value={emotionCache}>
           <Head>
-            <title>Change title in _app.tsx</title>
+            <title>{t('title')}</title>
             <meta
               name="viewport"
               content="initial-scale=1, width=device-width"
@@ -53,12 +57,13 @@ const MyApp: React.FC<MyAppProps> = ({
   );
 };
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
   return {
     props: {
       graphqlSchema: schema,
+      ...(await serverSideTranslations(locale || '', ['_app'])),
     },
   };
-}
+};
 
-export default MyApp;
+export default appWithTranslation(MyApp);

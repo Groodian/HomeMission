@@ -19,7 +19,7 @@ Use prebuilt Docker container:
 
 1. Login to GitLab registry: `docker login registry.code.fbi.h-da.de`.
 2. Start application: `docker-compose -f docker-compose.prod.yml --env-file=.env.local up -d`.
-3. Open in browser: `http://localhost/`.
+3. Open in browser: [`http://localhost`](http://localhost).
 
 Or build locally:
 
@@ -27,6 +27,7 @@ Or build locally:
 2. Build application: `npm run build`.
 3. Start database: `docker-compose --env-file=.env.local up -d`.
 4. Start application: `npm start`.
+5. Open in browser: [`http://localhost`](http://localhost).
 
 ### Development
 
@@ -34,7 +35,7 @@ Or build locally:
 2. Install dependencies: `npm i`.
 3. Start database: `docker-compose up -d`.
 4. Start application: `npm run dev`.
-5. Open in browser: `http://localhost:3000/`.
+5. Open in browser: [`http://localhost:3000`](http://localhost:3000).
 
 ## Contribute
 
@@ -99,11 +100,17 @@ Next.js specific folders are omitted. See [Next.js](#nextjs)
   See [Prettier](#prettier).
 - [`/cypress.json`](cypress.json):
   See [Cypress](#cypress).
+- [`/docker-compose.prod.yml`](docker-compose.prod.yml):
+  Production Docker-Compose Setup.
 - [`/docker-compose.yml`](docker-compose.yml):
   Docker Container for Database.
   See [MySQL](#mysql).
 - [`/jest.config.js`](jest.config.js):
   See [Jest](#jest).
+- [`/next-i18next.config.js`](next-i18next.config.js):
+  See [next-i18next](#next-i18next).
+- [`/push-docker-image.sh`](push-docker-image.sh):
+  Build and push a docker image to the GitLab registry.
 - [`/tsconfig.json`](tsconfig.json):
   See [TypeScript](#typescript).
 
@@ -158,6 +165,16 @@ End to End testing framework.
 React UI library. Including the default style engine:
 
 ##### [Emotion](https://emotion.sh/)
+
+#### [next-i18next](https://github.com/isaachinman/next-i18next#readme)
+
+Internationalization. Using:
+
+##### [react-i18next](https://react.i18next.com/)
+
+Using:
+
+###### [i18next](https://www.i18next.com/)
 
 #### [Auth0](https://auth0.com/)
 
@@ -278,3 +295,7 @@ The code is linted on every commit (See [Husky](#husky)).
 #### Push
 
 The code is type-checked on every push (See [Husky](#husky)).
+
+#### Push Docker Image
+
+You can build and push the docker image to the GitLab registry with the commands from `/push-docker-image.sh`.

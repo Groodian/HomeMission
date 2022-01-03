@@ -1,6 +1,7 @@
 import Link from '@mui/material/Link';
 import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
 import Typography from '@mui/material/Typography';
+import { Trans, useTranslation } from 'next-i18next';
 import React from 'react';
 
 const LightBulbIcon: React.FC<SvgIconProps> = (props) => (
@@ -9,13 +10,19 @@ const LightBulbIcon: React.FC<SvgIconProps> = (props) => (
   </SvgIcon>
 );
 
-const ProTip: React.FC = () => (
-  <Typography sx={{ mt: 6, mb: 3 }} color="text.secondary">
-    <LightBulbIcon sx={{ mr: 1, verticalAlign: 'middle' }} />
-    Pro tip: See more{' '}
-    <Link href="https://mui.com/getting-started/templates/">templates</Link> on
-    the MUI documentation.
-  </Typography>
-);
+const ProTip: React.FC = () => {
+  const { t } = useTranslation('ProTip');
+
+  return (
+    <Typography sx={{ mt: 6, mb: 3 }} color="text.secondary">
+      <LightBulbIcon sx={{ mr: 1, verticalAlign: 'middle' }} />
+      <Trans i18nKey="pro-tip" t={t}>
+        Pro tip: See more{' '}
+        <Link href="https://mui.com/getting-started/templates/">templates</Link>{' '}
+        on the MUI documentation.
+      </Trans>
+    </Typography>
+  );
+};
 
 export default ProTip;

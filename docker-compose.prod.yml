@@ -14,7 +14,7 @@ services:
   wg-organisierspiel:
     image: registry.code.fbi.h-da.de/isttomare/wg-organisierspiel
     ports:
-      - 80:3000
+      - 80:80
     env_file:
       - .env.local
     environment:

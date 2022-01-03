@@ -1,14 +1,17 @@
 import { withPageAuthRequired } from '@auth0/nextjs-auth0';
-import { NextPage } from 'next';
+import { GetStaticProps, NextPage } from 'next';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Image from 'next/image';
 import { useRoommatesQuery } from '../lib/graphql/operations/roommates.graphql';
 
 const RoommatesTest: NextPage = () => {
+  const { t } = useTranslation(['roommates', 'common']);
   const { loading, error, data } = useRoommatesQuery();
 
   return (
     <>
-      {loading && 'Loading...'}
+      {loading && t('loading', { ns: 'common' })}
       {error && (
         <>
           {error.name}: {error.message}
@@ -18,9 +21,9 @@ const RoommatesTest: NextPage = () => {
         <table>
           <tbody>
             <tr>
-              <th>Name</th>
-              <th>Picture</th>
-              <th>Points</th>
+              <th>{t('name')}</th>
+              <th>{t('picture')}</th>
+              <th>{t('points')}</th>
             </tr>
             {data.home.users.map((roommate) => (
               <tr key={roommate.id}>
@@ -28,7 +31,7 @@ const RoommatesTest: NextPage = () => {
                 <td>
                   <Image
                     src={roommate.picture}
-                    alt={`Profile picture of ${roommate.name}`}
+                    alt={t('profile-picture-alt', { roommate })}
                     width={40}
                     height={40}
                   />
@@ -41,6 +44,18 @@ const RoommatesTest: NextPage = () => {
       )}
     </>
   );
+};
+
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale || '', [
+        '_app',
+        'roommates',
+        'common',
+      ])),
+    },
+  };
 };
 
 export default withPageAuthRequired(RoommatesTest);

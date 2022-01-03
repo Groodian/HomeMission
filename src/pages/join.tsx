@@ -1,4 +1,4 @@
-import { NextPage } from 'next';
+import { GetStaticProps, NextPage } from 'next';
 import { Button, Input } from '@mui/material';
 import {
   useCreateHomeMutation,
@@ -7,8 +7,11 @@ import {
 import Router, { useRouter } from 'next/router';
 import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 import { useEffect } from 'react';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next';
 
 const Join: NextPage = () => {
+  const { t } = useTranslation('join');
   const [useJoinHome] = useJoinHomeMutation();
   const [useCreateHome] = useCreateHomeMutation();
   const router = useRouter();
@@ -46,11 +49,7 @@ const Join: NextPage = () => {
 
   return (
     <>
-      <Input
-        id={'codeInput'}
-        type={'text'}
-        placeholder={'Enter invitation code'}
-      />
+      <Input id="codeInput" type="text" placeholder={t('placeholder')} />
       <Button
         onClick={() => {
           const codeValue = (
@@ -59,11 +58,19 @@ const Join: NextPage = () => {
           joinHome(codeValue);
         }}
       >
-        Join home
+        {t('join')}
       </Button>
-      <Button onClick={() => createHome()}>Create new home</Button>
+      <Button onClick={() => createHome()}>{t('create')}</Button>
     </>
   );
+};
+
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale || '', ['_app', 'join'])),
+    },
+  };
 };
 
 export default withPageAuthRequired(Join);
