@@ -2,6 +2,8 @@ import { Arg, Authorized, Mutation, Query, Resolver } from 'type-graphql';
 import Home from '../../../entities/home';
 import User from '../../../entities/user';
 import databaseConnection from '../../typeorm/connection';
+import CurrentSession from '../../auth0/current-session';
+import { Session } from '@auth0/nextjs-auth0';
 
 @Resolver(Home)
 export default class HomeResolver {
@@ -48,18 +50,23 @@ export default class HomeResolver {
     }
   }
 
-  private async addUserToHome(homeId: string) {
+  private async addUserToHome(
+    homeId: string,
+    @CurrentSession() session?: Session
+  ) {
     await databaseConnection();
     try {
       // get home and user from database
       const home = await Home.findOneOrFail(homeId);
-      const user = await User.findOneOrFail({ relations: ['home'] }); // ... get correct user
+      const user = await User.findOneOrFail(session?.user.sub, {
+        relations: ['home'],
+      });
 
       // remove user from previous home if necessary
       if (user.home) {
         const previousHome = await Home.findOne(user.home.id);
         if (previousHome) {
-          previousHome.users.filter((u) => u.id !== user.id);
+          previousHome.users.filter((u: User) => u.id !== user.id);
           await previousHome.save();
         }
       }
