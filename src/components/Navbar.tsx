@@ -12,7 +12,9 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { useUserQuery } from '../lib/graphql/operations/user.graphql';
 import { useEffect, useState } from 'react';
+import { ThemeSwitch } from './ThemeSwitch';
 import { useRouter } from 'next/router';
+import { ColorModeContext } from '../pages/_app';
 
 const authenticatedPages: { url: string; text: string; api: boolean }[] = [
   { url: 'overview', text: 'Overview', api: false },
@@ -24,8 +26,9 @@ const unauthenticatedPages: { url: string; text: string; api: boolean }[] = [
   { url: '/api/auth/login', text: 'Login', api: true },
 ];
 
-const ResponsiveAppBar = () => {
+const Navbar = () => {
   const router = useRouter();
+  const colorMode = React.useContext(ColorModeContext);
 
   const { data } = useUserQuery();
   const [authenticated, setAuthenticated] = useState<boolean>(false);
@@ -70,6 +73,12 @@ const ResponsiveAppBar = () => {
               )
             )}
           </Box>
+          <ThemeSwitch
+            defaultChecked={colorMode.getMode() === 'dark'}
+            onChange={(event) => {
+              colorMode.setMode(event.target.checked ? 'dark' : 'light');
+            }}
+          />
           {authenticated && data && data.user ? (
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
@@ -116,4 +125,4 @@ const ResponsiveAppBar = () => {
     </AppBar>
   );
 };
-export default ResponsiveAppBar;
+export default Navbar;
