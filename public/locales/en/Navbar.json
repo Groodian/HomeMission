@@ -5,5 +5,8 @@
   "join": "join or create home",
   "login": "login",
   "logout": "logout",
-  "settings": "open settings"
+  "settings": "open settings",
+  "language": "Language",
+  "german": "German",
+  "english": "English"
 }

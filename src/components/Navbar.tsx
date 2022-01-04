@@ -16,31 +16,45 @@ import { ThemeSwitch } from './ThemeSwitch';
 import { useRouter } from 'next/router';
 import { ColorModeContext } from '../pages/_app';
 import { useTranslation } from 'next-i18next';
+import { FormControl, InputLabel, Select } from '@mui/material';
+import { useHomeQuery } from '../lib/graphql/operations/home.graphql';
 
 const Navbar = () => {
   const { t } = useTranslation('Navbar');
-
-  const authenticatedPages: { url: string; text: string; api: boolean }[] = [
-    { url: 'overview', text: t('overview'), api: false },
-    { url: 'statistics', text: t('statistics'), api: false },
-    { url: 'history', text: t('activity'), api: false },
-    { url: 'join', text: t('join'), api: false },
-  ];
-  const unauthenticatedPages: { url: string; text: string; api: boolean }[] = [
-    { url: '/api/auth/login', text: t('login'), api: true },
-  ];
-
   const router = useRouter();
   const colorMode = React.useContext(ColorModeContext);
 
-  const { data } = useUserQuery();
+  const { data: homeData } = useHomeQuery();
+  const { data: userData } = useUserQuery();
   const [authenticated, setAuthenticated] = useState<boolean>(false);
 
+  const unauthenticatedPages: { url: string; text: string; api: boolean }[] = [
+    { url: '/api/auth/login', text: t('login'), api: true },
+  ];
+  const authenticatedPagesWithHome: {
+    url: string;
+    text: string;
+    api: boolean;
+  }[] = [
+    { url: 'overview', text: t('overview'), api: false },
+    { url: 'statistics', text: t('statistics'), api: false },
+    { url: 'history', text: t('activity'), api: false },
+  ];
+  const authenticatedPagesNoHome: {
+    url: string;
+    text: string;
+    api: boolean;
+  }[] = [{ url: 'join', text: t('join'), api: false }];
+
   useEffect(() => {
-    if (data && data.user) {
+    if (userData && userData.user) {
       setAuthenticated(true);
     } else setAuthenticated(false);
-  }, [data]);
+  }, [userData]);
+
+  function route(path: string, absolute = false) {
+    absolute ? window.location.assign(path) : router.push(path);
+  }
 
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
@@ -54,27 +68,47 @@ const Navbar = () => {
     setAnchorElUser(null);
   };
 
-  function route(path: string, absolute = false) {
-    absolute ? window.location.assign(path) : router.push(path);
-  }
-
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <h1 onClick={() => route('/')}>LOGO</h1>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {(authenticated ? authenticatedPages : unauthenticatedPages).map(
-              (page) => (
-                <Button
-                  key={page.url}
-                  onClick={() => route(page.url, page.api)}
-                  sx={{ my: 2, color: 'white', display: 'block' }}
-                >
-                  {page.text}
-                </Button>
-              )
-            )}
+            {(authenticated
+              ? homeData?.home
+                ? authenticatedPagesWithHome
+                : authenticatedPagesNoHome
+              : unauthenticatedPages
+            ).map((page) => (
+              <Button
+                key={page.url}
+                onClick={() => route(page.url, page.api)}
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+                {page.text}
+              </Button>
+            ))}
+          </Box>
+          <Box sx={{ minWidth: 120 }}>
+            <FormControl fullWidth>
+              <InputLabel id="language-select-label">
+                {t('language')}
+              </InputLabel>
+              <Select
+                labelId="language-select-label"
+                id="language-select"
+                label={t('language')}
+                value={''}
+                onChange={(event) => {
+                  router.push(router.route, router.route, {
+                    locale: event.target.value,
+                  });
+                }}
+              >
+                <MenuItem value={'de'}>{t('german')}</MenuItem>
+                <MenuItem value={'en'}>{t('english')}</MenuItem>
+              </Select>
+            </FormControl>
           </Box>
           <ThemeSwitch
             defaultChecked={colorMode.getMode() === 'dark'}
@@ -82,15 +116,15 @@ const Navbar = () => {
               colorMode.setMode(event.target.checked ? 'dark' : 'light');
             }}
           />
-          {authenticated && data && data.user ? (
+          {authenticated && userData && userData.user ? (
             <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title={t('settings')}>
+              <Tooltip title={t('settings') as string}>
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <Avatar
-                    alt={data.user.name}
+                    alt={userData.user.name}
                     src={
-                      data.user.picture && data.user.picture !== ''
-                        ? data.user.picture
+                      userData.user.picture && userData.user.picture !== ''
+                        ? userData.user.picture
                         : ''
                     }
                   />

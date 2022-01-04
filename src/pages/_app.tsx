@@ -9,7 +9,7 @@ import { appWithTranslation, useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-import React, { useEffect } from 'react';
+import React, { createContext, useEffect } from 'react';
 import { useApollo } from '../lib/graphql/apollo-client';
 import schema from '../lib/graphql/schema';
 import { createEmotionCache } from '../lib/mui/emotion';
@@ -20,8 +20,12 @@ import Navbar from '../components/Navbar';
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
 
-export const ColorModeContext = React.createContext({
-  setMode: (_mode: string) => undefined,
+type ModeContextTypes = {
+  setMode: (mode: string) => void;
+  getMode: () => string | null | undefined;
+};
+export const ColorModeContext = createContext<ModeContextTypes>({
+  setMode: () => undefined,
   getMode: () => undefined,
 });
 
