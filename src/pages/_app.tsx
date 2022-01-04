@@ -16,6 +16,7 @@ import schema from '../lib/graphql/schema';
 import { createEmotionCache } from '../lib/mui/emotion';
 import darkTheme from '../styles/dark-theme';
 import lightTheme from '../styles/light-theme';
+import Navbar from '../components/Navbar';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -49,6 +50,7 @@ const MyApp: React.FC<MyAppProps> = ({
           <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
             {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
             <CssBaseline />
+            <Navbar />
             <Component {...pageProps} />
           </ThemeProvider>
         </CacheProvider>
