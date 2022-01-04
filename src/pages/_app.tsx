@@ -101,7 +101,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
   return {
     props: {
       graphqlSchema: schema,
-      ...(await serverSideTranslations(locale || '', ['_app'])),
+      ...(await serverSideTranslations(locale || '', ['_app', 'Navbar'])),
     },
   };
 };

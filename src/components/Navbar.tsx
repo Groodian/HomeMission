@@ -15,18 +15,21 @@ import { useEffect, useState } from 'react';
 import { ThemeSwitch } from './ThemeSwitch';
 import { useRouter } from 'next/router';
 import { ColorModeContext } from '../pages/_app';
-
-const authenticatedPages: { url: string; text: string; api: boolean }[] = [
-  { url: 'overview', text: 'Overview', api: false },
-  { url: 'statistics', text: 'Statistics', api: false },
-  { url: 'history', text: 'Activity History', api: false },
-  { url: 'join', text: 'Join or create home', api: false },
-];
-const unauthenticatedPages: { url: string; text: string; api: boolean }[] = [
-  { url: '/api/auth/login', text: 'Login', api: true },
-];
+import { useTranslation } from 'next-i18next';
 
 const Navbar = () => {
+  const { t } = useTranslation('Navbar');
+
+  const authenticatedPages: { url: string; text: string; api: boolean }[] = [
+    { url: 'overview', text: t('overview'), api: false },
+    { url: 'statistics', text: t('statistics'), api: false },
+    { url: 'history', text: t('activity'), api: false },
+    { url: 'join', text: t('join'), api: false },
+  ];
+  const unauthenticatedPages: { url: string; text: string; api: boolean }[] = [
+    { url: '/api/auth/login', text: t('login'), api: true },
+  ];
+
   const router = useRouter();
   const colorMode = React.useContext(ColorModeContext);
 
@@ -81,7 +84,7 @@ const Navbar = () => {
           />
           {authenticated && data && data.user ? (
             <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="Open settings">
+              <Tooltip title={t('settings')}>
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <Avatar
                     alt={data.user.name}
@@ -113,7 +116,7 @@ const Navbar = () => {
                   key={'logout'}
                   onClick={() => route('/api/auth/logout', true)}
                 >
-                  <Typography textAlign="center">Logout</Typography>
+                  <Typography textAlign="center">{t('logout')}</Typography>
                 </MenuItem>
               </Menu>
             </Box>

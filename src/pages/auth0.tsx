@@ -38,6 +38,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
         '_app',
         'auth0',
         'common',
+        'Navbar',
       ])),
     },
   };

@@ -53,6 +53,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
         '_app',
         'roommates',
         'common',
+        'Navbar',
       ])),
     },
   };
