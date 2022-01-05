@@ -11,46 +11,34 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { useUserQuery } from '../lib/graphql/operations/user.graphql';
-import { useEffect, useState } from 'react';
-import { ThemeSwitch } from './ThemeSwitch';
+import ThemeSwitch from './ThemeSwitch';
 import { useRouter } from 'next/router';
 import { ColorModeContext } from '../pages/_app';
 import { useTranslation } from 'next-i18next';
-import { FormControl, InputLabel, Select } from '@mui/material';
+import { FormControl, InputLabel, Select, useTheme } from '@mui/material';
 import { useHomeQuery } from '../lib/graphql/operations/home.graphql';
+import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
+
+type Pages = { url: string; text: string; api?: boolean }[];
 
 const Navbar = () => {
   const { t } = useTranslation('Navbar');
   const router = useRouter();
+  const theme = useTheme();
   const colorMode = React.useContext(ColorModeContext);
 
   const { data: homeData } = useHomeQuery();
   const { data: userData } = useUserQuery();
-  const [authenticated, setAuthenticated] = useState<boolean>(false);
 
-  const unauthenticatedPages: { url: string; text: string; api: boolean }[] = [
+  const unauthenticatedPages: Pages = [
     { url: '/api/auth/login', text: t('login'), api: true },
   ];
-  const authenticatedPagesWithHome: {
-    url: string;
-    text: string;
-    api: boolean;
-  }[] = [
-    { url: 'overview', text: t('overview'), api: false },
-    { url: 'statistics', text: t('statistics'), api: false },
-    { url: 'history', text: t('activity'), api: false },
+  const authenticatedPagesWithHome: Pages = [
+    { url: 'overview', text: t('overview') },
+    { url: 'statistics', text: t('statistics') },
+    { url: 'history', text: t('activity') },
   ];
-  const authenticatedPagesNoHome: {
-    url: string;
-    text: string;
-    api: boolean;
-  }[] = [{ url: 'join', text: t('join'), api: false }];
-
-  useEffect(() => {
-    if (userData && userData.user) {
-      setAuthenticated(true);
-    } else setAuthenticated(false);
-  }, [userData]);
+  const authenticatedPagesNoHome: Pages = [{ url: 'join', text: t('join') }];
 
   function route(path: string, absolute = false) {
     absolute ? window.location.assign(path) : router.push(path);
@@ -72,9 +60,16 @@ const Navbar = () => {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <h1 onClick={() => route('/')}>LOGO</h1>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {(authenticated
+          <IconButton
+            size="large"
+            onClick={() => route('/')}
+            color="inherit"
+            sx={{ mr: 2 }}
+          >
+            <HomeRoundedIcon />
+          </IconButton>
+          <Box sx={{ flexGrow: 1 }}>
+            {(userData?.user
               ? homeData?.home
                 ? authenticatedPagesWithHome
                 : authenticatedPagesNoHome
@@ -83,7 +78,7 @@ const Navbar = () => {
               <Button
                 key={page.url}
                 onClick={() => route(page.url, page.api)}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={{ my: 2, color: 'white' }}
               >
                 {page.text}
               </Button>
@@ -98,7 +93,7 @@ const Navbar = () => {
                 labelId="language-select-label"
                 id="language-select"
                 label={t('language')}
-                value={''}
+                value={router.locale}
                 onChange={(event) => {
                   router.push(router.route, router.route, {
                     locale: event.target.value,
@@ -111,22 +106,18 @@ const Navbar = () => {
             </FormControl>
           </Box>
           <ThemeSwitch
-            defaultChecked={colorMode.getMode() === 'dark'}
+            defaultChecked={theme.palette.mode === 'dark'}
             onChange={(event) => {
               colorMode.setMode(event.target.checked ? 'dark' : 'light');
             }}
           />
-          {authenticated && userData && userData.user ? (
-            <Box sx={{ flexGrow: 0 }}>
+          {userData?.user && (
+            <Box>
               <Tooltip title={t('settings') as string}>
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <Avatar
                     alt={userData.user.name}
-                    src={
-                      userData.user.picture && userData.user.picture !== ''
-                        ? userData.user.picture
-                        : ''
-                    }
+                    src={userData.user.picture}
                   />
                 </IconButton>
               </Tooltip>
@@ -154,8 +145,6 @@ const Navbar = () => {
                 </MenuItem>
               </Menu>
             </Box>
-          ) : (
-            <></>
           )}
         </Toolbar>
       </Container>
