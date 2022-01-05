@@ -41,3 +41,6 @@ yarn-error.log*
 __generated__
 *.graphql.d.ts
 schema.gql
+
+# visual studio code
+.vscode/

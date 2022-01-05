@@ -18,6 +18,8 @@ import { ColorModeContext } from '../pages/_app';
 import { useTranslation } from 'next-i18next';
 import { FormControl, InputLabel, Select } from '@mui/material';
 import { useHomeQuery } from '../lib/graphql/operations/home.graphql';
+import Image from 'next/image';
+import homeMissionLogo from '../../public/home_mission_grey.png';
 
 const Navbar = () => {
   const { t } = useTranslation('Navbar');
@@ -72,7 +74,13 @@ const Navbar = () => {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <h1 onClick={() => route('/')}>LOGO</h1>
+          <Box sx={{ minWidth: 90 }}>
+            <Image
+              alt="homemission logo"
+              src={homeMissionLogo}
+              layout="responsive"
+            />
+          </Box>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {(authenticated
               ? homeData?.home
