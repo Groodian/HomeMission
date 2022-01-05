@@ -1,5 +1,5 @@
 {
-  "name": "wg-organisierspiel",
+  "name": "homemission",
   "private": true,
   "scripts": {
     "emit-schema": "ts-node src/lib/graphql/schema.ts",
