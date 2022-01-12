@@ -42,6 +42,9 @@ const Home: NextPage = () => {
         <Link href="/join" color="secondary">
           {t('link-join')}
         </Link>
+        <Link href="/history" color="secondary">
+          {t('link-history')}
+        </Link>
         <Link locale="en" href="" color="secondary">
           EN
         </Link>
