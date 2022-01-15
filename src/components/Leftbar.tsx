@@ -1,9 +1,7 @@
 import { Container, Typography } from "@material-ui/core";
 import {
-  Bookmark,
   List,
   ExitToApp,
-  Home,
   Person,
   PhotoCamera,
   PlayCircleOutline,
@@ -11,6 +9,8 @@ import {
   Storefront,
   TabletMac,
 } from "@mui/icons-material";
+import ListAltIcon from '@mui/icons-material/ListAlt';
+
 import { makeStyles, createStyles } from '@mui/styles';
 
 
@@ -57,32 +57,24 @@ const Leftbar = () => {
   return (
     <Container className={classes.container}>
       <div className={classes.item}>
-        <Home className={classes.icon} />
-        <Typography className={classes.text}>Homepage</Typography>
-      </div>
-      <div className={classes.item}>
         <Person className={classes.icon} />
-        <Typography className={classes.text}>Friends</Typography>
+        <Typography className={classes.text}>Members</Typography>
       </div>
       <div className={classes.item}>
-        <List className={classes.icon} />
-        <Typography className={classes.text}>Lists</Typography>
+        <ListAltIcon className={classes.icon} />
+        <Typography className={classes.text}>Activity List</Typography>
       </div>
       <div className={classes.item}>
         <PhotoCamera className={classes.icon} />
-        <Typography className={classes.text}>Camera</Typography>
+        <Typography className={classes.text}>WG Album</Typography>
       </div>
       <div className={classes.item}>
         <PlayCircleOutline className={classes.icon} />
-        <Typography className={classes.text}>Videos</Typography>
+        <Typography className={classes.text}>WG Videos</Typography>
       </div>
       <div className={classes.item}>
         <TabletMac className={classes.icon} />
-        <Typography className={classes.text}>Apps</Typography>
-      </div>
-      <div className={classes.item}>
-        <Bookmark className={classes.icon} />
-        <Typography className={classes.text}>Collections</Typography>
+        <Typography className={classes.text}>Notifications</Typography>
       </div>
       <div className={classes.item}>
         <Storefront className={classes.icon} />

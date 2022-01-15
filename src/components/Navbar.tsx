@@ -15,9 +15,10 @@ import ThemeSwitch from './ThemeSwitch';
 import { useRouter } from 'next/router';
 import { ColorModeContext } from '../pages/_app';
 import { useTranslation } from 'next-i18next';
-import { FormControl, InputLabel, Select, useTheme } from '@mui/material';
+import {alpha, FormControl, InputLabel, Select, useTheme} from '@mui/material';
 import { useHomeQuery } from '../lib/graphql/operations/home.graphql';
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
+
 
 type Pages = { url: string; text: string; api?: boolean }[];
 
