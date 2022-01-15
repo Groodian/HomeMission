@@ -1,0 +1,7 @@
+mutation CreateTaskType($name: String!, $points: Float!) {
+  createTaskType(name: $name, points: $points) {
+    id,
+    name,
+    points,
+  }
+}

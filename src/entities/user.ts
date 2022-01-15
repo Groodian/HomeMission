@@ -1,10 +1,10 @@
 import { Field, ID, ObjectType } from 'type-graphql';
 import { BaseEntity, Column, Entity, ManyToOne, PrimaryColumn } from 'typeorm';
-import Home from './home';
+import { Home } from '.';
 
 @Entity()
 @ObjectType()
-export default class User extends BaseEntity {
+export class User extends BaseEntity {
   @PrimaryColumn()
   @Field(() => ID)
   id!: string;

@@ -8,8 +8,7 @@ import {
   ResolverInterface,
   Root,
 } from 'type-graphql';
-import Home from '../../../entities/home';
-import User from '../../../entities/user';
+import { Home, TaskType, User } from '../../../entities';
 import databaseConnection from '../../typeorm/connection';
 import CurrentSession from '../../auth0/current-session';
 import { Session } from '@auth0/nextjs-auth0';
@@ -37,16 +36,24 @@ export default class HomeResolver implements ResolverInterface<Home> {
     return await User.find({ where: { home: home.id } });
   }
 
+  /**
+   * Only load task types if required.
+   */
+  @FieldResolver(() => [User])
+  async taskTypes(@Root() home: Home) {
+    return await TaskType.find({ where: { relatedHome: home.id } });
+  }
+
   // TODO: Remove
   // ! Only for testing purposes.
   /**
-   * Get all homes including the users in the homes.
+   * Get all homes including the users and task types in the homes.
    */
   @Query(() => [Home])
   async homes() {
     try {
       await databaseConnection();
-      return await Home.find({ relations: ['users'] });
+      return await Home.find({ relations: ['users', 'taskTypes'] });
     } catch (e) {
       throw Error('Failed to get all homes.');
     }

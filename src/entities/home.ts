@@ -9,11 +9,11 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import User from '../entities/user';
+import { User, TaskType } from './index';
 
 @Entity()
 @ObjectType()
-export default class Home extends BaseEntity {
+export class Home extends BaseEntity {
   @PrimaryGeneratedColumn()
   @Field(() => ID)
   id!: string;
@@ -29,6 +29,9 @@ export default class Home extends BaseEntity {
   @OneToMany(() => User, (user) => user.home)
   users!: User[];
 
+  @OneToMany(() => TaskType, (taskType) => taskType.relatedHome)
+  taskTypes!: TaskType[];
+
   constructor() {
     super();
     this.code = generateRandomString(6);
@@ -41,6 +44,9 @@ export default class Home extends BaseEntity {
     // ensures that property users is never undefined
     if (!this.users) {
       this.users = [];
+    }
+    if (!this.taskTypes) {
+      this.taskTypes = [];
     }
   }
 }
