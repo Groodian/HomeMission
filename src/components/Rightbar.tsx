@@ -8,7 +8,6 @@ import {
   Divider,
 } from "@material-ui/core";
 import AvatarGroup from '@mui/material/AvatarGroup';
-
 import { makeStyles, createStyles } from '@mui/styles';
 
 
@@ -47,31 +46,31 @@ const Rightbar = () => {
                    }}>
         <Avatar
           alt="Member 1"
-          src="static/images/avatar.jpg"
+          src="https://cdn3.iconfinder.com/data/icons/vector-icons-6/96/256-512.png"
         />
         <Avatar
           alt="Member 2"
-          src="static/images/avatar.jpg"
+          src="https://cdn3.iconfinder.com/data/icons/vector-icons-6/96/256-512.png"
         />
         <Avatar
           alt="Member 3"
-          src="static/images/avatar.jpg"
+          src="https://cdn3.iconfinder.com/data/icons/vector-icons-6/96/256-512.png"
         />
         <Avatar
           alt="Member 4"
-          src="static/images/avatar.jpg"
+          src="https://cdn3.iconfinder.com/data/icons/vector-icons-6/96/256-512.png"
         />
         <Avatar
           alt="Member 5"
-          src="static/images/avatar.jpg"
+          src="https://cdn3.iconfinder.com/data/icons/vector-icons-6/96/256-512.png"
         />
         <Avatar
           alt="Member 6"
-          src="static/images/avatar.jpg"
+          src="https://cdn3.iconfinder.com/data/icons/vector-icons-6/96/256-512.png"
         />
         <Avatar
           alt="Member 7"
-          src="static/images/avatar.jpg"
+          src="https://cdn3.iconfinder.com/data/icons/vector-icons-6/96/256-512.png"
         />
       </AvatarGroup>
 

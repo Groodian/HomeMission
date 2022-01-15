@@ -31,7 +31,7 @@ const Home: NextPage = () => {
         </Link>
 
         <Link href="statistic_page" color="secondary">
-          {t('link-statistic')}
+          {t('Go To Statistic Page')}
         </Link>
 
         <Link href="/roommates" color="secondary">
