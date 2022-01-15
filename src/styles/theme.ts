@@ -9,9 +9,9 @@ export const theme = createTheme({
       main: grey[50],
     },
   },
-  myButton: {
+/*  myButton: {
     backgroundColor: "red",
     color: "white",
     border: "1px solid black",
-  },
+  },*/
 });

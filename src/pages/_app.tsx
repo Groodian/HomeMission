@@ -17,6 +17,10 @@ import schema from '../lib/graphql/schema';
 import { createEmotionCache } from '../lib/mui/emotion';
 import darkTheme from '../styles/dark-theme';
 import lightTheme from '../styles/light-theme';
+import Leftbar from "../components/Leftbar";
+import Home from "./index";
+import Grid from "@mui/material/Grid";
+import {Feed} from "@mui/icons-material";
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -96,10 +100,17 @@ const MyApp: React.FC<MyAppProps> = ({
               {
                 // Prevent ssr flash
                 mounted && (
-                  <>
+                  <div>
                     <Navbar />
-                    <Component {...pageProps} />
-                  </>
+                    <Grid container>
+                      <Grid item sm={2} xs={2}>
+                        <Leftbar />
+                      </Grid>
+                      <Grid item sm={7} xs={10}>
+                        <Component {...pageProps} />
+                      </Grid>
+                    </Grid>
+                  </div>
                 )
               }
             </ThemeProvider>

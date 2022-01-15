@@ -1,10 +1,15 @@
 import {GetStaticProps, NextPage} from "next";
-import {useTranslation} from "next-i18next";
-import {serverSideTranslations} from "next-i18next/serverSideTranslations";
+import Navbar from "../components/Navbar";
+import Leftbar from "../components/Leftbar";
+import React from "react";
+import {Container} from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
 
 const StatisticPage: NextPage = () => {
   return (
-    <h1>Aloo</h1>
+    <Container>
+      <Typography>STATISTIC PAGE</Typography>
+    </Container>
   );
 };
 
