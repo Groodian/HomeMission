@@ -6,7 +6,7 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Home, TaskType } from '.';
+import { Home, TaskType, TaskSeries } from '.';
 
 @Entity()
 @ObjectType()
@@ -21,6 +21,11 @@ export class Task extends BaseEntity {
 
   @ManyToOne(() => TaskType, (taskType) => taskType.tasksOfType)
   type: TaskType | null | undefined;
+
+  @ManyToOne(() => TaskSeries, (taskSeries) => taskSeries.tasks, {
+    nullable: true,
+  })
+  series?: TaskSeries | null | undefined;
 
   @ManyToOne(() => Home, (home) => home.tasks)
   relatedHome: Home | null | undefined;

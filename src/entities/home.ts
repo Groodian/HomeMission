@@ -9,7 +9,7 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { User, TaskType, Task } from '.';
+import { User, TaskType, TaskSeries, Task } from '.';
 
 @Entity()
 @ObjectType()
@@ -31,6 +31,9 @@ export class Home extends BaseEntity {
 
   @OneToMany(() => TaskType, (taskType) => taskType.relatedHome)
   taskTypes!: TaskType[];
+
+  @OneToMany(() => TaskSeries, (taskSeries) => taskSeries.relatedHome)
+  taskSeries!: TaskSeries[];
 
   @OneToMany(() => Task, (task) => task.type)
   tasks!: Task[];

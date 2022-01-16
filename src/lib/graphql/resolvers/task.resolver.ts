@@ -11,7 +11,7 @@ import {
 import databaseConnection from '../../typeorm/connection';
 import CurrentSession from '../../auth0/current-session';
 import { Session } from '@auth0/nextjs-auth0';
-import { Task, TaskType, User } from '../../../entities';
+import { Task, TaskSeries, TaskType, User } from '../../../entities';
 
 @Resolver(Task)
 export default class TaskResolver implements ResolverInterface<Task> {
@@ -24,7 +24,7 @@ export default class TaskResolver implements ResolverInterface<Task> {
     const home = await this.getHomeOrFail();
     try {
       return await Task.find({
-        relations: ['type'],
+        relations: ['type', 'series'],
         where: { relatedHome: home.id },
       });
     } catch (e) {
@@ -33,11 +33,19 @@ export default class TaskResolver implements ResolverInterface<Task> {
   }
 
   /**
-   * Only load task types if required.
+   * Only load task type if required.
    */
   @FieldResolver(() => TaskType)
   async type(@Root() task: Task) {
     return await TaskType.findOne(task.type?.id);
+  }
+
+  /**
+   * Only load task series if required.
+   */
+  @FieldResolver(() => TaskSeries, { nullable: true })
+  async series(@Root() task: Task) {
+    return task.series ? await TaskSeries.findOne(task.series?.id) : null;
   }
 
   /**
