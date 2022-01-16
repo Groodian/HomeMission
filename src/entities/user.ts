@@ -1,10 +1,17 @@
 import { Field, ID, ObjectType } from 'type-graphql';
-import { BaseEntity, Column, Entity, ManyToOne, PrimaryColumn } from 'typeorm';
-import Home from './home';
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  PrimaryColumn,
+} from 'typeorm';
+import { Home, History } from './index';
 
 @Entity()
 @ObjectType()
-export default class User extends BaseEntity {
+export class User extends BaseEntity {
   @PrimaryColumn()
   @Field(() => ID)
   id!: string;
@@ -23,4 +30,7 @@ export default class User extends BaseEntity {
 
   @ManyToOne(() => Home, (home) => home.users)
   home: Home | null | undefined;
+
+  @OneToMany(() => History, (history) => history.user)
+  history!: History[];
 }

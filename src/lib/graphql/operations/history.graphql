@@ -1,0 +1,7 @@
+query History {
+  home {
+    history {
+      id
+    }
+  }
+}

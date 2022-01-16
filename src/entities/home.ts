@@ -9,11 +9,11 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import User from '../entities/user';
+import { User, History } from './index';
 
 @Entity()
 @ObjectType()
-export default class Home extends BaseEntity {
+export class Home extends BaseEntity {
   @PrimaryGeneratedColumn()
   @Field(() => ID)
   id!: string;
@@ -28,6 +28,9 @@ export default class Home extends BaseEntity {
 
   @OneToMany(() => User, (user) => user.home)
   users!: User[];
+
+  @OneToMany(() => History, (history) => history.home)
+  history!: History[];
 
   constructor() {
     super();

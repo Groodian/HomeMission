@@ -8,8 +8,7 @@ import {
   ResolverInterface,
   Root,
 } from 'type-graphql';
-import Home from '../../../entities/home';
-import User from '../../../entities/user';
+import { User, Home, History } from '../../../entities/index';
 import databaseConnection from '../../typeorm/connection';
 import CurrentSession from '../../auth0/current-session';
 import { Session } from '@auth0/nextjs-auth0';
@@ -35,6 +34,14 @@ export default class HomeResolver implements ResolverInterface<Home> {
   @FieldResolver(() => [User])
   async users(@Root() home: Home) {
     return await User.find({ where: { home: home.id } });
+  }
+
+  /**
+   * Only load history if required.
+   */
+  @FieldResolver(() => [History])
+  async history(@Root() home: Home) {
+    return await History.find({ where: { home: home.id } });
   }
 
   // TODO: Remove

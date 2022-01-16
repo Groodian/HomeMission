@@ -1,6 +1,5 @@
-import User from './user';
-import Home from './home';
+import { User, Home, History } from './index';
 
-const entities = [User, Home];
+const entities = [User, Home, History];
 
 export default entities;
