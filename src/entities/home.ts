@@ -9,7 +9,7 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { User, TaskType } from './index';
+import { User, TaskType, Task } from '.';
 
 @Entity()
 @ObjectType()
@@ -32,6 +32,9 @@ export class Home extends BaseEntity {
   @OneToMany(() => TaskType, (taskType) => taskType.relatedHome)
   taskTypes!: TaskType[];
 
+  @OneToMany(() => Task, (task) => task.type)
+  tasks!: Task[];
+
   constructor() {
     super();
     this.code = generateRandomString(6);
@@ -41,12 +44,15 @@ export class Home extends BaseEntity {
   @AfterInsert()
   @AfterUpdate()
   async nullChecks() {
-    // ensures that property users is never undefined
+    // ensures that array properties are never undefined
     if (!this.users) {
       this.users = [];
     }
     if (!this.taskTypes) {
       this.taskTypes = [];
+    }
+    if (!this.tasks) {
+      this.tasks = [];
     }
   }
 }

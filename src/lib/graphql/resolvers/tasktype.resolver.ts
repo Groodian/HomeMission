@@ -18,8 +18,7 @@ export default class TaskTypeResolver {
     await databaseConnection();
     const home = await this.getHomeOrFail();
     try {
-      const taskType = new TaskType(name, points);
-      taskType.relatedHome = home;
+      const taskType = new TaskType(name, points, home);
       return await taskType.save();
     } catch (e) {
       throw Error('Failed to create task type! Check that user has home.');

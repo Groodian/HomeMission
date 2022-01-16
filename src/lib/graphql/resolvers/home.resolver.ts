@@ -8,7 +8,7 @@ import {
   ResolverInterface,
   Root,
 } from 'type-graphql';
-import { Home, TaskType, User } from '../../../entities';
+import { Home, Task, TaskType, User } from '../../../entities';
 import databaseConnection from '../../typeorm/connection';
 import CurrentSession from '../../auth0/current-session';
 import { Session } from '@auth0/nextjs-auth0';
@@ -39,9 +39,17 @@ export default class HomeResolver implements ResolverInterface<Home> {
   /**
    * Only load task types if required.
    */
-  @FieldResolver(() => [User])
+  @FieldResolver(() => [TaskType])
   async taskTypes(@Root() home: Home) {
     return await TaskType.find({ where: { relatedHome: home.id } });
+  }
+
+  /**
+   * Only load tasks if required.
+   */
+  @FieldResolver(() => [Task])
+  async tasks(@Root() home: Home) {
+    return await Task.find({ where: { relatedHome: home.id } });
   }
 
   // TODO: Remove
@@ -53,7 +61,7 @@ export default class HomeResolver implements ResolverInterface<Home> {
   async homes() {
     try {
       await databaseConnection();
-      return await Home.find({ relations: ['users', 'taskTypes'] });
+      return await Home.find({ relations: ['users', 'taskTypes', 'tasks'] });
     } catch (e) {
       throw Error('Failed to get all homes.');
     }
