@@ -1,8 +1,7 @@
 import { Arg, Authorized, Mutation, Resolver } from 'type-graphql';
 import databaseConnection from '../../typeorm/connection';
-import CurrentSession from '../../auth0/current-session';
-import { Session } from '@auth0/nextjs-auth0';
-import { Task, TaskSeries, TaskType, User } from '../../../entities';
+import { Task, TaskSeries, TaskType } from '../../../entities';
+import Helper from './helper';
 
 @Resolver(TaskSeries)
 export default class TaskSeriesResolver {
@@ -18,14 +17,15 @@ export default class TaskSeriesResolver {
     @Arg('type') type: string
   ) {
     await databaseConnection();
-    const home = await this.getHomeOrFail();
-    const taskType = await this.getTypeOrFail(type, home.id);
-    const startDate = this.getDateFromStringOrFail(start);
+    const home = await Helper.getHomeOrFail();
+    const taskType = await Helper.getTypeOrFail(type, home.id);
+    const startDate = Helper.getDateFromStringOrFail(start);
     if (interval <= 0 || iterations <= 0) {
       throw Error(
         'Failed to create task series! Check that arguments interval and iterations are greater than zero.'
       );
     }
+
     try {
       // create series
       const taskSeries = new TaskSeries(home);
@@ -47,14 +47,14 @@ export default class TaskSeriesResolver {
   }
 
   /**
-   * Delete all tasks correlating to task series.
+   * Delete all tasks correlating to a task series.
    */
   @Authorized()
   @Mutation(() => Boolean)
   async deleteTaskSeries(@Arg('series') series: string) {
     await databaseConnection();
-    const home = await this.getHomeOrFail();
-    const taskSeries = await this.getSeriesOrFail(series, home.id);
+    const home = await Helper.getHomeOrFail();
+    const taskSeries = await Helper.getSeriesOrFail(series, home.id);
 
     try {
       // delete tasks from series
@@ -72,7 +72,7 @@ export default class TaskSeriesResolver {
   }
 
   /**
-   * Delete tasks correlating to task series starting from a specified task.
+   * Delete tasks correlating to a task series starting from a specified task.
    */
   @Authorized()
   @Mutation(() => Boolean)
@@ -81,88 +81,22 @@ export default class TaskSeriesResolver {
     @Arg('start') start: string
   ) {
     await databaseConnection();
-    const home = await this.getHomeOrFail();
-    const taskSeries = await this.getSeriesOrFail(series, home.id);
-    const startTask = await this.getTaskOrFail(start, home.id);
-    if (String(startTask.series) !== String(taskSeries.id)) {
+    const home = await Helper.getHomeOrFail();
+    const taskSeries = await Helper.getSeriesOrFail(series, home.id);
+    const startTask = await Helper.getTaskOrFail(start, home.id);
+    if (String(startTask.series) !== String(taskSeries.id))
       throw Error(
         'Failed to remove tasks from series! Start task is not part of task series.'
       );
-    }
+
     try {
       // delete tasks from series if they are after the specified start task
       for (const task of taskSeries.tasks) {
         if (task.date >= startTask.date) await task.remove();
       }
-
       return true;
     } catch (e) {
       throw Error('Failed to remove task series!');
-    }
-  }
-
-  private getDateFromStringOrFail(value: string) {
-    if (isNaN(Date.parse(value))) {
-      throw Error('Failed to execute! Check the date argument.');
-    } else {
-      return new Date(Date.parse(value));
-    }
-  }
-
-  // helper function that returns a task
-  private async getTypeOrFail(typeId: string, homeId: string) {
-    const taskType = await TaskType.findOneOrFail(typeId, {
-      loadRelationIds: true,
-    });
-
-    // check that the type of new task is part of the users home
-    if (String(homeId) !== String(taskType.relatedHome))
-      throw Error('Failed to execute! Task type belongs to a different home.');
-
-    return taskType;
-  }
-
-  // helper function that returns the users home
-  private async getTaskOrFail(taskId: string, homeId: string) {
-    const task = await Task.findOneOrFail(taskId, {
-      loadRelationIds: true,
-    });
-
-    // check that the type of new task is part of the users home
-    if (String(homeId) !== String(task.relatedHome))
-      throw Error('Failed to execute! Task belongs to a different home.');
-
-    return task;
-  }
-
-  // helper function that returns a series
-  private async getSeriesOrFail(seriesId: string, homeId: string) {
-    const taskSeries = await TaskSeries.findOneOrFail(seriesId, {
-      relations: ['relatedHome', 'tasks'],
-    });
-
-    // check that the type of new task is part of the users home
-    if (String(homeId) !== String(taskSeries.relatedHome?.id))
-      throw Error(
-        'Failed to execute! Task series belongs to a different home.'
-      );
-
-    return taskSeries;
-  }
-
-  // helper function that returns the users home
-  private async getHomeOrFail(@CurrentSession() session?: Session) {
-    try {
-      // get user from database
-      const user = await User.findOneOrFail(session?.user.sub as string, {
-        relations: ['home'],
-      });
-
-      // check if user has a home
-      if (!user.home) throw Error('User does not have home');
-      else return user.home;
-    } catch (e) {
-      throw Error('Failed to get users home. Check that the user has a home!');
     }
   }
 }
