@@ -6,7 +6,7 @@ import { makeStyles, createStyles } from '@mui/styles';
 export const theme = createTheme({
   palette: {
     primary: {
-      main: grey[50],
+      main: "#3f51b5",
     },
   },
 /*  myButton: {
