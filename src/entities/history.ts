@@ -1,4 +1,4 @@
-import { Field, ID, ObjectType } from 'type-graphql';
+import { Field, ID, ObjectType, registerEnumType } from 'type-graphql';
 import {
   BaseEntity,
   Column,
@@ -18,6 +18,11 @@ export enum HistoryType {
   TASK_COMPLETED = 'task_completed',
 }
 
+registerEnumType(HistoryType, {
+  name: 'HistoryType',
+  description: 'Type of a history entry',
+});
+
 @Entity()
 @ObjectType()
 export class History extends BaseEntity {
@@ -28,12 +33,15 @@ export class History extends BaseEntity {
   @ManyToOne(() => Home, (home) => home.history)
   home!: Home;
 
-  @ManyToOne(() => User, (user) => user.history)
+  @ManyToOne(() => User, (user) => user.history, { eager: true })
+  @Field()
   user!: User;
 
   @CreateDateColumn()
+  @Field()
   date!: Date;
 
   @Column({ type: 'enum', enum: HistoryType })
+  @Field(() => HistoryType)
   type!: HistoryType;
 }

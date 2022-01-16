@@ -8,10 +8,11 @@ import {
   ResolverInterface,
   Root,
 } from 'type-graphql';
-import { User, Home, History } from '../../../entities/index';
+import { User, Home, History, HistoryType } from '../../../entities/index';
 import databaseConnection from '../../typeorm/connection';
 import CurrentSession from '../../auth0/current-session';
 import { Session } from '@auth0/nextjs-auth0';
+import { createHistory } from '../util/history';
 
 @Resolver(Home)
 export default class HomeResolver implements ResolverInterface<Home> {
@@ -100,6 +101,7 @@ export default class HomeResolver implements ResolverInterface<Home> {
 
       // save
       await user.save();
+      await createHistory(home, user, HistoryType.USER_JOIN);
 
       // return the home
       return home;

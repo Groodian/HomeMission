@@ -1,5 +1,8 @@
 import { Field, ID, ObjectType } from 'type-graphql';
 import {
+  AfterInsert,
+  AfterLoad,
+  AfterUpdate,
   BaseEntity,
   Column,
   Entity,
@@ -33,4 +36,14 @@ export class User extends BaseEntity {
 
   @OneToMany(() => History, (history) => history.user)
   history!: History[];
+
+  @AfterLoad()
+  @AfterInsert()
+  @AfterUpdate()
+  async nullChecks() {
+    // ensures that property history is never undefined
+    if (!this.history) {
+      this.history = [];
+    }
+  }
 }

@@ -1,3 +1,4 @@
 {
-  "test" : "test"
+  "title" : "History",
+  "profile-picture-alt": "Profile picture of {{history.user.name}}"
 }

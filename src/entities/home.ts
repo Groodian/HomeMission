@@ -45,6 +45,10 @@ export class Home extends BaseEntity {
     if (!this.users) {
       this.users = [];
     }
+    // ensures that property history is never undefined
+    if (!this.history) {
+      this.history = [];
+    }
   }
 }
 
