@@ -91,9 +91,7 @@ export default class TaskResolver implements ResolverInterface<Task> {
       if (!user.home) throw Error('User does not have home');
       else return user.home;
     } catch (e) {
-      throw Error(
-        'Failed to get users home. Check that both the user has a home!'
-      );
+      throw Error('Failed to get users home. Check that the user has a home!');
     }
   }
 

@@ -1,3 +1,11 @@
+query TaskTypes {
+  taskTypes {
+    id,
+    name,
+    points,
+  }
+}
+
 mutation CreateTaskType($name: String!, $points: Float!) {
   createTaskType(name: $name, points: $points) {
     id,

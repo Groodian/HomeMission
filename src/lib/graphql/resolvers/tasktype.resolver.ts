@@ -1,4 +1,4 @@
-import { Arg, Authorized, Mutation, Resolver } from 'type-graphql';
+import { Arg, Authorized, Mutation, Query, Resolver } from 'type-graphql';
 import databaseConnection from '../../typeorm/connection';
 import CurrentSession from '../../auth0/current-session';
 import { Session } from '@auth0/nextjs-auth0';
@@ -6,6 +6,22 @@ import { TaskType, User } from '../../../entities';
 
 @Resolver(TaskType)
 export default class TaskTypeResolver {
+  /**
+   * Get all task types that belong to the users home.
+   */
+  @Query(() => [TaskType])
+  async taskTypes() {
+    await databaseConnection();
+    const home = await this.getHomeOrFail();
+    try {
+      return await TaskType.find({
+        where: { relatedHome: home.id },
+      });
+    } catch (e) {
+      throw Error('Failed to get all task types.');
+    }
+  }
+
   /**
    * Create a new task type.
    */
@@ -37,9 +53,7 @@ export default class TaskTypeResolver {
       if (!user.home) throw Error('User does not have home');
       else return user.home;
     } catch (e) {
-      throw Error(
-        'Failed to get users home. Check that both the user has a home!'
-      );
+      throw Error('Failed to get users home. Check that the user has a home!');
     }
   }
 }

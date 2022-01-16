@@ -1,0 +1,17 @@
+{
+  "title": "Test page for tasks",
+  "loading-task-types": "Loading task types...",
+  "loading-tasks": "Loading tasks...",
+  "subtitle-task-types": "Task types",
+  "subtitle-tasks": "Tasks (click to delete)",
+  "create-task-type": "Create task type",
+  "create-task": "Create task",
+  "id": "id",
+  "date": "date",
+  "type": "type",
+  "name": "name",
+  "points": "points",
+  "task-type-placeholder-name": "name",
+  "task-type-placeholder-points": "points",
+  "task-placeholder-date": "task date (yyyy-mm-dd)"
+}

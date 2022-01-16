@@ -1,0 +1,17 @@
+{
+  "title": "Test Seite für Aufgaben",
+  "loading-task-types": "Aufgabentypen laden...",
+  "loading-tasks": "Aufgaben laden...",
+  "subtitle-task-types": "Aufgabentypen",
+  "subtitle-tasks": "Aufgaben (clicken zum löschen)",
+  "create-task-type": "Aufgabentypen erstellen",
+  "create-task": "Aufgabe erstellen",
+  "id": "id",
+  "date": "datum",
+  "type": "Typ",
+  "name": "name",
+  "points": "punkte",
+  "task-type-placeholder-name": "name",
+  "task-type-placeholder-points": "punkte",
+  "task-placeholder-date": "datum (yyyy-mm-dd)"
+}
