@@ -42,7 +42,9 @@ export default class Helper {
 
     // check that the type is part of the users home
     if (String(homeId) !== String(type.relatedHome))
-      throw Error('Failed to execute! Task type belongs to a different home.');
+      throw Error(
+        'Failed to execute! Task type does not belong to users home.'
+      );
 
     return type;
   }
@@ -57,7 +59,7 @@ export default class Helper {
 
     // check that the task is part of the users home
     if (String(homeId) !== String(task.relatedHome))
-      throw Error('Failed to execute! Task belongs to a different home.');
+      throw Error('Failed to execute! Task does not belong to users home.');
 
     return task;
   }
@@ -71,7 +73,7 @@ export default class Helper {
     // check that the series is part of the users home
     if (String(homeId) !== String(series.relatedHome?.id))
       throw Error(
-        'Failed to execute! Task series belongs to a different home.'
+        'Failed to execute! Task series does not belong to users home.'
       );
 
     return series;

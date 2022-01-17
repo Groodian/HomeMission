@@ -18,7 +18,7 @@ export default class TaskTypeResolver {
         where: { relatedHome: home.id },
       });
     } catch (e) {
-      throw Error('Failed to get all task types.');
+      throw Error('Failed to get all task types!');
     }
   }
 
@@ -38,7 +38,26 @@ export default class TaskTypeResolver {
       const taskType = new TaskType(name, points, home);
       return await taskType.save();
     } catch (e) {
-      throw Error('Failed to create task type! Check that user has home.');
+      throw Error('Failed to create task type!');
+    }
+  }
+
+  /**
+   * Remove a task type.
+   */
+  @Authorized()
+  @Mutation(() => TaskType)
+  async removeTaskType(@Arg('type') type: string) {
+    await databaseConnection();
+    const home = await Helper.getHomeOrFail();
+    const taskType = await Helper.getTypeOrFail(type, home.id);
+
+    try {
+      // only remove reference between home and task type
+      taskType.relatedHome = null;
+      return await taskType.save();
+    } catch (e) {
+      throw Error('Failed to remove task type!');
     }
   }
 }

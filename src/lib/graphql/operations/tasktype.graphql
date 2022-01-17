@@ -13,3 +13,12 @@ mutation CreateTaskType($name: String!, $points: Float!) {
     points,
   }
 }
+
+mutation RemoveTaskType($type: String!) {
+  removeTaskType(type: $type) {
+    id,
+    name,
+    points,
+  }
+}
+

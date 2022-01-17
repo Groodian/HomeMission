@@ -2,7 +2,7 @@
   "title": "Test Seite für Aufgaben",
   "loading-task-types": "Aufgabentypen laden...",
   "loading-tasks": "Aufgaben laden...",
-  "subtitle-task-types": "Aufgabentypen",
+  "subtitle-task-types": "Aufgabentypen (clicken zum löschen)",
   "subtitle-tasks": "Aufgaben (clicken zum löschen)",
   "create-task-type": "Aufgabentypen erstellen",
   "create-task": "Aufgabe erstellen",

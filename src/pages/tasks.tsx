@@ -4,6 +4,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 import {
   useCreateTaskTypeMutation,
+  useRemoveTaskTypeMutation,
   useTaskTypesQuery,
 } from '../lib/graphql/operations/tasktype.graphql';
 import {
@@ -30,10 +31,10 @@ const Tasks: NextPage = () => {
   const { t } = useTranslation('tasks');
 
   const {
-    data: taskTypesData,
-    loading: taskTypesLoading,
-    error: taskTypesError,
-    refetch: taskTypesRefetch,
+    data: typesData,
+    loading: typesLoading,
+    error: typesError,
+    refetch: typesRefetch,
   } = useTaskTypesQuery();
   const {
     data: tasksData,
@@ -42,13 +43,13 @@ const Tasks: NextPage = () => {
     refetch: tasksRefetch,
   } = useTasksQuery();
 
-  const [useCreateTaskType] = useCreateTaskTypeMutation();
+  const [useCreateType] = useCreateTaskTypeMutation();
   const [useCreateTask] = useCreateTaskMutation();
-  const [useCreateTaskSeries] = useCreateTaskSeriesMutation();
+  const [useCreateSeries] = useCreateTaskSeriesMutation();
+  const [useRemoveType] = useRemoveTaskTypeMutation();
   const [useDeleteTask] = useDeleteTaskMutation();
-  const [useDeleteTaskSeries] = useDeleteTaskSeriesMutation();
-  const [useDeleteTaskSeriesSubsection] =
-    useDeleteTaskSeriesSubsectionMutation();
+  const [useDeleteSeries] = useDeleteTaskSeriesMutation();
+  const [useDeleteSeriesSubsection] = useDeleteTaskSeriesSubsectionMutation();
 
   let selectedTypeId: string;
   let selectedSeriesTypeId: string;
@@ -56,30 +57,35 @@ const Tasks: NextPage = () => {
   return (
     <>
       <p>{t('title')}</p>
-      {(taskTypesError || tasksError) && (
+      {(typesError || tasksError) && (
         <>
-          {taskTypesError?.name}: {taskTypesError?.message}
+          {typesError?.name}: {typesError?.message}
           {tasksError?.name}: {tasksError?.message}
         </>
       )}
-      {(taskTypesLoading || tasksLoading) && (
+      {(typesLoading || tasksLoading) && (
         <>
-          {taskTypesLoading && <>{t('loading-task-types')}</>}
+          {typesLoading && <>{t('loading-task-types')}</>}
           {tasksLoading && <>{t('loading-tasks')}</>}
         </>
       )}
 
-      {taskTypesData && (
+      {typesData && (
         <>
           <List sx={{ width: '100%', maxWidth: 360 }}>
             <ListItem>
               <ListItemText>{t('subtitle-task-types')}</ListItemText>
             </ListItem>
-            {taskTypesData.taskTypes.map((taskType) => (
-              <ListItem key={taskType.id}>
+            {typesData.taskTypes.map((type) => (
+              <ListItem
+                key={type.id}
+                onClick={() => {
+                  removeType(type.id);
+                }}
+              >
                 <ListItemText>
-                  {t('id')}: {taskType.id}; {t('name')}: {taskType.name};{' '}
-                  {t('points')}: {taskType.points}
+                  {t('id')}: {type.id}; {t('name')}: {type.name}; {t('points')}:{' '}
+                  {type.points}
                 </ListItemText>
               </ListItem>
             ))}
@@ -95,9 +101,7 @@ const Tasks: NextPage = () => {
             placeholder={t('task-type-placeholder-points')}
             defaultValue={'0'}
           />
-          <Button onClick={() => createTaskType()}>
-            {t('create-task-type')}
-          </Button>
+          <Button onClick={() => createType()}>{t('create-task-type')}</Button>
         </>
       )}
 
@@ -121,13 +125,13 @@ const Tasks: NextPage = () => {
             type={'text'}
             placeholder={t('task-placeholder-date')}
           />
-          {taskTypesData && (
+          {typesData && (
             <Select
-              id={'inputTaskType'}
+              id={'inputType'}
               defaultValue={''}
               onChange={(event) => (selectedTypeId = event.target.value)}
             >
-              {taskTypesData?.taskTypes.map((type) => (
+              {typesData?.taskTypes.map((type) => (
                 <MenuItem key={type.id} value={type.id}>
                   {type.name}
                 </MenuItem>
@@ -139,17 +143,17 @@ const Tasks: NextPage = () => {
           <br />
 
           <Input
-            id={'inputTaskSeriesStart'}
+            id={'inputSeriesStart'}
             type={'text'}
             placeholder={t('task-series-placeholder-start')}
           />
-          {taskTypesData && (
+          {typesData && (
             <Select
-              id={'inputTaskSeriesType'}
+              id={'inputSeriesType'}
               defaultValue={''}
               onChange={(event) => (selectedSeriesTypeId = event.target.value)}
             >
-              {taskTypesData?.taskTypes.map((type) => (
+              {typesData?.taskTypes.map((type) => (
                 <MenuItem key={type.id} value={type.id}>
                   {type.name}
                 </MenuItem>
@@ -157,18 +161,18 @@ const Tasks: NextPage = () => {
             </Select>
           )}
           <Input
-            id={'inputTaskSeriesInterval'}
+            id={'inputSeriesInterval'}
             type={'number'}
             placeholder={t('task-series-placeholder-interval')}
             defaultValue={''}
           />
           <Input
-            id={'inputTaskSeriesIterations'}
+            id={'inputSeriesIterations'}
             type={'number'}
             placeholder={t('task-series-placeholder-iterations')}
             defaultValue={''}
           />
-          <Button onClick={() => createTaskSeries()}>
+          <Button onClick={() => createSeries()}>
             {t('create-task-series')}
           </Button>
 
@@ -179,7 +183,7 @@ const Tasks: NextPage = () => {
             type={'text'}
             placeholder={t('delete-task-series-placeholder')}
           />
-          <Button onClick={() => deleteTaskSeries()}>
+          <Button onClick={() => deleteSeries()}>
             {t('delete-task-series')}
           </Button>
 
@@ -195,7 +199,7 @@ const Tasks: NextPage = () => {
             type={'text'}
             placeholder={t('delete-series-subsection-placeholder-start')}
           />
-          <Button onClick={() => deleteTaskSeriesSubsection()}>
+          <Button onClick={() => deleteSeriesSubsection()}>
             {t('delete-task-series-subsection')}
           </Button>
         </>
@@ -203,7 +207,7 @@ const Tasks: NextPage = () => {
     </>
   );
 
-  function createTaskType() {
+  function createType() {
     const nameElement = document.getElementById(
       'inputTypeName'
     ) as HTMLInputElement;
@@ -219,13 +223,13 @@ const Tasks: NextPage = () => {
     } else if (!points || isNaN(Number(points)) || Number(points) <= 0) {
       pointsElement.value = '-1';
     } else {
-      useCreateTaskType({
+      useCreateType({
         variables: {
           name: name,
           points: Number(points),
         },
       })
-        .then(() => taskTypesRefetch())
+        .then(() => typesRefetch())
         .catch((e) => {
           // eslint-disable-next-line no-console
           console.log(e);
@@ -264,19 +268,19 @@ const Tasks: NextPage = () => {
     }
   }
 
-  function createTaskSeries() {
+  function createSeries() {
     const startElement = document.getElementById(
-      'inputTaskSeriesStart'
+      'inputSeriesStart'
     ) as HTMLInputElement;
     const start = startElement.value;
 
     const iterationsElement = document.getElementById(
-      'inputTaskSeriesIterations'
+      'inputSeriesIterations'
     ) as HTMLInputElement;
     const iterations = Number(iterationsElement.value);
 
     const intervalElement = document.getElementById(
-      'inputTaskSeriesInterval'
+      'inputSeriesInterval'
     ) as HTMLInputElement;
     const interval = Number(intervalElement.value);
 
@@ -290,7 +294,7 @@ const Tasks: NextPage = () => {
       iterations > 0 &&
       interval > 0
     ) {
-      useCreateTaskSeries({
+      useCreateSeries({
         variables: {
           type: selectedSeriesTypeId,
           start: start,
@@ -314,14 +318,14 @@ const Tasks: NextPage = () => {
     }
   }
 
-  function deleteTaskSeries() {
+  function deleteSeries() {
     const seriesElement = document.getElementById(
       'inputDeleteSeriesId'
     ) as HTMLInputElement;
     const series = seriesElement.value;
 
     if (series && series.trim() !== '') {
-      useDeleteTaskSeries({
+      useDeleteSeries({
         variables: {
           series: series,
         },
@@ -340,7 +344,7 @@ const Tasks: NextPage = () => {
     }
   }
 
-  function deleteTaskSeriesSubsection() {
+  function deleteSeriesSubsection() {
     const seriesElement = document.getElementById(
       'inputDeleteSeriesSubId'
     ) as HTMLInputElement;
@@ -352,7 +356,7 @@ const Tasks: NextPage = () => {
     const start = startElement.value;
 
     if (series && series.trim() !== '' && start && start.trim() !== '') {
-      useDeleteTaskSeriesSubsection({
+      useDeleteSeriesSubsection({
         variables: {
           series: series,
           start: start,
@@ -371,6 +375,15 @@ const Tasks: NextPage = () => {
     } else {
       seriesElement.value = 'bad values';
     }
+  }
+
+  function removeType(type: string) {
+    useRemoveType({ variables: { type: type } })
+      .then(() => typesRefetch())
+      .catch((e) => {
+        // eslint-disable-next-line no-console
+        console.log(e);
+      });
   }
 
   function deleteTask(task: string) {

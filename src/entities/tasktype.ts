@@ -23,8 +23,8 @@ export class TaskType extends BaseEntity {
   @Field()
   points!: number;
 
-  @ManyToOne(() => Home, (home) => home.taskTypes)
-  relatedHome: Home | null | undefined;
+  @ManyToOne(() => Home, (home) => home.taskTypes, { nullable: true })
+  relatedHome?: Home | null | undefined;
 
   @ManyToOne(() => Task, (task) => task.type)
   tasksOfType!: Task[];

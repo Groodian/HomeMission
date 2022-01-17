@@ -2,7 +2,7 @@
   "title": "Test page for tasks",
   "loading-task-types": "Loading task types...",
   "loading-tasks": "Loading tasks...",
-  "subtitle-task-types": "Task types",
+  "subtitle-task-types": "Task types (click to remove)",
   "subtitle-tasks": "Tasks (click to delete)",
   "create-task-type": "Create task type",
   "create-task": "Create task",
