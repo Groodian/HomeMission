@@ -10,7 +10,7 @@ const StatisticPage: NextPage = () => {
   return (
     <Container>
       <Typography>STATISTIC PAGE</Typography>
-      <BarChart />
+      {/*<BarChart />*/}
     </Container>
   );
 };
