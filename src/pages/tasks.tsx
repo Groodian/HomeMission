@@ -20,6 +20,11 @@ import {
   MenuItem,
   Select,
 } from '@mui/material';
+import {
+  useCreateTaskSeriesMutation,
+  useDeleteTaskSeriesMutation,
+  useDeleteTaskSeriesSubsectionMutation,
+} from '../lib/graphql/operations/taskseries.graphql';
 
 const Tasks: NextPage = () => {
   const { t } = useTranslation('tasks');
@@ -39,9 +44,14 @@ const Tasks: NextPage = () => {
 
   const [useCreateTaskType] = useCreateTaskTypeMutation();
   const [useCreateTask] = useCreateTaskMutation();
+  const [useCreateTaskSeries] = useCreateTaskSeriesMutation();
   const [useDeleteTask] = useDeleteTaskMutation();
+  const [useDeleteTaskSeries] = useDeleteTaskSeriesMutation();
+  const [useDeleteTaskSeriesSubsection] =
+    useDeleteTaskSeriesSubsectionMutation();
 
   let selectedTypeId: string;
+  let selectedSeriesTypeId: string;
 
   return (
     <>
@@ -101,7 +111,7 @@ const Tasks: NextPage = () => {
               <ListItem key={task.id} onClick={() => deleteTask(task.id)}>
                 <ListItemText>
                   {t('id')}: {task.id}; {t('date')}: {task.date}; {t('type')}:{' '}
-                  {task.type.name}
+                  {task.type.name}; {t('series')}: {task.series?.id}
                 </ListItemText>
               </ListItem>
             ))}
@@ -125,6 +135,69 @@ const Tasks: NextPage = () => {
             </Select>
           )}
           <Button onClick={() => createTask()}>{t('create-task')}</Button>
+
+          <br />
+
+          <Input
+            id={'inputTaskSeriesStart'}
+            type={'text'}
+            placeholder={t('task-series-placeholder-start')}
+          />
+          {taskTypesData && (
+            <Select
+              id={'inputTaskSeriesType'}
+              defaultValue={''}
+              onChange={(event) => (selectedSeriesTypeId = event.target.value)}
+            >
+              {taskTypesData?.taskTypes.map((type) => (
+                <MenuItem key={type.id} value={type.id}>
+                  {type.name}
+                </MenuItem>
+              ))}
+            </Select>
+          )}
+          <Input
+            id={'inputTaskSeriesInterval'}
+            type={'number'}
+            placeholder={t('task-series-placeholder-interval')}
+            defaultValue={''}
+          />
+          <Input
+            id={'inputTaskSeriesIterations'}
+            type={'number'}
+            placeholder={t('task-series-placeholder-iterations')}
+            defaultValue={''}
+          />
+          <Button onClick={() => createTaskSeries()}>
+            {t('create-task-series')}
+          </Button>
+
+          <br />
+
+          <Input
+            id={'inputDeleteSeriesId'}
+            type={'text'}
+            placeholder={t('delete-task-series-placeholder')}
+          />
+          <Button onClick={() => deleteTaskSeries()}>
+            {t('delete-task-series')}
+          </Button>
+
+          <br />
+
+          <Input
+            id={'inputDeleteSeriesSubId'}
+            type={'text'}
+            placeholder={t('delete-series-subsection-placeholder')}
+          />
+          <Input
+            id={'inputDeleteSeriesSubStart'}
+            type={'text'}
+            placeholder={t('delete-series-subsection-placeholder-start')}
+          />
+          <Button onClick={() => deleteTaskSeriesSubsection()}>
+            {t('delete-task-series-subsection')}
+          </Button>
         </>
       )}
     </>
@@ -188,6 +261,115 @@ const Tasks: NextPage = () => {
         .finally(() => {
           dateElement.value = '';
         });
+    }
+  }
+
+  function createTaskSeries() {
+    const startElement = document.getElementById(
+      'inputTaskSeriesStart'
+    ) as HTMLInputElement;
+    const start = startElement.value;
+
+    const iterationsElement = document.getElementById(
+      'inputTaskSeriesIterations'
+    ) as HTMLInputElement;
+    const iterations = Number(iterationsElement.value);
+
+    const intervalElement = document.getElementById(
+      'inputTaskSeriesInterval'
+    ) as HTMLInputElement;
+    const interval = Number(intervalElement.value);
+
+    if (
+      start &&
+      selectedSeriesTypeId &&
+      start.trim() !== '' &&
+      selectedSeriesTypeId !== '' &&
+      !isNaN(iterations) &&
+      !isNaN(interval) &&
+      iterations > 0 &&
+      interval > 0
+    ) {
+      useCreateTaskSeries({
+        variables: {
+          type: selectedSeriesTypeId,
+          start: start,
+          iterations: iterations,
+          interval: interval,
+        },
+      })
+        .then(() => tasksRefetch())
+        .catch((e) => {
+          // eslint-disable-next-line no-console
+          console.log(e);
+          startElement.value = 'failed, check console';
+        })
+        .finally(() => {
+          startElement.value = '';
+          iterationsElement.value = '';
+          intervalElement.value = '';
+        });
+    } else {
+      startElement.value = 'bad values';
+    }
+  }
+
+  function deleteTaskSeries() {
+    const seriesElement = document.getElementById(
+      'inputDeleteSeriesId'
+    ) as HTMLInputElement;
+    const series = seriesElement.value;
+
+    if (series && series.trim() !== '') {
+      useDeleteTaskSeries({
+        variables: {
+          series: series,
+        },
+      })
+        .then(() => {
+          tasksRefetch();
+          seriesElement.value = '';
+        })
+        .catch((e) => {
+          // eslint-disable-next-line no-console
+          console.log(e);
+          seriesElement.value = 'failed, check console';
+        });
+    } else {
+      seriesElement.value = 'bad values';
+    }
+  }
+
+  function deleteTaskSeriesSubsection() {
+    const seriesElement = document.getElementById(
+      'inputDeleteSeriesSubId'
+    ) as HTMLInputElement;
+    const series = seriesElement.value;
+
+    const startElement = document.getElementById(
+      'inputDeleteSeriesSubStart'
+    ) as HTMLInputElement;
+    const start = startElement.value;
+
+    if (series && series.trim() !== '' && start && start.trim() !== '') {
+      useDeleteTaskSeriesSubsection({
+        variables: {
+          series: series,
+          start: start,
+        },
+      })
+        .then(() => {
+          tasksRefetch();
+          seriesElement.value = '';
+          startElement.value = '';
+        })
+        .catch((e) => {
+          // eslint-disable-next-line no-console
+          console.log(e);
+          seriesElement.value = 'failed, check console';
+        });
+    } else {
+      seriesElement.value = 'bad values';
     }
   }
 

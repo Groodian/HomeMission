@@ -6,12 +6,22 @@
   "subtitle-tasks": "Tasks (click to delete)",
   "create-task-type": "Create task type",
   "create-task": "Create task",
+  "create-task-series": "Create task series",
+  "delete-task-series": "Delete task series",
+  "delete-task-series-subsection": "Delete task series subsection",
   "id": "id",
   "date": "date",
   "type": "type",
   "name": "name",
   "points": "points",
+  "series": "series",
   "task-type-placeholder-name": "name",
   "task-type-placeholder-points": "points",
-  "task-placeholder-date": "task date (yyyy-mm-dd)"
+  "task-placeholder-date": "task date (yyyy-mm-dd)",
+  "task-series-placeholder-start": "start date (yyyy-mm-dd)",
+  "task-series-placeholder-interval": "interval (every X week)",
+  "task-series-placeholder-iterations": "iterations (number of tasks)",
+  "delete-task-series-placeholder": "series id",
+  "delete-series-subsection-placeholder": "series id",
+  "delete-series-subsection-placeholder-start": "id of first task to delete"
 }

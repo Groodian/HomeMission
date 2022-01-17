@@ -6,12 +6,22 @@
   "subtitle-tasks": "Aufgaben (clicken zum löschen)",
   "create-task-type": "Aufgabentypen erstellen",
   "create-task": "Aufgabe erstellen",
+  "create-task-series": "Aufgabenreihe erstellen",
+  "delete-task-series": "Aufgabenreihe löschen",
+  "delete-task-series-subsection": "Untermenge einer Aufgabenreihe löschen",
   "id": "id",
   "date": "datum",
   "type": "Typ",
   "name": "name",
   "points": "punkte",
+  "series": "Serie",
   "task-type-placeholder-name": "name",
   "task-type-placeholder-points": "punkte",
-  "task-placeholder-date": "datum (yyyy-mm-dd)"
+  "task-placeholder-date": "datum (yyyy-mm-dd)",
+  "task-series-placeholder-start": "startdatum (yyyy-mm-dd)",
+  "task-series-placeholder-interval": "interval (jede Xte Woche)",
+  "task-series-placeholder-iterations": "iterationen (anzahl an Aufgaben)",
+  "delete-task-series-placeholder": "aufgabenreihe id",
+  "delete-series-subsection-placeholder": "aufgabenreihe id",
+  "delete-series-subsection-placeholder-start": "id der ersten Aufgabe"
 }

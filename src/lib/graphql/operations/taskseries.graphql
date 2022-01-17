@@ -1,0 +1,13 @@
+mutation CreateTaskSeries($start: String!, $type: String!, $interval: Float!, $iterations: Float!) {
+  createTaskSeries (type: $type, start: $start, interval: $interval, iterations: $iterations) {
+    id
+  }
+}
+
+mutation DeleteTaskSeries($series: String!) {
+  deleteTaskSeries(series: $series)
+}
+
+mutation DeleteTaskSeriesSubsection($series: String!, $start: String!) {
+  deleteTaskSeriesSubsection(series: $series, start: $start)
+}
