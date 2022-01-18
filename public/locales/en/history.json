@@ -1,4 +1,7 @@
 {
   "title" : "History",
-  "profile-picture-alt": "Profile picture of {{history.user.name}}"
+  "profile-picture-alt": "Profile picture of {{history.user.name}}",
+  "user-join": "Joined shared flat",
+  "user-leave": "Leaved shared flat",
+  "ago": "{{time}} ago"
 }

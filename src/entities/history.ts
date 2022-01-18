@@ -2,7 +2,6 @@ import { Field, ID, ObjectType, registerEnumType } from 'type-graphql';
 import {
   BaseEntity,
   Column,
-  CreateDateColumn,
   Entity,
   ManyToOne,
   PrimaryGeneratedColumn,
@@ -37,11 +36,16 @@ export class History extends BaseEntity {
   @Field()
   user!: User;
 
-  @CreateDateColumn()
+  @Column()
   @Field()
-  date!: Date;
+  date!: string;
 
   @Column({ type: 'enum', enum: HistoryType })
   @Field(() => HistoryType)
   type!: HistoryType;
+
+  constructor() {
+    super();
+    this.date = new Date().toISOString();
+  }
 }

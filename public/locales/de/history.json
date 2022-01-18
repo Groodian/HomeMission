@@ -1,4 +1,7 @@
 {
   "title" : "Historie",
-  "profile-picture-alt": "Profilbild von {{history.user.name}}"
+  "profile-picture-alt": "Profilbild von {{history.user.name}}",
+  "user-join": "Ist der WG beigereten",
+  "user-leave": "Hat die WG verlassen",
+  "ago": "vor {{time}}"
 }
