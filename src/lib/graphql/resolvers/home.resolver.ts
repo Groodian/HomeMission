@@ -102,9 +102,6 @@ export default class HomeResolver implements ResolverInterface<Home> {
       // save
       await user.save();
       await createHistory(home, user, HistoryType.USER_JOIN);
-      await createHistory(home, user, HistoryType.USER_JOIN);
-      await createHistory(home, user, HistoryType.USER_JOIN);
-      await createHistory(home, user, HistoryType.USER_JOIN);
 
       // return the home
       return home;
