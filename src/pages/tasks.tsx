@@ -14,10 +14,13 @@ import {
 } from '../lib/graphql/operations/task.graphql';
 import {
   Button,
+  Divider,
   Input,
   List,
   ListItem,
+  ListItemButton,
   ListItemText,
+  ListSubheader,
   MenuItem,
   Select,
 } from '@mui/material';
@@ -26,6 +29,10 @@ import {
   useDeleteTaskSeriesMutation,
   useDeleteTaskSeriesSubsectionMutation,
 } from '../lib/graphql/operations/taskseries.graphql';
+import {
+  useCreateTaskReceiptMutation,
+  useReceiptsQuery,
+} from '../lib/graphql/operations/taskreceipt.graphql';
 
 const Tasks: NextPage = () => {
   const { t } = useTranslation('tasks');
@@ -42,6 +49,12 @@ const Tasks: NextPage = () => {
     error: tasksError,
     refetch: tasksRefetch,
   } = useTasksQuery();
+  const {
+    data: receiptsData,
+    loading: receiptsLoading,
+    error: receiptsError,
+    refetch: receiptsRefetch,
+  } = useReceiptsQuery();
 
   const [useCreateType] = useCreateTaskTypeMutation();
   const [useCreateTask] = useCreateTaskMutation();
@@ -50,6 +63,7 @@ const Tasks: NextPage = () => {
   const [useDeleteTask] = useDeleteTaskMutation();
   const [useDeleteSeries] = useDeleteTaskSeriesMutation();
   const [useDeleteSeriesSubsection] = useDeleteTaskSeriesSubsectionMutation();
+  const [useCreateReceipt] = useCreateTaskReceiptMutation();
 
   let selectedTypeId: string;
   let selectedSeriesTypeId: string;
@@ -57,36 +71,46 @@ const Tasks: NextPage = () => {
   return (
     <>
       <p>{t('title')}</p>
-      {(typesError || tasksError) && (
+      {(typesError || tasksError || receiptsError) && (
         <>
           {typesError?.name}: {typesError?.message}
           {tasksError?.name}: {tasksError?.message}
+          {receiptsError?.name}: {receiptsError?.message}
         </>
       )}
-      {(typesLoading || tasksLoading) && (
+      {(typesLoading || tasksLoading || receiptsLoading) && (
         <>
           {typesLoading && <>{t('loading-task-types')}</>}
           {tasksLoading && <>{t('loading-tasks')}</>}
+          {tasksLoading && <>{t('loading-receipts')}</>}
         </>
       )}
 
+      <Divider />
+      <br />
+      <Divider />
+
       {typesData && (
         <>
-          <List sx={{ width: '100%', maxWidth: 360 }}>
-            <ListItem>
-              <ListItemText>{t('subtitle-task-types')}</ListItemText>
-            </ListItem>
+          <List
+            sx={{ width: '100%', maxWidth: 420 }}
+            subheader={
+              <ListSubheader component="div" id="nested-list-subheader">
+                {t('subtitle-task-types')}
+              </ListSubheader>
+            }
+          >
             {typesData.taskTypes.map((type) => (
-              <ListItem
-                key={type.id}
-                onClick={() => {
-                  removeType(type.id);
-                }}
-              >
+              <ListItem key={type.id}>
                 <ListItemText>
                   {t('id')}: {type.id}; {t('name')}: {type.name}; {t('points')}:{' '}
                   {type.points}
                 </ListItemText>
+                <Button>
+                  <ListItemButton onClick={() => removeType(type.id)}>
+                    {t('remove-type')}
+                  </ListItemButton>
+                </Button>
               </ListItem>
             ))}
           </List>
@@ -105,18 +129,38 @@ const Tasks: NextPage = () => {
         </>
       )}
 
+      <Divider />
+      <br />
+      <Divider />
+
       {tasksData && (
         <>
-          <List sx={{ width: '100%', maxWidth: 360 }}>
-            <ListItem>
-              <ListItemText>{t('subtitle-tasks')}</ListItemText>
-            </ListItem>
+          <List
+            sx={{ width: '100%', maxWidth: 720 }}
+            subheader={
+              <ListSubheader component="div" id="nested-list-subheader">
+                {t('subtitle-tasks')}{' '}
+              </ListSubheader>
+            }
+          >
             {tasksData.tasks.map((task) => (
-              <ListItem key={task.id} onClick={() => deleteTask(task.id)}>
+              <ListItem key={task.id}>
                 <ListItemText>
                   {t('id')}: {task.id}; {t('date')}: {task.date}; {t('type')}:{' '}
-                  {task.type.name}; {t('series')}: {task.series?.id}
+                  {task.type.name}; {t('series')}: {task.series?.id};{' '}
+                  {t('completed')}:{' '}
+                  {task.receipt ? `true (receipt ${task.receipt.id})` : 'false'}
                 </ListItemText>
+                <Button>
+                  <ListItemButton onClick={() => deleteTask(task.id)}>
+                    {t('delete-task')}
+                  </ListItemButton>
+                </Button>
+                <Button>
+                  <ListItemButton onClick={() => completeTask(task.id)}>
+                    {t('complete-task')}
+                  </ListItemButton>
+                </Button>
               </ListItem>
             ))}
           </List>
@@ -202,6 +246,32 @@ const Tasks: NextPage = () => {
           <Button onClick={() => deleteSeriesSubsection()}>
             {t('delete-task-series-subsection')}
           </Button>
+
+          <Divider />
+          <br />
+          <Divider />
+
+          {receiptsData && (
+            <List
+              sx={{ width: '100%', maxWidth: 720 }}
+              subheader={
+                <ListSubheader component="div" id="nested-list-subheader">
+                  {t('subtitle-receipts')}{' '}
+                </ListSubheader>
+              }
+            >
+              {receiptsData.receipts.map((receipt) => (
+                <ListItem key={receipt.id}>
+                  <ListItemText>
+                    {t('id')}: {receipt.id}; {t('completion-date')}:{' '}
+                    {receipt.completionDate}; {t('type')}: {receipt.name};{' '}
+                    {t('points')}: {receipt.points}; {t('completer')}:{' '}
+                    {receipt.completer.name}
+                  </ListItemText>
+                </ListItem>
+              ))}
+            </List>
+          )}
         </>
       )}
     </>
@@ -389,6 +459,18 @@ const Tasks: NextPage = () => {
   function deleteTask(task: string) {
     useDeleteTask({ variables: { task: task } })
       .then(() => tasksRefetch())
+      .catch((e) => {
+        // eslint-disable-next-line no-console
+        console.log(e);
+      });
+  }
+
+  function completeTask(task: string) {
+    useCreateReceipt({ variables: { task: task } })
+      .then(() => {
+        tasksRefetch();
+        receiptsRefetch();
+      })
       .catch((e) => {
         // eslint-disable-next-line no-console
         console.log(e);

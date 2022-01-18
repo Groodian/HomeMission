@@ -1,0 +1,18 @@
+query Receipts {
+  receipts {
+    id,
+    completionDate,
+    points,
+    name,
+    completer {
+      id,
+      name
+    }
+  }
+}
+
+mutation CreateTaskReceipt ($task: String!) {
+  createTaskReceipt (task: $task) {
+    id
+  }
+}

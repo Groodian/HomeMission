@@ -1,6 +1,16 @@
 import { Field, ID, ObjectType } from 'type-graphql';
-import { BaseEntity, Column, Entity, ManyToOne, PrimaryColumn } from 'typeorm';
-import { Home } from '.';
+import {
+  AfterInsert,
+  AfterLoad,
+  AfterUpdate,
+  BaseEntity,
+  Column,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  PrimaryColumn,
+} from 'typeorm';
+import { Home, TaskReceipt } from '.';
 
 @Entity()
 @ObjectType()
@@ -23,4 +33,17 @@ export class User extends BaseEntity {
 
   @ManyToOne(() => Home, (home) => home.users)
   home: Home | null | undefined;
+
+  @OneToMany(() => TaskReceipt, (receipt) => receipt.completer)
+  receipts!: TaskReceipt[];
+
+  @AfterLoad()
+  @AfterInsert()
+  @AfterUpdate()
+  async nullChecks() {
+    // ensures that array properties are never undefined
+    if (!this.receipts) {
+      this.receipts = [];
+    }
+  }
 }

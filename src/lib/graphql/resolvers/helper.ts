@@ -17,19 +17,25 @@ export default class Helper {
   /**
    * helper function that returns the users home and fails if user has no home
    */
-  static async getHomeOrFail(@CurrentSession() session?: Session) {
+  static async getMeOrFail(@CurrentSession() session?: Session) {
     try {
       // get user from database
-      const user = await User.findOneOrFail(session?.user.sub as string, {
+      return await User.findOneOrFail(session?.user.sub as string, {
         relations: ['home'],
       });
-
-      // check if user has a home
-      if (!user.home) throw Error('User does not have home');
-      else return user.home;
     } catch (e) {
-      throw Error('Failed to get users home! Check that the user has a home.');
+      throw Error('Failed to get user!');
     }
+  }
+
+  /**
+   * helper function that returns the users home and fails if user has no home
+   */
+  static async getHomeOrFail() {
+    const user = await this.getMeOrFail();
+    if (!user.home)
+      throw Error('Failed to get users home! Check that user has a home.');
+    return user.home;
   }
 
   /**

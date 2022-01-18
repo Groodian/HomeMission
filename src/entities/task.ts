@@ -3,10 +3,12 @@ import {
   BaseEntity,
   Column,
   Entity,
+  JoinColumn,
   ManyToOne,
+  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Home, TaskType, TaskSeries } from '.';
+import { Home, TaskType, TaskSeries, TaskReceipt } from '.';
 
 @Entity()
 @ObjectType()
@@ -29,6 +31,12 @@ export class Task extends BaseEntity {
 
   @ManyToOne(() => Home, (home) => home.tasks)
   relatedHome: Home | null | undefined;
+
+  @OneToOne(() => TaskReceipt, {
+    nullable: true,
+  })
+  @JoinColumn()
+  receipt?: TaskReceipt | undefined | null;
 
   constructor(date: Date, home: Home, type: TaskType) {
     super();

@@ -18,7 +18,7 @@ export class TaskSeries extends BaseEntity {
   @ManyToOne(() => Home, (home) => home.taskSeries)
   relatedHome: Home | null | undefined;
 
-  @OneToMany(() => Task, (task) => task.series)
+  @OneToMany(() => Task, (task) => task.series, { onDelete: 'CASCADE' })
   tasks!: Task[];
 
   constructor(home: Home) {

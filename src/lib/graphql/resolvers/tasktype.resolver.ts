@@ -35,8 +35,8 @@ export default class TaskTypeResolver {
     const home = await Helper.getHomeOrFail();
 
     try {
-      const taskType = new TaskType(name, points, home);
-      return await taskType.save();
+      const type = new TaskType(name, points, home);
+      return await type.save();
     } catch (e) {
       throw Error('Failed to create task type!');
     }

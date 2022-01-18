@@ -1,5 +1,5 @@
-import { User, TaskType, TaskSeries, Home, Task } from './index';
+import { User, TaskType, TaskSeries, Home, Task, TaskReceipt } from './index';
 
-const entities = [User, TaskType, TaskSeries, Home, Task];
+const entities = [User, TaskType, TaskSeries, Home, Task, TaskReceipt];
 
 export default entities;

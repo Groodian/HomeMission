@@ -8,10 +8,11 @@ import {
   ResolverInterface,
   Root,
 } from 'type-graphql';
-import { Home, Task, TaskType, User } from '../../../entities';
+import { Home, Task, TaskReceipt, TaskType, User } from '../../../entities';
 import databaseConnection from '../../typeorm/connection';
 import CurrentSession from '../../auth0/current-session';
 import { Session } from '@auth0/nextjs-auth0';
+import Helper from './helper';
 
 @Resolver(Home)
 export default class HomeResolver implements ResolverInterface<Home> {
@@ -20,12 +21,9 @@ export default class HomeResolver implements ResolverInterface<Home> {
    */
   @Authorized()
   @Query(() => Home, { nullable: true })
-  async home(@CurrentSession() session?: Session) {
+  async home() {
     await databaseConnection();
-    const user = await User.findOne((session?.user.sub as string) || '', {
-      relations: ['home'],
-    });
-    return user?.home;
+    return await Helper.getHomeOrFail();
   }
 
   /**
@@ -52,6 +50,14 @@ export default class HomeResolver implements ResolverInterface<Home> {
     return await Task.find({ where: { relatedHome: home.id } });
   }
 
+  /**
+   * Only load task receipts if required.
+   */
+  @FieldResolver(() => [TaskReceipt])
+  async receipts(@Root() home: Home) {
+    return await TaskReceipt.find({ where: { relatedHome: home.id } });
+  }
+
   // TODO: Remove
   // ! Only for testing purposes.
   /**
@@ -63,7 +69,7 @@ export default class HomeResolver implements ResolverInterface<Home> {
       await databaseConnection();
       return await Home.find({ relations: ['users', 'taskTypes', 'tasks'] });
     } catch (e) {
-      throw Error('Failed to get all homes.');
+      throw Error('Failed to get all homes!');
     }
   }
 

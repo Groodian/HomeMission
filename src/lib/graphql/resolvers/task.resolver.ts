@@ -9,7 +9,7 @@ import {
   Root,
 } from 'type-graphql';
 import databaseConnection from '../../typeorm/connection';
-import { Task, TaskSeries, TaskType } from '../../../entities';
+import { Task, TaskReceipt, TaskSeries, TaskType } from '../../../entities';
 import Helper from './helper';
 
 @Resolver(Task)
@@ -24,11 +24,11 @@ export default class TaskResolver implements ResolverInterface<Task> {
 
     try {
       return await Task.find({
-        relations: ['type', 'series'],
+        relations: ['type', 'series', 'receipt'],
         where: { relatedHome: home.id },
       });
     } catch (e) {
-      throw Error('Failed to get all tasks.');
+      throw Error('Failed to get all tasks!');
     }
   }
 
@@ -46,6 +46,14 @@ export default class TaskResolver implements ResolverInterface<Task> {
   @FieldResolver(() => TaskSeries, { nullable: true })
   async series(@Root() task: Task) {
     return task.series ? await TaskSeries.findOne(task.series?.id) : null;
+  }
+
+  /**
+   * Only load task receipt if required.
+   */
+  @FieldResolver(() => TaskReceipt, { nullable: true })
+  async receipt(@Root() task: Task) {
+    return task.receipt ? await TaskReceipt.findOne(task.receipt?.id) : null;
   }
 
   /**

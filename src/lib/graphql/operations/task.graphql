@@ -9,6 +9,10 @@ query Tasks {
     },
     series {
       id
+    },
+    receipt {
+      id,
+      name,
     }
   }
 }

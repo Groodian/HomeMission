@@ -9,7 +9,7 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { User, TaskType, TaskSeries, Task } from '.';
+import { User, TaskType, TaskSeries, Task, TaskReceipt } from '.';
 
 @Entity()
 @ObjectType()
@@ -29,14 +29,23 @@ export class Home extends BaseEntity {
   @OneToMany(() => User, (user) => user.home)
   users!: User[];
 
-  @OneToMany(() => TaskType, (taskType) => taskType.relatedHome)
+  @OneToMany(() => TaskType, (taskType) => taskType.relatedHome, {
+    onDelete: 'CASCADE',
+  })
   taskTypes!: TaskType[];
 
-  @OneToMany(() => TaskSeries, (taskSeries) => taskSeries.relatedHome)
+  @OneToMany(() => TaskSeries, (taskSeries) => taskSeries.relatedHome, {
+    onDelete: 'CASCADE',
+  })
   taskSeries!: TaskSeries[];
 
-  @OneToMany(() => Task, (task) => task.type)
+  @OneToMany(() => Task, (task) => task.relatedHome, { onDelete: 'CASCADE' })
   tasks!: Task[];
+
+  @OneToMany(() => TaskReceipt, (receipt) => receipt.relatedHome, {
+    onDelete: 'CASCADE',
+  })
+  taskReceipts!: Task[];
 
   constructor() {
     super();
@@ -56,6 +65,9 @@ export class Home extends BaseEntity {
     }
     if (!this.tasks) {
       this.tasks = [];
+    }
+    if (!this.taskReceipts) {
+      this.taskReceipts = [];
     }
   }
 }
