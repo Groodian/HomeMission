@@ -10,7 +10,7 @@ import {
   OneToMany,
   PrimaryColumn,
 } from 'typeorm';
-import { Home, History } from './index';
+import { Home, TaskReceipt, History } from '.';
 
 @Entity()
 @ObjectType()
@@ -37,13 +37,19 @@ export class User extends BaseEntity {
   @OneToMany(() => History, (history) => history.user)
   history!: History[];
 
+  @OneToMany(() => TaskReceipt, (receipt) => receipt.completer)
+  receipts!: TaskReceipt[];
+
   @AfterLoad()
   @AfterInsert()
   @AfterUpdate()
   async nullChecks() {
-    // ensures that property history is never undefined
+    // ensures that array properties are never undefined
     if (!this.history) {
       this.history = [];
+    }
+    if (!this.receipts) {
+      this.receipts = [];
     }
   }
 }

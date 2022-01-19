@@ -45,6 +45,9 @@ const Home: NextPage = () => {
         <Link href="/history" color="secondary">
           {t('link-history')}
         </Link>
+        <Link href="/tasks" color="secondary">
+          {t('link-tasks')}
+        </Link>
         <Link locale="en" href="" color="secondary">
           EN
         </Link>
