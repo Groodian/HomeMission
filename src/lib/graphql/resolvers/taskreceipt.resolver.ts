@@ -9,8 +9,9 @@ import {
   Root,
 } from 'type-graphql';
 import databaseConnection from '../../typeorm/connection';
-import { TaskReceipt, User } from '../../../entities';
+import { TaskReceipt, User, HistoryType } from '../../../entities';
 import Helper from './helper';
+import { createHistory } from '../util/history';
 
 @Resolver(TaskReceipt)
 export default class TaskReceiptResolver
@@ -70,6 +71,8 @@ export default class TaskReceiptResolver
       // create reference from task to receipt
       taskItem.receipt = receipt;
       await taskItem.save();
+
+      await createHistory(home, user, HistoryType.TASK_COMPLETED);
 
       return receipt;
     } catch (e) {

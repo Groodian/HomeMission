@@ -64,14 +64,7 @@ const History: NextPage = () => {
 };
 
 const formatText = (history: any, t: any): string => {
-  switch (history.type) {
-    case 'USER_JOIN':
-      return t('user-join');
-    case 'USER_LEAVE':
-      return t('user-leave');
-    default:
-      return 'error';
-  }
+  return t((history.type as string).replaceAll('_', '-').toLowerCase());
 };
 
 const formatTime = (date: any, t: any): string => {

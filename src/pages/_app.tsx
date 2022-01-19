@@ -17,11 +17,9 @@ import schema from '../lib/graphql/schema';
 import { createEmotionCache } from '../lib/mui/emotion';
 import darkTheme from '../styles/dark-theme';
 import lightTheme from '../styles/light-theme';
-import Leftbar from "../components/Leftbar";
-import Home from "./index";
-import Grid from "@mui/material/Grid";
-import {Feed} from "@mui/icons-material";
-import Rightbar from "../components/Rightbar";
+import Leftbar from '../components/Leftbar';
+import Grid from '@mui/material/Grid';
+import Rightbar from '../components/Rightbar';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -110,7 +108,7 @@ const MyApp: React.FC<MyAppProps> = ({
                       <Grid item sm={8} xs={10}>
                         <Component {...pageProps} />
                       </Grid>
-                      <Grid item sm={2} >
+                      <Grid item sm={2}>
                         <Rightbar />
                       </Grid>
                     </Grid>

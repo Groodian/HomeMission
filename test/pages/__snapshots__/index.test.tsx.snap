@@ -79,7 +79,7 @@ exports[`Home page matches snapshot 1`] = `
   text-decoration-color: inherit;
 }
 
-.emotion-12 {
+.emotion-13 {
   margin: 0;
   font-family: "Roboto","Helvetica","Arial",sans-serif;
   font-weight: 400;
@@ -91,7 +91,7 @@ exports[`Home page matches snapshot 1`] = `
   margin-bottom: 24px;
 }
 
-.emotion-13 {
+.emotion-14 {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -110,7 +110,7 @@ exports[`Home page matches snapshot 1`] = `
   vertical-align: middle;
 }
 
-.emotion-14 {
+.emotion-15 {
   margin: 0;
   color: #1976d2;
   -webkit-text-decoration: underline;
@@ -118,11 +118,11 @@ exports[`Home page matches snapshot 1`] = `
   text-decoration-color: rgba(25, 118, 210, 0.4);
 }
 
-.emotion-14:hover {
+.emotion-15:hover {
   text-decoration-color: inherit;
 }
 
-.emotion-15 {
+.emotion-16 {
   margin: 0;
   font-family: "Roboto","Helvetica","Arial",sans-serif;
   font-weight: 400;
@@ -133,18 +133,18 @@ exports[`Home page matches snapshot 1`] = `
   color: rgba(0, 0, 0, 0.6);
 }
 
-.emotion-16 {
+.emotion-17 {
   margin: 0;
   color: inherit;
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
 
-.emotion-16:hover {
+.emotion-17:hover {
   text-decoration-color: inherit;
 }
 
-.emotion-17 {
+.emotion-18 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -193,23 +193,23 @@ exports[`Home page matches snapshot 1`] = `
   box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12);
 }
 
-.emotion-17::-moz-focus-inner {
+.emotion-18::-moz-focus-inner {
   border-style: none;
 }
 
-.emotion-17.Mui-disabled {
+.emotion-18.Mui-disabled {
   pointer-events: none;
   cursor: default;
 }
 
 @media print {
-  .emotion-17 {
+  .emotion-18 {
     -webkit-print-color-adjust: exact;
     color-adjust: exact;
   }
 }
 
-.emotion-17:hover {
+.emotion-18:hover {
   -webkit-text-decoration: none;
   text-decoration: none;
   background-color: #1565c0;
@@ -217,26 +217,26 @@ exports[`Home page matches snapshot 1`] = `
 }
 
 @media (hover: none) {
-  .emotion-17:hover {
+  .emotion-18:hover {
     background-color: #1976d2;
   }
 }
 
-.emotion-17:active {
+.emotion-18:active {
   box-shadow: 0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12);
 }
 
-.emotion-17.Mui-focusVisible {
+.emotion-18.Mui-focusVisible {
   box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12);
 }
 
-.emotion-17.Mui-disabled {
+.emotion-18.Mui-disabled {
   color: rgba(0, 0, 0, 0.26);
   box-shadow: none;
   background-color: rgba(0, 0, 0, 0.12);
 }
 
-.emotion-18 {
+.emotion-19 {
   overflow: hidden;
   pointer-events: none;
   position: absolute;
@@ -320,11 +320,11 @@ exports[`Home page matches snapshot 1`] = `
         DE
       </a>
       <p
-        class="MuiTypography-root MuiTypography-body1 emotion-12"
+        class="MuiTypography-root MuiTypography-body1 emotion-13"
       >
         <svg
           aria-hidden="true"
-          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium emotion-13"
+          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium emotion-14"
           focusable="false"
           viewBox="0 0 24 24"
         >
@@ -334,7 +334,7 @@ exports[`Home page matches snapshot 1`] = `
         </svg>
         Pro tip: See more 
         <a
-          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-14"
+          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-15"
           href="https://mui.com/getting-started/templates/"
         >
           templates
@@ -342,11 +342,11 @@ exports[`Home page matches snapshot 1`] = `
          on the MUI documentation.
       </p>
       <p
-        class="MuiTypography-root MuiTypography-body2 MuiTypography-alignCenter emotion-15"
+        class="MuiTypography-root MuiTypography-body2 MuiTypography-alignCenter emotion-16"
       >
         Copyright © 
         <a
-          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-16"
+          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-17"
           href="https://mui.com/"
         >
           Your Website
@@ -354,13 +354,13 @@ exports[`Home page matches snapshot 1`] = `
          2022.
       </p>
       <button
-        class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root  emotion-17"
+        class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root  emotion-18"
         tabindex="0"
         type="button"
       >
         Test Button
         <span
-          class="MuiTouchRipple-root emotion-18"
+          class="MuiTouchRipple-root emotion-19"
         />
       </button>
       <a
@@ -475,7 +475,7 @@ exports[`Home page matches snapshot DE 1`] = `
   text-decoration-color: inherit;
 }
 
-.emotion-12 {
+.emotion-13 {
   margin: 0;
   font-family: "Roboto","Helvetica","Arial",sans-serif;
   font-weight: 400;
@@ -487,7 +487,7 @@ exports[`Home page matches snapshot DE 1`] = `
   margin-bottom: 24px;
 }
 
-.emotion-13 {
+.emotion-14 {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -506,7 +506,7 @@ exports[`Home page matches snapshot DE 1`] = `
   vertical-align: middle;
 }
 
-.emotion-14 {
+.emotion-15 {
   margin: 0;
   color: #1976d2;
   -webkit-text-decoration: underline;
@@ -514,11 +514,11 @@ exports[`Home page matches snapshot DE 1`] = `
   text-decoration-color: rgba(25, 118, 210, 0.4);
 }
 
-.emotion-14:hover {
+.emotion-15:hover {
   text-decoration-color: inherit;
 }
 
-.emotion-15 {
+.emotion-16 {
   margin: 0;
   font-family: "Roboto","Helvetica","Arial",sans-serif;
   font-weight: 400;
@@ -529,18 +529,18 @@ exports[`Home page matches snapshot DE 1`] = `
   color: rgba(0, 0, 0, 0.6);
 }
 
-.emotion-16 {
+.emotion-17 {
   margin: 0;
   color: inherit;
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
 
-.emotion-16:hover {
+.emotion-17:hover {
   text-decoration-color: inherit;
 }
 
-.emotion-17 {
+.emotion-18 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -589,23 +589,23 @@ exports[`Home page matches snapshot DE 1`] = `
   box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12);
 }
 
-.emotion-17::-moz-focus-inner {
+.emotion-18::-moz-focus-inner {
   border-style: none;
 }
 
-.emotion-17.Mui-disabled {
+.emotion-18.Mui-disabled {
   pointer-events: none;
   cursor: default;
 }
 
 @media print {
-  .emotion-17 {
+  .emotion-18 {
     -webkit-print-color-adjust: exact;
     color-adjust: exact;
   }
 }
 
-.emotion-17:hover {
+.emotion-18:hover {
   -webkit-text-decoration: none;
   text-decoration: none;
   background-color: #1565c0;
@@ -613,26 +613,26 @@ exports[`Home page matches snapshot DE 1`] = `
 }
 
 @media (hover: none) {
-  .emotion-17:hover {
+  .emotion-18:hover {
     background-color: #1976d2;
   }
 }
 
-.emotion-17:active {
+.emotion-18:active {
   box-shadow: 0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12);
 }
 
-.emotion-17.Mui-focusVisible {
+.emotion-18.Mui-focusVisible {
   box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12);
 }
 
-.emotion-17.Mui-disabled {
+.emotion-18.Mui-disabled {
   color: rgba(0, 0, 0, 0.26);
   box-shadow: none;
   background-color: rgba(0, 0, 0, 0.12);
 }
 
-.emotion-18 {
+.emotion-19 {
   overflow: hidden;
   pointer-events: none;
   position: absolute;
@@ -716,11 +716,11 @@ exports[`Home page matches snapshot DE 1`] = `
         DE
       </a>
       <p
-        class="MuiTypography-root MuiTypography-body1 emotion-12"
+        class="MuiTypography-root MuiTypography-body1 emotion-13"
       >
         <svg
           aria-hidden="true"
-          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium emotion-13"
+          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium emotion-14"
           focusable="false"
           viewBox="0 0 24 24"
         >
@@ -730,7 +730,7 @@ exports[`Home page matches snapshot DE 1`] = `
         </svg>
         Pro Tipp: Finde weitere 
         <a
-          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-14"
+          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-15"
           href="https://mui.com/getting-started/templates/"
         >
           Templates
@@ -738,11 +738,11 @@ exports[`Home page matches snapshot DE 1`] = `
          in der MUI Dokumentation.
       </p>
       <p
-        class="MuiTypography-root MuiTypography-body2 MuiTypography-alignCenter emotion-15"
+        class="MuiTypography-root MuiTypography-body2 MuiTypography-alignCenter emotion-16"
       >
         Copyright © 
         <a
-          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-16"
+          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-17"
           href="https://mui.com/"
         >
           Deine Website
@@ -750,13 +750,13 @@ exports[`Home page matches snapshot DE 1`] = `
          2022.
       </p>
       <button
-        class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root  emotion-17"
+        class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root  emotion-18"
         tabindex="0"
         type="button"
       >
         Test Button
         <span
-          class="MuiTouchRipple-root emotion-18"
+          class="MuiTouchRipple-root emotion-19"
         />
       </button>
       <a

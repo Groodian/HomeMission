@@ -11,6 +11,13 @@ import { User, Home } from './index';
 export enum HistoryType {
   USER_JOIN = 'user_join',
   USER_LEAVE = 'user_leave',
+  TASK_TYPE_CREATED = 'task_type_created',
+  TASK_TYPE_DELETED = 'task_type_deleted',
+  TASK_TYPE_UPDATED = 'task_type_updated',
+  TASK_SERIES_CREATED = 'task_series_created',
+  TASK_SERIES_DELETED = 'task_series_deleted',
+  TASK_SERIES_SUB_DELETED = 'task_series_sub_deleted',
+  TASK_SERIES_UPDATED = 'task_series_updated',
   TASK_CREATED = 'task_created',
   TASK_DELETED = 'task_deleted',
   TASK_UPDATED = 'task_updated',

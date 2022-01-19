@@ -1,7 +1,18 @@
 {
   "title" : "History",
   "profile-picture-alt": "Profile picture of {{history.user.name}}",
+  "ago": "{{time}} ago",
   "user-join": "Joined shared flat",
   "user-leave": "Leaved shared flat",
-  "ago": "{{time}} ago"
+  "task-type-created": "Created a task type",
+  "task-type-deleted": "Deleted a task type",
+  "task-type-updated": "Edited a task type",
+  "task-series-created": "Created a task series",
+  "task-series-deleted": "Deleted a task series",
+  "task-series-sub-deleted": "Deleted part of a task series",
+  "task-series-updated": "Edited a task series",
+  "task-created": "Created a task",
+  "task-deleted": "Deleted a task",
+  "task-updated": "Edited a task",
+  "task-completed": "Completed a task"
 }

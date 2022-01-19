@@ -1,7 +1,18 @@
 {
   "title" : "Historie",
   "profile-picture-alt": "Profilbild von {{history.user.name}}",
+  "ago": "vor {{time}}",
   "user-join": "Ist der WG beigereten",
   "user-leave": "Hat die WG verlassen",
-  "ago": "vor {{time}}"
+  "task-type-created": "Hat einen Aufgabentyp erstellt",
+  "task-type-deleted": "Hat einen Aufgabentyp gelöscht",
+  "task-type-updated": "Hat einen Aufgabentyp bearbeitet",
+  "task-series-created": "Hat eine Aufgabenserie erstellt",
+  "task-series-deleted": "Hat eine Aufgabenserie gelöscht",
+  "task-series-sub-deleted": "Hat einen Teil einer Aufgabenserie gelöscht",
+  "task-series-updated": "Hat eine Aufgabenserie bearbeitet",
+  "task-created": "Hat eine Aufgabe erstellt",
+  "task-deleted": "Hat eine Aufgabe gelöscht",
+  "task-updated": "Hat eine Aufgabe bearbeitet",
+  "task-completed": "Hat eine Aufgabe abgeschlossen"
 }

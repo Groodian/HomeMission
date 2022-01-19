@@ -1,7 +1,8 @@
 import { Arg, Authorized, Mutation, Query, Resolver } from 'type-graphql';
 import databaseConnection from '../../typeorm/connection';
-import { TaskType } from '../../../entities';
+import { TaskType, HistoryType } from '../../../entities';
 import Helper from './helper';
+import { createHistory } from '../util/history';
 
 @Resolver(TaskType)
 export default class TaskTypeResolver {
@@ -33,9 +34,11 @@ export default class TaskTypeResolver {
   ) {
     await databaseConnection();
     const home = await Helper.getHomeOrFail();
+    const user = await Helper.getMeOrFail();
 
     try {
       const type = new TaskType(name, points, home);
+      await createHistory(home, user, HistoryType.TASK_TYPE_CREATED);
       return await type.save();
     } catch (e) {
       throw Error('Failed to create task type!');
@@ -50,11 +53,13 @@ export default class TaskTypeResolver {
   async removeTaskType(@Arg('type') type: string) {
     await databaseConnection();
     const home = await Helper.getHomeOrFail();
+    const user = await Helper.getMeOrFail();
     const taskType = await Helper.getTypeOrFail(type, home.id);
 
     try {
       // only remove reference between home and task type
       taskType.relatedHome = null;
+      await createHistory(home, user, HistoryType.TASK_TYPE_DELETED);
       return await taskType.save();
     } catch (e) {
       throw Error('Failed to remove task type!');

@@ -9,8 +9,15 @@ import {
   Root,
 } from 'type-graphql';
 import databaseConnection from '../../typeorm/connection';
-import { Task, TaskReceipt, TaskSeries, TaskType } from '../../../entities';
+import {
+  Task,
+  TaskReceipt,
+  TaskSeries,
+  TaskType,
+  HistoryType,
+} from '../../../entities';
 import Helper from './helper';
+import { createHistory } from '../util/history';
 
 @Resolver(Task)
 export default class TaskResolver implements ResolverInterface<Task> {
@@ -64,11 +71,13 @@ export default class TaskResolver implements ResolverInterface<Task> {
   async createTask(@Arg('type') type: string, @Arg('date') date: string) {
     await databaseConnection();
     const home = await Helper.getHomeOrFail();
+    const user = await Helper.getMeOrFail();
     const validDate = Helper.getDateFromStringOrFail(date);
     const taskType = await Helper.getTypeOrFail(type, home.id);
 
     try {
       const task = new Task(validDate, home, taskType);
+      await createHistory(home, user, HistoryType.TASK_CREATED);
       return await task.save();
     } catch (e) {
       throw Error(
@@ -85,10 +94,12 @@ export default class TaskResolver implements ResolverInterface<Task> {
   async deleteTask(@Arg('task') task: string) {
     await databaseConnection();
     const home = await Helper.getHomeOrFail();
+    const user = await Helper.getMeOrFail();
     const taskEntity = await Helper.getTaskOrFail(task, home.id);
 
     try {
       await Task.remove(taskEntity);
+      await createHistory(home, user, HistoryType.TASK_DELETED);
       return true;
     } catch (e) {
       throw Error('Failed to delete task!');

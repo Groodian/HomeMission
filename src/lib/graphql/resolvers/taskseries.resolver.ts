@@ -1,7 +1,8 @@
 import { Arg, Authorized, Mutation, Resolver } from 'type-graphql';
 import databaseConnection from '../../typeorm/connection';
-import { Task, TaskSeries, TaskType } from '../../../entities';
+import { Task, TaskSeries, TaskType, HistoryType } from '../../../entities';
 import Helper from './helper';
+import { createHistory } from '../util/history';
 
 @Resolver(TaskSeries)
 export default class TaskSeriesResolver {
@@ -18,6 +19,7 @@ export default class TaskSeriesResolver {
   ) {
     await databaseConnection();
     const home = await Helper.getHomeOrFail();
+    const user = await Helper.getMeOrFail();
     const taskType = await Helper.getTypeOrFail(type, home.id);
     const startDate = Helper.getDateFromStringOrFail(start);
     if (interval <= 0 || iterations <= 0) {
@@ -40,6 +42,8 @@ export default class TaskSeriesResolver {
         date.setDate(date.getDate() + interval * 7);
       }
 
+      await createHistory(home, user, HistoryType.TASK_SERIES_CREATED);
+
       return taskSeries;
     } catch (e) {
       throw Error('Failed to create task series!');
@@ -54,6 +58,7 @@ export default class TaskSeriesResolver {
   async deleteTaskSeries(@Arg('series') series: string) {
     await databaseConnection();
     const home = await Helper.getHomeOrFail();
+    const user = await Helper.getMeOrFail();
     const taskSeries = await Helper.getSeriesOrFail(series, home.id);
 
     try {
@@ -64,6 +69,8 @@ export default class TaskSeriesResolver {
 
       // delete series
       await taskSeries.remove();
+
+      await createHistory(home, user, HistoryType.TASK_SERIES_DELETED);
 
       return true;
     } catch (e) {
@@ -82,6 +89,7 @@ export default class TaskSeriesResolver {
   ) {
     await databaseConnection();
     const home = await Helper.getHomeOrFail();
+    const user = await Helper.getMeOrFail();
     const taskSeries = await Helper.getSeriesOrFail(series, home.id);
     const startTask = await Helper.getTaskOrFail(start, home.id);
     if (String(startTask.series) !== String(taskSeries.id))
@@ -94,6 +102,9 @@ export default class TaskSeriesResolver {
       for (const task of taskSeries.tasks) {
         if (task.date >= startTask.date) await task.remove();
       }
+
+      await createHistory(home, user, HistoryType.TASK_SERIES_SUB_DELETED);
+
       return true;
     } catch (e) {
       throw Error('Failed to remove task series!');
