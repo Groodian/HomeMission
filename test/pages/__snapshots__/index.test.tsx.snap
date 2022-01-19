@@ -67,7 +67,7 @@ exports[`Home page matches snapshot 1`] = `
   text-decoration-color: inherit;
 }
 
-.emotion-5 {
+.emotion-6 {
   margin: 0;
   color: #9c27b0;
   -webkit-text-decoration: underline;
@@ -75,7 +75,7 @@ exports[`Home page matches snapshot 1`] = `
   text-decoration-color: rgba(156, 39, 176, 0.4);
 }
 
-.emotion-5:hover {
+.emotion-6:hover {
   text-decoration-color: inherit;
 }
 
@@ -267,12 +267,18 @@ exports[`Home page matches snapshot 1`] = `
       </a>
       <a
         class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-3"
+        href="/statistic_page"
+      >
+        Go To Statistic Page
+      </a>
+      <a
+        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-3"
         href="/roommates"
       >
         Go to the Roommates test page
       </a>
       <a
-        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-5"
+        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-6"
         href="/api/graphql"
       >
         Go to the GraphQL playground (in development mode)
@@ -457,7 +463,7 @@ exports[`Home page matches snapshot DE 1`] = `
   text-decoration-color: inherit;
 }
 
-.emotion-5 {
+.emotion-6 {
   margin: 0;
   color: #9c27b0;
   -webkit-text-decoration: underline;
@@ -465,7 +471,7 @@ exports[`Home page matches snapshot DE 1`] = `
   text-decoration-color: rgba(156, 39, 176, 0.4);
 }
 
-.emotion-5:hover {
+.emotion-6:hover {
   text-decoration-color: inherit;
 }
 
@@ -657,12 +663,18 @@ exports[`Home page matches snapshot DE 1`] = `
       </a>
       <a
         class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-3"
+        href="/statistic_page"
+      >
+        Go To Statistic Page
+      </a>
+      <a
+        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-3"
         href="/roommates"
       >
         Zur Mitbewohner Testseite
       </a>
       <a
-        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-5"
+        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-6"
         href="/api/graphql"
       >
         Zum GraphQL Spielplatz (im Entwicklermodus)

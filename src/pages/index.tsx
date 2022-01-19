@@ -29,6 +29,11 @@ const Home: NextPage = () => {
         <Link href="/about" color="secondary">
           {t('link-about')}
         </Link>
+
+        <Link href="statistic_page" color="secondary">
+          {t('Go To Statistic Page')}
+        </Link>
+
         <Link href="/roommates" color="secondary">
           {t('link-roommates')}
         </Link>
