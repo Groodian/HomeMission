@@ -1,6 +1,5 @@
-import { Container, Typography } from "@material-ui/core";
+import { Container, Typography } from '@material-ui/core';
 import {
-  List,
   ExitToApp,
   Person,
   PhotoCamera,
@@ -8,49 +7,53 @@ import {
   Settings,
   Storefront,
   TabletMac,
-} from "@mui/icons-material";
+} from '@mui/icons-material';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 
-import { makeStyles, createStyles } from '@mui/styles';
+import { makeStyles } from '@mui/styles';
 
-
-const useStyles = makeStyles((theme: { spacing: (arg0: number) => any; palette: { primary: { main: any; }; }; breakpoints: { up: (arg0: string) => any; down: (arg0: string) => any; }; }) => ({
-
-  container: {
-    height: "100vh",
-    color: "white",
-    paddingTop: theme.spacing(10),
-    backgroundColor: theme.palette.primary.main,
-    position: "sticky",
-    top: 0,
-    [theme.breakpoints.up("sm")]: {
-      backgroundColor: "white",
-      color: "#555",
-      border: "1px solid #ece7e7",
+const useStyles = makeStyles(
+  (theme: {
+    spacing: (arg0: number) => any;
+    palette: { primary: { main: any } };
+    breakpoints: { up: (arg0: string) => any; down: (arg0: string) => any };
+  }) => ({
+    container: {
+      height: '100vh',
+      color: 'white',
+      paddingTop: theme.spacing(10),
+      backgroundColor: theme.palette.primary.main,
+      position: 'sticky',
+      top: 0,
+      [theme.breakpoints.up('sm')]: {
+        backgroundColor: 'white',
+        color: '#555',
+        border: '1px solid #ece7e7',
+      },
     },
-  },
-  item: {
-    display: "flex",
-    alignItems: "center",
-    marginBottom: theme.spacing(4),
-    [theme.breakpoints.up("sm")]: {
-      marginBottom: theme.spacing(3),
-      cursor: "pointer",
+    item: {
+      display: 'flex',
+      alignItems: 'center',
+      marginBottom: theme.spacing(4),
+      [theme.breakpoints.up('sm')]: {
+        marginBottom: theme.spacing(3),
+        cursor: 'pointer',
+      },
     },
-  },
-  icon: {
-    marginRight: theme.spacing(1),
-    [theme.breakpoints.up("sm")]: {
-      fontSize: "18px",
+    icon: {
+      marginRight: theme.spacing(1),
+      [theme.breakpoints.up('sm')]: {
+        fontSize: '18px',
+      },
     },
-  },
-  text: {
-    fontWeight: 500,
-    [theme.breakpoints.down("sm")]: {
-      display: "none",
+    text: {
+      fontWeight: 500,
+      [theme.breakpoints.down('sm')]: {
+        display: 'none',
+      },
     },
-  },
-}));
+  })
+);
 
 const Leftbar = () => {
   const classes = useStyles();

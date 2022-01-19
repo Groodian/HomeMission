@@ -1,30 +1,27 @@
 import {
-  Link,
   Avatar,
   Container,
   ImageList,
   ImageListItem,
   Typography,
-  Divider,
-} from "@material-ui/core";
+} from '@material-ui/core';
 import AvatarGroup from '@mui/material/AvatarGroup';
-import { makeStyles, createStyles } from '@mui/styles';
+import { makeStyles } from '@mui/styles';
 
-
-const useStyles = makeStyles((theme: { spacing: (arg0: number) => any; }) => ({
+const useStyles = makeStyles((theme: { spacing: (arg0: number) => any }) => ({
   container: {
     paddingTop: theme.spacing(10),
-    position: "sticky",
+    position: 'sticky',
     top: 0,
   },
   title: {
     fontSize: 16,
     fontWeight: 500,
-    color: "#555",
+    color: '#555',
   },
   link: {
     marginRight: theme.spacing(2),
-    color: "#555",
+    color: '#555',
     fontSize: 16,
   },
 }));
@@ -36,14 +33,17 @@ const Rightbar = () => {
       <Typography className={classes.title} gutterBottom>
         Online Friends
       </Typography>
-      <AvatarGroup max={6} style={{ marginBottom: 20 }}
-                   sx={{
-                     width: 250,
-                     bgcolor: 'background.paper',
-                     boxShadow: 1,
-                     borderRadius: 2,
-                     p: 2,
-                   }}>
+      <AvatarGroup
+        max={6}
+        style={{ marginBottom: 20 }}
+        sx={{
+          width: 250,
+          bgcolor: 'background.paper',
+          boxShadow: 1,
+          borderRadius: 2,
+          p: 2,
+        }}
+      >
         <Avatar
           alt="Member 1"
           src="https://cdn3.iconfinder.com/data/icons/vector-icons-6/96/256-512.png"
@@ -77,13 +77,19 @@ const Rightbar = () => {
       <Typography className={classes.title} gutterBottom>
         Gallery
       </Typography>
-      <ImageList variant="woven" cols={3} gap={8}
-                 sx={{ width: 250, height: 550,
-                   bgcolor: 'background.paper',
-                   boxShadow: 1,
-                   borderRadius: 2,
-                   p: 2,
-                 }}>
+      <ImageList
+        variant="woven"
+        cols={3}
+        gap={8}
+        sx={{
+          width: 250,
+          height: 550,
+          bgcolor: 'background.paper',
+          boxShadow: 1,
+          borderRadius: 2,
+          p: 2,
+        }}
+      >
         {itemData.map((item) => (
           <ImageListItem key={item.img}>
             <img
@@ -95,11 +101,9 @@ const Rightbar = () => {
           </ImageListItem>
         ))}
       </ImageList>
-
     </Container>
   );
 };
-
 
 const itemData = [
   {
