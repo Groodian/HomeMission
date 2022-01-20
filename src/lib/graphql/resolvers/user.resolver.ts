@@ -1,6 +1,7 @@
 import { Session } from '@auth0/nextjs-auth0';
 import { Query, Resolver } from 'type-graphql';
-import User from '../../../entities/user';
+import { User } from '../../../entities';
+
 import CurrentSession from '../../auth0/current-session';
 import databaseConnection from '../../typeorm/connection';
 

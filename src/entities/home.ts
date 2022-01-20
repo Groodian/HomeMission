@@ -9,11 +9,11 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import User from '../entities/user';
+import { User, TaskType, TaskSeries, Task, TaskReceipt } from '.';
 
 @Entity()
 @ObjectType()
-export default class Home extends BaseEntity {
+export class Home extends BaseEntity {
   @PrimaryGeneratedColumn()
   @Field(() => ID)
   id!: string;
@@ -29,6 +29,24 @@ export default class Home extends BaseEntity {
   @OneToMany(() => User, (user) => user.home)
   users!: User[];
 
+  @OneToMany(() => TaskType, (taskType) => taskType.relatedHome, {
+    onDelete: 'CASCADE',
+  })
+  taskTypes!: TaskType[];
+
+  @OneToMany(() => TaskSeries, (taskSeries) => taskSeries.relatedHome, {
+    onDelete: 'CASCADE',
+  })
+  taskSeries!: TaskSeries[];
+
+  @OneToMany(() => Task, (task) => task.relatedHome, { onDelete: 'CASCADE' })
+  tasks!: Task[];
+
+  @OneToMany(() => TaskReceipt, (receipt) => receipt.relatedHome, {
+    onDelete: 'CASCADE',
+  })
+  taskReceipts!: Task[];
+
   constructor() {
     super();
     this.code = generateRandomString(6);
@@ -38,9 +56,18 @@ export default class Home extends BaseEntity {
   @AfterInsert()
   @AfterUpdate()
   async nullChecks() {
-    // ensures that property users is never undefined
+    // ensures that array properties are never undefined
     if (!this.users) {
       this.users = [];
+    }
+    if (!this.taskTypes) {
+      this.taskTypes = [];
+    }
+    if (!this.tasks) {
+      this.tasks = [];
+    }
+    if (!this.taskReceipts) {
+      this.taskReceipts = [];
     }
   }
 }

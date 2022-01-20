@@ -1,6 +1,7 @@
 import { ApolloProvider } from '@apollo/client';
 import { UserProvider } from '@auth0/nextjs-auth0';
 import { CacheProvider, EmotionCache } from '@emotion/react';
+import { useMediaQuery } from '@mui/material';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
 import { GraphQLSchema } from 'graphql';
@@ -9,24 +10,25 @@ import { appWithTranslation, useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-import React, { createContext, useEffect } from 'react';
+import React, { createContext, useMemo, useState } from 'react';
+import Navbar from '../components/Navbar';
 import { useApollo } from '../lib/graphql/apollo-client';
 import schema from '../lib/graphql/schema';
 import { createEmotionCache } from '../lib/mui/emotion';
 import darkTheme from '../styles/dark-theme';
 import lightTheme from '../styles/light-theme';
-import Navbar from '../components/Navbar';
+import Leftbar from '../components/Leftbar';
+import Grid from '@mui/material/Grid';
+import Rightbar from '../components/Rightbar';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
 
 type ModeContextTypes = {
   setMode: (mode: string) => void;
-  getMode: () => string | null | undefined;
 };
 export const ColorModeContext = createContext<ModeContextTypes>({
   setMode: () => undefined,
-  getMode: () => undefined,
 });
 
 interface MyAppProps extends AppProps {
@@ -43,37 +45,39 @@ const MyApp: React.FC<MyAppProps> = ({
   const { t } = useTranslation('_app');
   const apolloClient = useApollo(graphqlSchema, pageProps.initialApolloState);
 
-  const [darkMode, setDarkMode] = React.useState<boolean>(false);
-  const colorMode = React.useMemo(
+  const [mounted, setMounted] = useState(false);
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)', {
+    noSsr: true,
+  });
+
+  // Load initial color mode from local storage / user preference
+  let initialColorMode = '';
+  if (typeof window !== 'undefined') {
+    initialColorMode = localStorage.getItem('colorMode') || '';
+    if (!initialColorMode) {
+      initialColorMode = prefersDarkMode ? 'dark' : 'light';
+    }
+  }
+  const [colorMode, setColorMode] = useState<string>(initialColorMode);
+
+  const colorModeContext = useMemo(
     () => ({
       setMode: (mode: string) => {
-        if (typeof window !== 'undefined') {
-          localStorage.setItem('theme', mode);
-          setDarkMode(mode === 'dark');
-        }
-      },
-      getMode: () => {
-        if (typeof window !== 'undefined') {
-          return localStorage.getItem('theme');
-        }
+        localStorage.setItem('colorMode', mode);
+        setColorMode(mode);
       },
     }),
     []
   );
 
-  // set the saved theme on startup
-  useEffect(() => {
-    const initialTheme = localStorage.getItem('theme');
-    if (!initialTheme) colorMode.setMode('dark');
-    else {
-      setDarkMode(initialTheme === 'dark');
-    }
-  }, []);
-
   // Update the theme only if the mode changes
-  const theme = React.useMemo(
-    () => (darkMode ? darkTheme : lightTheme),
-    [darkMode]
+  const theme = useMemo(
+    () => (colorMode === 'dark' ? darkTheme : lightTheme),
+    [colorMode]
   );
 
   return (
@@ -82,17 +86,35 @@ const MyApp: React.FC<MyAppProps> = ({
         <CacheProvider value={emotionCache}>
           <Head>
             <title>{t('title')}</title>
+            <link rel="icon" href="favicon.ico" />
             <meta
               name="viewport"
               content="initial-scale=1, width=device-width"
             />
           </Head>
-          <ColorModeContext.Provider value={colorMode}>
+          <ColorModeContext.Provider value={colorModeContext}>
             <ThemeProvider theme={theme}>
               {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
               <CssBaseline />
-              <Navbar />
-              <Component {...pageProps} />
+              {
+                // Prevent ssr flash
+                mounted && (
+                  <div>
+                    <Navbar />
+                    <Grid container>
+                      <Grid item sm={2} xs={2}>
+                        <Leftbar />
+                      </Grid>
+                      <Grid item sm={8} xs={10}>
+                        <Component {...pageProps} />
+                      </Grid>
+                      <Grid item sm={2}>
+                        <Rightbar />
+                      </Grid>
+                    </Grid>
+                  </div>
+                )
+              }
             </ThemeProvider>
           </ColorModeContext.Provider>
         </CacheProvider>

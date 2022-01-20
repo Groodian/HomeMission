@@ -67,7 +67,7 @@ exports[`Home page matches snapshot 1`] = `
   text-decoration-color: inherit;
 }
 
-.emotion-5 {
+.emotion-6 {
   margin: 0;
   color: #9c27b0;
   -webkit-text-decoration: underline;
@@ -75,11 +75,11 @@ exports[`Home page matches snapshot 1`] = `
   text-decoration-color: rgba(156, 39, 176, 0.4);
 }
 
-.emotion-5:hover {
+.emotion-6:hover {
   text-decoration-color: inherit;
 }
 
-.emotion-10 {
+.emotion-12 {
   margin: 0;
   font-family: "Roboto","Helvetica","Arial",sans-serif;
   font-weight: 400;
@@ -91,7 +91,7 @@ exports[`Home page matches snapshot 1`] = `
   margin-bottom: 24px;
 }
 
-.emotion-11 {
+.emotion-13 {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -110,7 +110,7 @@ exports[`Home page matches snapshot 1`] = `
   vertical-align: middle;
 }
 
-.emotion-12 {
+.emotion-14 {
   margin: 0;
   color: #1976d2;
   -webkit-text-decoration: underline;
@@ -118,11 +118,11 @@ exports[`Home page matches snapshot 1`] = `
   text-decoration-color: rgba(25, 118, 210, 0.4);
 }
 
-.emotion-12:hover {
+.emotion-14:hover {
   text-decoration-color: inherit;
 }
 
-.emotion-13 {
+.emotion-15 {
   margin: 0;
   font-family: "Roboto","Helvetica","Arial",sans-serif;
   font-weight: 400;
@@ -133,18 +133,18 @@ exports[`Home page matches snapshot 1`] = `
   color: rgba(0, 0, 0, 0.6);
 }
 
-.emotion-14 {
+.emotion-16 {
   margin: 0;
   color: inherit;
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
 
-.emotion-14:hover {
+.emotion-16:hover {
   text-decoration-color: inherit;
 }
 
-.emotion-15 {
+.emotion-17 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -193,23 +193,23 @@ exports[`Home page matches snapshot 1`] = `
   box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12);
 }
 
-.emotion-15::-moz-focus-inner {
+.emotion-17::-moz-focus-inner {
   border-style: none;
 }
 
-.emotion-15.Mui-disabled {
+.emotion-17.Mui-disabled {
   pointer-events: none;
   cursor: default;
 }
 
 @media print {
-  .emotion-15 {
+  .emotion-17 {
     -webkit-print-color-adjust: exact;
     color-adjust: exact;
   }
 }
 
-.emotion-15:hover {
+.emotion-17:hover {
   -webkit-text-decoration: none;
   text-decoration: none;
   background-color: #1565c0;
@@ -217,26 +217,26 @@ exports[`Home page matches snapshot 1`] = `
 }
 
 @media (hover: none) {
-  .emotion-15:hover {
+  .emotion-17:hover {
     background-color: #1976d2;
   }
 }
 
-.emotion-15:active {
+.emotion-17:active {
   box-shadow: 0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12);
 }
 
-.emotion-15.Mui-focusVisible {
+.emotion-17.Mui-focusVisible {
   box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12);
 }
 
-.emotion-15.Mui-disabled {
+.emotion-17.Mui-disabled {
   color: rgba(0, 0, 0, 0.26);
   box-shadow: none;
   background-color: rgba(0, 0, 0, 0.12);
 }
 
-.emotion-16 {
+.emotion-18 {
   overflow: hidden;
   pointer-events: none;
   position: absolute;
@@ -267,12 +267,18 @@ exports[`Home page matches snapshot 1`] = `
       </a>
       <a
         class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-3"
+        href="/statistic_page"
+      >
+        Go To Statistic Page
+      </a>
+      <a
+        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-3"
         href="/roommates"
       >
         Go to the Roommates test page
       </a>
       <a
-        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-5"
+        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-6"
         href="/api/graphql"
       >
         Go to the GraphQL playground (in development mode)
@@ -290,6 +296,12 @@ exports[`Home page matches snapshot 1`] = `
         Join a home or create a new one
       </a>
       <a
+        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-3"
+        href="/tasks"
+      >
+        Go to task test page
+      </a>
+      <a
         class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways active emotion-3"
         href="/"
       >
@@ -302,11 +314,11 @@ exports[`Home page matches snapshot 1`] = `
         DE
       </a>
       <p
-        class="MuiTypography-root MuiTypography-body1 emotion-10"
+        class="MuiTypography-root MuiTypography-body1 emotion-12"
       >
         <svg
           aria-hidden="true"
-          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium emotion-11"
+          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium emotion-13"
           focusable="false"
           viewBox="0 0 24 24"
         >
@@ -316,7 +328,7 @@ exports[`Home page matches snapshot 1`] = `
         </svg>
         Pro tip: See more 
         <a
-          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-12"
+          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-14"
           href="https://mui.com/getting-started/templates/"
         >
           templates
@@ -324,11 +336,11 @@ exports[`Home page matches snapshot 1`] = `
          on the MUI documentation.
       </p>
       <p
-        class="MuiTypography-root MuiTypography-body2 MuiTypography-alignCenter emotion-13"
+        class="MuiTypography-root MuiTypography-body2 MuiTypography-alignCenter emotion-15"
       >
         Copyright © 
         <a
-          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-14"
+          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-16"
           href="https://mui.com/"
         >
           Your Website
@@ -336,13 +348,13 @@ exports[`Home page matches snapshot 1`] = `
          2022.
       </p>
       <button
-        class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root  emotion-15"
+        class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root  emotion-17"
         tabindex="0"
         type="button"
       >
         Test Button
         <span
-          class="MuiTouchRipple-root emotion-16"
+          class="MuiTouchRipple-root emotion-18"
         />
       </button>
       <a
@@ -445,7 +457,7 @@ exports[`Home page matches snapshot DE 1`] = `
   text-decoration-color: inherit;
 }
 
-.emotion-5 {
+.emotion-6 {
   margin: 0;
   color: #9c27b0;
   -webkit-text-decoration: underline;
@@ -453,11 +465,11 @@ exports[`Home page matches snapshot DE 1`] = `
   text-decoration-color: rgba(156, 39, 176, 0.4);
 }
 
-.emotion-5:hover {
+.emotion-6:hover {
   text-decoration-color: inherit;
 }
 
-.emotion-10 {
+.emotion-12 {
   margin: 0;
   font-family: "Roboto","Helvetica","Arial",sans-serif;
   font-weight: 400;
@@ -469,7 +481,7 @@ exports[`Home page matches snapshot DE 1`] = `
   margin-bottom: 24px;
 }
 
-.emotion-11 {
+.emotion-13 {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -488,7 +500,7 @@ exports[`Home page matches snapshot DE 1`] = `
   vertical-align: middle;
 }
 
-.emotion-12 {
+.emotion-14 {
   margin: 0;
   color: #1976d2;
   -webkit-text-decoration: underline;
@@ -496,11 +508,11 @@ exports[`Home page matches snapshot DE 1`] = `
   text-decoration-color: rgba(25, 118, 210, 0.4);
 }
 
-.emotion-12:hover {
+.emotion-14:hover {
   text-decoration-color: inherit;
 }
 
-.emotion-13 {
+.emotion-15 {
   margin: 0;
   font-family: "Roboto","Helvetica","Arial",sans-serif;
   font-weight: 400;
@@ -511,18 +523,18 @@ exports[`Home page matches snapshot DE 1`] = `
   color: rgba(0, 0, 0, 0.6);
 }
 
-.emotion-14 {
+.emotion-16 {
   margin: 0;
   color: inherit;
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
 
-.emotion-14:hover {
+.emotion-16:hover {
   text-decoration-color: inherit;
 }
 
-.emotion-15 {
+.emotion-17 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -571,23 +583,23 @@ exports[`Home page matches snapshot DE 1`] = `
   box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12);
 }
 
-.emotion-15::-moz-focus-inner {
+.emotion-17::-moz-focus-inner {
   border-style: none;
 }
 
-.emotion-15.Mui-disabled {
+.emotion-17.Mui-disabled {
   pointer-events: none;
   cursor: default;
 }
 
 @media print {
-  .emotion-15 {
+  .emotion-17 {
     -webkit-print-color-adjust: exact;
     color-adjust: exact;
   }
 }
 
-.emotion-15:hover {
+.emotion-17:hover {
   -webkit-text-decoration: none;
   text-decoration: none;
   background-color: #1565c0;
@@ -595,26 +607,26 @@ exports[`Home page matches snapshot DE 1`] = `
 }
 
 @media (hover: none) {
-  .emotion-15:hover {
+  .emotion-17:hover {
     background-color: #1976d2;
   }
 }
 
-.emotion-15:active {
+.emotion-17:active {
   box-shadow: 0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12);
 }
 
-.emotion-15.Mui-focusVisible {
+.emotion-17.Mui-focusVisible {
   box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12);
 }
 
-.emotion-15.Mui-disabled {
+.emotion-17.Mui-disabled {
   color: rgba(0, 0, 0, 0.26);
   box-shadow: none;
   background-color: rgba(0, 0, 0, 0.12);
 }
 
-.emotion-16 {
+.emotion-18 {
   overflow: hidden;
   pointer-events: none;
   position: absolute;
@@ -645,12 +657,18 @@ exports[`Home page matches snapshot DE 1`] = `
       </a>
       <a
         class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-3"
+        href="/statistic_page"
+      >
+        Go To Statistic Page
+      </a>
+      <a
+        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-3"
         href="/roommates"
       >
         Zur Mitbewohner Testseite
       </a>
       <a
-        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-5"
+        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-6"
         href="/api/graphql"
       >
         Zum GraphQL Spielplatz (im Entwicklermodus)
@@ -668,6 +686,12 @@ exports[`Home page matches snapshot DE 1`] = `
         Einer WG beitreten oder neu erstellen
       </a>
       <a
+        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-3"
+        href="/tasks"
+      >
+        Zur Aufgaben Testseite
+      </a>
+      <a
         class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways active emotion-3"
         href="/"
       >
@@ -680,11 +704,11 @@ exports[`Home page matches snapshot DE 1`] = `
         DE
       </a>
       <p
-        class="MuiTypography-root MuiTypography-body1 emotion-10"
+        class="MuiTypography-root MuiTypography-body1 emotion-12"
       >
         <svg
           aria-hidden="true"
-          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium emotion-11"
+          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium emotion-13"
           focusable="false"
           viewBox="0 0 24 24"
         >
@@ -694,7 +718,7 @@ exports[`Home page matches snapshot DE 1`] = `
         </svg>
         Pro Tipp: Finde weitere 
         <a
-          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-12"
+          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-14"
           href="https://mui.com/getting-started/templates/"
         >
           Templates
@@ -702,11 +726,11 @@ exports[`Home page matches snapshot DE 1`] = `
          in der MUI Dokumentation.
       </p>
       <p
-        class="MuiTypography-root MuiTypography-body2 MuiTypography-alignCenter emotion-13"
+        class="MuiTypography-root MuiTypography-body2 MuiTypography-alignCenter emotion-15"
       >
         Copyright © 
         <a
-          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-14"
+          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-16"
           href="https://mui.com/"
         >
           Deine Website
@@ -714,13 +738,13 @@ exports[`Home page matches snapshot DE 1`] = `
          2022.
       </p>
       <button
-        class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root  emotion-15"
+        class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root  emotion-17"
         tabindex="0"
         type="button"
       >
         Test Button
         <span
-          class="MuiTouchRipple-root emotion-16"
+          class="MuiTouchRipple-root emotion-18"
         />
       </button>
       <a
