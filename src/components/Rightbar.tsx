@@ -7,6 +7,7 @@ import {
 } from '@material-ui/core';
 import AvatarGroup from '@mui/material/AvatarGroup';
 import { makeStyles } from '@mui/styles';
+import Image from 'next/image';
 
 const useStyles = makeStyles((theme: { spacing: (arg0: number) => any }) => ({
   container: {
@@ -92,11 +93,11 @@ const Rightbar = () => {
       >
         {itemData.map((item) => (
           <ImageListItem key={item.img}>
-            <img
+            <Image
               src={`${item.img}?w=161&fit=crop&auto=format`}
-              srcSet={`${item.img}?w=161&fit=crop&auto=format&dpr=2 2x`}
               alt={item.title}
               loading="lazy"
+              layout="fill"
             />
           </ImageListItem>
         ))}
