@@ -6,7 +6,11 @@ module.exports = {
   },
 
   images: {
-    domains: ['s.gravatar.com', 'lh3.googleusercontent.com'],
+    domains: [
+      's.gravatar.com',
+      'lh3.googleusercontent.com',
+      'images.unsplash.com',
+    ],
   },
 
   i18n,

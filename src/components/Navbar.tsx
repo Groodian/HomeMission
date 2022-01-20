@@ -17,7 +17,8 @@ import { ColorModeContext } from '../pages/_app';
 import { useTranslation } from 'next-i18next';
 import { FormControl, InputLabel, Select, useTheme } from '@mui/material';
 import { useHomeQuery } from '../lib/graphql/operations/home.graphql';
-import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
+import Image from 'next/image';
+import homeMissionLogo from '../../public/home_mission_grey.png';
 
 type Pages = { url: string; text: string; api?: boolean }[];
 
@@ -60,14 +61,13 @@ const Navbar = () => {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <IconButton
-            size="large"
-            onClick={() => route('/')}
-            color="inherit"
-            sx={{ mr: 2 }}
-          >
-            <HomeRoundedIcon />
-          </IconButton>
+          <Box sx={{ minWidth: 90 }} onClick={() => route('/')}>
+            <Image
+              alt="homemission logo"
+              src={homeMissionLogo}
+              layout="responsive"
+            />
+          </Box>
           <Box sx={{ flexGrow: 1 }}>
             {(userData?.user
               ? homeData?.home

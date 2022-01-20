@@ -11,7 +11,7 @@ services:
     volumes:
       - database-prod:/var/lib/mysql
 
-  wg-organisierspiel:
+  homemission:
     image: registry.code.fbi.h-da.de/isttomare/wg-organisierspiel
     ports:
       - 80:80

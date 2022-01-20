@@ -1,8 +1,12 @@
-## Idee
+# HomeMission
 
-- Organisierspiel für WGs &rarr; Gamification von Aufgabenverteilung
-- Punktzahl für WG-Mitglieder basierend auf gemachten Aufgaben (Müll rausbringen etc.)
-- Es gibt mehrere WGs, ein Nutzer ist Teil einer WG und jede WG hat Aufgaben, die erledigt werden müssen und unterschiedlich viele Punkte wert sind
+<img src="./public/home_mission_grey.png" width = "300">
+
+## Concept
+
+- Game for shared apartments (will be called WGs in the following) to organize themselves a bit better &rarr; gamification of task assignments
+- Score for flat mates based on finished tasks (Taking out the trash etc.)
+- multiple WGs, one user is part of one WG and every WG has tasks, which have to be resolved, and this tasks will give points (they will vary)
 
 ## Run Application
 
