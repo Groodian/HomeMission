@@ -2,7 +2,7 @@ import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 import { GetStaticProps, NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTasksQuery } from '../lib/graphql/operations/task.graphql';
-import { Calendar, momentLocalizer } from 'react-big-calendar';
+import { EventProps, momentLocalizer } from 'react-big-calendar';
 import { useEffect, useState } from 'react';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
@@ -11,13 +11,35 @@ import 'moment/locale/de';
 import 'moment/locale/en-gb';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
+import { Task } from '../entities';
+import { StyledCalendar } from '../components/StyledCalendar';
 
-type CEvent = {
+export type CEvent = {
   title: string;
   start: Date;
   end: Date;
   allDay?: boolean;
-  resource?: any;
+  resource: Task;
+};
+
+// is passed to calendar to render calendar events
+const CEventVisualize = (props: EventProps<CEvent>) => {
+  const event = props.event;
+  return (
+    <span>
+      <strong>{event.resource.type?.name}</strong>
+      {event.resource.type?.points && ': ' + event.resource.type?.points + 'P'}
+    </span>
+  );
+};
+
+// is passed to calendar to render calendar event container
+const customEventPropGetter = (event: CEvent) => {
+  return {
+    style: {
+      backgroundColor: !event.resource.receipt ? 'grey' : 'green',
+    },
+  };
 };
 
 const Overview: NextPage = () => {
@@ -34,9 +56,9 @@ const Overview: NextPage = () => {
   useEffect(() => {
     if (data) {
       setEvents(
-        data.tasks.map((task) => {
+        (data.tasks as Task[]).map((task) => {
           return {
-            title: task.type.name + ' - ' + task.type.points + ' points',
+            title: task.type?.name + ' - ' + task.type?.points + ' points',
             start: task.date,
             end: task.date,
             allDay: true,
@@ -56,15 +78,17 @@ const Overview: NextPage = () => {
 
   return (
     <>
-      <Calendar
+      <StyledCalendar
         localizer={localizer}
         events={events}
-        startAccessor="start"
-        endAccessor="end"
         culture={router.locale === 'de' ? 'de' : 'en-gb'}
-        style={{ height: 500 }}
+        style={{ height: '75vh' }}
         views={['month']}
         selectable={true}
+        eventPropGetter={customEventPropGetter}
+        components={{
+          event: CEventVisualize,
+        }}
         messages={{
           next: t('next'),
           previous: t('previous'),
