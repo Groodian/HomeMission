@@ -3,9 +3,14 @@ import { GetStaticProps, NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTasksQuery } from '../lib/graphql/operations/task.graphql';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
-import moment from 'moment';
 import { useEffect, useState } from 'react';
+import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
+import 'moment/locale/fr';
+import 'moment/locale/de';
+import 'moment/locale/en-gb';
+import { useTranslation } from 'next-i18next';
+import { useRouter } from 'next/router';
 
 type CEvent = {
   title: string;
@@ -15,13 +20,15 @@ type CEvent = {
   resource?: any;
 };
 
-const localize = momentLocalizer(moment);
-
 const Overview: NextPage = () => {
-  // const { t } = useTranslation(['overview', 'common']);
+  const { t } = useTranslation(['Overview']);
+  const router = useRouter();
+
   const { error, data } = useTasksQuery();
 
   const [events, setEvents] = useState<CEvent[]>([]);
+
+  const localizer = momentLocalizer(moment);
 
   // create calendar events when data from tasks query loads
   useEffect(() => {
@@ -50,13 +57,22 @@ const Overview: NextPage = () => {
   return (
     <>
       <Calendar
-        localizer={localize}
+        localizer={localizer}
         events={events}
         startAccessor="start"
         endAccessor="end"
+        culture={router.locale === 'de' ? 'de' : 'en-gb'}
         style={{ height: 500 }}
         views={['month']}
         selectable={true}
+        messages={{
+          next: t('next'),
+          previous: t('previous'),
+          today: t('today'),
+          month: t('month'),
+          week: t('week'),
+          day: t('day'),
+        }}
         onSelectEvent={() => {
           // ... expand tile to offer deletion of task / series or complete task
         }}
@@ -75,7 +91,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
     props: {
       ...(await serverSideTranslations(locale || '', [
         '_app',
-        'overview',
+        'Overview',
         'common',
         'Navbar',
       ])),
