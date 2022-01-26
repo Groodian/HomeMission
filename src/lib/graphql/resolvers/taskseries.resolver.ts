@@ -2,7 +2,6 @@ import { Arg, Authorized, Mutation, Resolver } from 'type-graphql';
 import databaseConnection from '../../typeorm/connection';
 import { Task, TaskSeries, TaskType, HistoryType } from '../../../entities';
 import Helper from './helper';
-import { createHistory } from '../util/history';
 
 @Resolver(TaskSeries)
 export default class TaskSeriesResolver {
@@ -42,7 +41,7 @@ export default class TaskSeriesResolver {
         date.setDate(date.getDate() + interval * 7);
       }
 
-      await createHistory(home, user, HistoryType.TASK_SERIES_CREATED);
+      await Helper.createHistory(home, user, HistoryType.TASK_SERIES_CREATED);
 
       return taskSeries;
     } catch (e) {
@@ -70,7 +69,7 @@ export default class TaskSeriesResolver {
       // delete series
       await taskSeries.remove();
 
-      await createHistory(home, user, HistoryType.TASK_SERIES_DELETED);
+      await Helper.createHistory(home, user, HistoryType.TASK_SERIES_DELETED);
 
       return true;
     } catch (e) {
@@ -103,7 +102,11 @@ export default class TaskSeriesResolver {
         if (task.date >= startTask.date) await task.remove();
       }
 
-      await createHistory(home, user, HistoryType.TASK_SERIES_SUB_DELETED);
+      await Helper.createHistory(
+        home,
+        user,
+        HistoryType.TASK_SERIES_SUB_DELETED
+      );
 
       return true;
     } catch (e) {

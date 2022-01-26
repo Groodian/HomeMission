@@ -17,13 +17,13 @@ import {
   HistoryType,
 } from '../../../entities';
 import Helper from './helper';
-import { createHistory } from '../util/history';
 
 @Resolver(Task)
 export default class TaskResolver implements ResolverInterface<Task> {
   /**
    * Get all tasks including their task types that belong to the users home.
    */
+  @Authorized()
   @Query(() => [Task])
   async tasks() {
     await databaseConnection();
@@ -77,7 +77,7 @@ export default class TaskResolver implements ResolverInterface<Task> {
 
     try {
       const task = new Task(validDate, home, taskType);
-      await createHistory(home, user, HistoryType.TASK_CREATED);
+      await Helper.createHistory(home, user, HistoryType.TASK_CREATED);
       return await task.save();
     } catch (e) {
       throw Error(
@@ -99,7 +99,7 @@ export default class TaskResolver implements ResolverInterface<Task> {
 
     try {
       await Task.remove(taskEntity);
-      await createHistory(home, user, HistoryType.TASK_DELETED);
+      await Helper.createHistory(home, user, HistoryType.TASK_DELETED);
       return true;
     } catch (e) {
       throw Error('Failed to delete task!');

@@ -15,7 +15,13 @@ import ThemeSwitch from './ThemeSwitch';
 import { useRouter } from 'next/router';
 import { ColorModeContext } from '../pages/_app';
 import { useTranslation } from 'next-i18next';
-import { FormControl, InputLabel, Select, useTheme } from '@mui/material';
+import {
+  ButtonBase,
+  FormControl,
+  InputLabel,
+  Select,
+  useTheme,
+} from '@mui/material';
 import { useHomeQuery } from '../lib/graphql/operations/home.graphql';
 import Image from 'next/image';
 import homeMissionLogo from '../../public/home_mission_grey.png';
@@ -61,13 +67,15 @@ const Navbar = () => {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Box sx={{ minWidth: 90 }} onClick={() => route('/')}>
-            <Image
-              alt="homemission logo"
-              src={homeMissionLogo}
-              layout="responsive"
-            />
-          </Box>
+          <ButtonBase>
+            <Box sx={{ minWidth: 90 }} onClick={() => route('/')}>
+              <Image
+                alt="HomeMission logo"
+                src={homeMissionLogo}
+                layout="responsive"
+              />
+            </Box>
+          </ButtonBase>
           <Box sx={{ flexGrow: 1 }}>
             {(userData?.user
               ? homeData?.home

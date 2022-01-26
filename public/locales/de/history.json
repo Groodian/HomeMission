@@ -2,7 +2,7 @@
   "title" : "Historie",
   "profile-picture-alt": "Profilbild von {{history.user.name}}",
   "ago": "vor {{time}}",
-  "user-join": "Ist der WG beigereten",
+  "user-join": "Ist der WG beigetreten",
   "user-leave": "Hat die WG verlassen",
   "task-type-created": "Hat einen Aufgabentyp erstellt",
   "task-type-deleted": "Hat einen Aufgabentyp gelöscht",

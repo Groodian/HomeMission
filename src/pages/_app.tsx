@@ -99,7 +99,7 @@ const MyApp: React.FC<MyAppProps> = ({
               {
                 // Prevent ssr flash
                 mounted && (
-                  <div>
+                  <>
                     <Navbar />
                     <Grid container>
                       <Grid item sm={2} xs={2}>
@@ -112,7 +112,7 @@ const MyApp: React.FC<MyAppProps> = ({
                         <Rightbar />
                       </Grid>
                     </Grid>
-                  </div>
+                  </>
                 )
               }
             </ThemeProvider>

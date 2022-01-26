@@ -6,7 +6,7 @@
 
 - Game for shared apartments (will be called WGs in the following) to organize themselves a bit better &rarr; gamification of task assignments
 - Score for flat mates based on finished tasks (Taking out the trash etc.)
-- multiple WGs, one user is part of one WG and every WG has tasks, which have to be resolved, and this tasks will give points (they will vary)
+- Multiple WGs, one user is part of one WG and every WG has tasks, which have to be resolved, and this tasks will give points (they will vary)
 
 ## Run Application
 

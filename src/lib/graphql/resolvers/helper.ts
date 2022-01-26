@@ -1,21 +1,32 @@
-import CurrentSession from '../../auth0/current-session';
 import { Session } from '@auth0/nextjs-auth0';
-import { Task, TaskSeries, TaskType, User } from '../../../entities';
+import {
+  History,
+  HistoryType,
+  Home,
+  Task,
+  TaskSeries,
+  TaskType,
+  User,
+} from '../../../entities';
+import CurrentSession from '../../auth0/current-session';
+import databaseConnection from '../../typeorm/connection';
 
 export default class Helper {
-  // helper function that turns a string into a date or throws an error
+  /**
+   * Helper function that turns a string into a date or throws an error.
+   */
   static getDateFromStringOrFail(value: string): Date {
     if (isNaN(Date.parse(value))) {
       throw Error(
         `Failed to turn value ${value} into a date! Check that it has the format yyyy-mm-dd.'`
       );
     } else {
-      return new Date(Date.parse(value));
+      return new Date(value);
     }
   }
 
   /**
-   * helper function that returns the users home and fails if user has no home
+   * Helper function that returns the user and fails if user is not authenticated.
    */
   static async getMeOrFail(@CurrentSession() session?: Session) {
     try {
@@ -29,7 +40,7 @@ export default class Helper {
   }
 
   /**
-   * helper function that returns the users home and fails if user has no home
+   * Helper function that returns the users home and fails if user has no home.
    */
   static async getHomeOrFail() {
     const user = await this.getMeOrFail();
@@ -39,7 +50,7 @@ export default class Helper {
   }
 
   /**
-   * helper function that returns a task type and fails if it is not correlated to users home
+   * Helper function that returns a task type and fails if it is not correlated to users home.
    */
   static async getTypeOrFail(typeId: string, homeId: string) {
     const type = await TaskType.findOneOrFail(typeId, {
@@ -56,7 +67,7 @@ export default class Helper {
   }
 
   /**
-   * helper function that returns a task and fails if it is not correlated to users home
+   * Helper function that returns a task and fails if it is not correlated to users home.
    */
   static async getTaskOrFail(taskId: string, homeId: string) {
     const task = await Task.findOneOrFail(taskId, {
@@ -70,7 +81,9 @@ export default class Helper {
     return task;
   }
 
-  // helper function that returns a series and fails if it is not correlated to users home
+  /**
+   * Helper function that returns a series and fails if it is not correlated to users home.
+   */
   static async getSeriesOrFail(seriesId: string, homeId: string) {
     const series = await TaskSeries.findOneOrFail(seriesId, {
       relations: ['relatedHome', 'tasks'],
@@ -83,5 +96,32 @@ export default class Helper {
       );
 
     return series;
+  }
+
+  /**
+   * Helper function that creates a history entry.
+   */
+  static async createHistory(
+    home: Home,
+    user: User,
+    type: HistoryType
+  ): Promise<History> {
+    try {
+      await databaseConnection();
+
+      const history = new History();
+      history.home = home;
+      history.user = user;
+      history.type = type;
+
+      home.history.push(history);
+      user.history.push(history);
+
+      await history.save();
+
+      return history;
+    } catch (e) {
+      throw Error('Failed to create history!');
+    }
   }
 }

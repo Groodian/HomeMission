@@ -9,19 +9,16 @@ import {
   Root,
 } from 'type-graphql';
 import {
+  History,
+  HistoryType,
   Home,
   Task,
   TaskReceipt,
   TaskType,
   User,
-  History,
-  HistoryType,
 } from '../../../entities';
 import databaseConnection from '../../typeorm/connection';
-import CurrentSession from '../../auth0/current-session';
-import { Session } from '@auth0/nextjs-auth0';
 import Helper from './helper';
-import { createHistory } from '../util/history';
 
 @Resolver(Home)
 export default class HomeResolver implements ResolverInterface<Home> {
@@ -32,7 +29,11 @@ export default class HomeResolver implements ResolverInterface<Home> {
   @Query(() => Home, { nullable: true })
   async home() {
     await databaseConnection();
-    return await Helper.getHomeOrFail();
+    try {
+      return await Helper.getHomeOrFail();
+    } catch (e) {
+      return null;
+    }
   }
 
   /**
@@ -121,17 +122,17 @@ export default class HomeResolver implements ResolverInterface<Home> {
     }
   }
 
-  private async addUserToHome(home: Home, @CurrentSession() session?: Session) {
+  private async addUserToHome(home: Home) {
     try {
       // get user from database
-      const user = await User.findOneOrFail(session?.user.sub as string);
+      const user = await Helper.getMeOrFail();
 
       // add reference
       user.home = home;
 
       // save
       await user.save();
-      await createHistory(home, user, HistoryType.USER_JOIN);
+      await Helper.createHistory(home, user, HistoryType.USER_JOIN);
 
       // return the home
       return home;
