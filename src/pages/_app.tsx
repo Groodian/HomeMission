@@ -86,7 +86,7 @@ const MyApp: React.FC<MyAppProps> = ({
         <CacheProvider value={emotionCache}>
           <Head>
             <title>{t('title')}</title>
-            <link rel="icon" href="favicon.ico" />
+            <link rel="icon" href="/favicon.ico" />
             <meta
               name="viewport"
               content="initial-scale=1, width=device-width"
