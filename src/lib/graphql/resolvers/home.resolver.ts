@@ -19,6 +19,8 @@ import {
 } from '../../../entities';
 import databaseConnection from '../../typeorm/connection';
 import Helper from './helper';
+import CurrentSession from '../../auth0/current-session';
+import { Session } from '@auth0/nextjs-auth0';
 
 @Resolver(Home)
 export default class HomeResolver implements ResolverInterface<Home> {
@@ -27,10 +29,10 @@ export default class HomeResolver implements ResolverInterface<Home> {
    */
   @Authorized()
   @Query(() => Home, { nullable: true })
-  async home() {
+  async home(@CurrentSession() session: Session) {
     await databaseConnection();
     try {
-      return await Helper.getHomeOrFail();
+      return await Helper.getHomeOrFail(session);
     } catch (e) {
       return null;
     }
@@ -97,11 +99,11 @@ export default class HomeResolver implements ResolverInterface<Home> {
    */
   @Authorized()
   @Mutation(() => Home)
-  async createHome() {
+  async createHome(@CurrentSession() session: Session) {
     await databaseConnection();
     try {
       const createdHome = await new Home().save();
-      return this.addUserToHome(createdHome);
+      return this.addUserToHome(createdHome, session);
     } catch (e) {
       throw Error('Failed to create home.');
     }
@@ -112,20 +114,23 @@ export default class HomeResolver implements ResolverInterface<Home> {
    */
   @Authorized()
   @Mutation(() => Home)
-  async joinHomeByCode(@Arg('code') code: string) {
+  async joinHomeByCode(
+    @CurrentSession() session: Session,
+    @Arg('code') code: string
+  ) {
     await databaseConnection();
     try {
       const home = await this.getHomeByCode(code);
-      return await this.addUserToHome(home);
+      return await this.addUserToHome(home, session);
     } catch (e) {
       throw Error('Failed to add user to home. Check that the code is valid!');
     }
   }
 
-  private async addUserToHome(home: Home) {
+  private async addUserToHome(home: Home, session: Session) {
     try {
       // get user from database
-      const user = await Helper.getMeOrFail();
+      const user = await Helper.getMeOrFail(session);
 
       // add reference
       user.home = home;

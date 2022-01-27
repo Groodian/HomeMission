@@ -17,6 +17,8 @@ import {
   HistoryType,
 } from '../../../entities';
 import Helper from './helper';
+import CurrentSession from '../../auth0/current-session';
+import { Session } from '@auth0/nextjs-auth0';
 
 @Resolver(Task)
 export default class TaskResolver implements ResolverInterface<Task> {
@@ -25,9 +27,9 @@ export default class TaskResolver implements ResolverInterface<Task> {
    */
   @Authorized()
   @Query(() => [Task])
-  async tasks() {
+  async tasks(@CurrentSession() session: Session) {
     await databaseConnection();
-    const home = await Helper.getHomeOrFail();
+    const home = await Helper.getHomeOrFail(session);
 
     try {
       return await Task.find({
@@ -44,7 +46,7 @@ export default class TaskResolver implements ResolverInterface<Task> {
    */
   @FieldResolver(() => TaskType)
   async type(@Root() task: Task) {
-    return await TaskType.findOne(task.type?.id);
+    return await TaskType.findOne(task.type?.id || '');
   }
 
   /**
@@ -52,7 +54,7 @@ export default class TaskResolver implements ResolverInterface<Task> {
    */
   @FieldResolver(() => TaskSeries, { nullable: true })
   async series(@Root() task: Task) {
-    return task.series ? await TaskSeries.findOne(task.series?.id) : null;
+    return await TaskSeries.findOne(task.series?.id || '');
   }
 
   /**
@@ -60,7 +62,7 @@ export default class TaskResolver implements ResolverInterface<Task> {
    */
   @FieldResolver(() => TaskReceipt, { nullable: true })
   async receipt(@Root() task: Task) {
-    return task.receipt ? await TaskReceipt.findOne(task.receipt?.id) : null;
+    return await TaskReceipt.findOne(task.receipt?.id || '');
   }
 
   /**
@@ -68,10 +70,14 @@ export default class TaskResolver implements ResolverInterface<Task> {
    */
   @Authorized()
   @Mutation(() => Task)
-  async createTask(@Arg('type') type: string, @Arg('date') date: string) {
+  async createTask(
+    @CurrentSession() session: Session,
+    @Arg('type') type: string,
+    @Arg('date') date: string
+  ) {
     await databaseConnection();
-    const home = await Helper.getHomeOrFail();
-    const user = await Helper.getMeOrFail();
+    const home = await Helper.getHomeOrFail(session);
+    const user = await Helper.getMeOrFail(session);
     const validDate = Helper.getDateFromStringOrFail(date);
     const taskType = await Helper.getTypeOrFail(type, home.id);
 
@@ -91,10 +97,13 @@ export default class TaskResolver implements ResolverInterface<Task> {
    */
   @Authorized()
   @Mutation(() => Boolean)
-  async deleteTask(@Arg('task') task: string) {
+  async deleteTask(
+    @CurrentSession() session: Session,
+    @Arg('task') task: string
+  ) {
     await databaseConnection();
-    const home = await Helper.getHomeOrFail();
-    const user = await Helper.getMeOrFail();
+    const home = await Helper.getHomeOrFail(session);
+    const user = await Helper.getMeOrFail(session);
     const taskEntity = await Helper.getTaskOrFail(task, home.id);
 
     try {

@@ -8,7 +8,6 @@ import {
   TaskType,
   User,
 } from '../../../entities';
-import CurrentSession from '../../auth0/current-session';
 import databaseConnection from '../../typeorm/connection';
 
 export default class Helper {
@@ -28,10 +27,10 @@ export default class Helper {
   /**
    * Helper function that returns the user and fails if user is not authenticated.
    */
-  static async getMeOrFail(@CurrentSession() session?: Session) {
+  static async getMeOrFail(session: Session) {
     try {
       // get user from database
-      return await User.findOneOrFail(session?.user.sub as string, {
+      return await User.findOneOrFail(session.user.sub as string, {
         relations: ['home'],
       });
     } catch (e) {
@@ -42,8 +41,8 @@ export default class Helper {
   /**
    * Helper function that returns the users home and fails if user has no home.
    */
-  static async getHomeOrFail() {
-    const user = await this.getMeOrFail();
+  static async getHomeOrFail(session: Session) {
+    const user = await this.getMeOrFail(session);
     if (!user.home)
       throw Error('Failed to get users home! Check that user has a home.');
     return user.home;

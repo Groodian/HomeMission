@@ -2,6 +2,8 @@ import { Arg, Authorized, Mutation, Resolver } from 'type-graphql';
 import databaseConnection from '../../typeorm/connection';
 import { Task, TaskSeries, TaskType, HistoryType } from '../../../entities';
 import Helper from './helper';
+import CurrentSession from '../../auth0/current-session';
+import { Session } from '@auth0/nextjs-auth0';
 
 @Resolver(TaskSeries)
 export default class TaskSeriesResolver {
@@ -11,14 +13,15 @@ export default class TaskSeriesResolver {
   @Authorized()
   @Mutation(() => TaskType)
   async createTaskSeries(
+    @CurrentSession() session: Session,
     @Arg('start') start: string,
     @Arg('interval') interval: number,
     @Arg('iterations') iterations: number,
     @Arg('type') type: string
   ) {
     await databaseConnection();
-    const home = await Helper.getHomeOrFail();
-    const user = await Helper.getMeOrFail();
+    const home = await Helper.getHomeOrFail(session);
+    const user = await Helper.getMeOrFail(session);
     const taskType = await Helper.getTypeOrFail(type, home.id);
     const startDate = Helper.getDateFromStringOrFail(start);
     if (interval <= 0 || iterations <= 0) {
@@ -54,10 +57,13 @@ export default class TaskSeriesResolver {
    */
   @Authorized()
   @Mutation(() => Boolean)
-  async deleteTaskSeries(@Arg('series') series: string) {
+  async deleteTaskSeries(
+    @CurrentSession() session: Session,
+    @Arg('series') series: string
+  ) {
     await databaseConnection();
-    const home = await Helper.getHomeOrFail();
-    const user = await Helper.getMeOrFail();
+    const home = await Helper.getHomeOrFail(session);
+    const user = await Helper.getMeOrFail(session);
     const taskSeries = await Helper.getSeriesOrFail(series, home.id);
 
     try {
@@ -83,12 +89,13 @@ export default class TaskSeriesResolver {
   @Authorized()
   @Mutation(() => Boolean)
   async deleteTaskSeriesSubsection(
+    @CurrentSession() session: Session,
     @Arg('series') series: string,
     @Arg('start') start: string
   ) {
     await databaseConnection();
-    const home = await Helper.getHomeOrFail();
-    const user = await Helper.getMeOrFail();
+    const home = await Helper.getHomeOrFail(session);
+    const user = await Helper.getMeOrFail(session);
     const taskSeries = await Helper.getSeriesOrFail(series, home.id);
     const startTask = await Helper.getTaskOrFail(start, home.id);
     if (String(startTask.series) !== String(taskSeries.id))

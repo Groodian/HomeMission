@@ -11,6 +11,8 @@ import {
 import databaseConnection from '../../typeorm/connection';
 import { TaskReceipt, User, HistoryType } from '../../../entities';
 import Helper from './helper';
+import CurrentSession from '../../auth0/current-session';
+import { Session } from '@auth0/nextjs-auth0';
 
 @Resolver(TaskReceipt)
 export default class TaskReceiptResolver
@@ -21,14 +23,13 @@ export default class TaskReceiptResolver
    */
   @Authorized()
   @Query(() => [TaskReceipt])
-  async receipts() {
+  async receipts(@CurrentSession() session: Session) {
     await databaseConnection();
-    const home = await Helper.getHomeOrFail();
+    const home = await Helper.getHomeOrFail(session);
 
     try {
       return await TaskReceipt.find({
         relations: ['completer'],
-        loadRelationIds: true,
         where: { relatedHome: home.id },
       });
     } catch (e) {
@@ -41,7 +42,7 @@ export default class TaskReceiptResolver
    */
   @FieldResolver(() => User)
   async completer(@Root() receipt: TaskReceipt) {
-    return receipt.completer ? await User.findOne(receipt.completer?.id) : null;
+    return await User.findOne(receipt.completer?.id || '');
   }
 
   /**
@@ -49,9 +50,12 @@ export default class TaskReceiptResolver
    */
   @Authorized()
   @Mutation(() => TaskReceipt)
-  async createTaskReceipt(@Arg('task') task: string) {
+  async createTaskReceipt(
+    @CurrentSession() session: Session,
+    @Arg('task') task: string
+  ) {
     await databaseConnection();
-    const home = await Helper.getHomeOrFail();
+    const home = await Helper.getHomeOrFail(session);
     const taskItem = await Helper.getTaskOrFail(task, home.id);
     if (taskItem.receipt)
       throw Error(
@@ -60,7 +64,7 @@ export default class TaskReceiptResolver
         )}.`
       );
     const type = await Helper.getTypeOrFail(String(taskItem?.type), home.id);
-    const user = await Helper.getMeOrFail();
+    const user = await Helper.getMeOrFail(session);
 
     try {
       // create receipt and save it

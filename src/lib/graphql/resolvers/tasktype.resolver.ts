@@ -2,6 +2,8 @@ import { Arg, Authorized, Mutation, Query, Resolver } from 'type-graphql';
 import databaseConnection from '../../typeorm/connection';
 import { TaskType, HistoryType } from '../../../entities';
 import Helper from './helper';
+import CurrentSession from '../../auth0/current-session';
+import { Session } from '@auth0/nextjs-auth0';
 
 @Resolver(TaskType)
 export default class TaskTypeResolver {
@@ -10,9 +12,9 @@ export default class TaskTypeResolver {
    */
   @Authorized()
   @Query(() => [TaskType])
-  async taskTypes() {
+  async taskTypes(@CurrentSession() session: Session) {
     await databaseConnection();
-    const home = await Helper.getHomeOrFail();
+    const home = await Helper.getHomeOrFail(session);
 
     try {
       return await TaskType.find({
@@ -29,12 +31,13 @@ export default class TaskTypeResolver {
   @Authorized()
   @Mutation(() => TaskType)
   async createTaskType(
+    @CurrentSession() session: Session,
     @Arg('name') name: string,
     @Arg('points') points: number
   ) {
     await databaseConnection();
-    const home = await Helper.getHomeOrFail();
-    const user = await Helper.getMeOrFail();
+    const home = await Helper.getHomeOrFail(session);
+    const user = await Helper.getMeOrFail(session);
 
     try {
       const type = new TaskType(name, points, home);
@@ -50,10 +53,13 @@ export default class TaskTypeResolver {
    */
   @Authorized()
   @Mutation(() => TaskType)
-  async removeTaskType(@Arg('type') type: string) {
+  async removeTaskType(
+    @CurrentSession() session: Session,
+    @Arg('type') type: string
+  ) {
     await databaseConnection();
-    const home = await Helper.getHomeOrFail();
-    const user = await Helper.getMeOrFail();
+    const home = await Helper.getHomeOrFail(session);
+    const user = await Helper.getMeOrFail(session);
     const taskType = await Helper.getTypeOrFail(type, home.id);
 
     try {
