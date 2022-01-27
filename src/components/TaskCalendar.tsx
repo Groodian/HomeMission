@@ -1,7 +1,12 @@
 import React from 'react';
 import StyledCalendar from './StyledCalendar';
 import { Task } from '../entities';
-import { EventProps, momentLocalizer, SlotInfo } from 'react-big-calendar';
+import {
+  EventProps,
+  EventWrapperProps,
+  momentLocalizer,
+  SlotInfo,
+} from 'react-big-calendar';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import moment from 'moment';
@@ -9,6 +14,8 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import 'moment/locale/fr';
 import 'moment/locale/de';
 import 'moment/locale/en-gb';
+import Avatar from '@mui/material/Avatar';
+import Badge from '@mui/material/Badge';
 
 export type CEvent = {
   title: string;
@@ -16,6 +23,22 @@ export type CEvent = {
   end: Date;
   allDay?: boolean;
   resource: Task;
+};
+
+// is passed to calendar to render a user icon badge over calendar event if user is assigned
+const CEventWrapperVisualize: React.ComponentType<EventWrapperProps<CEvent>> = (
+  props
+) => {
+  const user = props.event.resource.assignee;
+  const avatar = user && (
+    <Avatar sx={{ width: 24, height: 24 }} alt={user.name} src={user.picture} />
+  );
+
+  return (
+    <Badge style={{ width: '100%' }} badgeContent={avatar}>
+      <div style={{ width: '100%' }}>{props.children}</div>
+    </Badge>
+  );
 };
 
 // is passed to calendar to render calendar events
@@ -75,6 +98,7 @@ const TaskCalendar: React.FC<TaskCalendarProps> = ({
       eventPropGetter={customEventPropGetter}
       components={{
         event: CEventVisualize,
+        eventWrapper: CEventWrapperVisualize,
       }}
       messages={{
         next: t('next'),

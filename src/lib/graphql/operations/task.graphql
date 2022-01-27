@@ -13,6 +13,11 @@ query Tasks {
     receipt {
       id,
       name,
+    },
+    assignee {
+      id,
+      name,
+      picture,
     }
   }
 }
