@@ -10,7 +10,7 @@ import {
   OneToMany,
   PrimaryColumn,
 } from 'typeorm';
-import { Home, TaskReceipt, History } from '.';
+import { Home, TaskReceipt, History, Task } from '.';
 
 @Entity()
 @ObjectType()
@@ -39,6 +39,9 @@ export class User extends BaseEntity {
 
   @OneToMany(() => TaskReceipt, (receipt) => receipt.completer)
   receipts!: TaskReceipt[];
+
+  @OneToMany(() => Task, (task) => task.assignee)
+  tasks!: Task[];
 
   @AfterLoad()
   @AfterInsert()

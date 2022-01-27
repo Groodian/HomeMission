@@ -8,7 +8,7 @@ import {
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Home, TaskType, TaskSeries, TaskReceipt } from '.';
+import { Home, TaskType, TaskSeries, TaskReceipt, User } from '.';
 
 @Entity()
 @ObjectType()
@@ -28,6 +28,11 @@ export class Task extends BaseEntity {
     nullable: true,
   })
   series?: TaskSeries | null | undefined;
+
+  @ManyToOne(() => User, (user) => user.tasks, {
+    nullable: true,
+  })
+  assignee?: User | null | undefined;
 
   @ManyToOne(() => Home, (home) => home.tasks)
   relatedHome: Home | null | undefined;

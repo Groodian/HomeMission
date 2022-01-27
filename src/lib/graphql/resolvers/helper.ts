@@ -49,6 +49,23 @@ export default class Helper {
   }
 
   /**
+   * Helper function that returns a roommate from the users home and fails if roommate is not correlated to users home. (can also return the user themself)
+   */
+  static async getRoommateOrFail(userId: string, homeId: string) {
+    const roommate = await User.findOneOrFail(userId, {
+      loadRelationIds: true,
+    });
+
+    // check that the roommate is part of the users home
+    if (String(homeId) !== String(roommate.home))
+      throw Error(
+        'Failed to execute! Requested roommate does not belong to users home.'
+      );
+
+    return roommate;
+  }
+
+  /**
    * Helper function that returns a task type and fails if it is not correlated to users home.
    */
   static async getTypeOrFail(typeId: string, homeId: string) {

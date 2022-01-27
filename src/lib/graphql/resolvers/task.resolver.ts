@@ -15,6 +15,7 @@ import {
   TaskSeries,
   TaskType,
   HistoryType,
+  User,
 } from '../../../entities';
 import Helper from './helper';
 import CurrentSession from '../../auth0/current-session';
@@ -33,7 +34,7 @@ export default class TaskResolver implements ResolverInterface<Task> {
 
     try {
       return await Task.find({
-        relations: ['type', 'series', 'receipt'],
+        relations: ['type', 'series', 'receipt', 'assignee'],
         where: { relatedHome: home.id },
       });
     } catch (e) {
@@ -63,6 +64,14 @@ export default class TaskResolver implements ResolverInterface<Task> {
   @FieldResolver(() => TaskReceipt, { nullable: true })
   async receipt(@Root() task: Task) {
     return await TaskReceipt.findOne(task.receipt?.id || '');
+  }
+
+  /**
+   * Only load user assigned to task if required.
+   */
+  @FieldResolver(() => User, { nullable: true })
+  async assignee(@Root() task: Task) {
+    return await User.findOne(task.assignee?.id || '');
   }
 
   /**
@@ -110,6 +119,29 @@ export default class TaskResolver implements ResolverInterface<Task> {
       await Task.remove(taskEntity);
       await Helper.createHistory(home, user, HistoryType.TASK_DELETED);
       return true;
+    } catch (e) {
+      throw Error('Failed to delete task!');
+    }
+  }
+
+  /**
+   * Assign a user to a task. The task must belong to the users home.
+   */
+  @Authorized()
+  @Mutation(() => Task)
+  async assignTask(
+    @CurrentSession() session: Session,
+    @Arg('task') task: string,
+    @Arg('user') assignee: string
+  ) {
+    await databaseConnection();
+    const home = await Helper.getHomeOrFail(session);
+    const taskEntity = await Helper.getTaskOrFail(task, home.id);
+    const roommate = await Helper.getRoommateOrFail(assignee, home.id);
+
+    try {
+      taskEntity.assignee = roommate;
+      return await taskEntity.save();
     } catch (e) {
       throw Error('Failed to delete task!');
     }
