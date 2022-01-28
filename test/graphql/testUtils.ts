@@ -4,7 +4,7 @@ import { IncomingMessage } from 'http';
 import { Socket } from 'net';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getConnection } from 'typeorm';
-import { Home, User } from '../../src/entities';
+import { Home, Task, TaskType, User } from '../../src/entities';
 import databaseConnection from '../../src/lib/typeorm/connection';
 import graphql from '../../src/pages/api/graphql';
 
@@ -94,6 +94,33 @@ export const database = {
       home.name = 'name-' + i.toString();
       home.code = 'code-' + i.toString();
       await home.save();
+    }
+  },
+
+  insertTaskTypes: async (count = 3, home?: string) => {
+    await databaseConnection();
+
+    const homeEntity = await Home.findOneOrFail(home);
+
+    for (let i = 1; i <= count; i++) {
+      const taskType = new TaskType('name-' + i.toString(), i, homeEntity);
+      await taskType.save();
+    }
+  },
+
+  insertTasks: async (count = 3, type?: string) => {
+    await databaseConnection();
+
+    const typeEntity = await TaskType.findOneOrFail(type, {
+      relations: ['relatedHome'],
+    });
+    const homeEntity = typeEntity.relatedHome;
+    const date = new Date('2022-01-01');
+    date.setDate(date.getDate() + (count - 1));
+
+    for (let i = 1; i <= count; i++) {
+      const task = new Task(date, homeEntity as Home, typeEntity);
+      await task.save();
     }
   },
 
