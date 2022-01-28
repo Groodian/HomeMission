@@ -4,7 +4,7 @@ import { IncomingMessage } from 'http';
 import { Socket } from 'net';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getConnection } from 'typeorm';
-import { User } from '../../src/entities';
+import { Home, User } from '../../src/entities';
 import databaseConnection from '../../src/lib/typeorm/connection';
 import graphql from '../../src/pages/api/graphql';
 
@@ -84,5 +84,24 @@ export const database = {
       user.picture = 'picture-' + i.toString();
       await user.save();
     }
+  },
+
+  insertHomes: async (count = 3) => {
+    await databaseConnection();
+
+    for (let i = 1; i <= count; i++) {
+      const home = new Home();
+      home.name = 'name-' + i.toString();
+      home.code = 'code-' + i.toString();
+      await home.save();
+    }
+  },
+
+  addUserToHome: async (user: string, home: string) => {
+    await databaseConnection();
+
+    const userEntity = await User.findOneOrFail(user);
+    userEntity.home = await Home.findOneOrFail(home);
+    await userEntity.save();
   },
 };
