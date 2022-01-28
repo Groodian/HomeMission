@@ -1,7 +1,7 @@
 import { database, testGraphql } from './testUtils';
 
 describe('User resolver', () => {
-  beforeEach(async () => await database.reset());
+  beforeEach(async () => await database.reset(), 300000); // High timeout for GitLab pipeline
 
   it('returns the authenticated user', async () => {
     await database.insertUsers();
