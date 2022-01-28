@@ -4,7 +4,7 @@ import { IncomingMessage } from 'http';
 import { Socket } from 'net';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getConnection } from 'typeorm';
-import { Home, Task, TaskType, User } from '../../src/entities';
+import { Home, Task, TaskSeries, TaskType, User } from '../../src/entities';
 import databaseConnection from '../../src/lib/typeorm/connection';
 import graphql from '../../src/pages/api/graphql';
 
@@ -108,19 +108,56 @@ export const database = {
     }
   },
 
-  insertTasks: async (count = 3, type?: string) => {
+  insertTasks: async (
+    count = 3,
+    type?: string,
+    start = new Date('2022-01-01')
+  ) => {
     await databaseConnection();
 
     const typeEntity = await TaskType.findOneOrFail(type, {
       relations: ['relatedHome'],
     });
     const homeEntity = typeEntity.relatedHome;
-    const date = new Date('2022-01-01');
-    date.setDate(date.getDate() + (count - 1));
+    const date = start;
 
     for (let i = 1; i <= count; i++) {
+      date.setDate(date.getDate() + (count - 1));
+
       const task = new Task(date, homeEntity as Home, typeEntity);
       await task.save();
+    }
+  },
+
+  insertTaskSeries: async (
+    count = 3,
+    type?: string,
+    start = new Date('2022-01-01'),
+    interval = 1,
+    iterations = 4
+  ) => {
+    await databaseConnection();
+
+    const typeEntity = await TaskType.findOneOrFail(type, {
+      relations: ['relatedHome'],
+    });
+    const homeEntity = typeEntity.relatedHome;
+    const date = start;
+
+    for (let i = 1; i <= count; i++) {
+      date.setDate(date.getDate() + (count - 1) * 365);
+
+      const taskSeries = new TaskSeries(homeEntity as Home);
+      await taskSeries.save();
+
+      for (let i = 0; i < iterations; i++) {
+        const taskDate = date;
+        taskDate.setDate(taskDate.getDate() + i * 7 * interval);
+
+        const task = new Task(date, homeEntity as Home, typeEntity);
+        task.series = taskSeries;
+        await task.save();
+      }
     }
   },
 
