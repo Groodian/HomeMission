@@ -1,9 +1,9 @@
 import { database, testGraphql } from './testUtils';
 
-describe('Task series resolver', () => {
+describe('Task series resolver with', () => {
   beforeEach(async () => await database.reset(), 300000); // High timeout for GitLab pipeline
 
-  it('CreateTaskSeries - returns created task series', async () => {
+  it('CreateTaskSeries mutation returns created task series', async () => {
     await database.insertUsers();
     await database.insertHomes();
     await database.insertTaskTypes(1);
@@ -35,7 +35,7 @@ describe('Task series resolver', () => {
     );
   });
 
-  it('CreateTaskSeries - returns error if argument interval is invalid', async () => {
+  it('CreateTaskSeries mutation returns error if argument interval is invalid', async () => {
     await database.insertUsers();
     await database.insertHomes();
     await database.insertTaskTypes(1);
@@ -60,7 +60,7 @@ describe('Task series resolver', () => {
     );
   });
 
-  it('CreateTaskSeries - returns error if argument iterations is invalid', async () => {
+  it('CreateTaskSeries mutation returns error if argument iterations is invalid', async () => {
     await database.insertUsers();
     await database.insertHomes();
     await database.insertTaskTypes(1);
@@ -85,7 +85,7 @@ describe('Task series resolver', () => {
     );
   });
 
-  it('DeleteTaskSeries - returns true when task series is deleted', async () => {
+  it('DeleteTaskSeries mutation returns true when task series is deleted', async () => {
     await database.insertUsers();
     await database.insertHomes();
     await database.insertTaskTypes(1);
@@ -110,7 +110,7 @@ describe('Task series resolver', () => {
     expect(res.end).toHaveBeenNthCalledWith(1, '{"data":{"tasks":[]}}\n');
   });
 
-  it('DeleteTaskSeries - returns error when task series cannot be found', async () => {
+  it('DeleteTaskSeries mutation returns error when task series cannot be found', async () => {
     await database.insertUsers();
     await database.insertHomes();
     await database.insertTaskTypes(1);
@@ -131,7 +131,7 @@ describe('Task series resolver', () => {
     );
   });
 
-  it('DeleteTaskSeriesSubsection - returns true when subsection of task series is deleted', async () => {
+  it('DeleteTaskSeriesSubsection mutation returns true when subsection of task series is deleted', async () => {
     await database.insertUsers();
     await database.insertHomes();
     await database.insertTaskTypes(1);
@@ -159,7 +159,7 @@ describe('Task series resolver', () => {
     );
   });
 
-  it('DeleteTaskSeriesSubsection - returns error when task series cannot be found', async () => {
+  it('DeleteTaskSeriesSubsection mutation returns error when task series cannot be found', async () => {
     await database.insertUsers();
     await database.insertHomes();
     await database.insertTaskTypes(1);
@@ -180,7 +180,7 @@ describe('Task series resolver', () => {
     );
   });
 
-  it('DeleteTaskSeriesSubsection - returns error when starting task is not part of task series', async () => {
+  it('DeleteTaskSeriesSubsection mutation returns error when starting task is not part of task series', async () => {
     await database.insertUsers();
     await database.insertHomes();
     await database.insertTaskTypes(1);

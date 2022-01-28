@@ -1,9 +1,9 @@
 import { database, testGraphql } from './testUtils';
 
-describe('Task resolver', () => {
+describe('Task resolver with', () => {
   beforeEach(async () => await database.reset(), 300000); // High timeout for GitLab pipeline
 
-  it('Tasks - returns an empty array when there are no tasks', async () => {
+  it('Tasks query returns an empty array when there are no tasks', async () => {
     await database.insertUsers();
     await database.insertHomes();
     await database.addUserToHome('user-1', '1');
@@ -19,7 +19,7 @@ describe('Task resolver', () => {
     expect(res.end).toHaveBeenNthCalledWith(1, '{"data":{"tasks":[]}}\n');
   });
 
-  it('Tasks - returns tasks', async () => {
+  it('Tasks query returns tasks', async () => {
     await database.insertUsers();
     await database.insertHomes();
     await database.insertTaskTypes(1);
@@ -36,11 +36,11 @@ describe('Task resolver', () => {
 
     expect(res.end).toHaveBeenNthCalledWith(
       1,
-      '{"data":{"tasks":[{"id":"1","date":"2022-01-02T00:00:00.000Z","type":{"id":"1","name":"name-1","points":1},"series":null,"receipt":null,"assignee":null},{"id":"2","date":"2022-01-02T00:00:00.000Z","type":{"id":"1","name":"name-1","points":1},"series":null,"receipt":null,"assignee":null}]}}\n'
+      '{"data":{"tasks":[{"id":"1","date":"2022-01-02T00:00:00.000Z","type":{"id":"1","name":"name-1","points":1},"series":null,"receipt":null,"assignee":null},{"id":"2","date":"2022-01-03T00:00:00.000Z","type":{"id":"1","name":"name-1","points":1},"series":null,"receipt":null,"assignee":null}]}}\n'
     );
   });
 
-  it('CreateTask - returns created task', async () => {
+  it('CreateTask mutation returns created task', async () => {
     await database.insertUsers();
     await database.insertHomes();
     await database.insertTaskTypes(1);
@@ -60,7 +60,7 @@ describe('Task resolver', () => {
     );
   });
 
-  it('CreateTask - returns error if task type is invalid', async () => {
+  it('CreateTask mutation returns error if task type is invalid', async () => {
     await database.insertUsers();
     await database.insertHomes();
     await database.insertTaskTypes(1);
@@ -80,7 +80,7 @@ describe('Task resolver', () => {
     );
   });
 
-  it('DeleteTask - returns true when task is deleted', async () => {
+  it('DeleteTask mutation returns true when task is deleted', async () => {
     await database.insertUsers();
     await database.insertHomes();
     await database.insertTaskTypes(1);
@@ -101,7 +101,7 @@ describe('Task resolver', () => {
     );
   });
 
-  it('DeleteTask - returns error when task cannot be found', async () => {
+  it('DeleteTask mutation returns error when task cannot be found', async () => {
     await database.insertUsers();
     await database.insertHomes();
     await database.insertTaskTypes(1);
@@ -118,12 +118,11 @@ describe('Task resolver', () => {
 
     expect(res.end).toHaveBeenNthCalledWith(
       1,
-      '{"errors":[{"message":"Could not find any entity of type \\"Task\\" matching: \\"foobar\\"","locations":[{"line":3,"column":11}],"path":["deleteTask"],"extensions":{"code":"INTERNAL_SERVER_ERROR","exception":{"message":"Could not find any entity of type \\"Task\\" matching: \\"foobar\\""}}}],"data":null}\n'
+      '{"errors":[{"message":"Could not find any entity of type \\"Task\\" matching: \\"foobar\\"","locations":[{"line":3,"column":7}],"path":["deleteTask"],"extensions":{"code":"INTERNAL_SERVER_ERROR","exception":{"message":"Could not find any entity of type \\"Task\\" matching: \\"foobar\\""}}}],"data":null}\n'
     );
   });
 
-  // assign self, assign roommate, assign fremde
-  it('AssignTask - returns task when user is assigned', async () => {
+  it('AssignTask mutation returns task when user is assigned', async () => {
     await database.insertUsers();
     await database.insertHomes();
     await database.insertTaskTypes(1);
@@ -144,7 +143,7 @@ describe('Task resolver', () => {
     );
   });
 
-  it('AssignTask - returns task when roommate is assigned', async () => {
+  it('AssignTask mutation returns task when roommate is assigned', async () => {
     await database.insertUsers();
     await database.insertHomes();
     await database.insertTaskTypes(1);
@@ -166,7 +165,7 @@ describe('Task resolver', () => {
     );
   });
 
-  it('AssignTask - returns error when assignee is not part of home', async () => {
+  it('AssignTask mutation returns error when assignee is not part of home', async () => {
     await database.insertUsers();
     await database.insertHomes();
     await database.insertTaskTypes(1);
@@ -187,7 +186,7 @@ describe('Task resolver', () => {
     );
   });
 
-  it('AssignTask - returns error when task is not part of users home', async () => {
+  it('AssignTask mutation returns error when task is not part of users home', async () => {
     await database.insertUsers();
     await database.insertHomes();
     await database.insertTaskTypes(1);

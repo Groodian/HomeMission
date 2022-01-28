@@ -1,9 +1,9 @@
 import { database, testGraphql } from './testUtils';
 
-describe('User resolver', () => {
+describe('User resolver with', () => {
   beforeEach(async () => await database.reset(), 300000); // High timeout for GitLab pipeline
 
-  it('returns the authenticated user', async () => {
+  it('User query returns the authenticated user', async () => {
     await database.insertUsers();
 
     const body = {
@@ -29,7 +29,7 @@ describe('User resolver', () => {
     );
   });
 
-  it('returns null for an unauthenticated user', async () => {
+  it('User query returns null for an unauthenticated user', async () => {
     const body = {
       operationName: 'User',
       query: `

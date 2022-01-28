@@ -1,22 +1,14 @@
 import { database, testGraphql } from './testUtils';
 
-describe('Home resolver', () => {
+describe('Home resolver with', () => {
   beforeEach(async () => await database.reset(), 300000); // High timeout for GitLab pipeline
 
-  it('Home - returns null when user has no home', async () => {
+  it('Home query returns null when user has no home', async () => {
     await database.insertUsers();
 
     const body = {
       operationName: 'Home',
-      query: `
-        query Home {
-          home {
-            id
-            name
-            code
-          }
-        }
-      `,
+      query: homeQuery,
       variables: {},
     };
 
@@ -25,22 +17,14 @@ describe('Home resolver', () => {
     expect(res.end).toHaveBeenNthCalledWith(1, '{"data":{"home":null}}\n');
   });
 
-  it('Home - returns the users home', async () => {
+  it('Home query returns the users home', async () => {
     await database.insertUsers();
     await database.insertHomes();
     await database.addUserToHome('user-1', '1');
 
     const body = {
       operationName: 'Home',
-      query: `
-        query Home {
-          home {
-            id
-            name
-            code
-          }
-        }
-      `,
+      query: homeQuery,
       variables: {},
     };
 
@@ -52,21 +36,13 @@ describe('Home resolver', () => {
     );
   });
 
-  it('JoinHome - returns the home that user joins', async () => {
+  it('JoinHome mutation returns the home that user joins', async () => {
     await database.insertUsers();
     await database.insertHomes();
 
     const body = {
       operationName: 'JoinHome',
-      query: `
-        mutation JoinHome($code: String!) {
-          joinHomeByCode(code: $code) {
-            id
-            name
-            code
-          }
-        }
-        `,
+      query: joinHomeQuery,
       variables: { code: 'code-1' },
     };
 
@@ -78,21 +54,13 @@ describe('Home resolver', () => {
     );
   });
 
-  it('JoinHome - returns error when user uses invalid code', async () => {
+  it('JoinHome mutation returns error when user uses invalid code', async () => {
     await database.insertUsers();
     await database.insertHomes();
 
     const body = {
       operationName: 'JoinHome',
-      query: `
-        mutation JoinHome($code: String!) {
-          joinHomeByCode(code: $code) {
-            id
-            name
-            code
-          }
-        }
-        `,
+      query: joinHomeQuery,
       variables: { code: 'foobar' },
     };
 
@@ -100,7 +68,27 @@ describe('Home resolver', () => {
 
     expect(res.end).toHaveBeenNthCalledWith(
       1,
-      '{"errors":[{"message":"Failed to add user to home. Check that the code is valid!","locations":[{"line":3,"column":11}],"path":["joinHomeByCode"],"extensions":{"code":"INTERNAL_SERVER_ERROR"}}],"data":null}\n'
+      '{"errors":[{"message":"Failed to add user to home. Check that the code is valid!","locations":[{"line":3,"column":7}],"path":["joinHomeByCode"],"extensions":{"code":"INTERNAL_SERVER_ERROR"}}],"data":null}\n'
     );
   });
+
+  const homeQuery = `
+    query Home {
+      home {
+        id
+        name
+        code
+      }
+    }
+  `;
+
+  const joinHomeQuery = `
+    mutation JoinHome($code: String!) {
+      joinHomeByCode(code: $code) {
+        id
+        name
+        code
+      }
+    }
+  `;
 });

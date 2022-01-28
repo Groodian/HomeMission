@@ -1,9 +1,9 @@
 import { database, testGraphql } from './testUtils';
 
-describe('Task type resolver', () => {
+describe('Task type resolver with', () => {
   beforeEach(async () => await database.reset(), 300000); // High timeout for GitLab pipeline
 
-  it('TaskTypes - returns an empty array when there are no task types', async () => {
+  it('TaskTypes query returns an empty array when there are no task types', async () => {
     await database.insertUsers();
     await database.insertHomes();
     await database.addUserToHome('user-1', '1');
@@ -19,7 +19,7 @@ describe('Task type resolver', () => {
     expect(res.end).toHaveBeenNthCalledWith(1, '{"data":{"taskTypes":[]}}\n');
   });
 
-  it('TaskTypes - returns task types', async () => {
+  it('TaskTypes query returns task types', async () => {
     await database.insertUsers();
     await database.insertHomes();
     await database.insertTaskTypes(3);
@@ -39,7 +39,7 @@ describe('Task type resolver', () => {
     );
   });
 
-  it('CreateTaskType - returns created task type', async () => {
+  it('CreateTaskType mutation returns created task type', async () => {
     await database.insertUsers();
     await database.insertHomes();
     await database.addUserToHome('user-1', '1');
@@ -58,7 +58,7 @@ describe('Task type resolver', () => {
     );
   });
 
-  it('RemoveTaskType - returns task type when it is removed from home', async () => {
+  it('RemoveTaskType mutation returns task type when it is removed from home', async () => {
     await database.insertUsers();
     await database.insertHomes();
     await database.insertTaskTypes(1);
@@ -78,7 +78,7 @@ describe('Task type resolver', () => {
     );
   });
 
-  it('RemoveTaskType - returns error when task type cannot be found', async () => {
+  it('RemoveTaskType mutation returns error when task type cannot be found', async () => {
     await database.insertUsers();
     await database.insertHomes();
     await database.insertTaskTypes(3);
