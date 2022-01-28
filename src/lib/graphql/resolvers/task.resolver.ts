@@ -34,7 +34,7 @@ export default class TaskResolver implements ResolverInterface<Task> {
 
     try {
       return await Task.find({
-        relations: ['type', 'series', 'receipt', 'assignee'],
+        loadRelationIds: true,
         where: { relatedHome: home.id },
       });
     } catch (e) {
@@ -47,7 +47,7 @@ export default class TaskResolver implements ResolverInterface<Task> {
    */
   @FieldResolver(() => TaskType)
   async type(@Root() task: Task) {
-    return await TaskType.findOne(task.type?.id || '');
+    return task.type ? await TaskType.findOne(task.type) : null;
   }
 
   /**
@@ -55,7 +55,7 @@ export default class TaskResolver implements ResolverInterface<Task> {
    */
   @FieldResolver(() => TaskSeries, { nullable: true })
   async series(@Root() task: Task) {
-    return await TaskSeries.findOne(task.series?.id || '');
+    return task.series ? await TaskSeries.findOne(task.series) : null;
   }
 
   /**
@@ -63,7 +63,7 @@ export default class TaskResolver implements ResolverInterface<Task> {
    */
   @FieldResolver(() => TaskReceipt, { nullable: true })
   async receipt(@Root() task: Task) {
-    return await TaskReceipt.findOne(task.receipt?.id || '');
+    return task.receipt ? await TaskReceipt.findOne(task.receipt) : null;
   }
 
   /**
@@ -71,7 +71,7 @@ export default class TaskResolver implements ResolverInterface<Task> {
    */
   @FieldResolver(() => User, { nullable: true })
   async assignee(@Root() task: Task) {
-    return await User.findOne(task.assignee?.id || '');
+    return task.assignee ? await User.findOne(task.assignee) : null;
   }
 
   /**
@@ -140,10 +140,10 @@ export default class TaskResolver implements ResolverInterface<Task> {
     const roommate = await Helper.getRoommateOrFail(assignee, home.id);
 
     try {
-      taskEntity.assignee = roommate;
+      taskEntity.assignee = roommate.id as any; // Only save id for field resolver
       return await taskEntity.save();
     } catch (e) {
-      throw Error('Failed to delete task!');
+      throw Error('Failed to assign task!');
     }
   }
 }

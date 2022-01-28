@@ -29,7 +29,7 @@ export default class TaskReceiptResolver
 
     try {
       return await TaskReceipt.find({
-        relations: ['completer'],
+        loadRelationIds: true,
         where: { relatedHome: home.id },
       });
     } catch (e) {
@@ -42,7 +42,7 @@ export default class TaskReceiptResolver
    */
   @FieldResolver(() => User)
   async completer(@Root() receipt: TaskReceipt) {
-    return await User.findOne(receipt.completer?.id || '');
+    return receipt.completer ? await User.findOne(receipt.completer) : null;
   }
 
   /**
