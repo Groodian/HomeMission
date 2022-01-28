@@ -286,6 +286,8 @@ After you have written your code, format it with `npm run format`. You can also 
 
 #### Test
 
+First, make sure to start the database: `docker-compose up -d`.
+
 Write tests and test everything with `npm run test-all`. Or only test specific cases with `npm run cypress` and Jest Runner.
 
 #### Try Production

@@ -1,4 +1,13 @@
 test:
+  # MySQL test database
+  services:
+    - mysql:5.7
+  variables:
+    MYSQL_ROOT_PASSWORD: password
+    MYSQL_USER: next
+    MYSQL_PASSWORD: password
+    MYSQL_DATABASE: homemission
+
   image: node:16.11
   cache:
     key: ${CI_COMMIT_REF_SLUG}

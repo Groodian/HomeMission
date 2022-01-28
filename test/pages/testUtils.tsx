@@ -7,7 +7,7 @@ import i18n from 'i18next';
 import Backend from 'i18next-fs-backend';
 import { join } from 'path';
 import { I18nextProvider, initReactI18next } from 'react-i18next';
-import lightTheme from '../src/styles/light-theme';
+import lightTheme from '../../src/styles/light-theme';
 
 interface InitialState {
   apolloCache?: ApolloCache<any>;
@@ -15,7 +15,7 @@ interface InitialState {
 }
 
 // Get all namespaces
-const ns = readdirSync(join(__dirname, '../public/locales/en/')).map(
+const ns = readdirSync(join(__dirname, '../../public/locales/en/')).map(
   (file) => file.slice(0, -5) // remove .json
 );
 
@@ -30,7 +30,7 @@ const initialized = i18n
       escapeValue: false, // Not needed for React
     },
     backend: {
-      loadPath: join(__dirname, '../public/locales/{{lng}}/{{ns}}.json'),
+      loadPath: join(__dirname, '../../public/locales/{{lng}}/{{ns}}.json'),
     },
   });
 

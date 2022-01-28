@@ -7,21 +7,21 @@ import {
 } from 'typeorm';
 import entities from '../../entities/entities';
 
-const ormConfig: ConnectionOptions = {
-  type: 'mysql',
-  host: process.env.DATABASE_HOST,
-  port: Number(process.env.DATABASE_PORT),
-  username: process.env.DATABASE_USERNAME,
-  password: process.env.DATABASE_PASSWORD,
-  database: process.env.DATABASE_DATABASE,
-  synchronize: true,
-  logging: false,
-  entities,
-};
-
 async function createDatabaseConnection(retries = 5): Promise<Connection> {
   if (retries <= 0)
     throw new Error('Could not establish a database connection!');
+
+  const ormConfig: ConnectionOptions = {
+    type: 'mysql',
+    host: process.env.DATABASE_HOST,
+    port: Number(process.env.DATABASE_PORT),
+    username: process.env.DATABASE_USERNAME,
+    password: process.env.DATABASE_PASSWORD,
+    database: process.env.DATABASE_DATABASE,
+    synchronize: true,
+    logging: false,
+    entities,
+  };
 
   try {
     return createConnection(ormConfig);

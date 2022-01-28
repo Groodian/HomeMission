@@ -1,6 +1,6 @@
 import React from 'react';
 import Home from '../../src/pages/index';
-import { fireEvent, render } from '../testUtils';
+import { fireEvent, render } from './testUtils';
 
 jest.mock('next/router', () => require('next-router-mock'));
 

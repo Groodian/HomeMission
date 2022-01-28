@@ -1,7 +1,7 @@
 import { gql, InMemoryCache } from '@apollo/client';
 import React from 'react';
 import Auth0Test from '../../src/pages/auth0';
-import { render } from '../testUtils';
+import { render } from './testUtils';
 
 jest.mock('next/router', () => require('next-router-mock'));
 
