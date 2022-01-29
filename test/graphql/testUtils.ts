@@ -4,7 +4,14 @@ import { IncomingMessage } from 'http';
 import { Socket } from 'net';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getConnection } from 'typeorm';
-import { Home, Task, TaskSeries, TaskType, User } from '../../src/entities';
+import {
+  Home,
+  Task,
+  TaskSeries,
+  TaskType,
+  User,
+  TaskReceipt,
+} from '../../src/entities';
 import databaseConnection from '../../src/lib/typeorm/connection';
 import graphql from '../../src/pages/api/graphql';
 
@@ -72,6 +79,10 @@ export const database = {
   reset: async () => {
     await databaseConnection();
     await getConnection().synchronize(true);
+  },
+
+  shutdown: async () => {
+    await getConnection().close();
   },
 
   insertUsers: async (count = 3) => {
@@ -159,6 +170,29 @@ export const database = {
         await task.save();
       }
     }
+  },
+
+  insertReceipt: async (user: string, task: string) => {
+    await databaseConnection();
+
+    const userEntity = await User.findOneOrFail(user);
+    const taskEntity = await Task.findOneOrFail(task, {
+      relations: ['type', 'relatedHome'],
+    });
+    const homeEntity = taskEntity.relatedHome as Home;
+    const typeEntity = taskEntity.type as TaskType;
+
+    const receipt = new TaskReceipt(
+      homeEntity,
+      userEntity,
+      typeEntity.name,
+      typeEntity.points
+    );
+
+    await receipt.save();
+
+    taskEntity.receipt = receipt;
+    await taskEntity.save();
   },
 
   addUserToHome: async (user: string, home: string) => {
