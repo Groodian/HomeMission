@@ -2,6 +2,7 @@ import { database, testGraphql } from './testUtils';
 
 describe('Task resolver with', () => {
   beforeEach(async () => await database.reset(), 300000); // High timeout for GitLab pipeline
+  afterAll(async () => await database.shutdown());
 
   it('Tasks query returns an empty array when there are no tasks', async () => {
     await database.insertUsers();

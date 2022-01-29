@@ -2,6 +2,7 @@ import { database, testGraphql } from './testUtils';
 
 describe('Task series resolver with', () => {
   beforeEach(async () => await database.reset(), 300000); // High timeout for GitLab pipeline
+  afterAll(async () => await database.shutdown());
 
   it('CreateTaskSeries mutation returns created task series', async () => {
     await database.insertUsers();

@@ -2,6 +2,7 @@ import { database, testGraphql } from './testUtils';
 
 describe('Home resolver with', () => {
   beforeEach(async () => await database.reset(), 300000); // High timeout for GitLab pipeline
+  afterAll(async () => await database.shutdown());
 
   it('Home query returns null when user has no home', async () => {
     await database.insertUsers();
