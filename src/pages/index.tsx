@@ -53,6 +53,9 @@ const Home: NextPage = () => {
         <Link href="/tasks" color="secondary">
           {t('link-tasks')}
         </Link>
+        <Link href="/signin" color="secondary">
+          {t('link-signin')}
+        </Link>
         <Link locale="en" href="" color="secondary">
           EN
         </Link>
