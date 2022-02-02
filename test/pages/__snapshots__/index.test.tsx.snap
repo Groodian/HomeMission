@@ -1,150 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Home page matches snapshot 1`] = `
+exports[`Welcome page matches snapshot 1`] = `
 <DocumentFragment>
   .emotion-0 {
-  width: 100%;
-  margin-left: auto;
-  box-sizing: border-box;
-  margin-right: auto;
-  display: block;
-  padding-left: 16px;
-  padding-right: 16px;
-}
-
-@media (min-width:600px) {
-  .emotion-0 {
-    padding-left: 24px;
-    padding-right: 24px;
-  }
-}
-
-@media (min-width:1200px) {
-  .emotion-0 {
-    max-width: 1200px;
-  }
-}
-
-.emotion-1 {
-  margin-top: 32px;
-  margin-bottom: 32px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.emotion-2 {
-  margin: 0;
-  font-family: "Roboto","Helvetica","Arial",sans-serif;
-  font-weight: 400;
-  font-size: 2.125rem;
-  line-height: 1.235;
-  letter-spacing: 0.00735em;
-  margin-bottom: 0.35em;
-}
-
-.emotion-3 {
-  margin: 0;
-  color: #9c27b0;
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
-  text-decoration-color: rgba(156, 39, 176, 0.4);
-}
-
-.emotion-3:hover {
-  text-decoration-color: inherit;
-}
-
-.emotion-6 {
-  margin: 0;
-  color: #9c27b0;
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
-  text-decoration-color: rgba(156, 39, 176, 0.4);
-}
-
-.emotion-6:hover {
-  text-decoration-color: inherit;
-}
-
-.emotion-14 {
-  margin: 0;
-  font-family: "Roboto","Helvetica","Arial",sans-serif;
-  font-weight: 400;
-  font-size: 1rem;
-  line-height: 1.5;
-  letter-spacing: 0.00938em;
-  color: rgba(0, 0, 0, 0.6);
-  margin-top: 48px;
-  margin-bottom: 24px;
-}
-
-.emotion-15 {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  width: 1em;
-  height: 1em;
-  display: inline-block;
-  fill: currentColor;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  -webkit-transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  font-size: 1.5rem;
-  margin-right: 8px;
-  vertical-align: middle;
-}
-
-.emotion-16 {
-  margin: 0;
-  color: #1976d2;
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
-  text-decoration-color: rgba(25, 118, 210, 0.4);
-}
-
-.emotion-16:hover {
-  text-decoration-color: inherit;
-}
-
-.emotion-17 {
-  margin: 0;
-  font-family: "Roboto","Helvetica","Arial",sans-serif;
-  font-weight: 400;
-  font-size: 0.875rem;
-  line-height: 1.43;
-  letter-spacing: 0.01071em;
-  text-align: center;
-  color: rgba(0, 0, 0, 0.6);
-}
-
-.emotion-18 {
-  margin: 0;
-  color: inherit;
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
-}
-
-.emotion-18:hover {
-  text-decoration-color: inherit;
-}
-
-.emotion-19 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -184,59 +42,46 @@ exports[`Home page matches snapshot 1`] = `
   letter-spacing: 0.02857em;
   text-transform: uppercase;
   min-width: 64px;
-  padding: 6px 16px;
+  padding: 6px 8px;
   border-radius: 4px;
   -webkit-transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  color: #fff;
-  background-color: #1976d2;
-  box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12);
+  color: #1976d2;
 }
 
-.emotion-19::-moz-focus-inner {
+.emotion-0::-moz-focus-inner {
   border-style: none;
 }
 
-.emotion-19.Mui-disabled {
+.emotion-0.Mui-disabled {
   pointer-events: none;
   cursor: default;
 }
 
 @media print {
-  .emotion-19 {
+  .emotion-0 {
     -webkit-print-color-adjust: exact;
     color-adjust: exact;
   }
 }
 
-.emotion-19:hover {
+.emotion-0:hover {
   -webkit-text-decoration: none;
   text-decoration: none;
-  background-color: #1565c0;
-  box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12);
+  background-color: rgba(25, 118, 210, 0.04);
 }
 
 @media (hover: none) {
-  .emotion-19:hover {
-    background-color: #1976d2;
+  .emotion-0:hover {
+    background-color: transparent;
   }
 }
 
-.emotion-19:active {
-  box-shadow: 0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12);
-}
-
-.emotion-19.Mui-focusVisible {
-  box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12);
-}
-
-.emotion-19.Mui-disabled {
+.emotion-0.Mui-disabled {
   color: rgba(0, 0, 0, 0.26);
-  box-shadow: none;
-  background-color: rgba(0, 0, 0, 0.12);
 }
 
-.emotion-20 {
+.emotion-1 {
   overflow: hidden;
   pointer-events: none;
   position: absolute;
@@ -249,304 +94,65 @@ exports[`Home page matches snapshot 1`] = `
 }
 
 <div
-    class="MuiContainer-root MuiContainer-maxWidthLg emotion-0"
+    class="makeStyles-header-1"
   >
     <div
-      class="MuiBox-root emotion-1"
+      class="makeStyles-headerContent-2"
     >
       <h1
-        class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom emotion-2"
+        class="makeStyles-title-3"
       >
-        MUI v5 + Next.js with TypeScript example
+        HomeMission
       </h1>
-      <a
-        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-3"
-        href="/about"
-      >
-        Go to the about page
-      </a>
-      <a
-        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-3"
-        href="/statistic_page"
-      >
-        Go To Statistic Page
-      </a>
-      <a
-        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-3"
-        href="/roommates"
-      >
-        Go to the Roommates test page
-      </a>
-      <a
-        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-6"
-        href="/api/graphql"
-      >
-        Go to the GraphQL playground (in development mode)
-      </a>
-      <a
-        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-3"
-        href="/auth0"
-      >
-        Go to the Auth0 test page
-      </a>
-      <a
-        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-3"
-        href="/join"
-      >
-        Join a home or create a new one
-      </a>
-      <a
-        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-3"
-        href="/history"
-      >
-        History
-      </a>
-      <a
-        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-3"
-        href="/tasks"
-      >
-        Go to task test page
-      </a>
-      <a
-        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-3"
-        href="/signin"
-      >
-        link-signin
-      </a>
-      <a
-        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways active emotion-3"
-        href="/"
-      >
-        EN
-      </a>
-      <a
-        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways active emotion-3"
-        href="/"
-      >
-        DE
-      </a>
       <p
-        class="MuiTypography-root MuiTypography-body1 emotion-14"
+        class="makeStyles-welcomeText-4"
       >
-        <svg
-          aria-hidden="true"
-          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium emotion-15"
-          focusable="false"
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm2.85 11.1l-.85.6V16h-4v-2.3l-.85-.6C7.8 12.16 7 10.63 7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.63-.8 3.16-2.15 4.1z"
-          />
-        </svg>
-        Pro tip: See more 
-        <a
-          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-16"
-          href="https://mui.com/getting-started/templates/"
-        >
-          templates
-        </a>
-         on the MUI documentation.
-      </p>
-      <p
-        class="MuiTypography-root MuiTypography-body2 MuiTypography-alignCenter emotion-17"
-      >
-        Copyright © 
-        <a
-          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-18"
-          href="https://mui.com/"
-        >
-          Your Website
-        </a>
-         2022.
+         Organize your shared flat as easily as in a game.
       </p>
       <button
-        class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root  emotion-19"
+        class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root makeStyles-getStartedButton-5 emotion-0"
         tabindex="0"
         type="button"
       >
-        Test Button
+        Get Started
         <span
-          class="MuiTouchRipple-root emotion-20"
+          class="MuiTouchRipple-root emotion-1"
         />
       </button>
-      <a
-        href="https://nextjs.org/docs"
+    </div>
+    <div
+      class="makeStyles-image-6"
+    >
+      <span
+        style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
       >
-        <h2>
-          Documentation →
-        </h2>
-      </a>
-      <a
-        href="https://nextjs.org/learn"
-      >
-        <h2>
-          Learn →
-        </h2>
-      </a>
-      <a
-        href="https://github.com/vercel/next.js/tree/master/examples"
-      >
-        <h2>
-          Examples →
-        </h2>
-      </a>
-      <a
-        href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-      >
-        <h2>
-          Deploy →
-        </h2>
-      </a>
+        <span
+          style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+        >
+          <img
+            alt=""
+            aria-hidden="true"
+            src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzQwIiBoZWlnaHQ9IjM0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiLz4="
+            style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+          />
+        </span>
+        <img
+          alt="HomeMission"
+          data-nimg="intrinsic"
+          decoding="async"
+          src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+          style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+        />
+        <noscript />
+      </span>
     </div>
   </div>
 </DocumentFragment>
 `;
 
-exports[`Home page matches snapshot DE 1`] = `
+exports[`Welcome page matches snapshot DE 1`] = `
 <DocumentFragment>
   .emotion-0 {
-  width: 100%;
-  margin-left: auto;
-  box-sizing: border-box;
-  margin-right: auto;
-  display: block;
-  padding-left: 16px;
-  padding-right: 16px;
-}
-
-@media (min-width:600px) {
-  .emotion-0 {
-    padding-left: 24px;
-    padding-right: 24px;
-  }
-}
-
-@media (min-width:1200px) {
-  .emotion-0 {
-    max-width: 1200px;
-  }
-}
-
-.emotion-1 {
-  margin-top: 32px;
-  margin-bottom: 32px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.emotion-2 {
-  margin: 0;
-  font-family: "Roboto","Helvetica","Arial",sans-serif;
-  font-weight: 400;
-  font-size: 2.125rem;
-  line-height: 1.235;
-  letter-spacing: 0.00735em;
-  margin-bottom: 0.35em;
-}
-
-.emotion-3 {
-  margin: 0;
-  color: #9c27b0;
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
-  text-decoration-color: rgba(156, 39, 176, 0.4);
-}
-
-.emotion-3:hover {
-  text-decoration-color: inherit;
-}
-
-.emotion-6 {
-  margin: 0;
-  color: #9c27b0;
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
-  text-decoration-color: rgba(156, 39, 176, 0.4);
-}
-
-.emotion-6:hover {
-  text-decoration-color: inherit;
-}
-
-.emotion-14 {
-  margin: 0;
-  font-family: "Roboto","Helvetica","Arial",sans-serif;
-  font-weight: 400;
-  font-size: 1rem;
-  line-height: 1.5;
-  letter-spacing: 0.00938em;
-  color: rgba(0, 0, 0, 0.6);
-  margin-top: 48px;
-  margin-bottom: 24px;
-}
-
-.emotion-15 {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  width: 1em;
-  height: 1em;
-  display: inline-block;
-  fill: currentColor;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  -webkit-transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  font-size: 1.5rem;
-  margin-right: 8px;
-  vertical-align: middle;
-}
-
-.emotion-16 {
-  margin: 0;
-  color: #1976d2;
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
-  text-decoration-color: rgba(25, 118, 210, 0.4);
-}
-
-.emotion-16:hover {
-  text-decoration-color: inherit;
-}
-
-.emotion-17 {
-  margin: 0;
-  font-family: "Roboto","Helvetica","Arial",sans-serif;
-  font-weight: 400;
-  font-size: 0.875rem;
-  line-height: 1.43;
-  letter-spacing: 0.01071em;
-  text-align: center;
-  color: rgba(0, 0, 0, 0.6);
-}
-
-.emotion-18 {
-  margin: 0;
-  color: inherit;
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
-}
-
-.emotion-18:hover {
-  text-decoration-color: inherit;
-}
-
-.emotion-19 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -586,59 +192,46 @@ exports[`Home page matches snapshot DE 1`] = `
   letter-spacing: 0.02857em;
   text-transform: uppercase;
   min-width: 64px;
-  padding: 6px 16px;
+  padding: 6px 8px;
   border-radius: 4px;
   -webkit-transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  color: #fff;
-  background-color: #1976d2;
-  box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12);
+  color: #1976d2;
 }
 
-.emotion-19::-moz-focus-inner {
+.emotion-0::-moz-focus-inner {
   border-style: none;
 }
 
-.emotion-19.Mui-disabled {
+.emotion-0.Mui-disabled {
   pointer-events: none;
   cursor: default;
 }
 
 @media print {
-  .emotion-19 {
+  .emotion-0 {
     -webkit-print-color-adjust: exact;
     color-adjust: exact;
   }
 }
 
-.emotion-19:hover {
+.emotion-0:hover {
   -webkit-text-decoration: none;
   text-decoration: none;
-  background-color: #1565c0;
-  box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12);
+  background-color: rgba(25, 118, 210, 0.04);
 }
 
 @media (hover: none) {
-  .emotion-19:hover {
-    background-color: #1976d2;
+  .emotion-0:hover {
+    background-color: transparent;
   }
 }
 
-.emotion-19:active {
-  box-shadow: 0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12);
-}
-
-.emotion-19.Mui-focusVisible {
-  box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12);
-}
-
-.emotion-19.Mui-disabled {
+.emotion-0.Mui-disabled {
   color: rgba(0, 0, 0, 0.26);
-  box-shadow: none;
-  background-color: rgba(0, 0, 0, 0.12);
 }
 
-.emotion-20 {
+.emotion-1 {
   overflow: hidden;
   pointer-events: none;
   position: absolute;
@@ -651,154 +244,57 @@ exports[`Home page matches snapshot DE 1`] = `
 }
 
 <div
-    class="MuiContainer-root MuiContainer-maxWidthLg emotion-0"
+    class="makeStyles-header-7"
   >
     <div
-      class="MuiBox-root emotion-1"
+      class="makeStyles-headerContent-8"
     >
       <h1
-        class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom emotion-2"
+        class="makeStyles-title-9"
       >
-        MUI v5 + Next.js mit TypeScript Beispiel
+        HomeMission
       </h1>
-      <a
-        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-3"
-        href="/about"
-      >
-        Zu Über Uns
-      </a>
-      <a
-        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-3"
-        href="/statistic_page"
-      >
-        Go To Statistic Page
-      </a>
-      <a
-        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-3"
-        href="/roommates"
-      >
-        Zur Mitbewohner Testseite
-      </a>
-      <a
-        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-6"
-        href="/api/graphql"
-      >
-        Zum GraphQL Spielplatz (im Entwicklermodus)
-      </a>
-      <a
-        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-3"
-        href="/auth0"
-      >
-        Zur Auth0 Testseite
-      </a>
-      <a
-        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-3"
-        href="/join"
-      >
-        Einer WG beitreten oder neu erstellen
-      </a>
-      <a
-        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-3"
-        href="/history"
-      >
-        Historie
-      </a>
-      <a
-        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-3"
-        href="/tasks"
-      >
-        Zur Aufgaben Testseite
-      </a>
-      <a
-        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-3"
-        href="/signin"
-      >
-        link-signin
-      </a>
-      <a
-        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways active emotion-3"
-        href="/"
-      >
-        EN
-      </a>
-      <a
-        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways active emotion-3"
-        href="/"
-      >
-        DE
-      </a>
       <p
-        class="MuiTypography-root MuiTypography-body1 emotion-14"
+        class="makeStyles-welcomeText-10"
       >
-        <svg
-          aria-hidden="true"
-          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium emotion-15"
-          focusable="false"
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm2.85 11.1l-.85.6V16h-4v-2.3l-.85-.6C7.8 12.16 7 10.63 7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.63-.8 3.16-2.15 4.1z"
-          />
-        </svg>
-        Pro Tipp: Finde weitere 
-        <a
-          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-16"
-          href="https://mui.com/getting-started/templates/"
-        >
-          Templates
-        </a>
-         in der MUI Dokumentation.
-      </p>
-      <p
-        class="MuiTypography-root MuiTypography-body2 MuiTypography-alignCenter emotion-17"
-      >
-        Copyright © 
-        <a
-          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways emotion-18"
-          href="https://mui.com/"
-        >
-          Deine Website
-        </a>
-         2022.
+         Organisiere deine Wohngemeinschaft so einfach, wie in einem Spiel.
       </p>
       <button
-        class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root  emotion-19"
+        class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root makeStyles-getStartedButton-11 emotion-0"
         tabindex="0"
         type="button"
       >
-        Test Button
+        Jetzt Starten
         <span
-          class="MuiTouchRipple-root emotion-20"
+          class="MuiTouchRipple-root emotion-1"
         />
       </button>
-      <a
-        href="https://nextjs.org/docs"
+    </div>
+    <div
+      class="makeStyles-image-12"
+    >
+      <span
+        style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
       >
-        <h2>
-          Dokumentation →
-        </h2>
-      </a>
-      <a
-        href="https://nextjs.org/learn"
-      >
-        <h2>
-          Lernen →
-        </h2>
-      </a>
-      <a
-        href="https://github.com/vercel/next.js/tree/master/examples"
-      >
-        <h2>
-          Beispiele →
-        </h2>
-      </a>
-      <a
-        href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-      >
-        <h2>
-          Deploy →
-        </h2>
-      </a>
+        <span
+          style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+        >
+          <img
+            alt=""
+            aria-hidden="true"
+            src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzQwIiBoZWlnaHQ9IjM0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiLz4="
+            style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+          />
+        </span>
+        <img
+          alt="HomeMission"
+          data-nimg="intrinsic"
+          decoding="async"
+          src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+          style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+        />
+        <noscript />
+      </span>
     </div>
   </div>
 </DocumentFragment>

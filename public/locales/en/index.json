@@ -1,16 +1,4 @@
 {
-  "heading": "MUI v5 + Next.js with TypeScript example",
-  "link-about": "Go to the about page",
-  "link-roommates": "Go to the Roommates test page",
-  "link-playground": "Go to the GraphQL playground (in development mode)",
-  "link-auth0": "Go to the Auth0 test page",
-  "link-join": "Join a home or create a new one",
-  "link-tasks": "Go to task test page",
-  "alert": "With typescript and Jest",
-  "test-button": "Test Button",
-  "link-documentation": "Documentation",
-  "link-learn": "Learn",
-  "link-examples": "Examples",
-  "link-deploy": "Deploy",
-  "link-history": "History"
+  "welcome-text": "Organize your shared flat as easily as in a game.",
+  "button": "Get Started"
 }
