@@ -33,10 +33,6 @@ yarn-error.log*
 # vercel
 .vercel
 
-# cypres
-/cypress/videos/
-/cypress/screenshots/
-
 # graphql
 __generated__
 *.graphql.d.ts

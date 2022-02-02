@@ -6,7 +6,6 @@
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:@next/next/recommended",
-    "plugin:cypress/recommended",
     "plugin:prettier/recommended"
   ],
   "env": {

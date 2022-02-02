@@ -52,9 +52,6 @@ Next.js specific folders are omitted. See [Next.js](#nextjs)
 - [`/.husky/`](.husky):
   Commit Hooks.
   See [husky](#husky).
-- [`/cypress/`](cypress):
-  End to End Testing.
-  See [Cypress](#cypress).
 - [`/src/`](src)
   - [`components/`](src/components):
     [React Components](https://reactjs.org/docs/components-and-props.html) to be used in Pages.
@@ -102,8 +99,6 @@ Next.js specific folders are omitted. See [Next.js](#nextjs)
   See [graphql-let](#graphql-let).
 - [`/.prettierrc`](.prettierrc):
   See [Prettier](#prettier).
-- [`/cypress.json`](cypress.json):
-  See [Cypress](#cypress).
 - [`/docker-compose.prod.yml`](docker-compose.prod.yml):
   Production Docker-Compose Setup.
 - [`/docker-compose.yml`](docker-compose.yml):
@@ -159,10 +154,6 @@ Defines coding styles.
 Testing framework using:
 
 ##### [React Testing Library](https://testing-library.com/docs/react-testing-library/intro)
-
-#### [Cypress](https://www.cypress.io/)
-
-End to End testing framework.
 
 #### [MUI](https://mui.com/)
 
@@ -288,7 +279,7 @@ After you have written your code, format it with `npm run format`. You can also 
 
 First, make sure to start the database: `docker-compose up -d`.
 
-Write tests and test everything with `npm run test-all`. Or only test specific cases with `npm run cypress` and Jest Runner.
+Write tests and test everything with `npm run test-all`. Or only test specific cases with Jest Runner or `npm run test -- -t "Your test"`.
 
 #### Try Production
 

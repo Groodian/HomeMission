@@ -1,6 +1,5 @@
 .husky
 .next
-cypress
 node_modules
 test
 Dockerfile
