@@ -94,10 +94,10 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
   return {
     props: {
       ...(await serverSideTranslations(locale || '', [
-        '_app',
         'index',
         'Copyright',
         'ProTip',
+        'common',
         'Navbar',
       ])),
     },

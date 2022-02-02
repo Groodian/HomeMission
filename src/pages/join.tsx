@@ -69,8 +69,8 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
   return {
     props: {
       ...(await serverSideTranslations(locale || '', [
-        '_app',
         'join',
+        'common',
         'Navbar',
       ])),
     },

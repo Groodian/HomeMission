@@ -42,7 +42,7 @@ const MyApp: React.FC<MyAppProps> = ({
   graphqlSchema,
   emotionCache = clientSideEmotionCache,
 }) => {
-  const { t } = useTranslation('_app');
+  const { t } = useTranslation('common');
   const apolloClient = useApollo(graphqlSchema, pageProps.initialApolloState);
 
   const [mounted, setMounted] = useState(false);
@@ -127,7 +127,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
   return {
     props: {
       graphqlSchema: schema,
-      ...(await serverSideTranslations(locale || '', ['_app', 'Navbar'])),
+      ...(await serverSideTranslations(locale || '', ['common', 'Navbar'])),
     },
   };
 };

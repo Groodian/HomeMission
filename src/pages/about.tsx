@@ -42,10 +42,10 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
   return {
     props: {
       ...(await serverSideTranslations(locale || '', [
-        '_app',
         'about',
         'Copyright',
         'ProTip',
+        'common',
         'Navbar',
       ])),
     },

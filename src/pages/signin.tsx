@@ -69,12 +69,12 @@ const useStyles = makeStyles(() => ({
 const Signin: NextPage = () => {
   const classes = useStyles();
   const router = useRouter();
-  const { t } = useTranslation('signin');
+  const { t } = useTranslation(['signin', 'common']);
 
   return (
     <div className={classes.header}>
       <div className={classes.headerContent}>
-        <h1 className={classes.title}>{t('title')}</h1>
+        <h1 className={classes.title}>{t('title', { ns: 'common' })}</h1>
         <p className={classes.welcomeText}> {t('welcome-text')}</p>
         <Button
           className={classes.getStartedButton}
@@ -85,7 +85,7 @@ const Signin: NextPage = () => {
       </div>
       <div className={classes.image}>
         <Image
-          alt={t('title')}
+          alt={t('title', { ns: 'common' })}
           src={homeMissionLogo}
           width="340px"
           height="340px"
@@ -98,7 +98,11 @@ const Signin: NextPage = () => {
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   return {
     props: {
-      ...(await serverSideTranslations(locale || '', ['signin'])),
+      ...(await serverSideTranslations(locale || '', [
+        'Navbar',
+        'common',
+        'signin',
+      ])),
     },
   };
 };
