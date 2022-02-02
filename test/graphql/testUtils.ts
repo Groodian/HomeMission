@@ -75,17 +75,19 @@ export async function testGraphql(
   return res;
 }
 
+export const timeoutLength = 300000;
+
 export const database = {
-  reset: async () => {
+  async reset() {
     await databaseConnection();
     await getConnection().synchronize(true);
   },
 
-  shutdown: async () => {
+  async shutdown() {
     await getConnection().close();
   },
 
-  insertUsers: async (count = 3) => {
+  async insertUsers(count = 3) {
     await databaseConnection();
 
     for (let i = 1; i <= count; i++) {
@@ -97,7 +99,7 @@ export const database = {
     }
   },
 
-  insertHomes: async (count = 3) => {
+  async insertHomes(count = 3) {
     await databaseConnection();
 
     for (let i = 1; i <= count; i++) {
@@ -108,7 +110,7 @@ export const database = {
     }
   },
 
-  insertTaskTypes: async (count = 3, home?: string) => {
+  async insertTaskTypes(count = 3, home?: string) {
     await databaseConnection();
 
     const homeEntity = await Home.findOneOrFail(home);
@@ -119,11 +121,7 @@ export const database = {
     }
   },
 
-  insertTasks: async (
-    count = 3,
-    type?: string,
-    start = new Date('2022-01-01')
-  ) => {
+  async insertTasks(count = 3, type?: string, start = new Date('2022-01-01')) {
     await databaseConnection();
 
     const typeEntity = await TaskType.findOneOrFail(type, {
@@ -140,13 +138,13 @@ export const database = {
     }
   },
 
-  insertTaskSeries: async (
+  async insertTaskSeries(
     count = 3,
     type?: string,
     start = new Date('2022-01-01'),
     interval = 1,
     iterations = 4
-  ) => {
+  ) {
     await databaseConnection();
 
     const typeEntity = await TaskType.findOneOrFail(type, {
@@ -172,7 +170,7 @@ export const database = {
     }
   },
 
-  insertReceipt: async (user: string, task: string) => {
+  async insertReceipt(user: string, task: string) {
     await databaseConnection();
 
     const userEntity = await User.findOneOrFail(user);
@@ -195,7 +193,7 @@ export const database = {
     await taskEntity.save();
   },
 
-  addUserToHome: async (user: string, home: string) => {
+  async addUserToHome(user: string, home: string) {
     await databaseConnection();
 
     const userEntity = await User.findOneOrFail(user);

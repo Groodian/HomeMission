@@ -1,15 +1,17 @@
-import { database, testGraphql } from './testUtils';
+import { database, testGraphql, timeoutLength } from './testUtils';
 
 describe('User resolver with', () => {
-  beforeEach(async () => await database.reset(), 300000); // High timeout for GitLab pipeline
-  afterAll(async () => await database.shutdown());
+  beforeEach(database.reset, timeoutLength); // High timeoutLength for GitLab pipeline
+  afterAll(database.shutdown);
 
-  it('User query returns the authenticated user', async () => {
-    await database.insertUsers();
+  it(
+    'User query returns the authenticated user',
+    async () => {
+      await database.insertUsers();
 
-    const body = {
-      operationName: 'User',
-      query: `
+      const body = {
+        operationName: 'User',
+        query: `
         query User {
           user {
             id
@@ -19,21 +21,25 @@ describe('User resolver with', () => {
           }
         }
       `,
-      variables: {},
-    };
+        variables: {},
+      };
 
-    const res = await testGraphql(body, 'user-2');
+      const res = await testGraphql(body, 'user-2');
 
-    expect(res.end).toHaveBeenNthCalledWith(
-      1,
-      '{"data":{"user":{"id":"user-2","name":"name-2","picture":"picture-2","points":0}}}\n'
-    );
-  });
+      expect(res.end).toHaveBeenNthCalledWith(
+        1,
+        '{"data":{"user":{"id":"user-2","name":"name-2","picture":"picture-2","points":0}}}\n'
+      );
+    },
+    timeoutLength
+  );
 
-  it('User query returns null for an unauthenticated user', async () => {
-    const body = {
-      operationName: 'User',
-      query: `
+  it(
+    'User query returns null for an unauthenticated user',
+    async () => {
+      const body = {
+        operationName: 'User',
+        query: `
         query User {
           user {
             id
@@ -43,11 +49,13 @@ describe('User resolver with', () => {
           }
         }
       `,
-      variables: {},
-    };
+        variables: {},
+      };
 
-    const res = await testGraphql(body);
+      const res = await testGraphql(body);
 
-    expect(res.end).toHaveBeenNthCalledWith(1, '{"data":{"user":null}}\n');
-  });
+      expect(res.end).toHaveBeenNthCalledWith(1, '{"data":{"user":null}}\n');
+    },
+    timeoutLength
+  );
 });
