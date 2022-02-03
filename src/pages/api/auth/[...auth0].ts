@@ -11,10 +11,14 @@ const afterCallback: AfterCallback = async (req, res, session) => {
   await databaseConnection();
 
   const user = (await User.findOne(session.user.sub as string)) || new User();
-  user.id = session.user.sub;
-  user.name = session.user.name;
-  user.picture = session.user.picture;
-  user.save();
+
+  // set properties and save if user is new
+  if (!user.id) {
+    user.id = session.user.sub;
+    user.name = session.user.name;
+    user.picture = session.user.picture;
+    await user.save();
+  }
 
   return session;
 };
