@@ -3,6 +3,11 @@
 exports[`Welcome page matches snapshot 1`] = `
 <DocumentFragment>
   .emotion-0 {
+  background: radial-gradient(circle at 3% 25%, rgba(0, 40, 83, 1) 0%, rgba(4, 12, 24, 1) 50%);
+  height: 100vh;
+}
+
+.emotion-1 {
   width: 100%;
   margin-left: auto;
   box-sizing: border-box;
@@ -10,23 +15,22 @@ exports[`Welcome page matches snapshot 1`] = `
   display: block;
   padding-left: 16px;
   padding-right: 16px;
-  background: radial-gradient(circle at 3% 25%, rgba(0, 40, 83, 1) 0%, rgba(4, 12, 24, 1) 25%);
 }
 
 @media (min-width:600px) {
-  .emotion-0 {
+  .emotion-1 {
     padding-left: 24px;
     padding-right: 24px;
   }
 }
 
 @media (min-width:1200px) {
-  .emotion-0 {
+  .emotion-1 {
     max-width: 1200px;
   }
 }
 
-.emotion-1 {
+.emotion-2 {
   box-sizing: border-box;
   display: -webkit-box;
   display: -webkit-flex;
@@ -43,7 +47,7 @@ exports[`Welcome page matches snapshot 1`] = `
   padding: 64px;
 }
 
-.emotion-2 {
+.emotion-3 {
   box-sizing: border-box;
   margin: 0;
   -webkit-flex-direction: row;
@@ -57,10 +61,13 @@ exports[`Welcome page matches snapshot 1`] = `
   -ms-flex-positive: 0;
   flex-grow: 0;
   max-width: 66.666667%;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
 }
 
 @media (min-width:600px) {
-  .emotion-2 {
+  .emotion-3 {
     -webkit-flex-basis: 66.666667%;
     -ms-flex-preferred-size: 66.666667%;
     flex-basis: 66.666667%;
@@ -73,7 +80,7 @@ exports[`Welcome page matches snapshot 1`] = `
 }
 
 @media (min-width:900px) {
-  .emotion-2 {
+  .emotion-3 {
     -webkit-flex-basis: 66.666667%;
     -ms-flex-preferred-size: 66.666667%;
     flex-basis: 66.666667%;
@@ -86,7 +93,7 @@ exports[`Welcome page matches snapshot 1`] = `
 }
 
 @media (min-width:1200px) {
-  .emotion-2 {
+  .emotion-3 {
     -webkit-flex-basis: 66.666667%;
     -ms-flex-preferred-size: 66.666667%;
     flex-basis: 66.666667%;
@@ -99,7 +106,7 @@ exports[`Welcome page matches snapshot 1`] = `
 }
 
 @media (min-width:1536px) {
-  .emotion-2 {
+  .emotion-3 {
     -webkit-flex-basis: 66.666667%;
     -ms-flex-preferred-size: 66.666667%;
     flex-basis: 66.666667%;
@@ -111,7 +118,7 @@ exports[`Welcome page matches snapshot 1`] = `
   }
 }
 
-.emotion-3 {
+.emotion-4 {
   margin: 0;
   font-family: "Roboto","Helvetica","Arial",sans-serif;
   font-weight: 300;
@@ -125,7 +132,7 @@ exports[`Welcome page matches snapshot 1`] = `
   font-weight: 800;
 }
 
-.emotion-4 {
+.emotion-5 {
   margin: 0;
   font-family: "Roboto","Helvetica","Arial",sans-serif;
   font-weight: 400;
@@ -137,7 +144,7 @@ exports[`Welcome page matches snapshot 1`] = `
   margin-top: 1.5rem;
 }
 
-.emotion-5 {
+.emotion-6 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -192,43 +199,43 @@ exports[`Welcome page matches snapshot 1`] = `
   text-transform: none;
 }
 
-.emotion-5::-moz-focus-inner {
+.emotion-6::-moz-focus-inner {
   border-style: none;
 }
 
-.emotion-5.Mui-disabled {
+.emotion-6.Mui-disabled {
   pointer-events: none;
   cursor: default;
 }
 
 @media print {
-  .emotion-5 {
+  .emotion-6 {
     -webkit-print-color-adjust: exact;
     color-adjust: exact;
   }
 }
 
-.emotion-5:hover {
+.emotion-6:hover {
   -webkit-text-decoration: none;
   text-decoration: none;
   background-color: rgba(25, 118, 210, 0.04);
 }
 
 @media (hover: none) {
-  .emotion-5:hover {
+  .emotion-6:hover {
     background-color: transparent;
   }
 }
 
-.emotion-5.Mui-disabled {
+.emotion-6.Mui-disabled {
   color: rgba(0, 0, 0, 0.26);
 }
 
-.emotion-5:hover {
+.emotion-6:hover {
   background: #FC6342;
 }
 
-.emotion-6 {
+.emotion-7 {
   overflow: hidden;
   pointer-events: none;
   position: absolute;
@@ -240,7 +247,7 @@ exports[`Welcome page matches snapshot 1`] = `
   border-radius: inherit;
 }
 
-.emotion-7 {
+.emotion-8 {
   box-sizing: border-box;
   margin: 0;
   -webkit-flex-direction: row;
@@ -257,7 +264,7 @@ exports[`Welcome page matches snapshot 1`] = `
 }
 
 @media (min-width:600px) {
-  .emotion-7 {
+  .emotion-8 {
     -webkit-flex-basis: 33.333333%;
     -ms-flex-preferred-size: 33.333333%;
     flex-basis: 33.333333%;
@@ -270,7 +277,7 @@ exports[`Welcome page matches snapshot 1`] = `
 }
 
 @media (min-width:900px) {
-  .emotion-7 {
+  .emotion-8 {
     -webkit-flex-basis: 33.333333%;
     -ms-flex-preferred-size: 33.333333%;
     flex-basis: 33.333333%;
@@ -283,7 +290,7 @@ exports[`Welcome page matches snapshot 1`] = `
 }
 
 @media (min-width:1200px) {
-  .emotion-7 {
+  .emotion-8 {
     -webkit-flex-basis: 33.333333%;
     -ms-flex-preferred-size: 33.333333%;
     flex-basis: 33.333333%;
@@ -296,7 +303,7 @@ exports[`Welcome page matches snapshot 1`] = `
 }
 
 @media (min-width:1536px) {
-  .emotion-7 {
+  .emotion-8 {
     -webkit-flex-basis: 33.333333%;
     -ms-flex-preferred-size: 33.333333%;
     flex-basis: 33.333333%;
@@ -309,60 +316,64 @@ exports[`Welcome page matches snapshot 1`] = `
 }
 
 <div
-    class="MuiContainer-root MuiContainer-maxWidthLg emotion-0"
+    class="MuiBox-root emotion-0"
   >
     <div
-      class="MuiGrid-root MuiGrid-container emotion-1"
+      class="MuiContainer-root MuiContainer-maxWidthLg emotion-1"
     >
       <div
-        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-8 emotion-2"
+        class="MuiGrid-root MuiGrid-container emotion-2"
       >
-        <h1
-          class="MuiTypography-root MuiTypography-h2 emotion-3"
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-8 emotion-3"
         >
-          HomeMission
-        </h1>
-        <p
-          class="MuiTypography-root MuiTypography-body1 emotion-4"
-        >
-          Organize your shared flat as easily as in a game.
-        </p>
-        <button
-          class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  emotion-5"
-          tabindex="0"
-          type="button"
-        >
-          Get Started
-          <span
-            class="MuiTouchRipple-root emotion-6"
-          />
-        </button>
-      </div>
-      <div
-        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 emotion-7"
-      >
-        <span
-          style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
-        >
-          <span
-            style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+          <h1
+            class="MuiTypography-root MuiTypography-h2 emotion-4"
           >
-            <img
-              alt=""
-              aria-hidden="true"
-              src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzQwIiBoZWlnaHQ9IjM0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiLz4="
-              style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+            HomeMission
+          </h1>
+          <p
+            class="MuiTypography-root MuiTypography-body1 emotion-5"
+          >
+            Organize your shared flat as easily as in a game.
+          </p>
+          <button
+            class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  emotion-6"
+            tabindex="0"
+            type="button"
+          >
+            Get Started
+            <span
+              class="MuiTouchRipple-root emotion-7"
             />
+          </button>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 emotion-8"
+        >
+          <span
+            style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+          >
+            <span
+              style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+            >
+              <img
+                alt=""
+                aria-hidden="true"
+                src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzQwIiBoZWlnaHQ9IjM0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiLz4="
+                style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+              />
+            </span>
+            <img
+              alt="HomeMission"
+              data-nimg="intrinsic"
+              decoding="async"
+              src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+              style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+            />
+            <noscript />
           </span>
-          <img
-            alt="HomeMission"
-            data-nimg="intrinsic"
-            decoding="async"
-            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-            style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
-          />
-          <noscript />
-        </span>
+        </div>
       </div>
     </div>
   </div>
@@ -372,6 +383,11 @@ exports[`Welcome page matches snapshot 1`] = `
 exports[`Welcome page matches snapshot DE 1`] = `
 <DocumentFragment>
   .emotion-0 {
+  background: radial-gradient(circle at 3% 25%, rgba(0, 40, 83, 1) 0%, rgba(4, 12, 24, 1) 50%);
+  height: 100vh;
+}
+
+.emotion-1 {
   width: 100%;
   margin-left: auto;
   box-sizing: border-box;
@@ -379,23 +395,22 @@ exports[`Welcome page matches snapshot DE 1`] = `
   display: block;
   padding-left: 16px;
   padding-right: 16px;
-  background: radial-gradient(circle at 3% 25%, rgba(0, 40, 83, 1) 0%, rgba(4, 12, 24, 1) 25%);
 }
 
 @media (min-width:600px) {
-  .emotion-0 {
+  .emotion-1 {
     padding-left: 24px;
     padding-right: 24px;
   }
 }
 
 @media (min-width:1200px) {
-  .emotion-0 {
+  .emotion-1 {
     max-width: 1200px;
   }
 }
 
-.emotion-1 {
+.emotion-2 {
   box-sizing: border-box;
   display: -webkit-box;
   display: -webkit-flex;
@@ -412,7 +427,7 @@ exports[`Welcome page matches snapshot DE 1`] = `
   padding: 64px;
 }
 
-.emotion-2 {
+.emotion-3 {
   box-sizing: border-box;
   margin: 0;
   -webkit-flex-direction: row;
@@ -426,10 +441,13 @@ exports[`Welcome page matches snapshot DE 1`] = `
   -ms-flex-positive: 0;
   flex-grow: 0;
   max-width: 66.666667%;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
 }
 
 @media (min-width:600px) {
-  .emotion-2 {
+  .emotion-3 {
     -webkit-flex-basis: 66.666667%;
     -ms-flex-preferred-size: 66.666667%;
     flex-basis: 66.666667%;
@@ -442,7 +460,7 @@ exports[`Welcome page matches snapshot DE 1`] = `
 }
 
 @media (min-width:900px) {
-  .emotion-2 {
+  .emotion-3 {
     -webkit-flex-basis: 66.666667%;
     -ms-flex-preferred-size: 66.666667%;
     flex-basis: 66.666667%;
@@ -455,7 +473,7 @@ exports[`Welcome page matches snapshot DE 1`] = `
 }
 
 @media (min-width:1200px) {
-  .emotion-2 {
+  .emotion-3 {
     -webkit-flex-basis: 66.666667%;
     -ms-flex-preferred-size: 66.666667%;
     flex-basis: 66.666667%;
@@ -468,7 +486,7 @@ exports[`Welcome page matches snapshot DE 1`] = `
 }
 
 @media (min-width:1536px) {
-  .emotion-2 {
+  .emotion-3 {
     -webkit-flex-basis: 66.666667%;
     -ms-flex-preferred-size: 66.666667%;
     flex-basis: 66.666667%;
@@ -480,7 +498,7 @@ exports[`Welcome page matches snapshot DE 1`] = `
   }
 }
 
-.emotion-3 {
+.emotion-4 {
   margin: 0;
   font-family: "Roboto","Helvetica","Arial",sans-serif;
   font-weight: 300;
@@ -494,7 +512,7 @@ exports[`Welcome page matches snapshot DE 1`] = `
   font-weight: 800;
 }
 
-.emotion-4 {
+.emotion-5 {
   margin: 0;
   font-family: "Roboto","Helvetica","Arial",sans-serif;
   font-weight: 400;
@@ -506,7 +524,7 @@ exports[`Welcome page matches snapshot DE 1`] = `
   margin-top: 1.5rem;
 }
 
-.emotion-5 {
+.emotion-6 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -561,43 +579,43 @@ exports[`Welcome page matches snapshot DE 1`] = `
   text-transform: none;
 }
 
-.emotion-5::-moz-focus-inner {
+.emotion-6::-moz-focus-inner {
   border-style: none;
 }
 
-.emotion-5.Mui-disabled {
+.emotion-6.Mui-disabled {
   pointer-events: none;
   cursor: default;
 }
 
 @media print {
-  .emotion-5 {
+  .emotion-6 {
     -webkit-print-color-adjust: exact;
     color-adjust: exact;
   }
 }
 
-.emotion-5:hover {
+.emotion-6:hover {
   -webkit-text-decoration: none;
   text-decoration: none;
   background-color: rgba(25, 118, 210, 0.04);
 }
 
 @media (hover: none) {
-  .emotion-5:hover {
+  .emotion-6:hover {
     background-color: transparent;
   }
 }
 
-.emotion-5.Mui-disabled {
+.emotion-6.Mui-disabled {
   color: rgba(0, 0, 0, 0.26);
 }
 
-.emotion-5:hover {
+.emotion-6:hover {
   background: #FC6342;
 }
 
-.emotion-6 {
+.emotion-7 {
   overflow: hidden;
   pointer-events: none;
   position: absolute;
@@ -609,7 +627,7 @@ exports[`Welcome page matches snapshot DE 1`] = `
   border-radius: inherit;
 }
 
-.emotion-7 {
+.emotion-8 {
   box-sizing: border-box;
   margin: 0;
   -webkit-flex-direction: row;
@@ -626,7 +644,7 @@ exports[`Welcome page matches snapshot DE 1`] = `
 }
 
 @media (min-width:600px) {
-  .emotion-7 {
+  .emotion-8 {
     -webkit-flex-basis: 33.333333%;
     -ms-flex-preferred-size: 33.333333%;
     flex-basis: 33.333333%;
@@ -639,7 +657,7 @@ exports[`Welcome page matches snapshot DE 1`] = `
 }
 
 @media (min-width:900px) {
-  .emotion-7 {
+  .emotion-8 {
     -webkit-flex-basis: 33.333333%;
     -ms-flex-preferred-size: 33.333333%;
     flex-basis: 33.333333%;
@@ -652,7 +670,7 @@ exports[`Welcome page matches snapshot DE 1`] = `
 }
 
 @media (min-width:1200px) {
-  .emotion-7 {
+  .emotion-8 {
     -webkit-flex-basis: 33.333333%;
     -ms-flex-preferred-size: 33.333333%;
     flex-basis: 33.333333%;
@@ -665,7 +683,7 @@ exports[`Welcome page matches snapshot DE 1`] = `
 }
 
 @media (min-width:1536px) {
-  .emotion-7 {
+  .emotion-8 {
     -webkit-flex-basis: 33.333333%;
     -ms-flex-preferred-size: 33.333333%;
     flex-basis: 33.333333%;
@@ -678,60 +696,64 @@ exports[`Welcome page matches snapshot DE 1`] = `
 }
 
 <div
-    class="MuiContainer-root MuiContainer-maxWidthLg emotion-0"
+    class="MuiBox-root emotion-0"
   >
     <div
-      class="MuiGrid-root MuiGrid-container emotion-1"
+      class="MuiContainer-root MuiContainer-maxWidthLg emotion-1"
     >
       <div
-        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-8 emotion-2"
+        class="MuiGrid-root MuiGrid-container emotion-2"
       >
-        <h1
-          class="MuiTypography-root MuiTypography-h2 emotion-3"
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-8 emotion-3"
         >
-          HomeMission
-        </h1>
-        <p
-          class="MuiTypography-root MuiTypography-body1 emotion-4"
-        >
-          Organisiere deine Wohngemeinschaft so einfach, wie in einem Spiel.
-        </p>
-        <button
-          class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  emotion-5"
-          tabindex="0"
-          type="button"
-        >
-          Jetzt Starten
-          <span
-            class="MuiTouchRipple-root emotion-6"
-          />
-        </button>
-      </div>
-      <div
-        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 emotion-7"
-      >
-        <span
-          style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
-        >
-          <span
-            style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+          <h1
+            class="MuiTypography-root MuiTypography-h2 emotion-4"
           >
-            <img
-              alt=""
-              aria-hidden="true"
-              src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzQwIiBoZWlnaHQ9IjM0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiLz4="
-              style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+            HomeMission
+          </h1>
+          <p
+            class="MuiTypography-root MuiTypography-body1 emotion-5"
+          >
+            Organisiere deine Wohngemeinschaft so einfach, wie in einem Spiel.
+          </p>
+          <button
+            class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  emotion-6"
+            tabindex="0"
+            type="button"
+          >
+            Jetzt Starten
+            <span
+              class="MuiTouchRipple-root emotion-7"
             />
+          </button>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 emotion-8"
+        >
+          <span
+            style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+          >
+            <span
+              style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+            >
+              <img
+                alt=""
+                aria-hidden="true"
+                src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzQwIiBoZWlnaHQ9IjM0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiLz4="
+                style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+              />
+            </span>
+            <img
+              alt="HomeMission"
+              data-nimg="intrinsic"
+              decoding="async"
+              src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+              style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+            />
+            <noscript />
           </span>
-          <img
-            alt="HomeMission"
-            data-nimg="intrinsic"
-            decoding="async"
-            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-            style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
-          />
-          <noscript />
-        </span>
+        </div>
       </div>
     </div>
   </div>
