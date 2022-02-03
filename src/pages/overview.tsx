@@ -1,9 +1,8 @@
-import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 import { GetStaticProps, NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useTasksQuery } from '../lib/graphql/operations/task.graphql';
 import TaskCalendar from '../components/TaskCalendar';
 import { Task } from '../entities';
+import { useTasksQuery } from '../lib/graphql/operations/task.graphql';
 
 const Overview: NextPage = () => {
   const { error, data } = useTasksQuery();
@@ -42,4 +41,4 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
   };
 };
 
-export default withPageAuthRequired(Overview);
+export default Overview;

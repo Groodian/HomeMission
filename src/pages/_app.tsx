@@ -3,6 +3,7 @@ import { UserProvider } from '@auth0/nextjs-auth0';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import { useMediaQuery } from '@mui/material';
 import CssBaseline from '@mui/material/CssBaseline';
+import Grid from '@mui/material/Grid';
 import { ThemeProvider } from '@mui/material/styles';
 import { GraphQLSchema } from 'graphql';
 import { GetStaticProps } from 'next';
@@ -10,16 +11,18 @@ import { appWithTranslation, useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import React, { createContext, useMemo, useState } from 'react';
+import Leftbar from '../components/Leftbar';
 import Navbar from '../components/Navbar';
+import Rightbar from '../components/Rightbar';
 import { useApollo } from '../lib/graphql/apollo-client';
+import { useHomeQuery } from '../lib/graphql/operations/home.graphql';
+import { useUserQuery } from '../lib/graphql/operations/user.graphql';
 import schema from '../lib/graphql/schema';
 import { createEmotionCache } from '../lib/mui/emotion';
 import darkTheme from '../styles/dark-theme';
 import lightTheme from '../styles/light-theme';
-import Leftbar from '../components/Leftbar';
-import Grid from '@mui/material/Grid';
-import Rightbar from '../components/Rightbar';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -44,11 +47,6 @@ const MyApp: React.FC<MyAppProps> = ({
 }) => {
   const { t } = useTranslation('common');
   const apolloClient = useApollo(graphqlSchema, pageProps.initialApolloState);
-
-  const [mounted, setMounted] = useState(false);
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)', {
     noSsr: true,
@@ -80,6 +78,42 @@ const MyApp: React.FC<MyAppProps> = ({
     [colorMode]
   );
 
+  const { loading: userLoading, data: userData } = useUserQuery({
+    client: apolloClient,
+  });
+  const { loading: homeLoading, data: homeData } = useHomeQuery({
+    client: apolloClient,
+  });
+
+  const router = useRouter();
+  let loading = true;
+
+  /**
+   * Helper to only redirect to a new page.
+   * Saves the initially requested path.
+   * @param pathname The destination.
+   */
+  function redirect(pathname: string) {
+    // Only redirect if target is different
+    if (router.pathname !== pathname) {
+      router.push({ pathname, query: { returnTo: router.asPath } });
+      loading = true;
+    }
+  }
+
+  // Wait until data is loaded
+  if (!userLoading && !homeLoading) {
+    loading = false;
+
+    if (!userData?.user) {
+      // Redirect to welcome page if user is not signed in
+      redirect('/');
+    } else if (!homeData?.home) {
+      // Redirect to join page if user has no home
+      redirect('/join');
+    }
+  }
+
   return (
     <ApolloProvider client={apolloClient}>
       <UserProvider>
@@ -98,20 +132,32 @@ const MyApp: React.FC<MyAppProps> = ({
               <CssBaseline />
               {
                 // Prevent ssr flash
-                mounted && (
+                !loading && (
                   <>
-                    <Navbar />
-                    <Grid container>
-                      <Grid item sm={2} xs={2}>
-                        <Leftbar />
-                      </Grid>
-                      <Grid item sm={8} xs={10}>
+                    {
+                      // Only show navbar when user is signed in
+                      userData?.user && <Navbar />
+                    }
+                    {
+                      // Only show bars when user is in a home
+                      homeData?.home ? (
+                        <>
+                          <Grid container>
+                            <Grid item sm={2} xs={2}>
+                              <Leftbar />
+                            </Grid>
+                            <Grid item sm={8} xs={10}>
+                              <Component {...pageProps} />
+                            </Grid>
+                            <Grid item sm={2}>
+                              <Rightbar />
+                            </Grid>
+                          </Grid>
+                        </>
+                      ) : (
                         <Component {...pageProps} />
-                      </Grid>
-                      <Grid item sm={2}>
-                        <Rightbar />
-                      </Grid>
-                    </Grid>
+                      )
+                    }
                   </>
                 )
               }

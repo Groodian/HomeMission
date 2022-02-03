@@ -5,10 +5,23 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import homeMissionLogo from '../../public/home_mission_grey.png';
+import { useHomeQuery } from '../lib/graphql/operations/home.graphql';
 
 const Welcome: NextPage = () => {
   const { t } = useTranslation(['index', 'common']);
   const router = useRouter();
+  const { loading, data } = useHomeQuery();
+
+  if (loading) {
+    return null;
+  }
+
+  // Redirect to overview page if user has a home
+  if (data?.home) {
+    router.push('/overview');
+    return null;
+  }
+
   return (
     <Box
       sx={{
@@ -56,7 +69,12 @@ const Welcome: NextPage = () => {
                   background: '#FC6342',
                 },
               }}
-              onClick={() => router.push('/api/auth/login')}
+              onClick={() => {
+                const returnTo = encodeURIComponent(
+                  (router.query.returnTo as string) || '/'
+                );
+                window.location.assign('/api/auth/login?returnTo=' + returnTo);
+              }}
             >
               {t('button')}
             </Button>

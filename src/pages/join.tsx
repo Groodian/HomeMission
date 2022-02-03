@@ -1,14 +1,13 @@
-import { GetStaticProps, NextPage } from 'next';
 import { Button, Input } from '@mui/material';
+import { GetStaticProps, NextPage } from 'next';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import Router, { useRouter } from 'next/router';
 import {
+  HomeDocument,
   useCreateHomeMutation,
   useJoinHomeMutation,
 } from '../lib/graphql/operations/home.graphql';
-import Router, { useRouter } from 'next/router';
-import { withPageAuthRequired } from '@auth0/nextjs-auth0';
-import { useEffect } from 'react';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useTranslation } from 'next-i18next';
 
 const Join: NextPage = () => {
   const { t } = useTranslation('join');
@@ -18,18 +17,25 @@ const Join: NextPage = () => {
 
   // ... different handling for users who are already part of home
 
-  useEffect(() => {
-    // join home and redirect if query parameter 'code' is present
-    if (router.query?.code) {
-      joinHome(router.query?.code as string);
-    }
-  }, []);
+  // join home and redirect if query parameter 'code' is present
+  if (router.query?.code) {
+    joinHome(router.query.code as string);
+  }
 
   function joinHome(code: string) {
-    useJoinHome({ variables: { code: code } })
+    useJoinHome({
+      variables: { code },
+      update(cache, { data }) {
+        if (!data) return;
+        cache.writeQuery({
+          query: HomeDocument,
+          data: { home: data.joinHomeByCode },
+        });
+      },
+    })
       .then(() => {
         // ... toast (success): joined home XYZ
-        Router.push('/');
+        Router.push((router.query.returnTo as string) || '/');
       })
       .catch(() => {
         // ... toast (error): invalid invitation code
@@ -37,10 +43,18 @@ const Join: NextPage = () => {
   }
 
   function createHome() {
-    useCreateHome()
+    useCreateHome({
+      update(cache, { data }) {
+        if (!data) return;
+        cache.writeQuery({
+          query: HomeDocument,
+          data: { home: data.createHome },
+        });
+      },
+    })
       .then(() => {
         // ... toast (success): created home
-        Router.push('/');
+        Router.push((router.query.returnTo as string) || '/');
       })
       .catch(() => {
         // ... toast (error): failed to create home
@@ -77,4 +91,4 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
   };
 };
 
-export default withPageAuthRequired(Join);
+export default Join;

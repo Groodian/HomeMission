@@ -1,17 +1,3 @@
-import { GetStaticProps, NextPage } from 'next';
-import { withPageAuthRequired } from '@auth0/nextjs-auth0';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useTranslation } from 'next-i18next';
-import {
-  useCreateTaskTypeMutation,
-  useRemoveTaskTypeMutation,
-  useTaskTypesQuery,
-} from '../lib/graphql/operations/tasktype.graphql';
-import {
-  useCreateTaskMutation,
-  useDeleteTaskMutation,
-  useTasksQuery,
-} from '../lib/graphql/operations/task.graphql';
 import {
   Button,
   Divider,
@@ -24,15 +10,28 @@ import {
   MenuItem,
   Select,
 } from '@mui/material';
+import { GetStaticProps, NextPage } from 'next';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import {
+  useCreateTaskMutation,
+  useDeleteTaskMutation,
+  useTasksQuery,
+} from '../lib/graphql/operations/task.graphql';
+import {
+  useCreateTaskReceiptMutation,
+  useReceiptsQuery,
+} from '../lib/graphql/operations/taskreceipt.graphql';
 import {
   useCreateTaskSeriesMutation,
   useDeleteTaskSeriesMutation,
   useDeleteTaskSeriesSubsectionMutation,
 } from '../lib/graphql/operations/taskseries.graphql';
 import {
-  useCreateTaskReceiptMutation,
-  useReceiptsQuery,
-} from '../lib/graphql/operations/taskreceipt.graphql';
+  useCreateTaskTypeMutation,
+  useRemoveTaskTypeMutation,
+  useTaskTypesQuery,
+} from '../lib/graphql/operations/tasktype.graphql';
 
 const Tasks: NextPage = () => {
   const { t } = useTranslation('tasks');
@@ -490,4 +489,4 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
   };
 };
 
-export default withPageAuthRequired(Tasks);
+export default Tasks;

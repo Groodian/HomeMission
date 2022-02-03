@@ -59,6 +59,12 @@ async function customRender(
   });
 }
 
+export function mockWindowLocationAssign() {
+  delete (window as Partial<Window>).location;
+  window.location = { assign: jest.fn() } as unknown as Location;
+  return window.location.assign;
+}
+
 // re-export everything
 export * from '@testing-library/react';
 // override render method

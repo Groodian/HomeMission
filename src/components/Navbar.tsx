@@ -1,20 +1,3 @@
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
-import { useUserQuery } from '../lib/graphql/operations/user.graphql';
-import ThemeSwitch from './ThemeSwitch';
-import { useRouter } from 'next/router';
-import { ColorModeContext } from '../pages/_app';
-import { useTranslation } from 'next-i18next';
 import {
   ButtonBase,
   FormControl,
@@ -22,9 +5,26 @@ import {
   Select,
   useTheme,
 } from '@mui/material';
-import { useHomeQuery } from '../lib/graphql/operations/home.graphql';
+import AppBar from '@mui/material/AppBar';
+import Avatar from '@mui/material/Avatar';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
+import IconButton from '@mui/material/IconButton';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import Toolbar from '@mui/material/Toolbar';
+import Tooltip from '@mui/material/Tooltip';
+import Typography from '@mui/material/Typography';
+import { useTranslation } from 'next-i18next';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
+import React from 'react';
 import homeMissionLogo from '../../public/home_mission_grey.png';
+import { useHomeQuery } from '../lib/graphql/operations/home.graphql';
+import { useUserQuery } from '../lib/graphql/operations/user.graphql';
+import { ColorModeContext } from '../pages/_app';
+import ThemeSwitch from './ThemeSwitch';
 
 type Pages = { url: string; text: string; api?: boolean }[];
 
@@ -37,15 +37,10 @@ const Navbar = () => {
   const { data: homeData } = useHomeQuery();
   const { data: userData } = useUserQuery();
 
-  const unauthenticatedPages: Pages = [
-    { url: '/api/auth/login', text: t('login'), api: true },
-  ];
-  const authenticatedPagesWithHome: Pages = [
-    { url: 'overview', text: t('overview') },
+  const pages: Pages = [
     { url: 'statistics', text: t('statistics') },
     { url: 'history', text: t('activity') },
   ];
-  const authenticatedPagesNoHome: Pages = [{ url: 'join', text: t('join') }];
 
   function route(path: string, absolute = false) {
     absolute ? window.location.assign(path) : router.push(path);
@@ -68,7 +63,7 @@ const Navbar = () => {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <ButtonBase>
-            <Box sx={{ minWidth: 90 }} onClick={() => route('/')}>
+            <Box sx={{ minWidth: 90 }} onClick={() => route('/overview')}>
               <Image
                 alt="HomeMission logo"
                 src={homeMissionLogo}
@@ -77,20 +72,16 @@ const Navbar = () => {
             </Box>
           </ButtonBase>
           <Box sx={{ flexGrow: 1 }}>
-            {(userData?.user
-              ? homeData?.home
-                ? authenticatedPagesWithHome
-                : authenticatedPagesNoHome
-              : unauthenticatedPages
-            ).map((page) => (
-              <Button
-                key={page.url}
-                onClick={() => route(page.url, page.api)}
-                sx={{ my: 2, color: 'white' }}
-              >
-                {page.text}
-              </Button>
-            ))}
+            {homeData?.home &&
+              pages.map((page) => (
+                <Button
+                  key={page.url}
+                  onClick={() => route(page.url, page.api)}
+                  sx={{ my: 2, color: 'white' }}
+                >
+                  {page.text}
+                </Button>
+              ))}
           </Box>
           <Box sx={{ minWidth: 120 }}>
             <FormControl fullWidth>

@@ -1,9 +1,3 @@
-import { withPageAuthRequired } from '@auth0/nextjs-auth0';
-import { GetStaticProps, NextPage } from 'next';
-import { useTranslation } from 'next-i18next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useHistoryQuery } from '../lib/graphql/operations/history.graphql';
-import Image from 'next/image';
 import {
   List,
   ListItem,
@@ -11,6 +5,11 @@ import {
   ListItemText,
   Tooltip,
 } from '@mui/material';
+import { GetStaticProps, NextPage } from 'next';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import Image from 'next/image';
+import { useHistoryQuery } from '../lib/graphql/operations/history.graphql';
 
 const History: NextPage = () => {
   const { t } = useTranslation(['history', 'common']);
@@ -142,4 +141,4 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
   };
 };
 
-export default withPageAuthRequired(History);
+export default History;
