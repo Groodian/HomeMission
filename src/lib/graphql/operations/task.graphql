@@ -22,6 +22,23 @@ query Tasks {
   }
 }
 
+query UpcomingTasks {
+  upcomingTasks {
+    id,
+    date,
+    type {
+      name,
+      points,
+    },
+    assignee {
+      picture,
+    },
+    series {
+      id
+    }
+  }
+}
+
 mutation CreateTask($date: String!, $type: String!) {
   createTask(date: $date, type: $type) {
     id,

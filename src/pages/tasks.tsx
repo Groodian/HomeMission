@@ -33,6 +33,8 @@ import {
   useTaskTypesQuery,
 } from '../lib/graphql/operations/tasktype.graphql';
 
+const refetchOptions = { refetchQueries: ['UpcomingTasks'] };
+
 const Tasks: NextPage = () => {
   const { t } = useTranslation('tasks');
 
@@ -56,13 +58,14 @@ const Tasks: NextPage = () => {
   } = useReceiptsQuery();
 
   const [useCreateType] = useCreateTaskTypeMutation();
-  const [useCreateTask] = useCreateTaskMutation();
-  const [useCreateSeries] = useCreateTaskSeriesMutation();
+  const [useCreateTask] = useCreateTaskMutation(refetchOptions);
+  const [useCreateSeries] = useCreateTaskSeriesMutation(refetchOptions);
   const [useRemoveType] = useRemoveTaskTypeMutation();
-  const [useDeleteTask] = useDeleteTaskMutation();
-  const [useDeleteSeries] = useDeleteTaskSeriesMutation();
-  const [useDeleteSeriesSubsection] = useDeleteTaskSeriesSubsectionMutation();
-  const [useCreateReceipt] = useCreateTaskReceiptMutation();
+  const [useDeleteTask] = useDeleteTaskMutation(refetchOptions);
+  const [useDeleteSeries] = useDeleteTaskSeriesMutation(refetchOptions);
+  const [useDeleteSeriesSubsection] =
+    useDeleteTaskSeriesSubsectionMutation(refetchOptions);
+  const [useCreateReceipt] = useCreateTaskReceiptMutation(refetchOptions);
 
   let selectedTypeId: string;
   let selectedSeriesTypeId: string;

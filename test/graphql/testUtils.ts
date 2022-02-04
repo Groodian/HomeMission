@@ -198,6 +198,16 @@ export const database = {
 
     const userEntity = await User.findOneOrFail(user);
     userEntity.home = await Home.findOneOrFail(home);
+
     await userEntity.save();
+  },
+
+  assignUserToTask: async (user: string, task: string) => {
+    await databaseConnection();
+
+    const taskEntity = await Task.findOneOrFail(task);
+    taskEntity.assignee = await User.findOneOrFail(user);
+
+    await taskEntity.save();
   },
 };

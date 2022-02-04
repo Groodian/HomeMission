@@ -20,6 +20,7 @@ import {
 import Helper from './helper';
 import CurrentSession from '../../auth0/current-session';
 import { Session } from '@auth0/nextjs-auth0';
+import { Between } from 'typeorm';
 
 @Resolver(Task)
 export default class TaskResolver implements ResolverInterface<Task> {
@@ -39,6 +40,48 @@ export default class TaskResolver implements ResolverInterface<Task> {
       });
     } catch (e) {
       throw Error('Failed to get all tasks!');
+    }
+  }
+
+  /**
+   * Get upcoming tasks that have not been completed yet and are not assigned to another user.
+   */
+  @Authorized()
+  @Query(() => [Task])
+  async upcomingTasks(@CurrentSession() session: Session) {
+    await databaseConnection();
+    const home = await Helper.getHomeOrFail(session);
+    const user = await Helper.getMeOrFail(session);
+
+    try {
+      const commonConditions = {
+        relatedHome: home.id, // condition: task must be from users home
+        receipt: null, // condition: tasks must not be completed yet
+        date: Between(
+          new Date(new Date().getTime() - 2 * 7 * 24 * 60 * 60 * 1000), // max two weeks into the past
+          new Date(new Date().getTime() + 4 * 7 * 24 * 60 * 60 * 1000) // max four weeks into the future
+        ),
+      };
+
+      return await Task.find({
+        loadRelationIds: true,
+        where: [
+          {
+            ...commonConditions,
+            ...{ assignee: null },
+          },
+          {
+            ...commonConditions,
+            ...{ assignee: user.id },
+          },
+        ],
+        take: 8,
+        order: {
+          date: 'ASC',
+        },
+      });
+    } catch (e) {
+      throw Error('Failed to get upcoming tasks!');
     }
   }
 

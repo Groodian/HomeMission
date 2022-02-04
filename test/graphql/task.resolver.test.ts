@@ -50,6 +50,98 @@ describe('Task resolver with', () => {
   );
 
   it(
+    'UpcomingTasks query returns only tasks that have a relevant date and are part of users home',
+    async () => {
+      const today = new Date();
+      const oldDate = new Date(today.getTime() - 28 * 24 * 60 * 60 * 1000); // 28 days ago
+      const futureDate = new Date(today.getTime() + 64 * 24 * 60 * 60 * 1000); // 64 days in the future
+
+      await database.insertUsers();
+      await database.insertHomes();
+      await database.insertTaskTypes(1); // task type in users home
+      await database.insertTaskTypes(1, '2'); // task type in foreign home
+      await database.insertTasks(2, '1', oldDate); // uninteresting tasks in users (invalid because old)
+      await database.insertTasks(2, '1', futureDate); // uninteresting tasks in users (invalid because far in future)
+      await database.insertTasks(2, '2', today); // uninteresting tasks in foreign home (invalid because other home)
+      await database.insertTasks(4, '1', today); // valid tasks in users home
+      await database.addUserToHome('user-1', '1');
+
+      const body = {
+        operationName: 'UpcomingTasks',
+        query: upcomingTasksQuery,
+        variables: {},
+      };
+
+      const res = await testGraphql(body, 'user-1');
+
+      expect(res.end).toHaveBeenNthCalledWith(
+        1,
+        '{"data":{"upcomingTasks":[{"id":"7","type":{"name":"name-1","points":1},"assignee":null},{"id":"8","type":{"name":"name-1","points":1},"assignee":null},{"id":"9","type":{"name":"name-1","points":1},"assignee":null},{"id":"10","type":{"name":"name-1","points":1},"assignee":null}]}}\n'
+      );
+    },
+    timeoutLength
+  );
+
+  it(
+    'UpcomingTasks query returns only tasks that are not assigned to a different roommate',
+    async () => {
+      const today = new Date();
+
+      await database.insertUsers();
+      await database.insertHomes();
+      await database.insertTaskTypes(1);
+      await database.insertTasks(3, undefined, today);
+      await database.assignUserToTask('user-1', '1'); // interesting task that user is assigned to
+      await database.assignUserToTask('user-2', '2'); // uninteresting task that roommate is assigned to
+      await database.addUserToHome('user-1', '1');
+      await database.addUserToHome('user-2', '1');
+
+      const body = {
+        operationName: 'UpcomingTasks',
+        query: upcomingTasksQuery,
+        variables: {},
+      };
+
+      const res = await testGraphql(body, 'user-1');
+
+      expect(res.end).toHaveBeenNthCalledWith(
+        1,
+        '{"data":{"upcomingTasks":[{"id":"1","type":{"name":"name-1","points":1},"assignee":{"id":"user-1","picture":"picture-1"}},{"id":"3","type":{"name":"name-1","points":1},"assignee":null}]}}\n'
+      );
+    },
+    timeoutLength
+  );
+
+  it(
+    'UpcomingTasks query returns only tasks that have not been completed',
+    async () => {
+      const today = new Date();
+
+      await database.insertUsers();
+      await database.insertHomes();
+      await database.insertTaskTypes(1);
+      await database.insertTasks(3, undefined, today);
+      await database.insertReceipt('user-1', '1');
+      await database.insertReceipt('user-1', '2');
+      await database.addUserToHome('user-1', '1');
+
+      const body = {
+        operationName: 'UpcomingTasks',
+        query: upcomingTasksQuery,
+        variables: {},
+      };
+
+      const res = await testGraphql(body, 'user-1');
+
+      expect(res.end).toHaveBeenNthCalledWith(
+        1,
+        '{"data":{"upcomingTasks":[{"id":"3","type":{"name":"name-1","points":1},"assignee":null}]}}\n'
+      );
+    },
+    timeoutLength
+  );
+
+  it(
     'CreateTask mutation returns created task',
     async () => {
       await database.insertUsers();
@@ -269,6 +361,22 @@ describe('Task resolver with', () => {
         assignee {
           id,
           name,
+          picture,
+        }
+      }
+    }
+  `;
+
+  const upcomingTasksQuery = `
+    query UpcomingTasks {
+      upcomingTasks {
+        id,
+        type {
+          name,
+          points,
+        },
+        assignee {
+          id,
           picture,
         }
       }
