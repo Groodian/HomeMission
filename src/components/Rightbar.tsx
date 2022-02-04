@@ -1,42 +1,50 @@
-import { Container, Typography } from '@material-ui/core';
 import { useTranslation } from 'next-i18next';
-import { useUpcomingTasksQuery } from '../lib/graphql/operations/task.graphql';
 import TaskQuickSelect from './TaskQuickSelect';
+import { Container } from '@material-ui/core';
 import { Task } from '../entities';
 import { styled } from '@mui/material/styles';
+import { useUpcomingTasksQuery } from '../lib/graphql/operations/task.graphql';
 
 const StyledContainer = styled(Container)({
-  paddingTop: '2.5em',
+  paddingTop: '2em',
   position: 'sticky',
   top: 0,
   borderLeft: '1px solid gray',
   height: '100%',
 });
-const StyledText = styled(Typography)({
-  fontSize: 16,
-  fontWeight: 500,
-  color: '#555',
+const Header = styled('h3')({
+  textAlign: 'center',
 });
+const Subtext = styled('p')(({ theme }) => ({
+  color: theme.palette.text.secondary,
+  textAlign: 'center',
+}));
 
 const Rightbar = () => {
   const { t } = useTranslation(['RightBar']);
 
-  const { data } = useUpcomingTasksQuery();
+  const { data, loading, error } = useUpcomingTasksQuery();
 
   return (
     <StyledContainer>
-      <StyledText gutterBottom>{t('upcoming-tasks')}</StyledText>
+      <Header>{t('upcoming-tasks')}</Header>
       {data &&
-        data.upcomingTasks.map((task) => {
-          return (
-            <TaskQuickSelect
-              key={task.id}
-              task={task as Task}
-              _picture={task.assignee?.picture}
-              _recurring={task.series !== null}
-            />
-          );
-        })}
+        (data.upcomingTasks.length !== 0 ? (
+          data.upcomingTasks.map((task) => {
+            return (
+              <TaskQuickSelect
+                key={task.id}
+                task={task as Task}
+                picture={task.assignee?.picture}
+                recurring={task.series !== null}
+              />
+            );
+          })
+        ) : (
+          <Subtext>{t('no-text-info')}</Subtext>
+        ))}
+      {loading && <Subtext>{t('loading')}</Subtext>}
+      {error && <Subtext>{t('error')}</Subtext>}
     </StyledContainer>
   );
 };
