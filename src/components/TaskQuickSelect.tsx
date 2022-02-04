@@ -4,11 +4,10 @@ import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { styled } from '@mui/material/styles';
 import { Container } from '@material-ui/core';
-import { Badge, Button, Avatar, Tooltip } from '@mui/material';
+import { Badge, Avatar, Tooltip } from '@mui/material';
+import LoadingButton from '@mui/lab/LoadingButton';
 import LoopIcon from '@mui/icons-material/Loop';
-
-// TODO:
-//  - make button functional
+import { useCreateTaskReceiptMutation } from '../lib/graphql/operations/taskreceipt.graphql';
 
 const TaskContainer = styled(Container)(({ theme }) => ({
   bgcolor: theme.palette.background.paper,
@@ -39,6 +38,10 @@ const TaskQuickSelect: React.FC<TaskQuickSelectProps> = ({
 }) => {
   const { t } = useTranslation(['TaskQuickSelect']);
   const router = useRouter();
+
+  const [useCreateReceipt, { loading }] = useCreateTaskReceiptMutation({
+    refetchQueries: ['Tasks', 'UpcomingTasks'],
+  });
 
   const avatar = picture && (
     <Tooltip title={t('tooltip-avatar') as string}>
@@ -78,13 +81,19 @@ const TaskQuickSelect: React.FC<TaskQuickSelectProps> = ({
           {new Date(task.date).toLocaleString(router.locale).split(',')[0]}
           {recurring && RecurringIcon}
         </TaskText>
-        <Button
+        <LoadingButton
           sx={{ width: '100%', marginTop: '0.5em' }}
           variant={'outlined'}
           color={'success'}
+          loading={loading}
+          onClick={() => {
+            useCreateReceipt({ variables: { task: task.id } }).catch((_err) => {
+              // ... send error toast
+            });
+          }}
         >
           {t('complete')}
-        </Button>
+        </LoadingButton>
       </TaskContainer>
     </Badge>
   );
