@@ -26,17 +26,17 @@ const TaskText = styled('span')({
   display: 'inline-block',
 });
 
-type TaskQuickSelectProps = {
+type RightBarItemProps = {
   task: Task;
   picture?: string;
   recurring?: boolean;
 };
-const TaskQuickSelect: React.FC<TaskQuickSelectProps> = ({
+const RightbarItem: React.FC<RightBarItemProps> = ({
   task,
   picture,
   recurring,
 }) => {
-  const { t } = useTranslation(['TaskQuickSelect']);
+  const { t } = useTranslation('common', { keyPrefix: 'Rightbar' });
   const router = useRouter();
 
   const [useCreateReceipt, { loading }] = useCreateTaskReceiptMutation({
@@ -99,4 +99,4 @@ const TaskQuickSelect: React.FC<TaskQuickSelectProps> = ({
   );
 };
 
-export default TaskQuickSelect;
+export default RightbarItem;

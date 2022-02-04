@@ -1,5 +1,5 @@
 import { useTranslation } from 'next-i18next';
-import TaskQuickSelect from './TaskQuickSelect';
+import RightbarItem from './RightbarItem';
 import { Container } from '@material-ui/core';
 import { Task } from '../entities';
 import { styled } from '@mui/material/styles';
@@ -21,7 +21,7 @@ const Subtext = styled('p')(({ theme }) => ({
 }));
 
 const Rightbar = () => {
-  const { t } = useTranslation(['RightBar']);
+  const { t } = useTranslation('common', { keyPrefix: 'Rightbar' });
 
   const { data, loading, error } = useUpcomingTasksQuery();
 
@@ -32,7 +32,7 @@ const Rightbar = () => {
         (data.upcomingTasks.length !== 0 ? (
           data.upcomingTasks.map((task) => {
             return (
-              <TaskQuickSelect
+              <RightbarItem
                 key={task.id}
                 task={task as Task}
                 picture={task.assignee?.picture}
