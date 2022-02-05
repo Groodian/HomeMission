@@ -33,7 +33,7 @@ import {
   useTaskTypesQuery,
 } from '../lib/graphql/operations/tasktype.graphql';
 
-const refetchOptions = { refetchQueries: ['UpcomingTasks'] };
+const refetchOptions = { refetchQueries: ['OpenTasks'] };
 
 const Tasks: NextPage = () => {
   const { t } = useTranslation('tasks');

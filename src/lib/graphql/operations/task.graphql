@@ -22,8 +22,8 @@ query Tasks {
   }
 }
 
-query UpcomingTasks {
-  upcomingTasks {
+query OpenTasks {
+  openTasks {
     id,
     date,
     type {

@@ -1,6 +1,7 @@
 {
   "title": "HomeMission",
   "loading": "Lädt...",
+  "points": "Punkte",
   "second": "Sekunde",
   "seconds": "Sekunden",
   "minute": "Minute",
@@ -15,13 +16,11 @@
   "years": "Jahren",
 
   "Rightbar": {
-    "upcoming-tasks": "Bevorstehende Aufgaben",
-    "no-text-info": "Es gibt keine bevorstehenden Aufgaben!",
-    "loading": "Lädt...",
-    "error": "Aufgaben konnten nicht geladen werden! Versuche die Seite zu aktualisieren.",
+    "open-tasks": "Offene Aufgaben",
+    "no-text-info": "Alles erledigt!",
+    "error-message": "Aufgaben konnten nicht geladen werden! Versuche die Seite zu aktualisieren.",
     "tooltip-avatar": "Du bist zugeordnet",
     "tooltip-loop": "Teil einer Serie",
-    "points": "Punkte",
     "complete": "Erledigen"
   }
 }

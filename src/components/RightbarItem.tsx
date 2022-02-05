@@ -10,7 +10,7 @@ import LoopIcon from '@mui/icons-material/Loop';
 import { useCreateTaskReceiptMutation } from '../lib/graphql/operations/taskreceipt.graphql';
 
 const TaskContainer = styled(Container)(({ theme }) => ({
-  bgcolor: theme.palette.background.paper,
+  backgroundColor: theme.palette.background.default,
   boxShadow:
     theme.palette.mode === 'dark'
       ? '-1px 1px 7px 0px rgba(255,255,255,0.15)'
@@ -37,10 +37,12 @@ const RightbarItem: React.FC<RightBarItemProps> = ({
   recurring,
 }) => {
   const { t } = useTranslation('common', { keyPrefix: 'Rightbar' });
+  const { t: ct } = useTranslation('common');
+
   const router = useRouter();
 
   const [useCreateReceipt, { loading }] = useCreateTaskReceiptMutation({
-    refetchQueries: ['Tasks', 'UpcomingTasks'],
+    refetchQueries: ['Tasks', 'OpenTasks'],
   });
 
   const avatar = picture && (
@@ -75,7 +77,7 @@ const RightbarItem: React.FC<RightBarItemProps> = ({
         </TaskText>
         <br />
         <TaskText>
-          {task.type?.points} {t('points')}
+          {task.type?.points} {ct('points')}
         </TaskText>
         <TaskText sx={{ color: (theme) => theme.palette.text.secondary }}>
           {new Date(task.date).toLocaleString(router.locale).split(',')[0]}

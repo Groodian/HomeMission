@@ -50,7 +50,7 @@ describe('Task resolver with', () => {
   );
 
   it(
-    'UpcomingTasks query returns only tasks that have a relevant date and are part of users home',
+    'OpenTasks query returns only tasks that have a relevant date and are part of users home',
     async () => {
       const today = new Date();
       const oldDate = new Date(today.getTime() - 28 * 24 * 60 * 60 * 1000); // 28 days ago
@@ -67,8 +67,8 @@ describe('Task resolver with', () => {
       await database.addUserToHome('user-1', '1');
 
       const body = {
-        operationName: 'UpcomingTasks',
-        query: upcomingTasksQuery,
+        operationName: 'OpenTasks',
+        query: openTasksQuery,
         variables: {},
       };
 
@@ -76,14 +76,14 @@ describe('Task resolver with', () => {
 
       expect(res.end).toHaveBeenNthCalledWith(
         1,
-        '{"data":{"upcomingTasks":[{"id":"7","type":{"name":"name-1","points":1},"assignee":null},{"id":"8","type":{"name":"name-1","points":1},"assignee":null},{"id":"9","type":{"name":"name-1","points":1},"assignee":null},{"id":"10","type":{"name":"name-1","points":1},"assignee":null}]}}\n'
+        '{"data":{"openTasks":[{"id":"7","type":{"name":"name-1","points":1},"assignee":null},{"id":"8","type":{"name":"name-1","points":1},"assignee":null},{"id":"9","type":{"name":"name-1","points":1},"assignee":null},{"id":"10","type":{"name":"name-1","points":1},"assignee":null}]}}\n'
       );
     },
     timeoutLength
   );
 
   it(
-    'UpcomingTasks query returns only tasks that are not assigned to a different roommate',
+    'OpenTasks query returns only tasks that are not assigned to a different roommate',
     async () => {
       const today = new Date();
 
@@ -97,8 +97,8 @@ describe('Task resolver with', () => {
       await database.addUserToHome('user-2', '1');
 
       const body = {
-        operationName: 'UpcomingTasks',
-        query: upcomingTasksQuery,
+        operationName: 'OpenTasks',
+        query: openTasksQuery,
         variables: {},
       };
 
@@ -106,14 +106,14 @@ describe('Task resolver with', () => {
 
       expect(res.end).toHaveBeenNthCalledWith(
         1,
-        '{"data":{"upcomingTasks":[{"id":"1","type":{"name":"name-1","points":1},"assignee":{"id":"user-1","picture":"picture-1"}},{"id":"3","type":{"name":"name-1","points":1},"assignee":null}]}}\n'
+        '{"data":{"openTasks":[{"id":"1","type":{"name":"name-1","points":1},"assignee":{"id":"user-1","picture":"picture-1"}},{"id":"3","type":{"name":"name-1","points":1},"assignee":null}]}}\n'
       );
     },
     timeoutLength
   );
 
   it(
-    'UpcomingTasks query returns only tasks that have not been completed',
+    'OpenTasks query returns only tasks that have not been completed',
     async () => {
       const today = new Date();
 
@@ -126,8 +126,8 @@ describe('Task resolver with', () => {
       await database.addUserToHome('user-1', '1');
 
       const body = {
-        operationName: 'UpcomingTasks',
-        query: upcomingTasksQuery,
+        operationName: 'OpenTasks',
+        query: openTasksQuery,
         variables: {},
       };
 
@@ -135,7 +135,7 @@ describe('Task resolver with', () => {
 
       expect(res.end).toHaveBeenNthCalledWith(
         1,
-        '{"data":{"upcomingTasks":[{"id":"3","type":{"name":"name-1","points":1},"assignee":null}]}}\n'
+        '{"data":{"openTasks":[{"id":"3","type":{"name":"name-1","points":1},"assignee":null}]}}\n'
       );
     },
     timeoutLength
@@ -367,9 +367,9 @@ describe('Task resolver with', () => {
     }
   `;
 
-  const upcomingTasksQuery = `
-    query UpcomingTasks {
-      upcomingTasks {
+  const openTasksQuery = `
+    query OpenTasks {
+      openTasks {
         id,
         type {
           name,

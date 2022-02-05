@@ -3,7 +3,7 @@ import RightbarItem from './RightbarItem';
 import { Container } from '@material-ui/core';
 import { Task } from '../entities';
 import { styled } from '@mui/material/styles';
-import { useUpcomingTasksQuery } from '../lib/graphql/operations/task.graphql';
+import { useOpenTasksQuery } from '../lib/graphql/operations/task.graphql';
 
 const StyledContainer = styled(Container)({
   paddingTop: '2em',
@@ -22,15 +22,16 @@ const Subtext = styled('p')(({ theme }) => ({
 
 const Rightbar = () => {
   const { t } = useTranslation('common', { keyPrefix: 'Rightbar' });
+  const { t: ct } = useTranslation('common');
 
-  const { data, loading, error } = useUpcomingTasksQuery();
+  const { data, loading, error } = useOpenTasksQuery();
 
   return (
     <StyledContainer>
-      <Header>{t('upcoming-tasks')}</Header>
+      <Header>{t('open-tasks')}</Header>
       {data &&
-        (data.upcomingTasks.length !== 0 ? (
-          data.upcomingTasks.map((task) => {
+        (data.openTasks.length !== 0 ? (
+          data.openTasks.map((task) => {
             return (
               <RightbarItem
                 key={task.id}
@@ -43,8 +44,8 @@ const Rightbar = () => {
         ) : (
           <Subtext>{t('no-text-info')}</Subtext>
         ))}
-      {loading && <Subtext>{t('loading')}</Subtext>}
-      {error && <Subtext>{t('error')}</Subtext>}
+      {loading && <Subtext>{ct('loading')}</Subtext>}
+      {error && <Subtext>{t('error-message')}</Subtext>}
     </StyledContainer>
   );
 };

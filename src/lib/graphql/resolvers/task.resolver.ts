@@ -44,18 +44,18 @@ export default class TaskResolver implements ResolverInterface<Task> {
   }
 
   /**
-   * Get upcoming tasks that have not been completed yet and are not assigned to another user.
+   * Get open tasks that have not been completed yet and are not assigned to another user.
    */
   @Authorized()
   @Query(() => [Task])
-  async upcomingTasks(@CurrentSession() session: Session) {
+  async openTasks(@CurrentSession() session: Session) {
     await databaseConnection();
     const home = await Helper.getHomeOrFail(session);
     const user = await Helper.getMeOrFail(session);
 
     try {
       const commonConditions = {
-        relatedHome: home.id, // condition: task must be from users home
+        relatedHome: home.id, // condition: tasks must be from users home
         receipt: null, // condition: tasks must not be completed yet
         date: Between(
           new Date(new Date().getTime() - 2 * 7 * 24 * 60 * 60 * 1000), // max two weeks into the past
@@ -81,7 +81,7 @@ export default class TaskResolver implements ResolverInterface<Task> {
         },
       });
     } catch (e) {
-      throw Error('Failed to get upcoming tasks!');
+      throw Error('Failed to get open tasks!');
     }
   }
 

@@ -1,6 +1,7 @@
 {
   "title": "HomeMission",
   "loading": "Loading...",
+  "points": "points",
   "second": "second",
   "seconds": "seconds",
   "minute": "minute",
@@ -15,14 +16,11 @@
   "years": "years",
 
   "Rightbar": {
-    "upcoming-tasks": "Upcoming tasks",
+    "open-tasks": "Open tasks",
     "no-text-info": "You are all caught up!",
-    "loading": "Loading...",
-    "error": "Failed to load upcoming tasks! Try refreshing the page.",
+    "error-message": "Failed to load tasks! Try refreshing the page.",
     "tooltip-avatar": "You are assigned",
     "tooltip-loop": "Part of a series",
-    "points": "points",
     "complete": "Complete"
   }
-
 }
