@@ -4,9 +4,9 @@
 
 ## Concept
 
-- Game for shared apartments (will be called WGs in the following) to organize themselves a bit better &rarr; gamification of task assignments
-- Score for flat mates based on finished tasks (Taking out the trash etc.)
-- Multiple WGs, one user is part of one WG and every WG has tasks, which have to be resolved, and this tasks will give points (they will vary)
+- Game that enables homes to organize themselves better &rarr; gamification of task assignments makes completion of tasks more enjoyable
+- Score for roommates based on finished tasks (Taking out the trash etc.)
+- Multiple homes, one user is part of a home and can complete tasks which gives the user points (points vary by task)
 
 ## Run Application
 

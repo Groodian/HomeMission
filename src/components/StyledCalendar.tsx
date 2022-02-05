@@ -26,6 +26,11 @@ const StyledCalendar = styled(Calendar)(({ theme }) => ({
   '& .rbc-toolbar button': {
     color: theme.palette.mode === 'dark' && 'white',
   },
+  '& .rbc-toolbar button:hover, button:active, button:focus': {
+    backgroundColor:
+      theme.palette.mode === 'dark' &&
+      lighten(theme.palette.background.default, 0.06),
+  },
   '&& .rbc-selected-cell': {
     backgroundColor:
       theme.palette.mode === 'dark' &&

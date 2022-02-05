@@ -1,7 +1,0 @@
-{
-  "greeting": "Welcome {{name}}! ",
-  "points_one": "You have {{count}} Point. ",
-  "points_other": "You have {{count}} Points. ",
-  "logout": "Logout",
-  "login": "Login"
-}

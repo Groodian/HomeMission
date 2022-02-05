@@ -1,6 +1,0 @@
-{
-  "name": "Name",
-  "picture": "Picture",
-  "points": "Points",
-  "profile-picture-alt": "Profile picture of {{roommate.name}}"
-}

@@ -335,7 +335,7 @@ exports[`Welcome page matches snapshot 1`] = `
           <p
             class="MuiTypography-root MuiTypography-body1 emotion-5"
           >
-            Organize your shared flat as easily as in a game.
+            Organize your home as easily as in a game.
           </p>
           <button
             class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  emotion-6"

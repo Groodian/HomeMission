@@ -1,7 +1,7 @@
 import { Container, Typography } from '@mui/material';
 import { NextPage } from 'next';
 
-const StatisticPage: NextPage = () => {
+const Statistics: NextPage = () => {
   return (
     <Container>
       <Typography>STATISTIC PAGE</Typography>
@@ -10,4 +10,4 @@ const StatisticPage: NextPage = () => {
   );
 };
 
-export default StatisticPage;
+export default Statistics;
