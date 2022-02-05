@@ -1,8 +1,6 @@
-import Link from '@mui/material/Link';
-import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
-import Typography from '@mui/material/Typography';
-import { Trans, useTranslation } from 'next-i18next';
 import React from 'react';
+import { Link, SvgIcon, SvgIconProps, Typography } from '@mui/material';
+import { Trans, useTranslation } from 'next-i18next';
 
 const LightBulbIcon: React.FC<SvgIconProps> = (props) => (
   <SvgIcon {...props}>

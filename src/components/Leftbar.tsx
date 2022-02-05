@@ -1,6 +1,7 @@
-import { Container, Typography } from '@material-ui/core';
+import { Container, Typography } from '@mui/material';
 import {
   ExitToApp,
+  ListAlt,
   Person,
   PhotoCamera,
   PlayCircleOutline,
@@ -8,8 +9,6 @@ import {
   Storefront,
   TabletMac,
 } from '@mui/icons-material';
-import ListAltIcon from '@mui/icons-material/ListAlt';
-
 import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles(
@@ -64,7 +63,7 @@ const Leftbar = () => {
         <Typography className={classes.text}>Members</Typography>
       </div>
       <div className={classes.item}>
-        <ListAltIcon className={classes.icon} />
+        <ListAlt className={classes.icon} />
         <Typography className={classes.text}>Activity List</Typography>
       </div>
       <div className={classes.item}>

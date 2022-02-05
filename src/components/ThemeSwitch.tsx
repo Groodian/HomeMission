@@ -1,5 +1,4 @@
-import { styled } from '@mui/material/styles';
-import Switch from '@mui/material/Switch';
+import { styled, Switch } from '@mui/material';
 
 const ThemeSwitch = styled(Switch)(({ theme }) => ({
   width: 62,

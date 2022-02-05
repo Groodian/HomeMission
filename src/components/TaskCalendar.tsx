@@ -1,4 +1,5 @@
 import React from 'react';
+import { Avatar, Badge } from '@mui/material';
 import StyledCalendar from './StyledCalendar';
 import { Task } from '../entities';
 import {
@@ -14,8 +15,6 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import 'moment/locale/fr';
 import 'moment/locale/de';
 import 'moment/locale/en-gb';
-import Avatar from '@mui/material/Avatar';
-import Badge from '@mui/material/Badge';
 
 export type CEvent = {
   title: string;

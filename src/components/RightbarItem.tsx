@@ -1,12 +1,10 @@
 import React from 'react';
+import { Avatar, Badge, Container, styled, Tooltip } from '@mui/material';
+import { Loop } from '@mui/icons-material';
+import { LoadingButton } from '@mui/lab';
 import { Task } from '../entities';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
-import { styled } from '@mui/material/styles';
-import { Container } from '@material-ui/core';
-import { Badge, Avatar, Tooltip } from '@mui/material';
-import LoadingButton from '@mui/lab/LoadingButton';
-import LoopIcon from '@mui/icons-material/Loop';
 import { useCreateTaskReceiptMutation } from '../lib/graphql/operations/taskreceipt.graphql';
 
 const TaskContainer = styled(Container)(({ theme }) => ({
@@ -57,7 +55,7 @@ const RightbarItem: React.FC<RightBarItemProps> = ({
 
   const RecurringIcon = (
     <Tooltip title={t('tooltip-loop') as string}>
-      <LoopIcon
+      <Loop
         sx={{ verticalAlign: 'sub', marginLeft: '0.25em' }}
         fontSize={'small'}
       />

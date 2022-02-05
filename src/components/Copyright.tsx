@@ -1,6 +1,6 @@
-import Typography from '@mui/material/Typography';
-import { Trans, useTranslation } from 'next-i18next';
 import React from 'react';
+import { Typography } from '@mui/material';
+import { Trans, useTranslation } from 'next-i18next';
 import Link from './Link';
 
 const Copyright: React.FC = () => {

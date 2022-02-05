@@ -1,7 +1,10 @@
-import { Button, Link as MuiLink } from '@mui/material';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
+import {
+  Button,
+  Box,
+  Container,
+  Link as MuiLink,
+  Typography,
+} from '@mui/material';
 import { GetStaticProps, NextPage } from 'next';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';

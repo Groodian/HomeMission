@@ -1,6 +1,6 @@
+import React from 'react';
 import { gql, InMemoryCache } from '@apollo/client';
 import singletonRouter from 'next/router';
-import React from 'react';
 import Welcome from '../../src/pages';
 import { fireEvent, mockWindowLocationAssign, render } from './testUtils';
 

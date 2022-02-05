@@ -1,25 +1,25 @@
+import React from 'react';
 import {
+  AppBar,
+  Avatar,
+  Box,
+  Button,
   ButtonBase,
+  Container,
   FormControl,
+  IconButton,
   InputLabel,
+  Menu,
+  MenuItem,
   Select,
+  Toolbar,
+  Tooltip,
+  Typography,
   useTheme,
 } from '@mui/material';
-import AppBar from '@mui/material/AppBar';
-import Avatar from '@mui/material/Avatar';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Container from '@mui/material/Container';
-import IconButton from '@mui/material/IconButton';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import Toolbar from '@mui/material/Toolbar';
-import Tooltip from '@mui/material/Tooltip';
-import Typography from '@mui/material/Typography';
 import { useTranslation } from 'next-i18next';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import React from 'react';
 import homeMissionLogo from '../../public/home_mission_grey.png';
 import { useHomeQuery } from '../lib/graphql/operations/home.graphql';
 import { useUserQuery } from '../lib/graphql/operations/user.graphql';

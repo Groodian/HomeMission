@@ -1,6 +1,5 @@
-import { styled } from '@mui/material/styles';
 import { Calendar, CalendarProps } from 'react-big-calendar';
-import { darken, lighten } from '@mui/material';
+import { darken, lighten, styled } from '@mui/material';
 import { StyledComponent } from '@mui/styles';
 import { CEvent } from './TaskCalendar';
 

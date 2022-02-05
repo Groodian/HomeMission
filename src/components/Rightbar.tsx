@@ -1,8 +1,7 @@
+import { Container, styled } from '@mui/material';
 import { useTranslation } from 'next-i18next';
 import RightbarItem from './RightbarItem';
-import { Container } from '@material-ui/core';
 import { Task } from '../entities';
-import { styled } from '@mui/material/styles';
 import { useOpenTasksQuery } from '../lib/graphql/operations/task.graphql';
 
 const StyledContainer = styled(Container)({
