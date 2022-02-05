@@ -114,11 +114,11 @@ describe('Task receipts resolver with', () => {
   const receiptsQuery = `
     query Receipts {
       receipts {
-        id,
-        points,
-        name,
+        id
+        points
+        name
         completer {
-          id,
+          id
           name
         }
       }
@@ -138,17 +138,17 @@ describe('Task receipts resolver with', () => {
     query: `
       query Tasks {
         tasks {
-          id,
-          date,
+          id
+          date
           type {
-            id,
-            name,
-            points,
-          },
+            id
+            name
+            points
+          }
           receipt {
-            id,
-            points,
-            name,
+            id
+            points
+            name
           }
         }
       }

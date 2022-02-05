@@ -344,24 +344,24 @@ describe('Task resolver with', () => {
   const tasksQuery = `
     query Tasks {
       tasks {
-        id,
-        date,
+        id
+        date
         type {
-          id,
-          name,
-          points,
-        },
+          id
+          name
+          points
+        }
         series {
           id
-        },
+        }
         receipt {
-          id,
-          name,
-        },
+          id
+          name
+        }
         assignee {
-          id,
-          name,
-          picture,
+          id
+          name
+          picture
         }
       }
     }
@@ -370,14 +370,14 @@ describe('Task resolver with', () => {
   const openTasksQuery = `
     query OpenTasks {
       openTasks {
-        id,
+        id
         type {
-          name,
-          points,
-        },
+          name
+          points
+        }
         assignee {
-          id,
-          picture,
+          id
+          picture
         }
       }
     }
@@ -386,8 +386,8 @@ describe('Task resolver with', () => {
   const createTaskQuery = `
     mutation CreateTask($date: String!, $type: String!) {
       createTask(date: $date, type: $type) {
-        id,
-        date,
+        id
+        date
       }
     }
   `;
@@ -401,12 +401,12 @@ describe('Task resolver with', () => {
   const assignTaskQuery = `
     mutation AssignTask($user: String!, $task: String!) {
       assignTask(user: $user, task: $task) {
-        id,
-        date,
+        id
+        date
         assignee {
-          id,
-          name,
-          picture,
+          id
+          name
+          picture
         }
       }
     }

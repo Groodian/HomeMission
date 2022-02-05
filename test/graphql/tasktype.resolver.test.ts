@@ -122,9 +122,9 @@ describe('Task type resolver with', () => {
   const taskTypesQuery = `
     query TaskTypes {
       taskTypes {
-        id,
-        name,
-        points,
+        id
+        name
+        points
       }
     }
   `;
@@ -132,9 +132,9 @@ describe('Task type resolver with', () => {
   const createTaskTypeQuery = `
     mutation CreateTaskType($name: String!, $points: Float!) {
       createTaskType(name: $name, points: $points) {
-        id,
-        name,
-        points,
+        id
+        name
+        points
       }
     }
   `;
@@ -142,9 +142,9 @@ describe('Task type resolver with', () => {
   const removeTaskTypeQuery = `
     mutation RemoveTaskType($type: String!) {
       removeTaskType(type: $type) {
-        id,
-        name,
-        points,
+        id
+        name
+        points
       }
     }
   `;

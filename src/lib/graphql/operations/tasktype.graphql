@@ -1,24 +1,24 @@
 query TaskTypes {
   taskTypes {
-    id,
-    name,
-    points,
+    id
+    name
+    points
   }
 }
 
 mutation CreateTaskType($name: String!, $points: Float!) {
   createTaskType(name: $name, points: $points) {
-    id,
-    name,
-    points,
+    id
+    name
+    points
   }
 }
 
 mutation RemoveTaskType($type: String!) {
   removeTaskType(type: $type) {
-    id,
-    name,
-    points,
+    id
+    name
+    points
   }
 }
 

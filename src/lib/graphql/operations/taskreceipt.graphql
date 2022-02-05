@@ -1,11 +1,11 @@
 query Receipts {
   receipts {
-    id,
-    completionDate,
-    points,
-    name,
+    id
+    completionDate
+    points
+    name
     completer {
-      id,
+      id
       name
     }
   }

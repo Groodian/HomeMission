@@ -260,16 +260,16 @@ describe('Task series resolver with', () => {
     query: `
       query Tasks {
         tasks {
-          id,
-          date,
+          id
+          date
           type {
-            id,
-            name,
-            points,
-          },
+            id
+            name
+            points
+          }
           series {
             id
-          },
+          }
         }
       }
     `,
