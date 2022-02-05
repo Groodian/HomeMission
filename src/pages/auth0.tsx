@@ -34,11 +34,7 @@ const Auth0Test: NextPage = () => {
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   return {
     props: {
-      ...(await serverSideTranslations(locale || '', [
-        'auth0',
-        'common',
-        'Navbar',
-      ])),
+      ...(await serverSideTranslations(locale || '', ['auth0', 'common'])),
     },
   };
 };

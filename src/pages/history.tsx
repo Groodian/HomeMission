@@ -132,11 +132,7 @@ const formatTime = (date: any, t: any): string => {
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   return {
     props: {
-      ...(await serverSideTranslations(locale || '', [
-        'history',
-        'common',
-        'Navbar',
-      ])),
+      ...(await serverSideTranslations(locale || '', ['history', 'common'])),
     },
   };
 };

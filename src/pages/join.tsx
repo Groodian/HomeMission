@@ -82,11 +82,7 @@ const Join: NextPage = () => {
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   return {
     props: {
-      ...(await serverSideTranslations(locale || '', [
-        'join',
-        'common',
-        'Navbar',
-      ])),
+      ...(await serverSideTranslations(locale || '', ['join', 'common'])),
     },
   };
 };

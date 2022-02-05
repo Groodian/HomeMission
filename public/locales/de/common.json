@@ -15,6 +15,16 @@
   "year": "Jahr",
   "years": "Jahren",
 
+  "Navbar": {
+    "statistics": "Statistiken",
+    "activity": "Tätigkeitsverlauf",
+    "logout": "Ausloggen",
+    "settings": "Einstellungen anzeigen",
+    "language": "Sprache",
+    "german": "Deutsch",
+    "english": "Englisch"
+  },
+
   "Rightbar": {
     "open-tasks": "Offene Aufgaben",
     "no-text-info": "Alles erledigt!",

@@ -483,11 +483,7 @@ const Tasks: NextPage = () => {
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   return {
     props: {
-      ...(await serverSideTranslations(locale || '', [
-        'tasks',
-        'common',
-        'Navbar',
-      ])),
+      ...(await serverSideTranslations(locale || '', ['tasks', 'common'])),
     },
   };
 };

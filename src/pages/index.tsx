@@ -96,11 +96,7 @@ const Welcome: NextPage = () => {
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   return {
     props: {
-      ...(await serverSideTranslations(locale || '', [
-        'index',
-        'common',
-        'Navbar',
-      ])),
+      ...(await serverSideTranslations(locale || '', ['index', 'common'])),
     },
   };
 };

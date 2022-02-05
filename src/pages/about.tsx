@@ -46,7 +46,6 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
         'Copyright',
         'ProTip',
         'common',
-        'Navbar',
       ])),
     },
   };

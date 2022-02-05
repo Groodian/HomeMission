@@ -29,7 +29,7 @@ import ThemeSwitch from './ThemeSwitch';
 type Pages = { url: string; text: string; api?: boolean }[];
 
 const Navbar = () => {
-  const { t } = useTranslation('Navbar');
+  const { t } = useTranslation('common', { keyPrefix: 'Navbar' });
   const router = useRouter();
   const theme = useTheme();
   const colorMode = React.useContext(ColorModeContext);

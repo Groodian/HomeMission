@@ -15,6 +15,16 @@
   "year": "year",
   "years": "years",
 
+  "Navbar": {
+    "statistics": "statistics",
+    "activity": "activity history",
+    "logout": "logout",
+    "settings": "open settings",
+    "language": "Language",
+    "german": "German",
+    "english": "English"
+  },
+
   "Rightbar": {
     "open-tasks": "Open tasks",
     "no-text-info": "You are all caught up!",
