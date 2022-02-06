@@ -13,6 +13,7 @@
   "months": "months",
   "year": "year",
   "years": "years",
+  "complete": "Complete",
   "user-error": "Could not load user",
 
   "Navbar": {
@@ -31,7 +32,6 @@
     "error-message": "Could not load open tasks",
     "tooltip-avatar": "You are assigned",
     "tooltip-loop": "Part of a series",
-    "complete": "Complete",
     "complete-success": "Completed task",
     "complete-error": "Could not complete task"
   }

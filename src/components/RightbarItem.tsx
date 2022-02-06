@@ -1,12 +1,12 @@
 import React from 'react';
 import { Avatar, Badge, Container, styled, Tooltip } from '@mui/material';
 import { Loop } from '@mui/icons-material';
-import { LoadingButton } from '@mui/lab';
 import { Task } from '../entities';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { useCreateTaskReceiptMutation } from '../lib/graphql/operations/taskreceipt.graphql';
 import { useSnackbar } from 'notistack';
+import CompleteButton from './Buttons/CompleteButton';
 
 const TaskContainer = styled(Container)(({ theme }) => ({
   backgroundColor: theme.palette.background.default,
@@ -40,10 +40,6 @@ const RightbarItem: React.FC<RightBarItemProps> = ({
   const { t: ct } = useTranslation('common');
 
   const router = useRouter();
-
-  const [useCreateReceipt, { loading }] = useCreateTaskReceiptMutation({
-    refetchQueries: ['Tasks', 'OpenTasks'],
-  });
 
   const avatar = picture && (
     <Tooltip title={t('tooltip-avatar') as string}>
@@ -83,22 +79,7 @@ const RightbarItem: React.FC<RightBarItemProps> = ({
           {new Date(task.date).toLocaleString(router.locale).split(',')[0]}
           {recurring && RecurringIcon}
         </TaskText>
-        <LoadingButton
-          sx={{ width: '100%', marginTop: '0.5em' }}
-          variant={'outlined'}
-          color={'success'}
-          loading={loading}
-          onClick={async () => {
-            try {
-              await useCreateReceipt({ variables: { task: task.id } });
-              enqueueSnackbar(t('complete-success'), { variant: 'success' });
-            } catch (err) {
-              enqueueSnackbar(t('complete-error'), { variant: 'error' });
-            }
-          }}
-        >
-          {t('complete')}
-        </LoadingButton>
+        <CompleteButton task={task} />
       </TaskContainer>
     </Badge>
   );

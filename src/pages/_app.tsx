@@ -1,7 +1,20 @@
+import React, {
+  createContext,
+  createRef,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
+import {
+  Box,
+  Container,
+  CssBaseline,
+  useMediaQuery,
+  ThemeProvider,
+} from '@mui/material';
 import { ApolloProvider } from '@apollo/client';
 import { UserProvider } from '@auth0/nextjs-auth0';
 import { CacheProvider, EmotionCache } from '@emotion/react';
-import { CssBaseline, Grid, ThemeProvider, useMediaQuery } from '@mui/material';
 import { GraphQLSchema } from 'graphql';
 import { GetStaticProps } from 'next';
 import { appWithTranslation, useTranslation } from 'next-i18next';
@@ -10,16 +23,9 @@ import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { SnackbarProvider } from 'notistack';
-import React, {
-  createContext,
-  createRef,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react';
-import Leftbar from '../components/Leftbar';
 import LoadingSpinner from '../components/LoadingSpinner';
 import Navbar from '../components/Navbar';
+// import Leftbar from '../components/Leftbar';
 import Rightbar from '../components/Rightbar';
 import { useApollo } from '../lib/graphql/apollo-client';
 import { useHomeQuery } from '../lib/graphql/operations/home.graphql';
@@ -159,19 +165,13 @@ const MyApp: React.FC<MyAppProps> = ({
                     {
                       // Only show bars when user is in a home
                       homeData?.home ? (
-                        <>
-                          <Grid container>
-                            <Grid item sm={2} xs={2}>
-                              <Leftbar />
-                            </Grid>
-                            <Grid item sm={8} xs={10}>
-                              <Component {...pageProps} />
-                            </Grid>
-                            <Grid item sm={2}>
-                              <Rightbar />
-                            </Grid>
-                          </Grid>
-                        </>
+                        <Box sx={{ display: 'flex' }}>
+                          {/*<Leftbar /> // add back when Leftbar is Drawer */}
+                          <Container sx={{ flexShrink: 1 }}>
+                            <Component {...pageProps} />
+                          </Container>
+                          <Rightbar />
+                        </Box>
                       ) : (
                         <Component {...pageProps} />
                       )

@@ -59,8 +59,11 @@ const Navbar = () => {
   };
 
   return (
-    <AppBar position="static">
-      <Container maxWidth="xl">
+    <AppBar position="sticky" sx={{ zIndex: theme.zIndex.drawer + 1 }}>
+      <Container
+        maxWidth="xl"
+        sx={{ backgroundColor: 'initial', zIndex: 'inherit' }}
+      >
         <Toolbar disableGutters>
           <ButtonBase>
             <Box sx={{ minWidth: 90 }} onClick={() => route('/overview')}>
@@ -89,8 +92,14 @@ const Navbar = () => {
                 {t('language')}
               </InputLabel>
               <Select
-                labelId="language-select-label"
                 id="language-select"
+                sx={{
+                  backgroundColor:
+                    theme.palette.mode === 'dark'
+                      ? theme.palette.background.default
+                      : 'none',
+                }}
+                labelId="language-select-label"
                 label={t('language')}
                 value={router.locale}
                 onChange={(event) => {
