@@ -1,10 +1,10 @@
 docker-build:
+  stage: build
   services:
     - docker:dind
   image: docker:latest
   tags:
     - docker
-  stage: build
   before_script:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
     - docker pull $CI_REGISTRY_IMAGE:latest || true
@@ -27,7 +27,8 @@ docker-build:
       exists:
         - Dockerfile
 
-test:
+jest-test:
+  stage: test
   # MySQL test database
   services:
     - mysql:5.7
@@ -44,7 +45,6 @@ test:
         - package-lock.json
     paths:
       - .npm/
-  stage: test
   before_script:
     - npm ci --cache .npm --prefer-offline
   script:
@@ -54,3 +54,22 @@ test:
     reports:
       junit:
         - junit.xml
+
+aws-deploy:
+  stage: deploy
+  only:
+   - main
+  before_script:
+    - apt-get update -qq
+    - apt-get install -y openssh-server
+    - mkdir -p ~/.ssh
+    - echo -e "$AWS_SECRET_ACCESS_KEY" > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+  script:
+    - set -f
+    - server=$PROD_DEPLOY_SERVER
+    - echo "Deploy project on server $server"
+    - ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ubuntu@$server "cd ~/wg-organisierspiel && git pull -q && docker-compose -f docker-compose.prod.yml pull && docker-compose -f docker-compose.prod.yml --env-file=.env.local up -d"
+  environment:
+    name: production
+    url: http://homemission.net
