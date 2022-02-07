@@ -1,16 +1,20 @@
 import { GetStaticProps, NextPage } from 'next';
+import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useSnackbar } from 'notistack';
+import { useEffect } from 'react';
 import TaskCalendar from '../components/TaskCalendar';
 import { Task } from '../entities';
 import { useTasksQuery } from '../lib/graphql/operations/task.graphql';
 
 const Overview: NextPage = () => {
+  const { t } = useTranslation(['TaskCalendar']);
   const { error, data } = useTasksQuery();
+  const { enqueueSnackbar } = useSnackbar();
 
-  // alert of error when error from tasks query loads
-  if (error) {
-    // ... error toast
-  }
+  useEffect(() => {
+    if (error) enqueueSnackbar(t('error-message'), { variant: 'error' });
+  }, [error]);
 
   return (
     <>

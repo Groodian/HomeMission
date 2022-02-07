@@ -5,6 +5,7 @@ import { render, RenderOptions } from '@testing-library/react';
 import { readdirSync } from 'fs';
 import i18n from 'i18next';
 import Backend from 'i18next-fs-backend';
+import { SnackbarProvider } from 'notistack';
 import { join } from 'path';
 import { I18nextProvider, initReactI18next } from 'react-i18next';
 import lightTheme from '../../src/styles/light-theme';
@@ -46,8 +47,10 @@ async function customRender(
     <I18nextProvider i18n={i18n}>
       <MockedProvider cache={initialState?.apolloCache}>
         <ThemeProvider theme={lightTheme}>
-          <CssBaseline />
-          {children}
+          <SnackbarProvider>
+            <CssBaseline />
+            {children}
+          </SnackbarProvider>
         </ThemeProvider>
       </MockedProvider>
     </I18nextProvider>

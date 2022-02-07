@@ -9,20 +9,22 @@ import { GetStaticProps, NextPage } from 'next';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Image from 'next/image';
+import { useSnackbar } from 'notistack';
+import { useEffect } from 'react';
 import { useHistoryQuery } from '../lib/graphql/operations/history.graphql';
 
 const History: NextPage = () => {
   const { t } = useTranslation(['history', 'common']);
+  const { enqueueSnackbar } = useSnackbar();
   const { loading, error, data } = useHistoryQuery();
+
+  useEffect(() => {
+    if (error) enqueueSnackbar(t('error-message'), { variant: 'error' });
+  }, [error]);
 
   return (
     <>
       {loading && t('loading', { ns: 'common' })}
-      {error && (
-        <>
-          {error.name}: {error.message}
-        </>
-      )}
       {data?.home && (
         <>
           <h1>{t('title')}</h1>

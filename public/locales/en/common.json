@@ -14,6 +14,7 @@
   "months": "months",
   "year": "year",
   "years": "years",
+  "user-error": "Could not load user",
 
   "Navbar": {
     "statistics": "statistics",
@@ -28,9 +29,11 @@
   "Rightbar": {
     "open-tasks": "Open tasks",
     "no-text-info": "You are all caught up!",
-    "error-message": "Failed to load tasks! Try refreshing the page.",
+    "error-message": "Could not load open tasks",
     "tooltip-avatar": "You are assigned",
     "tooltip-loop": "Part of a series",
-    "complete": "Complete"
+    "complete": "Complete",
+    "complete-success": "Completed task",
+    "complete-error": "Could not complete task"
   }
 }

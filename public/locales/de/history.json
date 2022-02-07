@@ -14,5 +14,6 @@
   "task-created": "Hat eine Aufgabe erstellt",
   "task-deleted": "Hat eine Aufgabe gelöscht",
   "task-updated": "Hat eine Aufgabe bearbeitet",
-  "task-completed": "Hat eine Aufgabe abgeschlossen"
+  "task-completed": "Hat eine Aufgabe abgeschlossen",
+  "error-message": "Tätigkeitsverlauf konnte nicht geladen werden"
 }

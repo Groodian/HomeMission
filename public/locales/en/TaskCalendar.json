@@ -4,5 +4,6 @@
   "today": "today",
   "month": "month",
   "week": "week",
-  "day": "day"
+  "day": "day",
+  "error-message": "Could not load tasks"
 }

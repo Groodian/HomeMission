@@ -3,6 +3,8 @@ import { GetStaticProps, NextPage } from 'next';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Router, { useRouter } from 'next/router';
+import { useSnackbar } from 'notistack';
+import { useEffect } from 'react';
 import {
   HomeDocument,
   useCreateHomeMutation,
@@ -11,54 +13,59 @@ import {
 
 const Join: NextPage = () => {
   const { t } = useTranslation('join');
+  const { enqueueSnackbar } = useSnackbar();
   const [useJoinHome] = useJoinHomeMutation();
   const [useCreateHome] = useCreateHomeMutation();
   const router = useRouter();
 
-  // ... different handling for users who are already part of home
+  // TODO: different handling for users who are already part of home
 
-  // join home and redirect if query parameter 'code' is present
-  if (router.query?.code) {
-    joinHome(router.query.code as string);
+  // Join home and redirect if query parameter 'code' is present
+  useEffect(() => {
+    if (router.query?.code) {
+      joinHome(router.query.code as string);
+    }
+  }, []);
+
+  async function joinHome(code: string) {
+    try {
+      const { data } = await useJoinHome({
+        variables: { code },
+        update(cache, { data }) {
+          if (!data) return;
+          cache.writeQuery({
+            query: HomeDocument,
+            data: { home: data.joinHomeByCode },
+          });
+        },
+      });
+      enqueueSnackbar(t('join-success', { name: data?.joinHomeByCode.name }), {
+        variant: 'success',
+      });
+      Router.push((router.query.returnTo as string) || '/overview');
+    } catch (err) {
+      enqueueSnackbar(t('join-error'), { variant: 'error' });
+    }
   }
 
-  function joinHome(code: string) {
-    useJoinHome({
-      variables: { code },
-      update(cache, { data }) {
-        if (!data) return;
-        cache.writeQuery({
-          query: HomeDocument,
-          data: { home: data.joinHomeByCode },
-        });
-      },
-    })
-      .then(() => {
-        // ... toast (success): joined home XYZ
-        Router.push((router.query.returnTo as string) || '/');
-      })
-      .catch(() => {
-        // ... toast (error): invalid invitation code
+  async function createHome() {
+    try {
+      const { data } = await useCreateHome({
+        update(cache, { data }) {
+          if (!data) return;
+          cache.writeQuery({
+            query: HomeDocument,
+            data: { home: data.createHome },
+          });
+        },
       });
-  }
-
-  function createHome() {
-    useCreateHome({
-      update(cache, { data }) {
-        if (!data) return;
-        cache.writeQuery({
-          query: HomeDocument,
-          data: { home: data.createHome },
-        });
-      },
-    })
-      .then(() => {
-        // ... toast (success): created home
-        Router.push((router.query.returnTo as string) || '/');
-      })
-      .catch(() => {
-        // ... toast (error): failed to create home
+      enqueueSnackbar(t('create-success', { name: data?.createHome.name }), {
+        variant: 'success',
       });
+      Router.push((router.query.returnTo as string) || '/overview');
+    } catch (err) {
+      enqueueSnackbar(t('create-error'), { variant: 'error' });
+    }
   }
 
   return (

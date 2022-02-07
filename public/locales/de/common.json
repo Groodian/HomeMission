@@ -14,6 +14,7 @@
   "months": "Monaten",
   "year": "Jahr",
   "years": "Jahren",
+  "user-error": "Nutzer konnte nicht geladen werden",
 
   "Navbar": {
     "statistics": "Statistiken",
@@ -28,9 +29,11 @@
   "Rightbar": {
     "open-tasks": "Offene Aufgaben",
     "no-text-info": "Alles erledigt!",
-    "error-message": "Aufgaben konnten nicht geladen werden! Versuche die Seite zu aktualisieren.",
+    "error-message": "Offene Aufgaben konnten nicht geladen werden",
     "tooltip-avatar": "Du bist zugeordnet",
     "tooltip-loop": "Teil einer Serie",
-    "complete": "Erledigen"
+    "complete": "Erledigen",
+    "complete-success": "Aufgabe erledigt",
+    "complete-error": "Aufgabe konnte nicht abgeschlossen werden"
   }
 }

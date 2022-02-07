@@ -1,5 +1,9 @@
 {
   "placeholder": "Enter invitation code",
   "join": "Join home",
-  "create": "Create new home"
+  "create": "Create new home",
+  "join-success": "Joined home '{{name}}'",
+  "join-error": "Could not join home",
+  "create-success": "Created home '{{name}}'",
+  "create-error": "Could not create home"
 }

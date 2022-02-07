@@ -3,6 +3,8 @@ import { useTranslation } from 'next-i18next';
 import RightbarItem from './RightbarItem';
 import { Task } from '../entities';
 import { useOpenTasksQuery } from '../lib/graphql/operations/task.graphql';
+import { useSnackbar } from 'notistack';
+import { useEffect } from 'react';
 
 const StyledContainer = styled(Container)({
   paddingTop: '2em',
@@ -21,9 +23,14 @@ const Subtext = styled('p')(({ theme }) => ({
 
 const Rightbar = () => {
   const { t } = useTranslation('common', { keyPrefix: 'Rightbar' });
+  const { enqueueSnackbar } = useSnackbar();
   const { t: ct } = useTranslation('common');
 
   const { data, loading, error } = useOpenTasksQuery();
+
+  useEffect(() => {
+    if (error) enqueueSnackbar(t('error-message'), { variant: 'error' });
+  }, [error]);
 
   return (
     <StyledContainer>

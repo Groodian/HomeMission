@@ -14,5 +14,6 @@
   "task-created": "Created a task",
   "task-deleted": "Deleted a task",
   "task-updated": "Edited a task",
-  "task-completed": "Completed a task"
+  "task-completed": "Completed a task",
+  "error-message": "Could not load history"
 }

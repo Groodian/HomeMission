@@ -4,13 +4,21 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import { useSnackbar } from 'notistack';
+import { useEffect } from 'react';
 import homeMissionLogo from '../../public/home_mission_grey.png';
 import { useHomeQuery } from '../lib/graphql/operations/home.graphql';
 
 const Welcome: NextPage = () => {
   const { t } = useTranslation(['index', 'common']);
+  const { enqueueSnackbar } = useSnackbar();
   const router = useRouter();
   const { loading, data } = useHomeQuery();
+
+  useEffect(() => {
+    if (router.query.returnTo)
+      enqueueSnackbar(t('redirected'), { variant: 'info' });
+  }, []);
 
   if (loading) {
     return null;

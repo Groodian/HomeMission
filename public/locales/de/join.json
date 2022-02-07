@@ -1,5 +1,9 @@
 {
   "placeholder": "Einladungscode eingeben",
   "join": "WG beitreten",
-  "create": "Neue WG erstellen"
+  "create": "Neue WG erstellen",
+  "join-success": "WG '{{name}}' beigetreten",
+  "join-error": "Der WG konnte nicht beigetreten werden",
+  "create-success": "WG '{{name}}' erstellt",
+  "create-error": "Die WG konnte nicht erstellt werden"
 }

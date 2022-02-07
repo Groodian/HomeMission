@@ -6,6 +6,7 @@ import { Task } from '../entities';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { useCreateTaskReceiptMutation } from '../lib/graphql/operations/taskreceipt.graphql';
+import { useSnackbar } from 'notistack';
 
 const TaskContainer = styled(Container)(({ theme }) => ({
   backgroundColor: theme.palette.background.default,
@@ -35,6 +36,7 @@ const RightbarItem: React.FC<RightBarItemProps> = ({
   recurring,
 }) => {
   const { t } = useTranslation('common', { keyPrefix: 'Rightbar' });
+  const { enqueueSnackbar } = useSnackbar();
   const { t: ct } = useTranslation('common');
 
   const router = useRouter();
@@ -86,10 +88,13 @@ const RightbarItem: React.FC<RightBarItemProps> = ({
           variant={'outlined'}
           color={'success'}
           loading={loading}
-          onClick={() => {
-            useCreateReceipt({ variables: { task: task.id } }).catch((_err) => {
-              // ... send error toast
-            });
+          onClick={async () => {
+            try {
+              await useCreateReceipt({ variables: { task: task.id } });
+              enqueueSnackbar(t('complete-success'), { variant: 'success' });
+            } catch (err) {
+              enqueueSnackbar(t('complete-error'), { variant: 'error' });
+            }
           }}
         >
           {t('complete')}

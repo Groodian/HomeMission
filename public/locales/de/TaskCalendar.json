@@ -4,5 +4,6 @@
   "today": "Heute",
   "month": "Monat",
   "week": "Woche",
-  "day": "Tag"
+  "day": "Tag",
+  "error-message": "Aufgaben konnten nicht geladen werden"
 }
