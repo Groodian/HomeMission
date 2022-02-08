@@ -60,6 +60,7 @@ const Navbar = () => {
                 alt="HomeMission logo"
                 src={homeMissionLogo}
                 layout="responsive"
+                priority
               />
             </Box>
           </ButtonBase>
