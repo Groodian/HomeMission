@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Container } from '@mui/material';
 import { GetStaticProps, NextPage } from 'next';
-import { Container } from '@mui/material';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useSnackbar } from 'notistack';
@@ -34,26 +33,24 @@ const Overview: NextPage = () => {
   }, [error]);
 
   return (
-    <>
-      <Container>
-        <LoadingSpinner loading={loading} />
-        <TaskDetailsDrawer
-          task={selectedTask}
-          onCloseDrawer={() => setSelectedTask(undefined)}
+    <Container>
+      <LoadingSpinner loading={loading} />
+      {data && (
+        <TaskCalendar
+          tasks={data.tasks as Task[]}
+          onSelectEvent={(task) => {
+            setSelectedTask(task);
+          }}
+          onSelectSlot={(_slotInfo) => {
+            // ... handle slot selection
+          }}
         />
-        {data && (
-          <TaskCalendar
-            tasks={data.tasks as Task[]}
-            onSelectEvent={(task) => {
-              setSelectedTask(task);
-            }}
-            onSelectSlot={(_slotInfo) => {
-              // ... handle slot selection
-            }}
-          />
-        )}
-      </Container>
-    </>
+      )}
+      <TaskDetailsDrawer
+        task={selectedTask}
+        onCloseDrawer={() => setSelectedTask(undefined)}
+      />
+    </Container>
   );
 };
 

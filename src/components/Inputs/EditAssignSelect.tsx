@@ -1,13 +1,29 @@
 import React from 'react';
 import { useTranslation } from 'next-i18next';
 import { Avatar, MenuItem, Select, SelectChangeEvent } from '@mui/material';
-import { Task } from '../../entities';
+import { Task, User } from '../../entities';
 import { useRoommatesQuery } from '../../lib/graphql/operations/roommates.graphql';
 import {
   useAssignTaskMutation,
   useUnassignTaskMutation,
 } from '../../lib/graphql/operations/task.graphql';
 import { useSnackbar } from 'notistack';
+
+// Supporting component that displays users avatar and name next to each other (also used in TaskDetailsDrawer)
+export const AvatarAndName: React.FC<{
+  user: User;
+}> = ({ user }) => {
+  return (
+    <span style={{ display: 'flex', overflow: 'clip', marginTop: '0.2em' }}>
+      <Avatar
+        sx={{ width: 24, height: 24, marginRight: 1 }}
+        alt={user.name}
+        src={user.picture}
+      />
+      {user.name}
+    </span>
+  );
+};
 
 type EditButtonProps = {
   task: Task;
@@ -44,26 +60,18 @@ const EditAssignSelect: React.FC<EditButtonProps> = ({ task }) => {
         roommatesData.home?.users.map((user) => {
           return (
             <MenuItem key={user.id} value={user.id}>
-              <Avatar
-                sx={{ width: 24, height: 24, marginRight: 1 }}
-                alt={user.name}
-                src={user.picture}
-              />
-              {user.name}
+              <AvatarAndName user={user as User} />
             </MenuItem>
           );
         })}
-      {task.assignee && (
-        <MenuItem value="unassign">
-          <em>{tc('unassign')}</em>
-        </MenuItem>
-      )}
+      {task.assignee && <MenuItem value="unassign">{tc('unassign')}</MenuItem>}
     </Select>
   );
 
   async function handleAssigneeSelect(event: SelectChangeEvent, task: Task) {
     const value = event.target.value;
 
+    // check that something was selected, that selected assignee is not already assigned, and then differentiate between a person and the unassign option
     if (value !== '') {
       if (value === String(task.assignee?.id)) {
         enqueueSnackbar(t('already-assigned-info'), {

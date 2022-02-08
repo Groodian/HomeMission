@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  Avatar,
   Container,
   Divider,
   IconButton,
@@ -13,35 +12,37 @@ import { useTranslation } from 'next-i18next';
 import StyledDrawer from './StyledDrawer';
 import CompleteButton from './Inputs/CompleteButton';
 import { useRouter } from 'next/router';
-import EditAssignSelect from './Inputs/EditAssignSelect';
+import EditAssignSelect, { AvatarAndName } from './Inputs/EditAssignSelect';
 import DeleteButton, { Type } from './Inputs/DeleteButton';
 
+// Structural components
+const Section = styled(Container)({
+  padding: '1em 0 !important',
+});
+const FlexSpan = styled('span')({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+});
+
+// Text components
 const Text = styled(Typography)({
   wordBreak: 'break-word',
   fontSize: '1.1em',
 });
-const TextLg = styled(Text)({
-  fontSize: '1.3em',
-});
-const Segment = styled('span')({
-  display: 'inline-block',
-  marginRight: '1.5em',
-});
-const SegmentFlex = styled('span')({
-  display: 'flex',
-  flexWrap: 'wrap',
-  // marginRight: '1.5em',
-});
-const TextSub = styled(Text)(({ theme }) => ({
+const TextMuted = styled(Text)(({ theme }) => ({
   color: theme.palette.text.secondary,
-  fontSize: '0.9em',
 }));
-const TextSubLg = styled(TextSub)({
-  fontSize: '1.1em',
+const Header = styled(Text)({
+  fontSize: '1.3em',
+  fontWeight: 'bold',
+});
+const Subheader = styled(Text)({
+  fontWeight: 'bold',
 });
 
 type TaskDetailsDrawerProps = {
-  task: Task | undefined;
+  task?: Task;
   onCloseDrawer?: () => void;
 };
 const TaskDetailsDrawer: React.FC<TaskDetailsDrawerProps> = ({
@@ -52,13 +53,78 @@ const TaskDetailsDrawer: React.FC<TaskDetailsDrawerProps> = ({
 
   const router = useRouter();
 
-  const sxWidths = ['none', 'none', '15em', '15em', '20em'];
+  const sxWidths = ['none', 'none', '18em', '18em', '22em'];
 
-  return task ? (
+  const HeaderSection = task && (
+    <Section>
+      <FlexSpan>
+        <Header>{t('task-details')}</Header>
+        <IconButton
+          sx={{ justifyContent: 'flex-end', padding: '16 16px' }}
+          onClick={onCloseDrawer}
+        >
+          <Close />
+        </IconButton>
+      </FlexSpan>
+      {!task.receipt && <CompleteButton task={task} />}
+    </Section>
+  );
+
+  const TaskSection = task && (
+    <Section>
+      <Subheader>{task.type?.name}</Subheader>
+      <Text> {task.type?.points} Points</Text>
+      <TextMuted>
+        {new Date(task.date).toLocaleString(router.locale).split(',')[0]}
+      </TextMuted>
+    </Section>
+  );
+
+  const AssigneeSection = task && (
+    <Section>
+      <FlexSpan>
+        <Subheader>
+          {task.assignee ? t('assignee') : t('no-assignee')}
+        </Subheader>
+        <EditAssignSelect task={task} />
+      </FlexSpan>
+      {task.assignee && <AvatarAndName user={task.assignee} />}
+    </Section>
+  );
+
+  const CompleterSection = task && task.receipt && task.receipt.completer && (
+    <Section>
+      <Subheader>{t('completed-by')}</Subheader>
+      <AvatarAndName user={task.receipt.completer} />
+      <TextMuted sx={{ fontSize: '0.9em' }}>
+        {t('date-on')}{' '}
+        {
+          new Date(task.receipt.completionDate)
+            .toLocaleString(router.locale)
+            .split(',')[0]
+        }{' '}
+        {t('date-at')}{' '}
+        {
+          new Date(task.receipt.completionDate)
+            .toLocaleString(router.locale)
+            .split(',')[1]
+        }
+      </TextMuted>
+    </Section>
+  );
+
+  const SectionDelete = task && (
+    <Section>
+      <DeleteButton task={task} type={Type.single} />
+      {task.series && <DeleteButton task={task} type={Type.series} />}
+    </Section>
+  );
+
+  return (
     <StyledDrawer
       variant="persistent"
       anchor="right"
-      open={true}
+      open={task !== undefined}
       sx={{
         width: sxWidths,
         '& .MuiDrawer-paper': {
@@ -66,104 +132,24 @@ const TaskDetailsDrawer: React.FC<TaskDetailsDrawerProps> = ({
         },
       }}
     >
-      <Container>
-        <span
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-          }}
-        >
-          <TextLg>{t('task-details')}</TextLg>
-          <IconButton
-            sx={{ justifyContent: 'flex-end', padding: '16 16px' }}
-            onClick={onCloseDrawer}
-          >
-            <Close fontSize={'medium'} />
-          </IconButton>
-        </span>
-        {!task.receipt && <CompleteButton task={task} />}
-      </Container>
-
-      <Container>
-        <Divider />
-        <Text>
-          <Segment sx={{ fontWeight: 'bold' }}>{task.type?.name}</Segment>
-          <br />
-          <Segment>{task.type?.points} Points</Segment>
-        </Text>
-        <TextSubLg>
-          {new Date(task.date).toLocaleString(router.locale).split(',')[0]}
-        </TextSubLg>
-        <Divider />
-        {task.assignee ? (
-          <>
-            <SegmentFlex sx={{ justifyContent: 'space-between' }}>
-              <Text>Assignee</Text>
-              <EditAssignSelect task={task} />
-            </SegmentFlex>
-            <SegmentFlex sx={{ flexWrap: 'initial', overflow: 'clip' }}>
-              <Avatar
-                sx={{ width: 24, height: 24, marginRight: 1 }}
-                alt={task.assignee.name}
-                src={task.assignee.picture}
-              />
-              {task.assignee.name}
-            </SegmentFlex>
-          </>
-        ) : (
-          <SegmentFlex
-            sx={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              width: '100%',
-              margin: 'initial',
-            }}
-          >
-            <Text>No Assignee</Text>
-            <EditAssignSelect task={task} />
-          </SegmentFlex>
-        )}
-        <Divider />
-        {task.receipt && (
-          <>
-            <Text>{t('completed-by')}</Text>
-            <SegmentFlex sx={{ flexWrap: 'initial', overflow: 'clip' }}>
-              <Avatar
-                sx={{ width: 24, height: 24, marginRight: 1 }}
-                alt={task.receipt.completer?.name}
-                src={task.receipt.completer?.picture}
-              />
-              {task.receipt.completer?.name}
-            </SegmentFlex>
-            <TextSub>
-              {t('date-on')}{' '}
-              {
-                new Date(task.receipt.completionDate)
-                  .toLocaleString(router.locale)
-                  .split(',')[0]
-              }{' '}
-              {t('date-at')}{' '}
-              {
-                new Date(task.receipt.completionDate)
-                  .toLocaleString(router.locale)
-                  .split(',')[1]
-              }{' '}
-            </TextSub>
-          </>
-        )}
-        <Divider />
-        <DeleteButton task={task} type={Type.single} />
-        {task.series && (
-          <>
-            <DeleteButton task={task} type={Type.series_all} />
-            <DeleteButton task={task} type={Type.series_sub} />
-          </>
-        )}
-      </Container>
+      {task && (
+        <Container>
+          {HeaderSection}
+          <Divider />
+          {TaskSection}
+          <Divider />
+          {AssigneeSection}
+          <Divider />
+          {task.receipt && (
+            <>
+              {CompleterSection}
+              <Divider />
+            </>
+          )}
+          {SectionDelete}
+        </Container>
+      )}
     </StyledDrawer>
-  ) : (
-    <></>
   );
 };
 

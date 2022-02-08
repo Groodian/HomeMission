@@ -25,7 +25,7 @@ const Rightbar = () => {
     if (error) enqueueSnackbar(t('error-message'), { variant: 'error' });
   }, [error]);
 
-  const sxWidths = [0, 0, '15em', '15em', '20em'];
+  const sxWidths = [0, 0, '18em', '18em', '22em'];
 
   return (
     <StyledDrawer
