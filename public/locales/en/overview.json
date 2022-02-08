@@ -1,19 +1,19 @@
 {
+  "error-message": "Could not load tasks",
+
   "TaskCalendar": {
     "next": "next",
     "previous": "previous",
     "today": "today",
     "month": "month",
     "week": "week",
-    "day": "day",
-    "error-message": "Could not load tasks"
+    "day": "day"
   },
 
   "TaskDetailsDrawer": {
     "task-details": "Task Details",
     "completed-by": "Completed by",
-    "date-on": "on",
-    "date-at": "at",
+    "completed-time": "on {{date}} at {{time}}",
     "assignee": "Assignee",
     "no-assignee": "No Assignee",
     "delete-single": "Delete",

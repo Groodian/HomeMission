@@ -11,7 +11,7 @@ import { Task } from '../entities';
 import { useTasksQuery } from '../lib/graphql/operations/task.graphql';
 
 const Overview: NextPage = () => {
-  const { t } = useTranslation(['TaskCalendar']);
+  const { t } = useTranslation(['overview']);
   const { loading, error, data } = useTasksQuery();
   const { enqueueSnackbar } = useSnackbar();
 

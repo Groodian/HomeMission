@@ -28,7 +28,8 @@ export type CEvent = {
 const CEventWrapperVisualize: React.ComponentType<EventWrapperProps<CEvent>> = (
   props
 ) => {
-  const user = props.event.resource.assignee;
+  const task = props.event.resource;
+  const user = task.receipt?.completer || task.assignee;
   const avatar = user && (
     <Avatar sx={{ width: 24, height: 24 }} alt={user.name} src={user.picture} />
   );
@@ -46,6 +47,7 @@ const CEventVisualize = (props: EventProps<CEvent>) => {
   return (
     <span>
       <strong>{event.resource.type?.name}</strong>
+      {/* TODO: points icon */}
       {event.resource.type?.points && ': ' + event.resource.type?.points + 'P'}
     </span>
   );
@@ -77,7 +79,7 @@ const TaskCalendar: React.FC<TaskCalendarProps> = ({
   const events: CEvent[] = tasks
     ? tasks.map((task) => {
         return {
-          title: task.type?.name + ' - ' + task.type?.points + ' points',
+          title: task.type?.name + ' - ' + task.type?.points + ' points', // TODO: points icon
           start: task.date,
           end: task.date,
           allDay: true,

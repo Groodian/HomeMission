@@ -73,7 +73,8 @@ const TaskDetailsDrawer: React.FC<TaskDetailsDrawerProps> = ({
   const TaskSection = task && (
     <Section>
       <Subheader>{task.type?.name}</Subheader>
-      <Text> {task.type?.points} Points</Text>
+      {/* TODO: points icon */}
+      <Text>{task.type?.points} Points</Text>
       <TextMuted>
         {new Date(task.date).toLocaleString(router.locale).split(',')[0]}
       </TextMuted>
@@ -97,23 +98,19 @@ const TaskDetailsDrawer: React.FC<TaskDetailsDrawerProps> = ({
       <Subheader>{t('completed-by')}</Subheader>
       <AvatarAndName user={task.receipt.completer} />
       <TextMuted sx={{ fontSize: '0.9em' }}>
-        {t('date-on')}{' '}
-        {
-          new Date(task.receipt.completionDate)
+        {t('completed-time', {
+          date: new Date(task.receipt.completionDate)
             .toLocaleString(router.locale)
-            .split(',')[0]
-        }{' '}
-        {t('date-at')}{' '}
-        {
-          new Date(task.receipt.completionDate)
+            .split(',')[0],
+          time: new Date(task.receipt.completionDate)
             .toLocaleString(router.locale)
-            .split(',')[1]
-        }
+            .split(',')[1],
+        })}
       </TextMuted>
     </Section>
   );
 
-  const SectionDelete = task && (
+  const DeleteSection = task && (
     <Section>
       <DeleteButton task={task} type={Type.single} />
       {task.series && <DeleteButton task={task} type={Type.series} />}
@@ -138,15 +135,9 @@ const TaskDetailsDrawer: React.FC<TaskDetailsDrawerProps> = ({
           <Divider />
           {TaskSection}
           <Divider />
-          {AssigneeSection}
+          {task.receipt ? CompleterSection : AssigneeSection}
           <Divider />
-          {task.receipt && (
-            <>
-              {CompleterSection}
-              <Divider />
-            </>
-          )}
-          {SectionDelete}
+          {DeleteSection}
         </Container>
       )}
     </StyledDrawer>

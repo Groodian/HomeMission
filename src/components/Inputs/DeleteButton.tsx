@@ -15,18 +15,10 @@ export enum Type {
   series,
 }
 
-const DeleteButtonSkeleton: React.FC<LoadingButtonProps> = (props) => {
-  return (
-    <LoadingButton
-      sx={{ width: '100%' }}
-      variant={'outlined'}
-      color={'error'}
-      loading={props.loading}
-      onClick={props.onClick}
-    >
-      {props.children}
-    </LoadingButton>
-  );
+const commonLoadingButtonProps: Partial<LoadingButtonProps> = {
+  sx: { width: '100%' },
+  variant: 'outlined',
+  color: 'error',
 };
 
 type DeleteButtonProps = {
@@ -46,26 +38,32 @@ const DeleteButton: React.FC<DeleteButtonProps> = ({ task, type }) => {
     useDeleteTaskSeriesSubsectionMutation(refetchOptions);
 
   return type === Type.single ? (
-    <DeleteButtonSkeleton loading={loadingSingle} onClick={handleOnClickSingle}>
+    <LoadingButton
+      {...commonLoadingButtonProps}
+      loading={loadingSingle}
+      onClick={handleOnClickSingle}
+    >
       {t('delete-single')}
-    </DeleteButtonSkeleton>
+    </LoadingButton>
   ) : (
     <ButtonGroup sx={{ marginTop: '0.5em' }}>
       <Tooltip title={t('delete-series-all-tooltip') as string}>
-        <DeleteButtonSkeleton
+        <LoadingButton
+          {...commonLoadingButtonProps}
           loading={loadingSeriesAll}
           onClick={handleOnClickAll}
         >
           {t('delete-series-all')}
-        </DeleteButtonSkeleton>
+        </LoadingButton>
       </Tooltip>
       <Tooltip title={t('delete-series-sub-tooltip') as string}>
-        <DeleteButtonSkeleton
+        <LoadingButton
+          {...commonLoadingButtonProps}
           loading={loadingSeriesSub}
           onClick={handleOnClickSub}
         >
           {t('delete-series-sub')}
-        </DeleteButtonSkeleton>
+        </LoadingButton>
       </Tooltip>
     </ButtonGroup>
   );

@@ -1,24 +1,24 @@
 {
+  "error-message": "Aufgaben konnten nicht geladen werden",
+
   "TaskCalendar": {
     "next": "Danach",
     "previous": "Davor",
     "today": "Heute",
     "month": "Monat",
     "week": "Woche",
-    "day": "Tag",
-    "error-message": "Aufgaben konnten nicht geladen werden"
+    "day": "Tag"
   },
 
   "TaskDetailsDrawer": {
     "task-details": "Aufgabendetails",
     "completed-by": "Erledigt von",
-    "date-on": "am",
-    "date-at": "um",
+    "completed-time": "am {{date}} um {{time}} Uhr",
     "assignee": "Zuordnung",
     "no-assignee": "Keine Zuordnung",
     "delete-single": "Löschen",
     "delete-series-all": "Alle löschen",
-    "delete-series-sub": "Folgenden löschen",
+    "delete-series-sub": "Folgende löschen",
     "delete-series-all-tooltip": "Lösche alle Aufgaben der Aufgabenreihe",
     "delete-series-sub-tooltip": "Lösche alle folgenden Aufgaben der Aufgabenreihe",
     "delete-single-success": "Aufgabe gelöscht",
@@ -30,7 +30,7 @@
     "assign-success": "Aufgabe wurde zugeordnet",
     "assign-error": "Aufgabe konnte nicht zugeordnet werden",
     "unassign-success": "Zugeordneter wurde entfernt",
-    "unassign-error": "Zugeorneter konnte nicht entfernt werden",
+    "unassign-error": "Zugeordneter konnte nicht entfernt werden",
     "already-assigned-info": "Person ist schon zugeordnet"
   }
 }
