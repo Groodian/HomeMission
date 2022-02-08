@@ -6,19 +6,20 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Home, Task } from '.';
+import Home from './home';
+import Task from './task';
 
 @Entity()
 @ObjectType()
-export class TaskSeries extends BaseEntity {
+export default class TaskSeries extends BaseEntity {
   @PrimaryGeneratedColumn()
   @Field(() => ID)
   id!: string;
 
-  @ManyToOne(() => Home, (home) => home.taskSeries)
+  @ManyToOne('Home', 'taskSeries')
   relatedHome: Home | null | undefined;
 
-  @OneToMany(() => Task, (task) => task.series, { onDelete: 'CASCADE' })
+  @OneToMany('Task', 'series', { onDelete: 'CASCADE' })
   tasks!: Task[];
 
   constructor(home: Home) {

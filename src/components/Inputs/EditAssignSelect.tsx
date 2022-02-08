@@ -1,7 +1,8 @@
 import React from 'react';
 import { useTranslation } from 'next-i18next';
 import { Avatar, MenuItem, Select, SelectChangeEvent } from '@mui/material';
-import { Task, User } from '../../entities';
+import Task from '../../entities/task';
+import User from '../../entities/user';
 import { useRoommatesQuery } from '../../lib/graphql/operations/roommates.graphql';
 import {
   useAssignTaskMutation,

@@ -6,11 +6,12 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Home, Task } from '.';
+import Home from './home';
+import Task from './task';
 
 @Entity()
 @ObjectType()
-export class TaskType extends BaseEntity {
+export default class TaskType extends BaseEntity {
   @PrimaryGeneratedColumn()
   @Field(() => ID)
   id!: string;
@@ -23,10 +24,10 @@ export class TaskType extends BaseEntity {
   @Field()
   points!: number;
 
-  @ManyToOne(() => Home, (home) => home.taskTypes, { nullable: true })
+  @ManyToOne('Home', 'taskTypes', { nullable: true })
   relatedHome?: Home | null | undefined;
 
-  @ManyToOne(() => Task, (task) => task.type)
+  @ManyToOne('Task', 'type')
   tasksOfType!: Task[];
 
   constructor(name: string, points: number, home: Home) {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Avatar, Badge } from '@mui/material';
 import StyledCalendar from './StyledCalendar';
-import { Task } from '../entities';
+import Task from '../entities/task';
 import {
   EventProps,
   EventWrapperProps,

@@ -8,11 +8,15 @@ import {
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Home, TaskType, TaskSeries, TaskReceipt, User } from '.';
+import Home from './home';
+import TaskReceipt from './taskreceipt';
+import TaskSeries from './taskseries';
+import TaskType from './tasktype';
+import User from './user';
 
 @Entity()
 @ObjectType()
-export class Task extends BaseEntity {
+export default class Task extends BaseEntity {
   @PrimaryGeneratedColumn()
   @Field(() => ID)
   id!: string;
@@ -21,23 +25,23 @@ export class Task extends BaseEntity {
   @Field()
   date!: Date;
 
-  @ManyToOne(() => TaskType, (taskType) => taskType.tasksOfType)
+  @ManyToOne('TaskType', 'tasksOfType')
   type: TaskType | null | undefined;
 
-  @ManyToOne(() => TaskSeries, (taskSeries) => taskSeries.tasks, {
+  @ManyToOne('TaskSeries', 'tasks', {
     nullable: true,
   })
   series?: TaskSeries | null | undefined;
 
-  @ManyToOne(() => User, (user) => user.tasks, {
+  @ManyToOne('User', 'tasks', {
     nullable: true,
   })
   assignee?: User | null | undefined;
 
-  @ManyToOne(() => Home, (home) => home.tasks)
+  @ManyToOne('Home', 'tasks')
   relatedHome: Home | null | undefined;
 
-  @OneToOne(() => TaskReceipt, {
+  @OneToOne('TaskReceipt', {
     nullable: true,
   })
   @JoinColumn()

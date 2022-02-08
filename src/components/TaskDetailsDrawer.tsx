@@ -7,7 +7,7 @@ import {
   Typography,
 } from '@mui/material';
 import { Close } from '@mui/icons-material';
-import { Task } from '../entities';
+import Task from '../entities/task';
 import { useTranslation } from 'next-i18next';
 import StyledDrawer from './StyledDrawer';
 import CompleteButton from './Inputs/CompleteButton';

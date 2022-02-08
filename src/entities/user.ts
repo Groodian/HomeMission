@@ -10,11 +10,14 @@ import {
   OneToMany,
   PrimaryColumn,
 } from 'typeorm';
-import { Home, TaskReceipt, History, Task } from '.';
+import History from './history';
+import Home from './home';
+import Task from './task';
+import TaskReceipt from './taskreceipt';
 
 @Entity()
 @ObjectType()
-export class User extends BaseEntity {
+export default class User extends BaseEntity {
   @PrimaryColumn()
   @Field(() => ID)
   id!: string;
@@ -31,16 +34,16 @@ export class User extends BaseEntity {
   @Field()
   points!: number;
 
-  @ManyToOne(() => Home, (home) => home.users)
+  @ManyToOne('Home', 'users')
   home: Home | null | undefined;
 
-  @OneToMany(() => History, (history) => history.user)
+  @OneToMany('History', 'user')
   history!: History[];
 
-  @OneToMany(() => TaskReceipt, (receipt) => receipt.completer)
+  @OneToMany('TaskReceipt', 'completer')
   receipts!: TaskReceipt[];
 
-  @OneToMany(() => Task, (task) => task.assignee)
+  @OneToMany('Task', 'assignee')
   tasks!: Task[];
 
   @AfterLoad()

@@ -6,7 +6,8 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { User, Home } from './index';
+import Home from './home';
+import User from './user';
 
 export enum HistoryType {
   USER_JOIN = 'user_join',
@@ -31,15 +32,15 @@ registerEnumType(HistoryType, {
 
 @Entity()
 @ObjectType()
-export class History extends BaseEntity {
+export default class History extends BaseEntity {
   @PrimaryGeneratedColumn()
   @Field(() => ID)
   id!: string;
 
-  @ManyToOne(() => Home, (home) => home.history)
+  @ManyToOne('Home', 'history')
   home!: Home;
 
-  @ManyToOne(() => User, (user) => user.history, { eager: true })
+  @ManyToOne('User', 'history', { eager: true })
   @Field()
   user!: User;
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { ButtonGroup, Tooltip } from '@mui/material';
 import { LoadingButton, LoadingButtonProps } from '@mui/lab';
 import { useTranslation } from 'next-i18next';
-import { Task } from '../../entities';
+import Task from '../../entities/task';
 import { useDeleteTaskMutation } from '../../lib/graphql/operations/task.graphql';
 import {
   useDeleteTaskSeriesMutation,

@@ -1,3 +1,4 @@
+import { Session } from '@auth0/nextjs-auth0';
 import {
   Arg,
   Authorized,
@@ -8,19 +9,15 @@ import {
   ResolverInterface,
   Root,
 } from 'type-graphql';
-import {
-  History,
-  HistoryType,
-  Home,
-  Task,
-  TaskReceipt,
-  TaskType,
-  User,
-} from '../../../entities';
+import History, { HistoryType } from '../../../entities/history';
+import Home from '../../../entities/home';
+import Task from '../../../entities/task';
+import TaskReceipt from '../../../entities/taskreceipt';
+import TaskType from '../../../entities/tasktype';
+import User from '../../../entities/user';
+import CurrentSession from '../../auth0/current-session';
 import databaseConnection from '../../typeorm/connection';
 import Helper from './helper';
-import CurrentSession from '../../auth0/current-session';
-import { Session } from '@auth0/nextjs-auth0';
 
 @Resolver(Home)
 export default class HomeResolver implements ResolverInterface<Home> {

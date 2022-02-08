@@ -1,7 +1,7 @@
 import React from 'react';
 import { Avatar, Badge, Container, styled, Tooltip } from '@mui/material';
 import { Loop } from '@mui/icons-material';
-import { Task } from '../entities';
+import Task from '../entities/task';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import CompleteButton from './Inputs/CompleteButton';

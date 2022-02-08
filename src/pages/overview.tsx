@@ -7,7 +7,7 @@ import { useSnackbar } from 'notistack';
 import LoadingSpinner from '../components/LoadingSpinner';
 import TaskCalendar from '../components/TaskCalendar';
 import TaskDetailsDrawer from '../components/TaskDetailsDrawer';
-import { Task } from '../entities';
+import Task from '../entities/task';
 import { useTasksQuery } from '../lib/graphql/operations/task.graphql';
 
 const Overview: NextPage = () => {

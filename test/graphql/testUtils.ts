@@ -4,14 +4,12 @@ import { IncomingMessage } from 'http';
 import { Socket } from 'net';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getConnection } from 'typeorm';
-import {
-  Home,
-  Task,
-  TaskSeries,
-  TaskType,
-  User,
-  TaskReceipt,
-} from '../../src/entities';
+import Home from '../../src/entities/home';
+import Task from '../../src/entities/task';
+import TaskReceipt from '../../src/entities/taskreceipt';
+import TaskSeries from '../../src/entities/taskseries';
+import TaskType from '../../src/entities/tasktype';
+import User from '../../src/entities/user';
 import databaseConnection from '../../src/lib/typeorm/connection';
 import graphql from '../../src/pages/api/graphql';
 

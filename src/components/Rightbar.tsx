@@ -2,7 +2,7 @@ import React from 'react';
 import { CircularProgress, Container, styled } from '@mui/material';
 import { useTranslation } from 'next-i18next';
 import RightbarItem from './RightbarItem';
-import { Task } from '../entities';
+import Task from '../entities/task';
 import { useOpenTasksQuery } from '../lib/graphql/operations/task.graphql';
 import { useSnackbar } from 'notistack';
 import StyledDrawer from './StyledDrawer';

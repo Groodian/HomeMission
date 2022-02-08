@@ -1,7 +1,8 @@
 import React from 'react';
 import { LoadingButton } from '@mui/lab';
 import { useTranslation } from 'next-i18next';
-import { Task, TaskReceipt } from '../../entities';
+import Task from '../../entities/task';
+import TaskReceipt from '../../entities/taskreceipt';
 import { useCreateTaskReceiptMutation } from '../../lib/graphql/operations/taskreceipt.graphql';
 import { useSnackbar } from 'notistack';
 

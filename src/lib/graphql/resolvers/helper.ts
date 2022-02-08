@@ -1,13 +1,10 @@
 import { Session } from '@auth0/nextjs-auth0';
-import {
-  History,
-  HistoryType,
-  Home,
-  Task,
-  TaskSeries,
-  TaskType,
-  User,
-} from '../../../entities';
+import History, { HistoryType } from '../../../entities/history';
+import Home from '../../../entities/home';
+import Task from '../../../entities/task';
+import TaskSeries from '../../../entities/taskseries';
+import TaskType from '../../../entities/tasktype';
+import User from '../../../entities/user';
 import databaseConnection from '../../typeorm/connection';
 
 export default class Helper {

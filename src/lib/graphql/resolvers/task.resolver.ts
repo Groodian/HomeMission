@@ -1,3 +1,4 @@
+import { Session } from '@auth0/nextjs-auth0';
 import {
   Arg,
   Authorized,
@@ -8,19 +9,16 @@ import {
   ResolverInterface,
   Root,
 } from 'type-graphql';
-import databaseConnection from '../../typeorm/connection';
-import {
-  Task,
-  TaskReceipt,
-  TaskSeries,
-  TaskType,
-  HistoryType,
-  User,
-} from '../../../entities';
-import Helper from './helper';
-import CurrentSession from '../../auth0/current-session';
-import { Session } from '@auth0/nextjs-auth0';
 import { Between } from 'typeorm';
+import { HistoryType } from '../../../entities/history';
+import Task from '../../../entities/task';
+import TaskReceipt from '../../../entities/taskreceipt';
+import TaskSeries from '../../../entities/taskseries';
+import TaskType from '../../../entities/tasktype';
+import User from '../../../entities/user';
+import CurrentSession from '../../auth0/current-session';
+import databaseConnection from '../../typeorm/connection';
+import Helper from './helper';
 
 @Resolver(Task)
 export default class TaskResolver implements ResolverInterface<Task> {

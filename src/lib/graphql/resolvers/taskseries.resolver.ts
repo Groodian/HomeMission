@@ -1,9 +1,12 @@
-import { Arg, Authorized, Mutation, Resolver } from 'type-graphql';
-import databaseConnection from '../../typeorm/connection';
-import { Task, TaskSeries, TaskType, HistoryType } from '../../../entities';
-import Helper from './helper';
-import CurrentSession from '../../auth0/current-session';
 import { Session } from '@auth0/nextjs-auth0';
+import { Arg, Authorized, Mutation, Resolver } from 'type-graphql';
+import { HistoryType } from '../../../entities/history';
+import Task from '../../../entities/task';
+import TaskSeries from '../../../entities/taskseries';
+import TaskType from '../../../entities/tasktype';
+import CurrentSession from '../../auth0/current-session';
+import databaseConnection from '../../typeorm/connection';
+import Helper from './helper';
 
 @Resolver(TaskSeries)
 export default class TaskSeriesResolver {

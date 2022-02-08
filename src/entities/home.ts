@@ -9,11 +9,16 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { User, TaskType, TaskSeries, Task, TaskReceipt, History } from '.';
+import History from './history';
+import Task from './task';
+import TaskReceipt from './taskreceipt';
+import TaskSeries from './taskseries';
+import TaskType from './tasktype';
+import User from './user';
 
 @Entity()
 @ObjectType()
-export class Home extends BaseEntity {
+export default class Home extends BaseEntity {
   @PrimaryGeneratedColumn()
   @Field(() => ID)
   id!: string;
@@ -26,29 +31,29 @@ export class Home extends BaseEntity {
   @Field()
   code!: string;
 
-  @OneToMany(() => User, (user) => user.home)
+  @OneToMany('User', 'home')
   users!: User[];
 
-  @OneToMany(() => History, (history) => history.home)
+  @OneToMany('History', 'home')
   history!: History[];
 
-  @OneToMany(() => TaskType, (taskType) => taskType.relatedHome, {
+  @OneToMany('TaskType', 'relatedHome', {
     onDelete: 'CASCADE',
   })
   taskTypes!: TaskType[];
 
-  @OneToMany(() => TaskSeries, (taskSeries) => taskSeries.relatedHome, {
+  @OneToMany('TaskSeries', 'relatedHome', {
     onDelete: 'CASCADE',
   })
   taskSeries!: TaskSeries[];
 
-  @OneToMany(() => Task, (task) => task.relatedHome, { onDelete: 'CASCADE' })
+  @OneToMany('Task', 'relatedHome', { onDelete: 'CASCADE' })
   tasks!: Task[];
 
-  @OneToMany(() => TaskReceipt, (receipt) => receipt.relatedHome, {
+  @OneToMany('TaskReceipt', 'relatedHome', {
     onDelete: 'CASCADE',
   })
-  taskReceipts!: Task[];
+  taskReceipts!: TaskReceipt[];
 
   constructor() {
     super();

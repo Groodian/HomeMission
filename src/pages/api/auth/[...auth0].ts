@@ -4,7 +4,7 @@ import {
   handleCallback,
   HandlerError,
 } from '@auth0/nextjs-auth0';
-import { User } from '../../../entities';
+import User from '../../../entities/user';
 import databaseConnection from '../../../lib/typeorm/connection';
 
 const afterCallback: AfterCallback = async (req, res, session) => {
