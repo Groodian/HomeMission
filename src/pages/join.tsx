@@ -14,8 +14,8 @@ import {
 const Join: NextPage = () => {
   const { t } = useTranslation('join');
   const { enqueueSnackbar } = useSnackbar();
-  const [useJoinHome] = useJoinHomeMutation();
-  const [useCreateHome] = useCreateHomeMutation();
+  const [joinHome] = useJoinHomeMutation();
+  const [createHome] = useCreateHomeMutation();
   const router = useRouter();
 
   // TODO: different handling for users who are already part of home
@@ -23,13 +23,13 @@ const Join: NextPage = () => {
   // Join home and redirect if query parameter 'code' is present
   useEffect(() => {
     if (router.query?.code) {
-      joinHome(router.query.code as string);
+      handleJoinHome(router.query.code as string);
     }
   }, []);
 
-  async function joinHome(code: string) {
+  async function handleJoinHome(code: string) {
     try {
-      const { data } = await useJoinHome({
+      const { data } = await joinHome({
         variables: { code },
         update(cache, { data }) {
           if (!data) return;
@@ -48,9 +48,9 @@ const Join: NextPage = () => {
     }
   }
 
-  async function createHome() {
+  async function handleCreateHome() {
     try {
-      const { data } = await useCreateHome({
+      const { data } = await createHome({
         update(cache, { data }) {
           if (!data) return;
           cache.writeQuery({
@@ -76,12 +76,12 @@ const Join: NextPage = () => {
           const codeValue = (
             document.getElementById('codeInput') as HTMLInputElement
           ).value;
-          joinHome(codeValue);
+          handleJoinHome(codeValue);
         }}
       >
         {t('join')}
       </Button>
-      <Button onClick={() => createHome()}>{t('create')}</Button>
+      <Button onClick={handleCreateHome}>{t('create')}</Button>
     </>
   );
 };

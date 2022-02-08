@@ -30,11 +30,11 @@ const DeleteButton: React.FC<DeleteButtonProps> = ({ task, type }) => {
   const { enqueueSnackbar } = useSnackbar();
 
   const refetchOptions = { refetchQueries: ['Tasks', 'OpenTasks'] };
-  const [useDeleteTask, { loading: loadingSingle }] =
+  const [deleteTask, { loading: loadingSingle }] =
     useDeleteTaskMutation(refetchOptions);
-  const [useDeleteTaskSeries, { loading: loadingSeriesAll }] =
+  const [deleteTaskSeries, { loading: loadingSeriesAll }] =
     useDeleteTaskSeriesMutation(refetchOptions);
-  const [useDeleteTaskSeriesSubsection, { loading: loadingSeriesSub }] =
+  const [deleteTaskSeriesSubsection, { loading: loadingSeriesSub }] =
     useDeleteTaskSeriesSubsectionMutation(refetchOptions);
 
   return type === Type.single ? (
@@ -70,7 +70,7 @@ const DeleteButton: React.FC<DeleteButtonProps> = ({ task, type }) => {
 
   async function handleOnClickSingle() {
     try {
-      await useDeleteTask({ variables: { task: task.id } });
+      await deleteTask({ variables: { task: task.id } });
       enqueueSnackbar(t('delete-single-success'), {
         variant: 'success',
       });
@@ -84,7 +84,7 @@ const DeleteButton: React.FC<DeleteButtonProps> = ({ task, type }) => {
   async function handleOnClickAll() {
     if (task.series)
       try {
-        await useDeleteTaskSeries({
+        await deleteTaskSeries({
           variables: { series: task.series.id },
         });
         enqueueSnackbar(t('delete-series-all-success'), {
@@ -100,7 +100,7 @@ const DeleteButton: React.FC<DeleteButtonProps> = ({ task, type }) => {
   async function handleOnClickSub() {
     if (task.series)
       try {
-        await useDeleteTaskSeriesSubsection({
+        await deleteTaskSeriesSubsection({
           variables: { series: task.series.id, start: task.id },
         });
         enqueueSnackbar(t('delete-series-sub-success'), {

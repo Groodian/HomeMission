@@ -13,6 +13,7 @@ import {
 import { GetStaticProps, NextPage } from 'next';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import InlineDiamond from '../components/InlineDiamond';
 import {
   useCreateTaskMutation,
   useDeleteTaskMutation,
@@ -57,15 +58,15 @@ const Tasks: NextPage = () => {
     refetch: receiptsRefetch,
   } = useReceiptsQuery();
 
-  const [useCreateType] = useCreateTaskTypeMutation();
-  const [useCreateTask] = useCreateTaskMutation(refetchOptions);
-  const [useCreateSeries] = useCreateTaskSeriesMutation(refetchOptions);
-  const [useRemoveType] = useRemoveTaskTypeMutation();
-  const [useDeleteTask] = useDeleteTaskMutation(refetchOptions);
-  const [useDeleteSeries] = useDeleteTaskSeriesMutation(refetchOptions);
-  const [useDeleteSeriesSubsection] =
+  const [createType] = useCreateTaskTypeMutation();
+  const [createTask] = useCreateTaskMutation(refetchOptions);
+  const [createSeries] = useCreateTaskSeriesMutation(refetchOptions);
+  const [removeType] = useRemoveTaskTypeMutation();
+  const [deleteTask] = useDeleteTaskMutation(refetchOptions);
+  const [deleteSeries] = useDeleteTaskSeriesMutation(refetchOptions);
+  const [deleteSeriesSubsection] =
     useDeleteTaskSeriesSubsectionMutation(refetchOptions);
-  const [useCreateReceipt] = useCreateTaskReceiptMutation(refetchOptions);
+  const [createReceipt] = useCreateTaskReceiptMutation(refetchOptions);
 
   let selectedTypeId: string;
   let selectedSeriesTypeId: string;
@@ -105,11 +106,11 @@ const Tasks: NextPage = () => {
             {typesData.taskTypes.map((type) => (
               <ListItem key={type.id}>
                 <ListItemText>
-                  {t('id')}: {type.id}; {t('name')}: {type.name}; {t('points')}:{' '}
-                  {type.points}
+                  {t('id')}: {type.id}; {t('name')}: {type.name};{' '}
+                  <InlineDiamond />: {type.points}
                 </ListItemText>
                 <Button>
-                  <ListItemButton onClick={() => removeType(type.id)}>
+                  <ListItemButton onClick={() => handleRemoveType(type.id)}>
                     {t('remove-type')}
                   </ListItemButton>
                 </Button>
@@ -121,13 +122,8 @@ const Tasks: NextPage = () => {
             type={'text'}
             placeholder={t('task-type-placeholder-name')}
           />
-          <Input
-            id={'inputTypePoints'}
-            type={'number'}
-            placeholder={t('task-type-placeholder-points')}
-            defaultValue={'0'}
-          />
-          <Button onClick={() => createType()}>{t('create-task-type')}</Button>
+          <Input id={'inputTypePoints'} type={'number'} defaultValue={'0'} />
+          <Button onClick={handleCreateType}>{t('create-task-type')}</Button>
         </>
       )}
 
@@ -154,12 +150,12 @@ const Tasks: NextPage = () => {
                   {task.receipt ? `true (receipt ${task.receipt.id})` : 'false'}
                 </ListItemText>
                 <Button>
-                  <ListItemButton onClick={() => deleteTask(task.id)}>
+                  <ListItemButton onClick={() => handleDeleteTask(task.id)}>
                     {t('delete-task')}
                   </ListItemButton>
                 </Button>
                 <Button>
-                  <ListItemButton onClick={() => completeTask(task.id)}>
+                  <ListItemButton onClick={() => handleCompleteTask(task.id)}>
                     {t('complete-task')}
                   </ListItemButton>
                 </Button>
@@ -184,7 +180,7 @@ const Tasks: NextPage = () => {
               ))}
             </Select>
           )}
-          <Button onClick={() => createTask()}>{t('create-task')}</Button>
+          <Button onClick={handleCreateTask}>{t('create-task')}</Button>
 
           <br />
 
@@ -218,7 +214,7 @@ const Tasks: NextPage = () => {
             placeholder={t('task-series-placeholder-iterations')}
             defaultValue={''}
           />
-          <Button onClick={() => createSeries()}>
+          <Button onClick={handleCreateSeries}>
             {t('create-task-series')}
           </Button>
 
@@ -229,7 +225,7 @@ const Tasks: NextPage = () => {
             type={'text'}
             placeholder={t('delete-task-series-placeholder')}
           />
-          <Button onClick={() => deleteSeries()}>
+          <Button onClick={handleDeleteSeries}>
             {t('delete-task-series')}
           </Button>
 
@@ -245,7 +241,7 @@ const Tasks: NextPage = () => {
             type={'text'}
             placeholder={t('delete-series-subsection-placeholder-start')}
           />
-          <Button onClick={() => deleteSeriesSubsection()}>
+          <Button onClick={handleDeleteSeriesSubsection}>
             {t('delete-task-series-subsection')}
           </Button>
 
@@ -267,7 +263,7 @@ const Tasks: NextPage = () => {
                   <ListItemText>
                     {t('id')}: {receipt.id}; {t('completion-date')}:{' '}
                     {receipt.completionDate}; {t('type')}: {receipt.name};{' '}
-                    {t('points')}: {receipt.points}; {t('completer')}:{' '}
+                    {<InlineDiamond />}: {receipt.points}; {t('completer')}:{' '}
                     {receipt.completer.name}
                   </ListItemText>
                 </ListItem>
@@ -279,7 +275,7 @@ const Tasks: NextPage = () => {
     </>
   );
 
-  function createType() {
+  function handleCreateType() {
     const nameElement = document.getElementById(
       'inputTypeName'
     ) as HTMLInputElement;
@@ -295,7 +291,7 @@ const Tasks: NextPage = () => {
     } else if (!points || isNaN(Number(points)) || Number(points) <= 0) {
       pointsElement.value = '-1';
     } else {
-      useCreateType({
+      createType({
         variables: {
           name: name,
           points: Number(points),
@@ -315,14 +311,14 @@ const Tasks: NextPage = () => {
     }
   }
 
-  function createTask() {
+  function handleCreateTask() {
     const dateElement = document.getElementById(
       'inputTaskDate'
     ) as HTMLInputElement;
     const date = dateElement.value;
 
     if (date && selectedTypeId && date.trim() !== '' && selectedTypeId !== '') {
-      useCreateTask({
+      createTask({
         variables: {
           type: selectedTypeId,
           date: date,
@@ -340,7 +336,7 @@ const Tasks: NextPage = () => {
     }
   }
 
-  function createSeries() {
+  function handleCreateSeries() {
     const startElement = document.getElementById(
       'inputSeriesStart'
     ) as HTMLInputElement;
@@ -366,7 +362,7 @@ const Tasks: NextPage = () => {
       iterations > 0 &&
       interval > 0
     ) {
-      useCreateSeries({
+      createSeries({
         variables: {
           type: selectedSeriesTypeId,
           start: start,
@@ -390,14 +386,14 @@ const Tasks: NextPage = () => {
     }
   }
 
-  function deleteSeries() {
+  function handleDeleteSeries() {
     const seriesElement = document.getElementById(
       'inputDeleteSeriesId'
     ) as HTMLInputElement;
     const series = seriesElement.value;
 
     if (series && series.trim() !== '') {
-      useDeleteSeries({
+      deleteSeries({
         variables: {
           series: series,
         },
@@ -416,7 +412,7 @@ const Tasks: NextPage = () => {
     }
   }
 
-  function deleteSeriesSubsection() {
+  function handleDeleteSeriesSubsection() {
     const seriesElement = document.getElementById(
       'inputDeleteSeriesSubId'
     ) as HTMLInputElement;
@@ -428,7 +424,7 @@ const Tasks: NextPage = () => {
     const start = startElement.value;
 
     if (series && series.trim() !== '' && start && start.trim() !== '') {
-      useDeleteSeriesSubsection({
+      deleteSeriesSubsection({
         variables: {
           series: series,
           start: start,
@@ -449,8 +445,8 @@ const Tasks: NextPage = () => {
     }
   }
 
-  function removeType(type: string) {
-    useRemoveType({ variables: { type: type } })
+  function handleRemoveType(type: string) {
+    removeType({ variables: { type: type } })
       .then(() => typesRefetch())
       .catch((e) => {
         // eslint-disable-next-line no-console
@@ -458,8 +454,8 @@ const Tasks: NextPage = () => {
       });
   }
 
-  function deleteTask(task: string) {
-    useDeleteTask({ variables: { task: task } })
+  function handleDeleteTask(task: string) {
+    deleteTask({ variables: { task: task } })
       .then(() => tasksRefetch())
       .catch((e) => {
         // eslint-disable-next-line no-console
@@ -467,8 +463,8 @@ const Tasks: NextPage = () => {
       });
   }
 
-  function completeTask(task: string) {
-    useCreateReceipt({ variables: { task: task } })
+  function handleCompleteTask(task: string) {
+    createReceipt({ variables: { task: task } })
       .then(() => {
         tasksRefetch();
         receiptsRefetch();

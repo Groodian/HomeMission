@@ -15,6 +15,7 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import 'moment/locale/fr';
 import 'moment/locale/de';
 import 'moment/locale/en-gb';
+import InlineDiamond from './InlineDiamond';
 
 export type CEvent = {
   title: string;
@@ -47,8 +48,11 @@ const CEventVisualize = (props: EventProps<CEvent>) => {
   return (
     <span>
       <strong>{event.resource.type?.name}</strong>
-      {/* TODO: points icon */}
-      {event.resource.type?.points && ': ' + event.resource.type?.points + 'P'}
+      {event.resource.type?.points && (
+        <>
+          : {event.resource.type?.points} <InlineDiamond />
+        </>
+      )}
     </span>
   );
 };
@@ -79,7 +83,7 @@ const TaskCalendar: React.FC<TaskCalendarProps> = ({
   const events: CEvent[] = tasks
     ? tasks.map((task) => {
         return {
-          title: task.type?.name + ' - ' + task.type?.points + ' points', // TODO: points icon
+          title: task.type?.name + ': ' + task.type?.points,
           start: task.date,
           end: task.date,
           allDay: true,

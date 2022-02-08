@@ -34,10 +34,10 @@ const EditAssignSelect: React.FC<EditButtonProps> = ({ task }) => {
   const { enqueueSnackbar } = useSnackbar();
 
   const { data: roommatesData } = useRoommatesQuery();
-  const [useAssignTask] = useAssignTaskMutation({
+  const [assignTask] = useAssignTaskMutation({
     refetchQueries: ['Tasks', 'OpenTasks'],
   });
-  const [useUnassignTask] = useUnassignTaskMutation({
+  const [unassignTask] = useUnassignTaskMutation({
     refetchQueries: ['Tasks', 'OpenTasks'],
   });
 
@@ -51,7 +51,7 @@ const EditAssignSelect: React.FC<EditButtonProps> = ({ task }) => {
       }}
       value={''}
       size={'small'}
-      onChange={(event) => handleAssigneeSelect(event, task)}
+      onChange={handleAssigneeSelect}
     >
       <MenuItem value="">
         <em>{tc('edit')}</em>
@@ -68,7 +68,7 @@ const EditAssignSelect: React.FC<EditButtonProps> = ({ task }) => {
     </Select>
   );
 
-  async function handleAssigneeSelect(event: SelectChangeEvent, task: Task) {
+  async function handleAssigneeSelect(event: SelectChangeEvent) {
     const value = event.target.value;
 
     // check that something was selected, that selected assignee is not already assigned, and then differentiate between a person and the unassign option
@@ -80,7 +80,7 @@ const EditAssignSelect: React.FC<EditButtonProps> = ({ task }) => {
       } else {
         if (value === 'unassign') {
           try {
-            await useUnassignTask({ variables: { task: task.id } });
+            await unassignTask({ variables: { task: task.id } });
             enqueueSnackbar(t('unassign-success'), {
               variant: 'success',
             });
@@ -91,7 +91,7 @@ const EditAssignSelect: React.FC<EditButtonProps> = ({ task }) => {
           }
         } else {
           try {
-            await useAssignTask({
+            await assignTask({
               variables: { task: task.id, user: value },
             });
 

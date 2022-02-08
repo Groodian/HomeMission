@@ -16,7 +16,7 @@ const CompleteButton: React.FC<CompleteButtonProps> = ({
   const { t } = useTranslation('common');
   const { enqueueSnackbar } = useSnackbar();
 
-  const [useCreateReceipt, { loading }] = useCreateTaskReceiptMutation({
+  const [createReceipt, { loading }] = useCreateTaskReceiptMutation({
     refetchQueries: ['Tasks', 'OpenTasks'],
   });
 
@@ -28,7 +28,7 @@ const CompleteButton: React.FC<CompleteButtonProps> = ({
       loading={loading}
       onClick={async () => {
         try {
-          const res = await useCreateReceipt({ variables: { task: task.id } });
+          const res = await createReceipt({ variables: { task: task.id } });
           enqueueSnackbar(t('complete-success'), {
             variant: 'success',
           });

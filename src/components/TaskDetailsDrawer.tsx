@@ -14,6 +14,7 @@ import CompleteButton from './Inputs/CompleteButton';
 import { useRouter } from 'next/router';
 import EditAssignSelect, { AvatarAndName } from './Inputs/EditAssignSelect';
 import DeleteButton, { Type } from './Inputs/DeleteButton';
+import InlineDiamond from './InlineDiamond';
 
 // Structural components
 const Section = styled(Container)({
@@ -73,8 +74,9 @@ const TaskDetailsDrawer: React.FC<TaskDetailsDrawerProps> = ({
   const TaskSection = task && (
     <Section>
       <Subheader>{task.type?.name}</Subheader>
-      {/* TODO: points icon */}
-      <Text>{task.type?.points} Points</Text>
+      <Text>
+        {task.type?.points} <InlineDiamond />
+      </Text>
       <TextMuted>
         {new Date(task.date).toLocaleString(router.locale).split(',')[0]}
       </TextMuted>

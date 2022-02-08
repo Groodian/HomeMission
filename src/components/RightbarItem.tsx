@@ -5,6 +5,7 @@ import { Task } from '../entities';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import CompleteButton from './Inputs/CompleteButton';
+import InlineDiamond from './InlineDiamond';
 
 const TaskContainer = styled(Container)(({ theme }) => ({
   backgroundColor: theme.palette.background.default,
@@ -34,7 +35,6 @@ const RightbarItem: React.FC<RightBarItemProps> = ({
   recurring,
 }) => {
   const { t } = useTranslation('common', { keyPrefix: 'Rightbar' });
-  const { t: ct } = useTranslation('common');
 
   const router = useRouter();
 
@@ -70,7 +70,7 @@ const RightbarItem: React.FC<RightBarItemProps> = ({
         </TaskText>
         <br />
         <TaskText>
-          {task.type?.points} {ct('points')}
+          {task.type?.points} <InlineDiamond />
         </TaskText>
         <TaskText sx={{ color: (theme) => theme.palette.text.secondary }}>
           {new Date(task.date).toLocaleString(router.locale).split(',')[0]}
