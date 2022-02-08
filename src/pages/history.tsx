@@ -11,10 +11,11 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Image from 'next/image';
 import { useSnackbar } from 'notistack';
 import { useEffect } from 'react';
+import LoadingSpinner from '../components/LoadingSpinner';
 import { useHistoryQuery } from '../lib/graphql/operations/history.graphql';
 
 const History: NextPage = () => {
-  const { t } = useTranslation(['history', 'common']);
+  const { t } = useTranslation(['history']);
   const { enqueueSnackbar } = useSnackbar();
   const { loading, error, data } = useHistoryQuery();
 
@@ -24,42 +25,38 @@ const History: NextPage = () => {
 
   return (
     <>
-      {loading && t('loading', { ns: 'common' })}
-      {data?.home && (
-        <>
-          <h1>{t('title')}</h1>
-          <List>
-            {data?.home?.history.map((history) => (
-              <ListItem key={history.id}>
-                <ListItemIcon>
-                  <Image
-                    src={history.user.picture}
-                    alt={t('profile-picture-alt', { history })}
-                    width={80}
-                    height={80}
-                  />
-                </ListItemIcon>
-                <List>
-                  <ListItem>
-                    <ListItemText>{history.user.name}</ListItemText>
-                  </ListItem>
-                  <ListItem>
-                    <ListItemText>{formatText(history, t)}</ListItemText>
-                  </ListItem>
-                </List>
-                <Tooltip
-                  placement="bottom-start"
-                  title={new Date(history.date).toLocaleString()}
-                >
-                  <ListItemText>
-                    {t('ago', { time: formatTime(history.date, t) })}
-                  </ListItemText>
-                </Tooltip>
+      <LoadingSpinner loading={loading} />
+      <h1>{t('title')}</h1>
+      <List>
+        {data?.home?.history.map((history) => (
+          <ListItem key={history.id}>
+            <ListItemIcon>
+              <Image
+                src={history.user.picture}
+                alt={t('profile-picture-alt', { history })}
+                width={80}
+                height={80}
+              />
+            </ListItemIcon>
+            <List>
+              <ListItem>
+                <ListItemText>{history.user.name}</ListItemText>
               </ListItem>
-            ))}
-          </List>
-        </>
-      )}
+              <ListItem>
+                <ListItemText>{formatText(history, t)}</ListItemText>
+              </ListItem>
+            </List>
+            <Tooltip
+              placement="bottom-start"
+              title={new Date(history.date).toLocaleString()}
+            >
+              <ListItemText>
+                {t('ago', { time: formatTime(history.date, t) })}
+              </ListItemText>
+            </Tooltip>
+          </ListItem>
+        ))}
+      </List>
     </>
   );
 };

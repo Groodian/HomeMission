@@ -3,13 +3,14 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useSnackbar } from 'notistack';
 import { useEffect } from 'react';
+import LoadingSpinner from '../components/LoadingSpinner';
 import TaskCalendar from '../components/TaskCalendar';
 import { Task } from '../entities';
 import { useTasksQuery } from '../lib/graphql/operations/task.graphql';
 
 const Overview: NextPage = () => {
   const { t } = useTranslation(['TaskCalendar']);
-  const { error, data } = useTasksQuery();
+  const { loading, error, data } = useTasksQuery();
   const { enqueueSnackbar } = useSnackbar();
 
   useEffect(() => {
@@ -18,17 +19,16 @@ const Overview: NextPage = () => {
 
   return (
     <>
-      {data && (
-        <TaskCalendar
-          tasks={data.tasks as Task[]}
-          onSelectEvent={(_task) => {
-            // ... handle event selection
-          }}
-          onSelectSlot={(_slotInfo) => {
-            // ... handle slot selection
-          }}
-        />
-      )}
+      <LoadingSpinner loading={loading} />
+      <TaskCalendar
+        tasks={(data?.tasks || []) as Task[]}
+        onSelectEvent={(_task) => {
+          // ... handle event selection
+        }}
+        onSelectSlot={(_slotInfo) => {
+          // ... handle slot selection
+        }}
+      />
     </>
   );
 };

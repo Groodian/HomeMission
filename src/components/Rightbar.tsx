@@ -1,4 +1,4 @@
-import { Container, styled } from '@mui/material';
+import { CircularProgress, Container, styled } from '@mui/material';
 import { useTranslation } from 'next-i18next';
 import RightbarItem from './RightbarItem';
 import { Task } from '../entities';
@@ -24,7 +24,6 @@ const Subtext = styled('p')(({ theme }) => ({
 const Rightbar = () => {
   const { t } = useTranslation('common', { keyPrefix: 'Rightbar' });
   const { enqueueSnackbar } = useSnackbar();
-  const { t: ct } = useTranslation('common');
 
   const { data, loading, error } = useOpenTasksQuery();
 
@@ -50,7 +49,11 @@ const Rightbar = () => {
         ) : (
           <Subtext>{t('no-text-info')}</Subtext>
         ))}
-      {loading && <Subtext>{ct('loading')}</Subtext>}
+      {loading && (
+        <Subtext>
+          <CircularProgress />
+        </Subtext>
+      )}
       {error && <Subtext>{t('error-message')}</Subtext>}
     </StyledContainer>
   );

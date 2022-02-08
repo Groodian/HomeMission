@@ -7,27 +7,24 @@ import { useRouter } from 'next/router';
 import { useSnackbar } from 'notistack';
 import { useEffect } from 'react';
 import homeMissionLogo from '../../public/home_mission_grey.png';
+import LoadingSpinner from '../components/LoadingSpinner';
 import { useHomeQuery } from '../lib/graphql/operations/home.graphql';
 
 const Welcome: NextPage = () => {
   const { t } = useTranslation(['index', 'common']);
   const { enqueueSnackbar } = useSnackbar();
   const router = useRouter();
-  const { loading, data } = useHomeQuery();
+  const { data } = useHomeQuery();
 
   useEffect(() => {
     if (router.query.returnTo)
       enqueueSnackbar(t('redirected'), { variant: 'info' });
   }, []);
 
-  if (loading) {
-    return null;
-  }
-
   // Redirect to overview page if user has a home
   if (data?.home) {
     router.push('/overview');
-    return null;
+    return <LoadingSpinner loading />;
   }
 
   return (

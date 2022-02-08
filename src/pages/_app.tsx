@@ -18,6 +18,7 @@ import React, {
   useState,
 } from 'react';
 import Leftbar from '../components/Leftbar';
+import LoadingSpinner from '../components/LoadingSpinner';
 import Navbar from '../components/Navbar';
 import Rightbar from '../components/Rightbar';
 import { useApollo } from '../lib/graphql/apollo-client';
@@ -147,37 +148,36 @@ const MyApp: React.FC<MyAppProps> = ({
               <SnackbarProvider ref={notistackRef}>
                 {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
                 <CssBaseline />
-                {
-                  // Prevent ssr flash
-                  !loading && (
-                    <>
-                      {
-                        // Only show navbar when user is signed in
-                        userData?.user && <Navbar />
-                      }
-                      {
-                        // Only show bars when user is in a home
-                        homeData?.home ? (
-                          <>
-                            <Grid container>
-                              <Grid item sm={2} xs={2}>
-                                <Leftbar />
-                              </Grid>
-                              <Grid item sm={8} xs={10}>
-                                <Component {...pageProps} />
-                              </Grid>
-                              <Grid item sm={2}>
-                                <Rightbar />
-                              </Grid>
+                {loading ? (
+                  <LoadingSpinner loading />
+                ) : (
+                  <>
+                    {
+                      // Only show navbar when user is signed in
+                      userData?.user && <Navbar />
+                    }
+                    {
+                      // Only show bars when user is in a home
+                      homeData?.home ? (
+                        <>
+                          <Grid container>
+                            <Grid item sm={2} xs={2}>
+                              <Leftbar />
                             </Grid>
-                          </>
-                        ) : (
-                          <Component {...pageProps} />
-                        )
-                      }
-                    </>
-                  )
-                }
+                            <Grid item sm={8} xs={10}>
+                              <Component {...pageProps} />
+                            </Grid>
+                            <Grid item sm={2}>
+                              <Rightbar />
+                            </Grid>
+                          </Grid>
+                        </>
+                      ) : (
+                        <Component {...pageProps} />
+                      )
+                    }
+                  </>
+                )}
               </SnackbarProvider>
             </ThemeProvider>
           </ColorModeContext.Provider>
