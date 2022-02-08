@@ -15,8 +15,10 @@
   "years": "Jahren",
   "complete": "Erledigen",
   "edit": "Editieren",
-  "unassign": "Unassign WIP",
+  "unassign": "Zuordnung entfernen",
   "user-error": "Nutzer konnte nicht geladen werden",
+  "complete-success": "Aufgabe erledigt",
+  "complete-error": "Aufgabe konnte nicht abgeschlossen werden",
 
   "Navbar": {
     "statistics": "Statistiken",
@@ -33,8 +35,6 @@
     "no-text-info": "Alles erledigt!",
     "error-message": "Offene Aufgaben konnten nicht geladen werden",
     "tooltip-avatar": "Du bist zugeordnet",
-    "tooltip-loop": "Teil einer Serie",
-    "complete-success": "Aufgabe erledigt",
-    "complete-error": "Aufgabe konnte nicht abgeschlossen werden"
+    "tooltip-loop": "Teil einer Serie"
   }
 }

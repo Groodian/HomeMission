@@ -5,13 +5,28 @@
     "today": "today",
     "month": "month",
     "week": "week",
-    "day": "day"
+    "day": "day",
+    "error-message": "Could not load tasks"
   },
 
   "TaskDetailsDrawer": {
     "task-details": "Task Details",
     "completed-by": "Completed by",
     "date-on": "on",
-    "date-at": "at"
+    "date-at": "at",
+    "delete-single": "Delete task",
+    "delete-series-all": "Delete task series",
+    "delete-series-sub": "Delete task series starting here",
+    "delete-single-success": "Deleted task",
+    "delete-series-all-success": "Deleted all tasks from task series",
+    "delete-series-sub-success": "Deleted some tasks from task series",
+    "delete-single-error": "Could not delete task",
+    "delete-series-all-error": "Could not delete all tasks from task series",
+    "delete-series-sub-error": "Could not delete some tasks from task series",
+    "assign-success": "Assigned user to task",
+    "assign-error": "Could not assign user to task",
+    "unassign-success": "Removed assignee from task",
+    "unassign-error": "Could not remove assignee from task",
+    "already-assigned-info": "User is already assigned"
   }
 }

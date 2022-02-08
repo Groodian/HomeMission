@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Container } from '@mui/material';
 import { GetStaticProps, NextPage } from 'next';
 import { Container } from '@mui/material';
 import { useTranslation } from 'next-i18next';

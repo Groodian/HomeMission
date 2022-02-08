@@ -4,8 +4,6 @@ import { Loop } from '@mui/icons-material';
 import { Task } from '../entities';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
-import { useCreateTaskReceiptMutation } from '../lib/graphql/operations/taskreceipt.graphql';
-import { useSnackbar } from 'notistack';
 import CompleteButton from './Inputs/CompleteButton';
 
 const TaskContainer = styled(Container)(({ theme }) => ({
@@ -36,7 +34,6 @@ const RightbarItem: React.FC<RightBarItemProps> = ({
   recurring,
 }) => {
   const { t } = useTranslation('common', { keyPrefix: 'Rightbar' });
-  const { enqueueSnackbar } = useSnackbar();
   const { t: ct } = useTranslation('common');
 
   const router = useRouter();

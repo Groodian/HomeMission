@@ -7,12 +7,15 @@ import {
   useAssignTaskMutation,
   useUnassignTaskMutation,
 } from '../../lib/graphql/operations/task.graphql';
+import { useSnackbar } from 'notistack';
 
 type EditButtonProps = {
   task: Task;
 };
 const EditAssignSelect: React.FC<EditButtonProps> = ({ task }) => {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation('overview', { keyPrefix: 'TaskDetailsDrawer' });
+  const { t: tc } = useTranslation('common');
+  const { enqueueSnackbar } = useSnackbar();
 
   const { data: roommatesData } = useRoommatesQuery();
   const [useAssignTask] = useAssignTaskMutation({
@@ -35,7 +38,7 @@ const EditAssignSelect: React.FC<EditButtonProps> = ({ task }) => {
       onChange={(event) => handleAssigneeSelect(event, task)}
     >
       <MenuItem value="">
-        <em>{t('edit')}</em>
+        <em>{tc('edit')}</em>
       </MenuItem>
       {roommatesData &&
         roommatesData.home?.users.map((user) => {
@@ -52,37 +55,46 @@ const EditAssignSelect: React.FC<EditButtonProps> = ({ task }) => {
         })}
       {task.assignee && (
         <MenuItem value="unassign">
-          <em>{t('unassign')}</em>
+          <em>{tc('unassign')}</em>
         </MenuItem>
       )}
     </Select>
   );
 
-  function handleAssigneeSelect(event: SelectChangeEvent, task: Task) {
+  async function handleAssigneeSelect(event: SelectChangeEvent, task: Task) {
     const value = event.target.value;
 
     if (value !== '') {
       if (value === String(task.assignee?.id)) {
-        // ... inform that selected user is already assigned
+        enqueueSnackbar(t('already-assigned-info'), {
+          variant: 'info',
+        });
       } else {
         if (value === 'unassign') {
-          useUnassignTask({ variables: { task: task.id } })
-            .then((_data) => {
-              // ... inform that assignee was removed
-            })
-            .catch((_err) => {
-              // ... inform that attempt to remove assignee failed
+          try {
+            await useUnassignTask({ variables: { task: task.id } });
+            enqueueSnackbar(t('unassign-success'), {
+              variant: 'success',
             });
+          } catch (e) {
+            enqueueSnackbar(t('unassign-error'), {
+              variant: 'error',
+            });
+          }
         } else {
-          useAssignTask({
-            variables: { task: task.id, user: value },
-          })
-            .then((_data) => {
-              // ... inform that user was assigned
-            })
-            .catch((_err) => {
-              // ... inform that attempt to assign user failed
+          try {
+            await useAssignTask({
+              variables: { task: task.id, user: value },
             });
+
+            enqueueSnackbar(t('assign-success'), {
+              variant: 'success',
+            });
+          } catch (e) {
+            enqueueSnackbar(t('assign-error'), {
+              variant: 'error',
+            });
+          }
         }
       }
     }

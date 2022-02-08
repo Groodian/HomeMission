@@ -7,6 +7,7 @@ import {
   useDeleteTaskSeriesMutation,
   useDeleteTaskSeriesSubsectionMutation,
 } from '../../lib/graphql/operations/taskseries.graphql';
+import { useSnackbar } from 'notistack';
 
 export enum Type {
   single,
@@ -18,7 +19,8 @@ type DeleteButtonProps = {
   type: Type;
 };
 const DeleteButton: React.FC<DeleteButtonProps> = ({ task, type }) => {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation('overview', { keyPrefix: 'TaskDetailsDrawer' });
+  const { enqueueSnackbar } = useSnackbar();
 
   const refetchOptions = { refetchQueries: ['Tasks', 'OpenTasks'] };
   const [useDeleteTask, { loading: loadingSingle }] =
@@ -32,8 +34,8 @@ const DeleteButton: React.FC<DeleteButtonProps> = ({ task, type }) => {
     type === Type.single
       ? t('delete-single')
       : type === Type.series_all
-      ? t('delete-all')
-      : t('delete-sub');
+      ? t('delete-series-all')
+      : t('delete-series-sub');
 
   return (
     <LoadingButton
@@ -41,22 +43,49 @@ const DeleteButton: React.FC<DeleteButtonProps> = ({ task, type }) => {
       variant={'outlined'}
       color={'error'}
       loading={loadingSingle || loadingSeriesAll || loadingSeriesSub}
-      onClick={() => {
+      onClick={async () => {
         switch (type) {
           case Type.single:
-            useDeleteTask({ variables: { task: task.id } });
+            try {
+              await useDeleteTask({ variables: { task: task.id } });
+              enqueueSnackbar(t('delete-single-success'), {
+                variant: 'success',
+              });
+            } catch (e) {
+              enqueueSnackbar(t('delete-single-error'), {
+                variant: 'error',
+              });
+            }
             break;
           case Type.series_all:
             if (task.series)
-              useDeleteTaskSeries({
-                variables: { series: task.series?.id },
-              });
+              try {
+                await useDeleteTaskSeries({
+                  variables: { series: task.series?.id },
+                });
+                enqueueSnackbar(t('delete-series-all-success'), {
+                  variant: 'success',
+                });
+              } catch (e) {
+                enqueueSnackbar(t('delete-series-all-error'), {
+                  variant: 'error',
+                });
+              }
             break;
           case Type.series_sub:
             if (task.series)
-              useDeleteTaskSeriesSubsection({
-                variables: { series: task.series?.id, start: task.id },
-              });
+              try {
+                await useDeleteTaskSeriesSubsection({
+                  variables: { series: task.series?.id, start: task.id },
+                });
+                enqueueSnackbar(t('delete-series-sub-success'), {
+                  variant: 'success',
+                });
+              } catch (e) {
+                enqueueSnackbar(t('delete-series-sub-error'), {
+                  variant: 'error',
+                });
+              }
             break;
         }
       }}

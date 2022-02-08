@@ -17,6 +17,8 @@
   "edit": "Edit",
   "unassign": "Unassign",
   "user-error": "Could not load user",
+  "complete-success": "Completed task",
+  "complete-error": "Could not complete task",
 
   "Navbar": {
     "statistics": "statistics",
@@ -33,8 +35,6 @@
     "no-text-info": "You are all caught up!",
     "error-message": "Could not load open tasks",
     "tooltip-avatar": "You are assigned",
-    "tooltip-loop": "Part of a series",
-    "complete-success": "Completed task",
-    "complete-error": "Could not complete task"
+    "tooltip-loop": "Part of a series"
   }
 }

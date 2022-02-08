@@ -5,13 +5,28 @@
     "today": "Heute",
     "month": "Monat",
     "week": "Woche",
-    "day": "Tag"
+    "day": "Tag",
+    "error-message": "Aufgaben konnten nicht geladen werden"
   },
 
   "TaskDetailsDrawer": {
     "task-details": "Aufgabe",
     "completed-by": "Erledigt von",
     "date-on": "am",
-    "date-at": "um"
+    "date-at": "um",
+    "delete-single": "Aufgabe löschen",
+    "delete-series-all": "Gesamte Reihe löschen",
+    "delete-series-sub": "Reihe ab hier löschen",
+    "delete-single-success": "Aufgabe gelöscht",
+    "delete-series-all-success": "Alle Aufgaben der Aufgabenreihe gelöscht",
+    "delete-series-sub-success": "Untermenge an Aufgaben der Aufgabenreihe gelöscht",
+    "delete-single-error": "Aufgabe konnte nicht gelöscht werden",
+    "delete-series-all-error": "Aufgaben der Aufgabenreihe konnten nicht gelöscht werden",
+    "delete-series-sub-error": "Untermenge an Aufgaben der Aufgabenreihe konnten nicht gelöscht werden",
+    "assign-success": "Aufgabe wurde zugeordnet",
+    "assign-error": "Aufgabe konnte nicht zugeordnet werden",
+    "unassign-success": "Zugeordneter wurde entfernt",
+    "unassign-error": "Zugeorneter konnte nicht entfernt werden",
+    "already-assigned-info": "Person ist schon zugeordnet"
   }
 }

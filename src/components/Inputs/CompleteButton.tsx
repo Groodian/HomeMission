@@ -3,6 +3,7 @@ import { LoadingButton } from '@mui/lab';
 import { useTranslation } from 'next-i18next';
 import { Task, TaskReceipt } from '../../entities';
 import { useCreateTaskReceiptMutation } from '../../lib/graphql/operations/taskreceipt.graphql';
+import { useSnackbar } from 'notistack';
 
 type CompleteButtonProps = {
   task: Task;
@@ -13,6 +14,7 @@ const CompleteButton: React.FC<CompleteButtonProps> = ({
   onComplete = () => undefined,
 }) => {
   const { t } = useTranslation('common');
+  const { enqueueSnackbar } = useSnackbar();
 
   const [useCreateReceipt, { loading }] = useCreateTaskReceiptMutation({
     refetchQueries: ['Tasks', 'OpenTasks'],
@@ -24,15 +26,18 @@ const CompleteButton: React.FC<CompleteButtonProps> = ({
       variant={'outlined'}
       color={'success'}
       loading={loading}
-      onClick={() => {
-        useCreateReceipt({ variables: { task: task.id } })
-          .then((res) => {
-            onComplete(res.data?.createTaskReceipt as TaskReceipt);
-            // ... send success message
-          })
-          .catch((_err) => {
-            // ... send error toast
+      onClick={async () => {
+        try {
+          const res = await useCreateReceipt({ variables: { task: task.id } });
+          enqueueSnackbar(t('complete-success'), {
+            variant: 'success',
           });
+          onComplete(res.data?.createTaskReceipt as TaskReceipt);
+        } catch (e) {
+          enqueueSnackbar(t('complete-error'), {
+            variant: 'error',
+          });
+        }
       }}
     >
       {t('complete')}
