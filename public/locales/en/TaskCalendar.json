@@ -1,9 +1,0 @@
-{
-  "next": "next",
-  "previous": "previous",
-  "today": "today",
-  "month": "month",
-  "week": "week",
-  "day": "day",
-  "error-message": "Could not load tasks"
-}

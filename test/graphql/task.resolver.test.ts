@@ -341,6 +341,57 @@ describe('Task resolver with', () => {
     timeoutLength
   );
 
+  it(
+    'UnassignTask mutation returns error when task has no assignee',
+    async () => {
+      await database.insertUsers();
+      await database.insertHomes();
+      await database.insertTaskTypes();
+      await database.insertTasks();
+      await database.addUserToHome('user-1', '1');
+
+      const body = {
+        operationName: 'UnassignTask',
+        query: unassignTaskQuery,
+        variables: { task: '1' },
+      };
+
+      const res = await testGraphql(body, 'user-1');
+
+      expect(res.end).toHaveBeenNthCalledWith(
+        1,
+        '{"errors":[{"message":"Failed to remove assignee from task 1 because nobody was assigned!","locations":[{"line":3,"column":7}],"path":["unassignTask"],"extensions":{"code":"INTERNAL_SERVER_ERROR"}}],"data":null}\n'
+      );
+    },
+    timeoutLength
+  );
+
+  it(
+    'UnassignTask mutation returns task when assignee is removed',
+    async () => {
+      await database.insertUsers();
+      await database.insertHomes();
+      await database.insertTaskTypes();
+      await database.insertTasks();
+      await database.addUserToHome('user-1', '1');
+      await database.assignUserToTask('user-1', '1');
+
+      const body = {
+        operationName: 'UnassignTask',
+        query: unassignTaskQuery,
+        variables: { task: '1' },
+      };
+
+      const res = await testGraphql(body, 'user-1');
+
+      expect(res.end).toHaveBeenNthCalledWith(
+        1,
+        '{"data":{"unassignTask":{"id":"1","date":"2022-01-03T00:00:00.000Z","assignee":null}}}\n'
+      );
+    },
+    timeoutLength
+  );
+
   const tasksQuery = `
     query Tasks {
       tasks {
@@ -401,6 +452,20 @@ describe('Task resolver with', () => {
   const assignTaskQuery = `
     mutation AssignTask($user: String!, $task: String!) {
       assignTask(user: $user, task: $task) {
+        id
+        date
+        assignee {
+          id
+          name
+          picture
+        }
+      }
+    }
+  `;
+
+  const unassignTaskQuery = `
+    mutation UnassignTask($task: String!) {
+      unassignTask(task: $task) {
         id
         date
         assignee {

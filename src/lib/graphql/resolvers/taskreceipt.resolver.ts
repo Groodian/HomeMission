@@ -77,6 +77,8 @@ export default class TaskReceiptResolver
 
       await Helper.createHistory(home, user, HistoryType.TASK_COMPLETED);
 
+      receipt.completer = receipt.completer?.id as any; // Only save id for field resolver
+
       return receipt;
     } catch (e) {
       throw Error('Failed to create task receipt!');

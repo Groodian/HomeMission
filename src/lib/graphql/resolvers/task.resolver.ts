@@ -106,7 +106,9 @@ export default class TaskResolver implements ResolverInterface<Task> {
    */
   @FieldResolver(() => TaskReceipt, { nullable: true })
   async receipt(@Root() task: Task) {
-    return task.receipt ? await TaskReceipt.findOne(task.receipt) : null;
+    return task.receipt
+      ? await TaskReceipt.findOne(task.receipt, { loadRelationIds: true })
+      : null;
   }
 
   /**
@@ -187,6 +189,32 @@ export default class TaskResolver implements ResolverInterface<Task> {
       return await taskEntity.save();
     } catch (e) {
       throw Error('Failed to assign task!');
+    }
+  }
+
+  /**
+   * Remove assignee from task. The task must belong to the users home.
+   */
+  @Authorized()
+  @Mutation(() => Task)
+  async unassignTask(
+    @CurrentSession() session: Session,
+    @Arg('task') task: string
+  ) {
+    await databaseConnection();
+    const home = await Helper.getHomeOrFail(session);
+    const taskEntity = await Helper.getTaskOrFail(task, home.id);
+
+    if (!taskEntity.assignee) {
+      throw Error(
+        `Failed to remove assignee from task ${taskEntity.id} because nobody was assigned!`
+      );
+    }
+    try {
+      taskEntity.assignee = null;
+      return await taskEntity.save();
+    } catch (e) {
+      throw Error(`Failed to remove assignee from task ${taskEntity.id}!`);
     }
   }
 }

@@ -1,0 +1,17 @@
+{
+  "TaskCalendar": {
+    "next": "Danach",
+    "previous": "Davor",
+    "today": "Heute",
+    "month": "Monat",
+    "week": "Woche",
+    "day": "Tag"
+  },
+
+  "TaskDetailsDrawer": {
+    "task-details": "Aufgabe",
+    "completed-by": "Erledigt von",
+    "date-on": "am",
+    "date-at": "um"
+  }
+}

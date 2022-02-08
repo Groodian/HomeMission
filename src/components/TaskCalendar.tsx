@@ -70,7 +70,7 @@ const TaskCalendar: React.FC<TaskCalendarProps> = ({
   onSelectEvent = () => undefined,
   onSelectSlot = () => undefined,
 }) => {
-  const { t } = useTranslation(['TaskCalendar']);
+  const { t } = useTranslation('overview', { keyPrefix: 'TaskCalendar' });
   const router = useRouter();
   const localizer = momentLocalizer(moment);
 

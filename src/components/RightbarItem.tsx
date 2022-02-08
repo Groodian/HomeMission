@@ -6,7 +6,7 @@ import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { useCreateTaskReceiptMutation } from '../lib/graphql/operations/taskreceipt.graphql';
 import { useSnackbar } from 'notistack';
-import CompleteButton from './Buttons/CompleteButton';
+import CompleteButton from './Inputs/CompleteButton';
 
 const TaskContainer = styled(Container)(({ theme }) => ({
   backgroundColor: theme.palette.background.default,

@@ -1,0 +1,17 @@
+{
+  "TaskCalendar": {
+    "next": "next",
+    "previous": "previous",
+    "today": "today",
+    "month": "month",
+    "week": "week",
+    "day": "day"
+  },
+
+  "TaskDetailsDrawer": {
+    "task-details": "Task Details",
+    "completed-by": "Completed by",
+    "date-on": "on",
+    "date-at": "at"
+  }
+}

@@ -13,6 +13,11 @@ query Tasks {
     receipt {
       id
       name
+      completionDate
+      completer {
+        name
+        picture
+      }
     }
     assignee {
       id
@@ -62,3 +67,16 @@ mutation AssignTask($user: String!, $task: String!) {
     }
   }
 }
+
+mutation UnassignTask($task: String!) {
+  unassignTask(task: $task) {
+    id
+    date
+    assignee {
+      id
+      name
+      picture
+    }
+  }
+}
+

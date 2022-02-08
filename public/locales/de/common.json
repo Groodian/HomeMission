@@ -14,6 +14,8 @@
   "year": "Jahr",
   "years": "Jahren",
   "complete": "Erledigen",
+  "edit": "Editieren",
+  "unassign": "Unassign WIP",
   "user-error": "Nutzer konnte nicht geladen werden",
 
   "Navbar": {
@@ -32,7 +34,6 @@
     "error-message": "Offene Aufgaben konnten nicht geladen werden",
     "tooltip-avatar": "Du bist zugeordnet",
     "tooltip-loop": "Teil einer Serie",
-    "complete": "Erledigen",
     "complete-success": "Aufgabe erledigt",
     "complete-error": "Aufgabe konnte nicht abgeschlossen werden"
   }
