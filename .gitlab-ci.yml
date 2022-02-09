@@ -2,6 +2,8 @@ docker-build:
   services:
     - docker:dind
   image: docker:latest
+  tags:
+    - docker
   stage: build
   before_script:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
@@ -34,7 +36,7 @@ test:
     MYSQL_USER: next
     MYSQL_PASSWORD: password
     MYSQL_DATABASE: homemission
-
+    DATABASE_HOST: mysql
   image: node:16.11
   cache:
     key:

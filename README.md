@@ -295,6 +295,6 @@ The code is type-checked on every push (See [Husky](#husky)).
 
 For the GitLab pipeline to succeed, make sure to [register](https://docs.gitlab.com/runner/register/#docker) and [start](https://docs.gitlab.com/runner/install/docker.html#option-2-use-docker-volumes-to-start-the-runner-container) your runner:
 
-1. `docker run --rm -it -v gitlab-runner-config:/etc/gitlab-runner gitlab/gitlab-runner:latest register --url https://code.fbi.h-da.de/ --executor docker --docker-image "docker:20.10.12" --docker-privileged --docker-volumes "/certs/client"`
+1. `docker run --rm -it -v gitlab-runner-config:/etc/gitlab-runner gitlab/gitlab-runner:latest register --url https://code.fbi.h-da.de/ --tag-list docker --executor docker --docker-image "docker:20.10.12" --docker-privileged --docker-volumes "/certs/client"`
 2. Follow the interactive configuration. The registration token can be found [here](https://code.fbi.h-da.de/isttomare/wg-organisierspiel/-/settings/ci_cd) at 'Runners'.
 3. `docker run -d --name gitlab-runner --restart always -v /var/run/docker.sock:/var/run/docker.sock -v gitlab-runner-config:/etc/gitlab-runner gitlab/gitlab-runner:latest`
