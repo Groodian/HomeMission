@@ -25,7 +25,7 @@ import { useRouter } from 'next/router';
 import { SnackbarProvider } from 'notistack';
 import LoadingSpinner from '../components/LoadingSpinner';
 import Navbar from '../components/Navbar';
-// import Leftbar from '../components/Leftbar';
+import Leftbar from '../components/Leftbar';
 import Rightbar from '../components/Rightbar';
 import { useApollo } from '../lib/graphql/apollo-client';
 import { useHomeQuery } from '../lib/graphql/operations/home.graphql';
@@ -166,7 +166,7 @@ const MyApp: React.FC<MyAppProps> = ({
                       // Only show bars when user is in a home
                       homeData?.home ? (
                         <Box sx={{ display: 'flex' }}>
-                          {/*<Leftbar /> // add back when Leftbar is Drawer */}
+                          <Leftbar />
                           <Container sx={{ flexShrink: 1 }}>
                             <Component {...pageProps} />
                           </Container>
