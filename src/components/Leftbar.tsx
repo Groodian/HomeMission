@@ -1,19 +1,33 @@
 import React from 'react';
 import {
   Box,
-  Divider,
   List,
   ListItem,
   ListItemIcon,
   ListItemText,
+  SvgIcon,
   SxProps,
   Theme,
   useTheme,
 } from '@mui/material';
-import { Inbox, Mail } from '@mui/icons-material';
+import {
+  BarChart,
+  DateRange,
+  History,
+  SvgIconComponent,
+} from '@mui/icons-material';
 import StyledDrawer from './StyledDrawer';
+import { useTranslation } from 'next-i18next';
+import { useRouter } from 'next/router';
 
-const drawerWidth = 240;
+type Page = {
+  url: string;
+  text: string;
+  icon: SvgIconComponent;
+  api?: boolean;
+}[];
+
+const drawerWidth = 220;
 const openedMixin = (theme: Theme) => ({
   width: drawerWidth,
   transition: theme.transitions.create('width', {
@@ -36,7 +50,19 @@ const closedMixin = (theme: Theme) => ({
 });
 
 const Leftbar = () => {
+  const { t } = useTranslation('common', { keyPrefix: 'Leftbar' });
   const theme = useTheme();
+  const router = useRouter();
+
+  const pages: Page = [
+    { url: 'overview', text: t('overview'), icon: DateRange },
+    { url: 'statistics', text: t('statistics'), icon: BarChart },
+    { url: 'history', text: t('activity'), icon: History },
+  ];
+
+  function route(path: string, absolute = false) {
+    absolute ? window.location.assign(path) : router.push(path);
+  }
 
   const [open, setOpen] = React.useState<boolean>(false);
 
@@ -62,23 +88,16 @@ const Leftbar = () => {
     >
       <Box>
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
+          {pages.map((page) => (
+            <ListItem
+              button
+              key={page.url}
+              onClick={() => route(page.url, page.api)}
+            >
               <ListItemIcon>
-                {index % 2 === 0 ? <Inbox /> : <Mail />}
+                <SvgIcon component={page.icon} />
               </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <Inbox /> : <Mail />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary={page.text} />
             </ListItem>
           ))}
         </List>

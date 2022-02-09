@@ -20,13 +20,17 @@
   "complete-error": "Aufgabe konnte nicht abgeschlossen werden",
 
   "Navbar": {
-    "statistics": "Statistiken",
-    "activity": "Tätigkeitsverlauf",
     "logout": "Ausloggen",
     "settings": "Einstellungen anzeigen",
     "language": "Sprache",
     "german": "Deutsch",
     "english": "Englisch"
+  },
+
+  "Leftbar": {
+    "overview": "Übersicht",
+    "statistics": "Statistiken",
+    "activity": "Tätigkeitsverlauf"
   },
 
   "Rightbar": {

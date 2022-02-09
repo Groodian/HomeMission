@@ -20,13 +20,17 @@
   "complete-error": "Could not complete task",
 
   "Navbar": {
-    "statistics": "statistics",
-    "activity": "activity history",
     "logout": "logout",
     "settings": "open settings",
     "language": "Language",
     "german": "German",
     "english": "English"
+  },
+
+  "Leftbar": {
+    "overview": "Overview",
+    "statistics": "Statistics",
+    "activity": "Activity history"
   },
 
   "Rightbar": {

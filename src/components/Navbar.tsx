@@ -3,7 +3,6 @@ import {
   AppBar,
   Avatar,
   Box,
-  Button,
   ButtonBase,
   Container,
   FormControl,
@@ -21,12 +20,9 @@ import { useTranslation } from 'next-i18next';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import homeMissionLogo from '../../public/home_mission_grey.png';
-import { useHomeQuery } from '../lib/graphql/operations/home.graphql';
 import { useUserQuery } from '../lib/graphql/operations/user.graphql';
 import { ColorModeContext } from '../pages/_app';
 import ThemeSwitch from './ThemeSwitch';
-
-type Pages = { url: string; text: string; api?: boolean }[];
 
 const Navbar = () => {
   const { t } = useTranslation('common', { keyPrefix: 'Navbar' });
@@ -34,13 +30,7 @@ const Navbar = () => {
   const theme = useTheme();
   const colorMode = React.useContext(ColorModeContext);
 
-  const { data: homeData } = useHomeQuery();
   const { data: userData } = useUserQuery();
-
-  const pages: Pages = [
-    { url: 'statistics', text: t('statistics') },
-    { url: 'history', text: t('activity') },
-  ];
 
   function route(path: string, absolute = false) {
     absolute ? window.location.assign(path) : router.push(path);
@@ -74,18 +64,7 @@ const Navbar = () => {
               />
             </Box>
           </ButtonBase>
-          <Box sx={{ flexGrow: 1 }}>
-            {homeData?.home &&
-              pages.map((page) => (
-                <Button
-                  key={page.url}
-                  onClick={() => route(page.url, page.api)}
-                  sx={{ my: 2, color: 'white' }}
-                >
-                  {page.text}
-                </Button>
-              ))}
-          </Box>
+          <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ minWidth: 120 }}>
             <FormControl fullWidth>
               <InputLabel id="language-select-label">
