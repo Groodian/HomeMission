@@ -1,10 +1,10 @@
+import React from 'react';
 import { Button, Input } from '@mui/material';
 import { GetStaticProps, NextPage } from 'next';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Router, { useRouter } from 'next/router';
 import { useSnackbar } from 'notistack';
-import { useEffect } from 'react';
 import {
   HomeDocument,
   useCreateHomeMutation,
@@ -21,7 +21,7 @@ const Join: NextPage = () => {
   // TODO: different handling for users who are already part of home
 
   // Join home and redirect if query parameter 'code' is present
-  useEffect(() => {
+  React.useEffect(() => {
     if (router.query?.code) {
       handleJoinHome(router.query.code as string);
     }

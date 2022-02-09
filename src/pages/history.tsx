@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   List,
   ListItem,
@@ -10,7 +11,6 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Image from 'next/image';
 import { useSnackbar } from 'notistack';
-import { useEffect } from 'react';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { useHistoryQuery } from '../lib/graphql/operations/history.graphql';
 
@@ -19,7 +19,7 @@ const History: NextPage = () => {
   const { enqueueSnackbar } = useSnackbar();
   const { loading, error, data } = useHistoryQuery();
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (error) enqueueSnackbar(t('error-message'), { variant: 'error' });
   }, [error]);
 

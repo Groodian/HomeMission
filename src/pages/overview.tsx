@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React from 'react';
 import { Container } from '@mui/material';
 import { GetStaticProps, NextPage } from 'next';
 import { useTranslation } from 'next-i18next';
@@ -15,7 +15,9 @@ const Overview: NextPage = () => {
   const { loading, error, data } = useTasksQuery();
   const { enqueueSnackbar } = useSnackbar();
 
-  const [selectedTask, setSelectedTask] = useState<Task | undefined>(undefined);
+  const [selectedTask, setSelectedTask] = React.useState<Task | undefined>(
+    undefined
+  );
 
   // check if selected task needs to be updated
   if (selectedTask && data) {
@@ -28,7 +30,7 @@ const Overview: NextPage = () => {
     if (matchingTask !== selectedTask) setSelectedTask(matchingTask);
   }
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (error) enqueueSnackbar(t('error-message'), { variant: 'error' });
   }, [error]);
 

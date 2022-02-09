@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React from 'react';
 import { CircularProgress, Container, styled } from '@mui/material';
 import { useTranslation } from 'next-i18next';
 import RightbarItem from './RightbarItem';
@@ -21,7 +21,7 @@ const Rightbar = () => {
 
   const { data, loading, error } = useOpenTasksQuery();
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (error) enqueueSnackbar(t('error-message'), { variant: 'error' });
   }, [error]);
 

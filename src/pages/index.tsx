@@ -1,3 +1,4 @@
+import React from 'react';
 import { Box, Button, Container, Grid, Typography } from '@mui/material';
 import { GetStaticProps, NextPage } from 'next';
 import { useTranslation } from 'next-i18next';
@@ -5,7 +6,6 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useSnackbar } from 'notistack';
-import { useEffect } from 'react';
 import homeMissionLogo from '../../public/home_mission_grey.png';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { useHomeQuery } from '../lib/graphql/operations/home.graphql';
@@ -16,7 +16,7 @@ const Welcome: NextPage = () => {
   const router = useRouter();
   const { data } = useHomeQuery();
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (router.query.returnTo)
       enqueueSnackbar(t('redirected'), { variant: 'info' });
   }, []);
