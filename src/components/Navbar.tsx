@@ -2,6 +2,7 @@ import React from 'react';
 import {
   AppBar,
   Avatar,
+  AvatarGroup,
   Box,
   ButtonBase,
   Container,
@@ -23,6 +24,7 @@ import homeMissionLogo from '../../public/home_mission_grey.png';
 import { useUserQuery } from '../lib/graphql/operations/user.graphql';
 import { ColorModeContext } from '../pages/_app';
 import ThemeSwitch from './ThemeSwitch';
+import { useHomeQuery } from '../lib/graphql/operations/home.graphql';
 
 const Navbar = () => {
   const { t } = useTranslation('common', { keyPrefix: 'Navbar' });
@@ -31,10 +33,7 @@ const Navbar = () => {
   const colorMode = React.useContext(ColorModeContext);
 
   const { data: userData } = useUserQuery();
-
-  function route(path: string, absolute = false) {
-    absolute ? window.location.assign(path) : router.push(path);
-  }
+  const { data: homeData } = useHomeQuery();
 
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
@@ -56,7 +55,7 @@ const Navbar = () => {
       >
         <Toolbar disableGutters>
           <ButtonBase>
-            <Box sx={{ minWidth: 90 }} onClick={() => route('/overview')}>
+            <Box sx={{ minWidth: 90 }} onClick={() => router.push('/overview')}>
               <Image
                 alt="HomeMission logo"
                 src={homeMissionLogo}
@@ -64,7 +63,24 @@ const Navbar = () => {
               />
             </Box>
           </ButtonBase>
-          <Box sx={{ flexGrow: 1 }} />
+          <Box
+            sx={{ display: 'inline-flex', alignItems: 'center', flexGrow: 1 }}
+          >
+            {homeData && homeData.home && (
+              <>
+                <Typography sx={{ padding: '0 1em' }} variant={'h4'}>
+                  {homeData.home.name}
+                </Typography>
+                <AvatarGroup max={3}>
+                  {homeData.home.users.map((user) => (
+                    <Tooltip key={user.id} title={user.name}>
+                      <Avatar alt={user.name} src={user.picture} />
+                    </Tooltip>
+                  ))}
+                </AvatarGroup>
+              </>
+            )}
+          </Box>
           <Box sx={{ minWidth: 120 }}>
             <FormControl fullWidth>
               <InputLabel id="language-select-label">
@@ -126,7 +142,7 @@ const Navbar = () => {
               >
                 <MenuItem
                   key={'logout'}
-                  onClick={() => route('/api/auth/logout', true)}
+                  onClick={() => window.location.assign('/api/auth/logout')}
                 >
                   <Typography textAlign="center">{t('logout')}</Typography>
                 </MenuItem>

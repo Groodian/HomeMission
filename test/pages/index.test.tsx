@@ -14,6 +14,11 @@ apolloCache.writeQuery({
         id
         name
         code
+        users {
+          id
+          name
+          picture
+        }
       }
     }
   `,
@@ -61,6 +66,11 @@ describe('Welcome page', () => {
             id
             name
             code
+            users {
+              id
+              name
+              picture
+            }
           }
         }
       `,
@@ -70,6 +80,12 @@ describe('Welcome page', () => {
           id: '1',
           name: 'Home',
           code: 'ABCDEF',
+          users: {
+            __typename: 'User',
+            id: '1',
+            name: 'Name',
+            picture: 'Picture',
+          },
         },
       },
     });

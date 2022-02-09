@@ -30,7 +30,10 @@
   "Leftbar": {
     "overview": "Übersicht",
     "statistics": "Statistiken",
-    "activity": "Tätigkeitsverlauf"
+    "activity": "Tätigkeitsverlauf",
+    "invite": "Einladen",
+    "invite-tooltip": "Einladungslink kopieren",
+    "invite-info": "Einladungslink wurde kopiert"
   },
 
   "Rightbar": {

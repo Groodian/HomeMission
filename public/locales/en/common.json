@@ -30,7 +30,10 @@
   "Leftbar": {
     "overview": "Overview",
     "statistics": "Statistics",
-    "activity": "Activity history"
+    "activity": "Activity history",
+    "invite": "Invite others",
+    "invite-tooltip": "Click to copy invitation link",
+    "invite-info": "Invitation link was copied to your clipboard"
   },
 
   "Rightbar": {

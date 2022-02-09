@@ -3,6 +3,11 @@ query Home {
     id
     name
     code
+    users {
+      id
+      name
+      picture
+    }
   }
 }
 
@@ -11,6 +16,11 @@ mutation CreateHome {
     id
     name
     code
+    users {
+      id
+      name
+      picture
+    }
   }
 }
 
@@ -19,5 +29,10 @@ mutation JoinHome($code: String!) {
     id
     name
     code
+    users {
+      id
+      name
+      picture
+    }
   }
 }

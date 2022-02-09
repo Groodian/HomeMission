@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   Box,
+  Divider,
   List,
   ListItem,
   ListItemIcon,
@@ -8,23 +9,26 @@ import {
   SvgIcon,
   SxProps,
   Theme,
+  Tooltip,
   useTheme,
 } from '@mui/material';
 import {
   BarChart,
   DateRange,
+  GroupAdd,
   History,
   SvgIconComponent,
 } from '@mui/icons-material';
 import StyledDrawer from './StyledDrawer';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
+import { useHomeQuery } from '../lib/graphql/operations/home.graphql';
+import { useSnackbar } from 'notistack';
 
 type Page = {
   url: string;
   text: string;
   icon: SvgIconComponent;
-  api?: boolean;
 }[];
 
 const drawerWidth = 220;
@@ -38,14 +42,14 @@ const openedMixin = (theme: Theme) => ({
 });
 
 const closedMixin = (theme: Theme) => ({
-  width: `calc(${theme.spacing(7)} + 1px)`,
+  width: `calc(${theme.spacing(7.5)} + 1px)`,
   transition: theme.transitions.create('width', {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
   overflowX: 'hidden',
   [theme.breakpoints.up('sm')]: {
-    width: `calc(${theme.spacing(9)} + 1px)`,
+    width: `calc(${theme.spacing(7.5)} + 1px)`,
   },
 });
 
@@ -53,16 +57,15 @@ const Leftbar = () => {
   const { t } = useTranslation('common', { keyPrefix: 'Leftbar' });
   const theme = useTheme();
   const router = useRouter();
+  const { enqueueSnackbar } = useSnackbar();
+
+  const { data: homeData } = useHomeQuery();
 
   const pages: Page = [
     { url: 'overview', text: t('overview'), icon: DateRange },
     { url: 'statistics', text: t('statistics'), icon: BarChart },
     { url: 'history', text: t('activity'), icon: History },
   ];
-
-  function route(path: string, absolute = false) {
-    absolute ? window.location.assign(path) : router.push(path);
-  }
 
   const [open, setOpen] = React.useState<boolean>(false);
 
@@ -92,7 +95,7 @@ const Leftbar = () => {
             <ListItem
               button
               key={page.url}
-              onClick={() => route(page.url, page.api)}
+              onClick={() => router.push(page.url)}
             >
               <ListItemIcon>
                 <SvgIcon component={page.icon} />
@@ -100,6 +103,27 @@ const Leftbar = () => {
               <ListItemText primary={page.text} />
             </ListItem>
           ))}
+          <Divider />
+          {homeData && (
+            <Tooltip title={t('invite-tooltip') as string}>
+              <ListItem
+                button
+                onClick={() => {
+                  navigator.clipboard.writeText(
+                    `${window.location.protocol}//${window.location.host}/join?code=${homeData.home?.code}`
+                  );
+                  enqueueSnackbar(t('invite-info'), {
+                    variant: 'info',
+                  });
+                }}
+              >
+                <ListItemIcon>
+                  <GroupAdd />
+                </ListItemIcon>
+                <ListItemText primary={t('invite')} />
+              </ListItem>
+            </Tooltip>
+          )}
         </List>
       </Box>
     </StyledDrawer>
