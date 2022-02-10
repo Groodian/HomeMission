@@ -1,9 +1,17 @@
 {
-  "placeholder": "Enter invitation code",
-  "join": "Join home",
-  "create": "Create new home",
-  "join-success": "Joined home '{{name}}'",
-  "join-error": "Could not join home",
+  "title": "Create / Join Home",
+  "create-text": "Create a new home",
+  "create-input-label": "Home Name",
+  "create-button": "Create",
   "create-success": "Created home '{{name}}'",
-  "create-error": "Could not create home"
+  "create-error": "Could not create home",
+  "join-text": "Or join a home",
+  "join-input-label": "Invitation Code",
+  "join-button": "Join",
+  "join-success": "Joined home '{{name}}'",
+  "join-error": "Could not join home with code '{{code}}'",
+  "warning": "Warning: You are already part of a home! If you join the new home all your points and tasks will be lost!",
+  "dialog-title": "Join home with code '{{code}}'?",
+  "dialog-cancel": "Cancel",
+  "dialog-accept": "Yes!"
 }

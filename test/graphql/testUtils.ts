@@ -101,8 +101,7 @@ export const database = {
     await databaseConnection();
 
     for (let i = 1; i <= count; i++) {
-      const home = new Home();
-      home.name = 'name-' + i.toString();
+      const home = new Home('name-' + i.toString());
       home.code = 'code-' + i.toString();
       await home.save();
     }

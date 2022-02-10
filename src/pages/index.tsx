@@ -40,7 +40,6 @@ const Welcome: NextPage = () => {
           <Grid item xs={8} sx={{ alignSelf: 'center' }}>
             <Typography
               variant="h2"
-              component="h1"
               sx={{
                 background:
                   'linear-gradient(89.97deg, #AE67FA 1.84%, #F49867 102.67%)',

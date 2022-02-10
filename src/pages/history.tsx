@@ -1,10 +1,12 @@
 import React from 'react';
 import {
+  Container,
   List,
   ListItem,
   ListItemIcon,
   ListItemText,
   Tooltip,
+  Typography,
 } from '@mui/material';
 import { GetStaticProps, NextPage } from 'next';
 import { useTranslation } from 'next-i18next';
@@ -24,9 +26,9 @@ const History: NextPage = () => {
   }, [error]);
 
   return (
-    <>
+    <Container maxWidth="sm">
       <LoadingSpinner loading={loading} />
-      <h1>{t('title')}</h1>
+      <Typography variant="h3">{t('title')}</Typography>
       <List>
         {data?.home?.history.map((history) => (
           <ListItem key={history.id}>
@@ -57,7 +59,7 @@ const History: NextPage = () => {
           </ListItem>
         ))}
       </List>
-    </>
+    </Container>
   );
 };
 

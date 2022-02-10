@@ -154,29 +154,21 @@ const MyApp: React.FC<MyAppProps> = ({
               <SnackbarProvider ref={notistackRef}>
                 {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
                 <CssBaseline />
-                {loading ? (
+                {loading ? ( // Only show loading spinner
                   <LoadingSpinner loading />
-                ) : (
+                ) : userData?.user ? ( // Only show bars when user is signed in
                   <>
-                    {
-                      // Only show navbar when user is signed in
-                      userData?.user && <Navbar />
-                    }
-                    {
-                      // Only show bars when user is in a home
-                      homeData?.home ? (
-                        <Box sx={{ display: 'flex' }}>
-                          <Leftbar />
-                          <Container sx={{ flexShrink: 1 }}>
-                            <Component {...pageProps} />
-                          </Container>
-                          <Rightbar />
-                        </Box>
-                      ) : (
+                    <Navbar />
+                    <Box sx={{ display: 'flex' }}>
+                      {homeData?.home && <Leftbar />}
+                      <Container sx={{ flexShrink: 1, my: 3 }}>
                         <Component {...pageProps} />
-                      )
-                    }
+                      </Container>
+                      {homeData?.home && <Rightbar />}
+                    </Box>
                   </>
+                ) : (
+                  <Component {...pageProps} />
                 )}
               </SnackbarProvider>
             </ThemeProvider>

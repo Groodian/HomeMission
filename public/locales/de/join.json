@@ -1,9 +1,17 @@
 {
-  "placeholder": "Einladungscode eingeben",
-  "join": "WG beitreten",
-  "create": "Neue WG erstellen",
-  "join-success": "WG '{{name}}' beigetreten",
-  "join-error": "Der WG konnte nicht beigetreten werden",
+  "title": "WG erstellen / beitreten",
+  "create-text": "Eine neue WG erstellen",
+  "create-input-label": "WG Name",
+  "create-button": "Erstellen",
   "create-success": "WG '{{name}}' erstellt",
-  "create-error": "Die WG konnte nicht erstellt werden"
+  "create-error": "Die WG konnte nicht erstellt werden",
+  "join-text": "Oder einer WG beitreten",
+  "join-input-label": "Einladungscode",
+  "join-button": "Beitreten",
+  "join-success": "WG '{{name}}' beigetreten",
+  "join-error": "Der WG mit dem Code '{{code}}' konnte nicht beigetreten werden",
+  "warning": "Achtung: Du befindest dich bereits in einer WG! Wenn du der neuen WG beitrittst gehen alle deine Punkte und Aufgaben verloren!",
+  "dialog-title": "Der WG mit dem Code '{{code}}' beitreten?",
+  "dialog-cancel": "Abbrechen",
+  "dialog-accept": "Ja!"
 }

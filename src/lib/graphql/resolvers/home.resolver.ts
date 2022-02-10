@@ -90,16 +90,18 @@ export default class HomeResolver implements ResolverInterface<Home> {
     }
   }
 
-  // TODO: Create home with name
   /**
    * Create a new home and add the user to it.
    */
   @Authorized()
   @Mutation(() => Home)
-  async createHome(@CurrentSession() session: Session) {
+  async createHome(
+    @CurrentSession() session: Session,
+    @Arg('name') name: string
+  ) {
     await databaseConnection();
     try {
-      const createdHome = await new Home().save();
+      const createdHome = await new Home(name).save();
       return this.addUserToHome(createdHome, session);
     } catch (e) {
       throw Error('Failed to create home.');
@@ -111,7 +113,7 @@ export default class HomeResolver implements ResolverInterface<Home> {
    */
   @Authorized()
   @Mutation(() => Home)
-  async joinHomeByCode(
+  async joinHome(
     @CurrentSession() session: Session,
     @Arg('code') code: string
   ) {

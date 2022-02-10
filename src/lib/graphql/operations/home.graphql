@@ -11,8 +11,8 @@ query Home {
   }
 }
 
-mutation CreateHome {
-  createHome {
+mutation CreateHome($name: String!) {
+  createHome(name: $name) {
     id
     name
     code
@@ -25,7 +25,7 @@ mutation CreateHome {
 }
 
 mutation JoinHome($code: String!) {
-  joinHomeByCode(code: $code) {
+  joinHome(code: $code) {
     id
     name
     code

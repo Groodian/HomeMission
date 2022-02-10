@@ -55,8 +55,9 @@ export default class Home extends BaseEntity {
   })
   taskReceipts!: TaskReceipt[];
 
-  constructor() {
+  constructor(name: string) {
     super();
+    this.name = name;
     this.code = generateRandomString(6);
   }
 

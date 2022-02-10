@@ -46,6 +46,27 @@ describe('Home resolver with', () => {
   );
 
   it(
+    'CreateHome mutation returns the home that user creates',
+    async () => {
+      await database.insertUsers();
+
+      const body = {
+        operationName: 'CreateHome',
+        query: createHomeQuery,
+        variables: { name: 'my-home' },
+      };
+
+      const res = await testGraphql(body, 'user-1');
+
+      expect(res.end).toHaveBeenNthCalledWith(
+        1,
+        '{"data":{"createHome":{"name":"my-home"}}}\n'
+      );
+    },
+    timeoutLength
+  );
+
+  it(
     'JoinHome mutation returns the home that user joins',
     async () => {
       await database.insertUsers();
@@ -61,7 +82,7 @@ describe('Home resolver with', () => {
 
       expect(res.end).toHaveBeenNthCalledWith(
         1,
-        '{"data":{"joinHomeByCode":{"id":"1","name":"name-1","code":"code-1"}}}\n'
+        '{"data":{"joinHome":{"id":"1","name":"name-1","code":"code-1"}}}\n'
       );
     },
     timeoutLength
@@ -83,7 +104,7 @@ describe('Home resolver with', () => {
 
       expect(res.end).toHaveBeenNthCalledWith(
         1,
-        '{"errors":[{"message":"Failed to add user to home. Check that the code is valid!","locations":[{"line":3,"column":7}],"path":["joinHomeByCode"],"extensions":{"code":"INTERNAL_SERVER_ERROR"}}],"data":null}\n'
+        '{"errors":[{"message":"Failed to add user to home. Check that the code is valid!","locations":[{"line":3,"column":7}],"path":["joinHome"],"extensions":{"code":"INTERNAL_SERVER_ERROR"}}],"data":null}\n'
       );
     },
     timeoutLength
@@ -99,9 +120,17 @@ describe('Home resolver with', () => {
     }
   `;
 
+  const createHomeQuery = `
+    mutation CreateHome($name: String!) {
+      createHome(name: $name) {
+        name
+      }
+    }
+  `;
+
   const joinHomeQuery = `
     mutation JoinHome($code: String!) {
-      joinHomeByCode(code: $code) {
+      joinHome(code: $code) {
         id
         name
         code
