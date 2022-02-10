@@ -126,10 +126,6 @@ export default class Helper {
       history.home = home;
       history.user = user;
       history.type = type;
-
-      home.history.push(history);
-      user.history.push(history);
-
       await history.save();
 
       return history;

@@ -110,6 +110,52 @@ describe('Home resolver with', () => {
     timeoutLength
   );
 
+  it(
+    'RenameHome mutation returns the new name',
+    async () => {
+      await database.insertUsers();
+      await database.insertHomes();
+      await database.addUserToHome('user-1', '1');
+
+      const body = {
+        operationName: 'RenameHome',
+        query: renameHomeQuery,
+        variables: { newName: 'new-name' },
+      };
+
+      const res = await testGraphql(body, 'user-1');
+
+      expect(res.end).toHaveBeenNthCalledWith(
+        1,
+        '{"data":{"renameHome":{"id":"1","name":"new-name","code":"code-1"}}}\n'
+      );
+    },
+    timeoutLength
+  );
+
+  it(
+    'LeaveHome mutation returns null',
+    async () => {
+      await database.insertUsers();
+      await database.insertHomes();
+      await database.addUserToHome('user-1', '1');
+
+      const body = {
+        operationName: 'LeaveHome',
+        query: leaveHomeQuery,
+        variables: {},
+      };
+
+      const res = await testGraphql(body, 'user-1');
+
+      expect(res.end).toHaveBeenNthCalledWith(
+        1,
+        '{"data":{"leaveHome":null}}\n'
+      );
+    },
+    timeoutLength
+  );
+
   const homeQuery = `
     query Home {
       home {
@@ -131,6 +177,26 @@ describe('Home resolver with', () => {
   const joinHomeQuery = `
     mutation JoinHome($code: String!) {
       joinHome(code: $code) {
+        id
+        name
+        code
+      }
+    }
+  `;
+
+  const renameHomeQuery = `
+    mutation RenameHome($newName: String!) {
+      renameHome(newName: $newName) {
+        id
+        name
+        code
+      }
+    }
+  `;
+
+  const leaveHomeQuery = `
+    mutation LeaveHome {
+      leaveHome {
         id
         name
         code

@@ -22,7 +22,10 @@
   "Navbar": {
     "logout": "Logout",
     "settings": "Open settings",
-    "language": "Language"
+    "language": "Language",
+    "rename-tooltip": "Change name of home",
+    "rename-success": "Changed name of home to '{{newName}}'",
+    "rename-error": "Could not change name of home"
   },
 
   "Leftbar": {
@@ -31,7 +34,15 @@
     "activity": "Activity history",
     "invite": "Invite others",
     "invite-tooltip": "Click to copy invitation link",
-    "invite-info": "Invitation link was copied to your clipboard"
+    "invite-info": "Invitation link was copied to your clipboard",
+    "LeaveHome": {
+      "leave-home": "Leave home",
+      "dialog-title": "Are you sure you want to leave this home?",
+      "dialog-warning": "Warning: If you leave the home all your points and tasks will be lost!",
+      "dialog-cancel": "Cancel",
+      "leave-success": "Left home",
+      "leave-error": "Could not leave home"
+    }
   },
 
   "Rightbar": {

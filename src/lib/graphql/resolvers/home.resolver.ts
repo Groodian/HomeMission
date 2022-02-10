@@ -126,6 +126,42 @@ export default class HomeResolver implements ResolverInterface<Home> {
     }
   }
 
+  /**
+   * Rename the home of the user.
+   */
+  @Authorized()
+  @Mutation(() => Home)
+  async renameHome(
+    @CurrentSession() session: Session,
+    @Arg('newName') newName: string
+  ) {
+    await databaseConnection();
+    const home = await Helper.getHomeOrFail(session);
+    try {
+      home.name = newName;
+      return await home.save();
+    } catch (e) {
+      throw Error('Failed to rename home!');
+    }
+  }
+
+  /**
+   * Remove the user from the home.
+   */
+  @Authorized()
+  @Mutation(() => Home, { nullable: true })
+  async leaveHome(@CurrentSession() session: Session) {
+    await databaseConnection();
+    const user = await Helper.getMeOrFail(session);
+    try {
+      user.home = null;
+      await user.save();
+      return null;
+    } catch (e) {
+      throw Error('Failed to leave home!');
+    }
+  }
+
   private async addUserToHome(home: Home, session: Session) {
     try {
       // get user from database

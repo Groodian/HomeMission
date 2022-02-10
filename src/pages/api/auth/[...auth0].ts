@@ -12,13 +12,14 @@ const afterCallback: AfterCallback = async (req, res, session) => {
 
   const user = (await User.findOne(session.user.sub as string)) || new User();
 
-  // set properties and save if user is new
+  // Use Auth0 id and name if user is new
   if (!user.id) {
     user.id = session.user.sub;
     user.name = session.user.name;
-    user.picture = session.user.picture;
-    await user.save();
   }
+
+  user.picture = session.user.picture; // Always update picture
+  await user.save();
 
   return session;
 };

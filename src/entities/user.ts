@@ -1,8 +1,5 @@
 import { Field, ID, ObjectType } from 'type-graphql';
 import {
-  AfterInsert,
-  AfterLoad,
-  AfterUpdate,
   BaseEntity,
   Column,
   Entity,
@@ -45,17 +42,4 @@ export default class User extends BaseEntity {
 
   @OneToMany('Task', 'assignee')
   tasks!: Task[];
-
-  @AfterLoad()
-  @AfterInsert()
-  @AfterUpdate()
-  async nullChecks() {
-    // ensures that array properties are never undefined
-    if (!this.history) {
-      this.history = [];
-    }
-    if (!this.receipts) {
-      this.receipts = [];
-    }
-  }
 }

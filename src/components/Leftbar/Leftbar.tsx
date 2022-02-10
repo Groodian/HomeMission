@@ -19,11 +19,12 @@ import {
   History,
   SvgIconComponent,
 } from '@mui/icons-material';
-import StyledDrawer from './StyledDrawer';
+import StyledDrawer from '../StyledDrawer';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
-import { useHomeQuery } from '../lib/graphql/operations/home.graphql';
+import { useHomeQuery } from '../../lib/graphql/operations/home.graphql';
 import { useSnackbar } from 'notistack';
+import LeaveHome from './LeaveHome';
 
 type Page = {
   url: string;
@@ -67,7 +68,7 @@ const Leftbar = () => {
     { url: 'history', text: t('activity'), icon: History },
   ];
 
-  const [open, setOpen] = React.useState<boolean>(false);
+  const [open, setOpen] = React.useState(false);
 
   return (
     <StyledDrawer
@@ -104,26 +105,25 @@ const Leftbar = () => {
             </ListItem>
           ))}
           <Divider />
-          {homeData && (
-            <Tooltip title={t('invite-tooltip') as string}>
-              <ListItem
-                button
-                onClick={() => {
-                  navigator.clipboard.writeText(
-                    `${window.location.protocol}//${window.location.host}/join?code=${homeData.home?.code}`
-                  );
-                  enqueueSnackbar(t('invite-info'), {
-                    variant: 'info',
-                  });
-                }}
-              >
-                <ListItemIcon>
-                  <GroupAdd />
-                </ListItemIcon>
-                <ListItemText primary={t('invite')} />
-              </ListItem>
-            </Tooltip>
-          )}
+          <Tooltip title={t('invite-tooltip') as string}>
+            <ListItem
+              button
+              onClick={() => {
+                navigator.clipboard.writeText(
+                  `${window.location.protocol}//${window.location.host}/join?code=${homeData?.home?.code}`
+                );
+                enqueueSnackbar(t('invite-info'), {
+                  variant: 'info',
+                });
+              }}
+            >
+              <ListItemIcon>
+                <GroupAdd />
+              </ListItemIcon>
+              <ListItemText primary={t('invite')} />
+            </ListItem>
+          </Tooltip>
+          <LeaveHome />
         </List>
       </Box>
     </StyledDrawer>

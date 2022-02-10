@@ -36,3 +36,30 @@ mutation JoinHome($code: String!) {
     }
   }
 }
+
+mutation RenameHome($newName: String!) {
+  renameHome(newName: $newName) {
+    id
+    name
+    code
+    users {
+      id
+      name
+      picture
+    }
+  }
+}
+
+
+mutation LeaveHome {
+  leaveHome {
+    id
+    name
+    code
+    users {
+      id
+      name
+      picture
+    }
+  }
+}

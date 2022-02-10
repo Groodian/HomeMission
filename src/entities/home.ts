@@ -1,8 +1,5 @@
 import { Field, ID, ObjectType } from 'type-graphql';
 import {
-  AfterInsert,
-  AfterLoad,
-  AfterUpdate,
   BaseEntity,
   Column,
   Entity,
@@ -59,28 +56,6 @@ export default class Home extends BaseEntity {
     super();
     this.name = name;
     this.code = generateRandomString(6);
-  }
-
-  @AfterLoad()
-  @AfterInsert()
-  @AfterUpdate()
-  async nullChecks() {
-    // ensures that array properties are never undefined
-    if (!this.users) {
-      this.users = [];
-    }
-    if (!this.history) {
-      this.history = [];
-    }
-    if (!this.taskTypes) {
-      this.taskTypes = [];
-    }
-    if (!this.tasks) {
-      this.tasks = [];
-    }
-    if (!this.taskReceipts) {
-      this.taskReceipts = [];
-    }
   }
 }
 

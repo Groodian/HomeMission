@@ -22,7 +22,10 @@
   "Navbar": {
     "logout": "Ausloggen",
     "settings": "Einstellungen anzeigen",
-    "language": "Sprache"
+    "language": "Sprache",
+    "rename-tooltip": "Name der WG ändern",
+    "rename-success": "Name der WG auf '{{newName}}' geändert",
+    "rename-error": "Name der WG konnte nicht geändert werden"
   },
 
   "Leftbar": {
@@ -31,7 +34,15 @@
     "activity": "Tätigkeitsverlauf",
     "invite": "Einladen",
     "invite-tooltip": "Einladungslink kopieren",
-    "invite-info": "Einladungslink wurde kopiert"
+    "invite-info": "Einladungslink wurde kopiert",
+    "LeaveHome": {
+      "leave-home": "WG verlassen",
+      "dialog-title": "Bist du sicher, dass du die WG verlassen möchtest?",
+      "dialog-warning": "Achtung: Wenn du die WG verlässt gehen alle deine Punkte und Aufgaben verloren!",
+      "dialog-cancel": "Abbrechen",
+      "leave-success": "WG verlassen",
+      "leave-error": "WG konnte nicht verlassen werden"
+    }
   },
 
   "Rightbar": {
