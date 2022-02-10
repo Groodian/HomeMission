@@ -20,11 +20,9 @@
   "complete-error": "Could not complete task",
 
   "Navbar": {
-    "logout": "logout",
-    "settings": "open settings",
-    "language": "Language",
-    "german": "German",
-    "english": "English"
+    "logout": "Logout",
+    "settings": "Open settings",
+    "language": "Language"
   },
 
   "Leftbar": {

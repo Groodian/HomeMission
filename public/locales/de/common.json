@@ -22,9 +22,7 @@
   "Navbar": {
     "logout": "Ausloggen",
     "settings": "Einstellungen anzeigen",
-    "language": "Sprache",
-    "german": "Deutsch",
-    "english": "Englisch"
+    "language": "Sprache"
   },
 
   "Leftbar": {

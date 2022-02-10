@@ -9,14 +9,17 @@ import {
   FormControl,
   IconButton,
   InputLabel,
+  ListItemIcon,
   Menu,
   MenuItem,
+  outlinedInputClasses,
   Select,
   Toolbar,
   Tooltip,
   Typography,
   useTheme,
 } from '@mui/material';
+import { Logout } from '@mui/icons-material';
 import { useTranslation } from 'next-i18next';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -69,7 +72,7 @@ const Navbar = () => {
           >
             {homeData && homeData.home && (
               <>
-                <Typography sx={{ padding: '0 1em' }} variant={'h4'}>
+                <Typography p="0 1em" variant={'h4'} component="span">
                   {homeData.home.name}
                 </Typography>
                 <AvatarGroup max={3}>
@@ -82,9 +85,14 @@ const Navbar = () => {
               </>
             )}
           </Box>
-          <Box sx={{ minWidth: 120 }}>
-            <FormControl fullWidth>
-              <InputLabel id="language-select-label">
+          <Box sx={{ minWidth: 140 }}>
+            <FormControl fullWidth size="small">
+              <InputLabel
+                id="language-select-label"
+                sx={{
+                  color: `${theme.palette.text.primary} !important`,
+                }}
+              >
                 {t('language')}
               </InputLabel>
               <Select
@@ -94,6 +102,10 @@ const Navbar = () => {
                     theme.palette.mode === 'dark'
                       ? theme.palette.background.default
                       : 'none',
+                  [`&.${outlinedInputClasses.focused} .${outlinedInputClasses.notchedOutline}`]:
+                    {
+                      borderColor: 'inherit',
+                    },
                 }}
                 labelId="language-select-label"
                 label={t('language')}
@@ -104,8 +116,28 @@ const Navbar = () => {
                   });
                 }}
               >
-                <MenuItem value={'de'}>{t('german')}</MenuItem>
-                <MenuItem value={'en'}>{t('english')}</MenuItem>
+                <MenuItem value={'de'}>
+                  <Box component="span" sx={{ mr: 2 }}>
+                    <Image
+                      width="16"
+                      height="12"
+                      src={`https://flagcdn.com/16x12/de.png`}
+                      alt=""
+                    />
+                  </Box>
+                  Deutsch
+                </MenuItem>
+                <MenuItem value={'en'}>
+                  <Box component="span" sx={{ mr: 2 }}>
+                    <Image
+                      width="16"
+                      height="12"
+                      src={`https://flagcdn.com/16x12/us.png`}
+                      alt=""
+                    />
+                  </Box>
+                  English
+                </MenuItem>
               </Select>
             </FormControl>
           </Box>
@@ -145,6 +177,9 @@ const Navbar = () => {
                   key={'logout'}
                   onClick={() => window.location.assign('/api/auth/logout')}
                 >
+                  <ListItemIcon>
+                    <Logout fontSize="small" />
+                  </ListItemIcon>
                   <Typography textAlign="center">{t('logout')}</Typography>
                 </MenuItem>
               </Menu>

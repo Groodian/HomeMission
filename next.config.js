@@ -7,6 +7,7 @@ module.exports = {
 
   images: {
     domains: [
+      'flagcdn.com',
       's.gravatar.com',
       'lh3.googleusercontent.com',
       'images.unsplash.com',
