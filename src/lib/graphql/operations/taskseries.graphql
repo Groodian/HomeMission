@@ -5,9 +5,13 @@ mutation CreateTaskSeries($start: String!, $type: String!, $interval: Float!, $i
 }
 
 mutation DeleteTaskSeries($series: String!) {
-  deleteTaskSeries(series: $series)
+  deleteTaskSeries(series: $series) {
+    id
+  }
 }
 
 mutation DeleteTaskSeriesSubsection($series: String!, $start: String!) {
-  deleteTaskSeriesSubsection(series: $series, start: $start)
+  deleteTaskSeriesSubsection(series: $series, start: $start) {
+    id
+  }
 }

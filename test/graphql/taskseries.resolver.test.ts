@@ -117,7 +117,7 @@ describe('Task series resolver with', () => {
       let res = await testGraphql(body, 'user-1');
       expect(res.end).toHaveBeenNthCalledWith(
         1,
-        '{"data":{"deleteTaskSeries":true}}\n'
+        '{"data":{"deleteTaskSeries":{"id":"1"}}}\n'
       );
 
       // query that returns tasks
@@ -171,7 +171,7 @@ describe('Task series resolver with', () => {
       let res = await testGraphql(body, 'user-1');
       expect(res.end).toHaveBeenNthCalledWith(
         1,
-        '{"data":{"deleteTaskSeriesSubsection":true}}\n'
+        '{"data":{"deleteTaskSeriesSubsection":{"id":"1"}}}\n'
       );
 
       // query that returns task
@@ -245,13 +245,17 @@ describe('Task series resolver with', () => {
 
   const deleteTaskSeriesQuery = `
     mutation DeleteTaskSeries($series: String!) {
-      deleteTaskSeries(series: $series)
+      deleteTaskSeries(series: $series) {
+        id
+      }
     }
   `;
 
   const deleteTaskSeriesSubsectionQuery = `
     mutation DeleteTaskSeriesSubsection($series: String!, $start: String!) {
-      deleteTaskSeriesSubsection(series: $series, start: $start)
+      deleteTaskSeriesSubsection(series: $series, start: $start) {
+        id
+      }
     }
   `;
 

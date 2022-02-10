@@ -59,7 +59,7 @@ export default class TaskSeriesResolver {
    * Delete all tasks correlating to a task series.
    */
   @Authorized()
-  @Mutation(() => Boolean)
+  @Mutation(() => TaskSeries)
   async deleteTaskSeries(
     @CurrentSession() session: Session,
     @Arg('series') series: string
@@ -70,17 +70,20 @@ export default class TaskSeriesResolver {
     const taskSeries = await Helper.getSeriesOrFail(series, home.id);
 
     try {
-      // delete tasks from series
+      // remove reference to home from tasks of series
       for (const task of taskSeries.tasks) {
-        await task.remove();
+        task.assignee = null;
+        task.relatedHome = null;
+        await task.save();
       }
 
-      // delete series
-      await taskSeries.remove();
+      // remove reference to home from series
+      taskSeries.relatedHome = null;
+      await taskSeries.save();
 
       await Helper.createHistory(home, user, HistoryType.TASK_SERIES_DELETED);
 
-      return true;
+      return taskSeries;
     } catch (e) {
       throw Error('Failed to remove task series!');
     }
@@ -90,7 +93,7 @@ export default class TaskSeriesResolver {
    * Delete tasks correlating to a task series starting from a specified task.
    */
   @Authorized()
-  @Mutation(() => Boolean)
+  @Mutation(() => TaskSeries)
   async deleteTaskSeriesSubsection(
     @CurrentSession() session: Session,
     @Arg('series') series: string,
@@ -107,9 +110,13 @@ export default class TaskSeriesResolver {
       );
 
     try {
-      // delete tasks from series if they are after the specified start task
+      // remove reference to home from tasks of series if they are after the specified start task
       for (const task of taskSeries.tasks) {
-        if (task.date >= startTask.date) await task.remove();
+        if (task.date >= startTask.date) {
+          task.assignee = null;
+          task.relatedHome = null;
+          await task.save();
+        }
       }
 
       await Helper.createHistory(
@@ -118,7 +125,7 @@ export default class TaskSeriesResolver {
         HistoryType.TASK_SERIES_SUB_DELETED
       );
 
-      return true;
+      return taskSeries;
     } catch (e) {
       throw Error('Failed to remove task series!');
     }
