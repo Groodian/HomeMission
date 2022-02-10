@@ -190,7 +190,7 @@ describe('Task resolver with', () => {
   );
 
   it(
-    'DeleteTask mutation returns true when task is deleted',
+    'DeleteTask mutation returns task that is removed from home',
     async () => {
       await database.insertUsers();
       await database.insertHomes();
@@ -208,7 +208,7 @@ describe('Task resolver with', () => {
 
       expect(res.end).toHaveBeenNthCalledWith(
         1,
-        '{"data":{"deleteTask":true}}\n'
+        '{"data":{"deleteTask":{"id":"1"}}}\n'
       );
     },
     timeoutLength
@@ -445,7 +445,9 @@ describe('Task resolver with', () => {
 
   const deleteTaskQuery = `
     mutation DeleteTask($task: String!) {
-      deleteTask(task: $task)
+      deleteTask(task: $task) {
+        id
+      }
     }
   `;
 

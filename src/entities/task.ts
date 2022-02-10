@@ -28,22 +28,16 @@ export default class Task extends BaseEntity {
   @ManyToOne('TaskType', 'tasksOfType')
   type: TaskType | null | undefined;
 
-  @ManyToOne('TaskSeries', 'tasks', {
-    nullable: true,
-  })
+  @ManyToOne('TaskSeries', 'tasks', { nullable: true })
   series?: TaskSeries | null | undefined;
 
-  @ManyToOne('User', 'tasks', {
-    nullable: true,
-  })
+  @ManyToOne('User', 'tasks', { nullable: true })
   assignee?: User | null | undefined;
 
-  @ManyToOne('Home', 'tasks')
-  relatedHome: Home | null | undefined;
+  @ManyToOne('Home', 'tasks', { nullable: true })
+  relatedHome?: Home | null | undefined;
 
-  @OneToOne('TaskReceipt', {
-    nullable: true,
-  })
+  @OneToOne('TaskReceipt', { nullable: true })
   @JoinColumn()
   receipt?: TaskReceipt | undefined | null;
 

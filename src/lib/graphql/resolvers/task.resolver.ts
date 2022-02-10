@@ -148,7 +148,7 @@ export default class TaskResolver implements ResolverInterface<Task> {
    * Delete an existing task. The task must belong to the users home.
    */
   @Authorized()
-  @Mutation(() => Boolean)
+  @Mutation(() => Task)
   async deleteTask(
     @CurrentSession() session: Session,
     @Arg('task') task: string
@@ -159,9 +159,11 @@ export default class TaskResolver implements ResolverInterface<Task> {
     const taskEntity = await Helper.getTaskOrFail(task, home.id);
 
     try {
-      await Task.remove(taskEntity);
+      taskEntity.assignee = null;
+      taskEntity.relatedHome = null;
+      await taskEntity.save();
       await Helper.createHistory(home, user, HistoryType.TASK_DELETED);
-      return true;
+      return taskEntity;
     } catch (e) {
       throw Error('Failed to delete task!');
     }

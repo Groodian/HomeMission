@@ -53,7 +53,9 @@ mutation CreateTask($date: String!, $type: String!) {
 }
 
 mutation DeleteTask($task: String!) {
-  deleteTask(task: $task)
+  deleteTask(task: $task) {
+    id
+  }
 }
 
 mutation AssignTask($user: String!, $task: String!) {
