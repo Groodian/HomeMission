@@ -37,8 +37,8 @@ mutation JoinHome($code: String!) {
   }
 }
 
-mutation RenameHome($newName: String!) {
-  renameHome(newName: $newName) {
+mutation RenameHome($name: String!) {
+  renameHome(name: $name) {
     id
     name
     code

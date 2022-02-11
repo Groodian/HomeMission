@@ -68,7 +68,7 @@ const HomeData: React.FC = () => {
                 [`& .${inputBaseClasses.input}`]: {
                   fontSize: (theme) => theme.typography.h4.fontSize,
                   color: 'white',
-                  fontFamily: 'monospace',
+                  fontFamily: 'Consolas',
                 },
                 [`& .${outlinedInputClasses.focused} .${outlinedInputClasses.notchedOutline}`]:
                   {
@@ -95,7 +95,7 @@ const HomeData: React.FC = () => {
     const newName = nameValue?.trim();
     if (newName && newName !== data?.home?.name) {
       try {
-        await renameHome({ variables: { newName } });
+        await renameHome({ variables: { name: newName } });
         enqueueSnackbar(t('rename-success', { newName }), {
           variant: 'success',
         });

@@ -133,12 +133,12 @@ export default class HomeResolver implements ResolverInterface<Home> {
   @Mutation(() => Home)
   async renameHome(
     @CurrentSession() session: Session,
-    @Arg('newName') newName: string
+    @Arg('name') name: string
   ) {
     await databaseConnection();
     const home = await Helper.getHomeOrFail(session);
     try {
-      home.name = newName;
+      home.name = name;
       return await home.save();
     } catch (e) {
       throw Error('Failed to rename home!');

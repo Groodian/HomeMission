@@ -120,7 +120,7 @@ describe('Home resolver with', () => {
       const body = {
         operationName: 'RenameHome',
         query: renameHomeQuery,
-        variables: { newName: 'new-name' },
+        variables: { name: 'new-name' },
       };
 
       const res = await testGraphql(body, 'user-1');
@@ -185,8 +185,8 @@ describe('Home resolver with', () => {
   `;
 
   const renameHomeQuery = `
-    mutation RenameHome($newName: String!) {
-      renameHome(newName: $newName) {
+    mutation RenameHome($name: String!) {
+      renameHome(name: $name) {
         id
         name
         code
