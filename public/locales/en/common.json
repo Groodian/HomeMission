@@ -25,7 +25,8 @@
     "language": "Language",
     "rename-tooltip": "Change name of home",
     "rename-success": "Changed name of home to '{{newName}}'",
-    "rename-error": "Could not change name of home"
+    "rename-error": "Could not change name of home",
+    "no-roommates-tooltip": "Your roommates will be shown here. Invite them."
   },
 
   "Leftbar": {

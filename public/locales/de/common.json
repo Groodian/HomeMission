@@ -25,7 +25,8 @@
     "language": "Sprache",
     "rename-tooltip": "Name der WG ändern",
     "rename-success": "Name der WG auf '{{newName}}' geändert",
-    "rename-error": "Name der WG konnte nicht geändert werden"
+    "rename-error": "Name der WG konnte nicht geändert werden",
+    "no-roommates-tooltip" : "Hier werden deine Mitbewohner angezeigt. Lade sie ein."
   },
 
   "Leftbar": {

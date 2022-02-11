@@ -9,7 +9,7 @@ import {
   Tooltip,
   Typography,
 } from '@mui/material';
-import { Edit } from '@mui/icons-material';
+import { Edit, Group } from '@mui/icons-material';
 import { useTranslation } from 'next-i18next';
 import { useSnackbar } from 'notistack';
 import {
@@ -87,6 +87,13 @@ const HomeData: React.FC = () => {
             <Avatar alt={user.name} src={user.picture} />
           </Tooltip>
         ))}
+        {data.home.users.length === 1 && (
+          <Tooltip title={t('no-roommates-tooltip') as string}>
+            <Avatar>
+              <Group />
+            </Avatar>
+          </Tooltip>
+        )}
       </AvatarGroup>
     </>
   ) : null;
