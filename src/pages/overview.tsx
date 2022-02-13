@@ -5,10 +5,11 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useSnackbar } from 'notistack';
 import LoadingSpinner from '../components/LoadingSpinner';
-import TaskCalendar from '../components/TaskCalendar';
-import TaskDetailsDrawer from '../components/TaskDetailsDrawer';
+import TaskCalendar from '../components/overview-page/TaskCalendar';
+import TaskDetailsDrawer from '../components/overview-page/TaskDetailsDrawer';
 import Task from '../entities/task';
 import { useTasksQuery } from '../lib/graphql/operations/task.graphql';
+import AddTaskDialog from '../components/overview-page/AddTaskDialog';
 
 const Overview: NextPage = () => {
   const { t } = useTranslation(['overview']);
@@ -16,6 +17,9 @@ const Overview: NextPage = () => {
   const { enqueueSnackbar } = useSnackbar();
 
   const [selectedTask, setSelectedTask] = React.useState<Task | undefined>(
+    undefined
+  );
+  const [newTaskDate, setNewTaskDate] = React.useState<Date | undefined>(
     undefined
   );
 
@@ -40,17 +44,17 @@ const Overview: NextPage = () => {
       {data && (
         <TaskCalendar
           tasks={data.tasks as Task[]}
-          onSelectEvent={(task) => {
-            setSelectedTask(task);
-          }}
-          onSelectSlot={(_slotInfo) => {
-            // ... handle slot selection
-          }}
+          onSelectTask={setSelectedTask}
+          onAddTask={setNewTaskDate}
         />
       )}
       <TaskDetailsDrawer
         task={selectedTask}
         onCloseDrawer={() => setSelectedTask(undefined)}
+      />
+      <AddTaskDialog
+        newTaskDate={newTaskDate}
+        onCloseDialog={() => setNewTaskDate(undefined)}
       />
     </Container>
   );

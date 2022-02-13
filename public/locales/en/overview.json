@@ -7,7 +7,8 @@
     "today": "today",
     "month": "month",
     "week": "week",
-    "day": "day"
+    "day": "day",
+    "add-task-tooltip": "Add task"
   },
 
   "TaskDetailsDrawer": {
@@ -32,5 +33,24 @@
     "unassign-success": "Removed assignee from task",
     "unassign-error": "Could not remove assignee from task",
     "already-assigned-info": "User is already assigned"
+  },
+
+  "AddTaskDialog": {
+    "add-task": "Add task",
+    "dialog-cancel": "Cancel",
+    "load-type-error": "Could not load task types",
+    "create-type-success": "Created task type '{{type}}'",
+    "create-type-error": "Could not create task type '{{type}}'",
+    "create-task-success": "Created task",
+    "create-task-error": "Could not create task",
+    "create-series-success": "Created task series",
+    "create-series-error": "Could not create task series",
+    "date-label": "Date",
+    "type-label": "Task type",
+    "recurring-label": "Repeat",
+    "interval-label": "Interval",
+    "interval-helper": "Every X weeks",
+    "iterations-label": "Iterations",
+    "iterations-helper": "Number of tasks"
   }
 }

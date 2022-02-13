@@ -24,6 +24,7 @@ import {
   useHomeQuery,
   useJoinHomeMutation,
 } from '../lib/graphql/operations/home.graphql';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 const Join: NextPage = () => {
   const { t } = useTranslation('join');
@@ -34,6 +35,7 @@ const Join: NextPage = () => {
   const [createHome, { loading: loadingCreate }] = useCreateHomeMutation();
 
   const [changed, setChanged] = React.useState(false);
+  const [redirectPending, setRedirectPending] = React.useState(false);
 
   const router = useRouter();
   const code = (router.query?.code as string | undefined)?.toUpperCase();
@@ -53,11 +55,13 @@ const Join: NextPage = () => {
           id="nameInput"
           required
           label={t('create-input-label')}
+          disabled={loadingCreate || loadingJoin}
           variant="outlined"
           size="small"
         />
         <LoadingButton
           loading={loadingCreate}
+          disabled={loadingJoin}
           type="submit"
           variant="outlined"
           sx={{ width: '9em' }}
@@ -84,6 +88,7 @@ const Join: NextPage = () => {
           id="codeInput"
           required
           label={t('join-input-label')}
+          disabled={loadingCreate || loadingJoin}
           error={error && !changed}
           onChange={() => setChanged(true)}
           variant="outlined"
@@ -94,6 +99,7 @@ const Join: NextPage = () => {
         />
         <LoadingButton
           loading={loadingJoin}
+          disabled={loadingCreate}
           type="submit"
           variant="outlined"
           sx={{ width: '9em' }}
@@ -115,7 +121,11 @@ const Join: NextPage = () => {
         </DialogContent>
       )}
       <DialogActions>
-        <Button variant="outlined" onClick={() => router.push('/join')}>
+        <Button
+          variant="outlined"
+          onClick={() => router.push('/join')}
+          disabled={loadingJoin}
+        >
           {t('dialog-cancel')}
         </Button>
         <LoadingButton
@@ -130,7 +140,9 @@ const Join: NextPage = () => {
     </Dialog>
   );
 
-  return (
+  return redirectPending ? (
+    <LoadingSpinner loading />
+  ) : (
     <Container maxWidth="sm">
       <Stack spacing={2}>
         <Typography variant="h3">{t('title')}</Typography>
@@ -154,6 +166,7 @@ const Join: NextPage = () => {
         variables: { code },
         update(cache, { data }) {
           if (!data) return;
+          setRedirectPending(true);
           cache.writeQuery({
             query: HomeDocument,
             data: { home: data.joinHome },
@@ -175,6 +188,7 @@ const Join: NextPage = () => {
         variables: { name },
         update(cache, { data }) {
           if (!data) return;
+          setRedirectPending(true);
           cache.writeQuery({
             query: HomeDocument,
             data: { home: data.createHome },

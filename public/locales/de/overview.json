@@ -7,7 +7,8 @@
     "today": "Heute",
     "month": "Monat",
     "week": "Woche",
-    "day": "Tag"
+    "day": "Tag",
+    "add-task-tooltip": "Aufgabe hinzufügen"
   },
 
   "TaskDetailsDrawer": {
@@ -32,5 +33,24 @@
     "unassign-success": "Zugeordneter wurde entfernt",
     "unassign-error": "Zugeordneter konnte nicht entfernt werden",
     "already-assigned-info": "Person ist schon zugeordnet"
+  },
+
+  "AddTaskDialog": {
+    "add-task": "Aufgabe hinzufügen",
+    "dialog-cancel": "Abbrechen",
+    "load-type-error": "Aufgabentypen konnten nicht geladen werden",
+    "create-type-success": "Aufgabentyp '{{type}}' erstellt",
+    "create-type-error": "Aufgabentyp '{{type}}' konnte nicht erstellt werden",
+    "create-task-success": "Aufgabe erstellt",
+    "create-task-error": "Aufgabe konnte nicht erstellt werden",
+    "create-series-success": "Aufgabenserie erstellt",
+    "create-series-error": "Aufgabenserie konnte nicht erstellt werden",
+    "date-label": "Datum",
+    "type-label": "Aufgabentyp",
+    "recurring-label": "Wiederholen",
+    "interval-label": "Intervall",
+    "interval-helper": "Jede Xte Woche",
+    "iterations-label": "Wiederholungen",
+    "iterations-helper": "Anzahl an Aufgaben"
   }
 }

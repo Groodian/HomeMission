@@ -16,7 +16,7 @@ describe('Task series resolver with', () => {
         operationName: 'CreateTaskSeries',
         query: createTaskSeriesQuery,
         variables: {
-          start: '2022-01-01',
+          start: new Date('2022-01-01').valueOf(),
           type: '1',
           interval: 2,
           iterations: 6,
@@ -52,7 +52,7 @@ describe('Task series resolver with', () => {
         operationName: 'CreateTaskSeries',
         query: createTaskSeriesQuery,
         variables: {
-          start: '2022-01-01',
+          start: new Date('2022-01-01').valueOf(),
           type: '1',
           interval: 0,
           iterations: 6,
@@ -81,7 +81,7 @@ describe('Task series resolver with', () => {
         operationName: 'CreateTaskSeries',
         query: createTaskSeriesQuery,
         variables: {
-          start: '2022-01-01',
+          start: new Date('2022-01-01').valueOf(),
           type: '1',
           interval: 4,
           iterations: -2,
@@ -236,8 +236,8 @@ describe('Task series resolver with', () => {
   );
 
   const createTaskSeriesQuery = `
-    mutation CreateTaskSeries($start: String!, $type: String!, $interval: Float!, $iterations: Float!) {
-      createTaskSeries (type: $type, start: $start, interval: $interval, iterations: $iterations) {
+    mutation CreateTaskSeries($start: Float!, $interval: Float!, $iterations: Float!, $type: String!) {
+      createTaskSeries(start: $start, interval: $interval, iterations: $iterations, type: $type) {
         id
       }
     }

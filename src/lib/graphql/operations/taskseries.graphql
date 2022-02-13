@@ -1,5 +1,5 @@
-mutation CreateTaskSeries($start: String!, $type: String!, $interval: Float!, $iterations: Float!) {
-  createTaskSeries (type: $type, start: $start, interval: $interval, iterations: $iterations) {
+mutation CreateTaskSeries($start: Float!, $interval: Float!, $iterations: Float!, $type: String!) {
+  createTaskSeries(start: $start, interval: $interval, iterations: $iterations, type: $type) {
     id
   }
 }

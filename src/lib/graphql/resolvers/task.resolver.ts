@@ -124,13 +124,13 @@ export default class TaskResolver implements ResolverInterface<Task> {
   @Mutation(() => Task)
   async createTask(
     @CurrentSession() session: Session,
-    @Arg('type') type: string,
-    @Arg('date') date: string
+    @Arg('date') date: number,
+    @Arg('type') type: string
   ) {
     await databaseConnection();
     const home = await Helper.getHomeOrFail(session);
     const user = await Helper.getMeOrFail(session);
-    const validDate = Helper.getDateFromStringOrFail(date);
+    const validDate = new Date(date);
     const taskType = await Helper.getTypeOrFail(type, home.id);
 
     try {

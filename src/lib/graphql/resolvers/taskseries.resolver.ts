@@ -17,7 +17,7 @@ export default class TaskSeriesResolver {
   @Mutation(() => TaskType)
   async createTaskSeries(
     @CurrentSession() session: Session,
-    @Arg('start') start: string,
+    @Arg('start') start: number,
     @Arg('interval') interval: number,
     @Arg('iterations') iterations: number,
     @Arg('type') type: string
@@ -25,8 +25,8 @@ export default class TaskSeriesResolver {
     await databaseConnection();
     const home = await Helper.getHomeOrFail(session);
     const user = await Helper.getMeOrFail(session);
+    const startDate = new Date(start);
     const taskType = await Helper.getTypeOrFail(type, home.id);
-    const startDate = Helper.getDateFromStringOrFail(start);
     if (interval <= 0 || iterations <= 0) {
       throw Error(
         'Failed to create task series! Check that arguments interval and iterations are greater than zero.'

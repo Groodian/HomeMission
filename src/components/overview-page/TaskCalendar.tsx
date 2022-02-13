@@ -1,12 +1,14 @@
 import React from 'react';
-import { Avatar, Badge } from '@mui/material';
+import { Avatar, Badge, Box, IconButton, Tooltip } from '@mui/material';
+import { AddTask } from '@mui/icons-material';
 import StyledCalendar from './StyledCalendar';
-import Task from '../entities/task';
+import Task from '../../entities/task';
 import {
+  DateHeaderProps,
+  EventPropGetter,
   EventProps,
   EventWrapperProps,
   momentLocalizer,
-  SlotInfo,
 } from 'react-big-calendar';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
@@ -15,7 +17,7 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import 'moment/locale/fr';
 import 'moment/locale/de';
 import 'moment/locale/en-gb';
-import InlineDiamond from './InlineDiamond';
+import InlineDiamond from '../InlineDiamond';
 
 export type CEvent = {
   title: string;
@@ -26,9 +28,7 @@ export type CEvent = {
 };
 
 // is passed to calendar to render a user icon badge over calendar event if user is assigned
-const CEventWrapperVisualize: React.ComponentType<EventWrapperProps<CEvent>> = (
-  props
-) => {
+const CEventWrapperVisualize: React.FC<EventWrapperProps<CEvent>> = (props) => {
   const task = props.event.resource;
   const user = task.receipt?.completer || task.assignee;
   const avatar = user && (
@@ -43,7 +43,7 @@ const CEventWrapperVisualize: React.ComponentType<EventWrapperProps<CEvent>> = (
 };
 
 // is passed to calendar to render calendar events
-const CEventVisualize = (props: EventProps<CEvent>) => {
+const CEventVisualize: React.FC<EventProps<CEvent>> = (props) => {
   const event = props.event;
   return (
     <span>
@@ -58,7 +58,7 @@ const CEventVisualize = (props: EventProps<CEvent>) => {
 };
 
 // is passed to calendar to render calendar event container
-const customEventPropGetter = (event: CEvent) => {
+const customEventPropGetter: EventPropGetter<CEvent> = (event) => {
   return {
     style: {
       backgroundColor: !event.resource.receipt ? 'grey' : 'green',
@@ -68,13 +68,13 @@ const customEventPropGetter = (event: CEvent) => {
 
 type TaskCalendarProps = {
   tasks?: Task[];
-  onSelectEvent?: (selectedTask: Task) => void;
-  onSelectSlot?: (info: SlotInfo) => void;
+  onSelectTask?: (selectedTask: Task) => void;
+  onAddTask?: (date: Date) => void;
 };
 const TaskCalendar: React.FC<TaskCalendarProps> = ({
   tasks,
-  onSelectEvent = () => undefined,
-  onSelectSlot = () => undefined,
+  onSelectTask = () => undefined,
+  onAddTask = () => undefined,
 }) => {
   const { t } = useTranslation('overview', { keyPrefix: 'TaskCalendar' });
   const router = useRouter();
@@ -92,6 +92,26 @@ const TaskCalendar: React.FC<TaskCalendarProps> = ({
       })
     : [];
 
+  // is passed to calendar to render date cell header
+  const CDateHeaderVisualize: React.FC<DateHeaderProps> = ({ date, label }) => {
+    return (
+      <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+        <Tooltip title={t('add-task-tooltip') as string}>
+          <IconButton
+            size="small"
+            onClick={() => onAddTask(date)}
+            disabled={
+              date.valueOf() < new Date().setDate(new Date().getDate() - 1) // past dates
+            }
+          >
+            <AddTask fontSize="small" />
+          </IconButton>
+        </Tooltip>
+        {label}
+      </Box>
+    );
+  };
+
   return (
     <StyledCalendar
       localizer={localizer}
@@ -99,11 +119,11 @@ const TaskCalendar: React.FC<TaskCalendarProps> = ({
       culture={router.locale === 'de' ? 'de' : 'en-gb'}
       style={{ height: '75vh' }}
       views={['month']}
-      selectable={true}
       eventPropGetter={customEventPropGetter}
       components={{
         event: CEventVisualize,
         eventWrapper: CEventWrapperVisualize,
+        month: { dateHeader: CDateHeaderVisualize },
       }}
       messages={{
         next: t('next'),
@@ -113,13 +133,7 @@ const TaskCalendar: React.FC<TaskCalendarProps> = ({
         week: t('week'),
         day: t('day'),
       }}
-      onSelectEvent={(event) => onSelectEvent(event.resource)}
-      onSelectSlot={(event) => {
-        if (event.slots.length === 1) {
-          // ... open task creation mask on date from event.start
-          onSelectSlot(event);
-        }
-      }}
+      onSelectEvent={(event) => onSelectTask(event.resource)}
     />
   );
 };

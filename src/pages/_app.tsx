@@ -12,6 +12,10 @@ import {
   useMediaQuery,
   ThemeProvider,
 } from '@mui/material';
+import { LocalizationProvider } from '@mui/lab';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import deLocale from 'date-fns/locale/de';
+import enLocale from 'date-fns/locale/en-US';
 import { ApolloProvider } from '@apollo/client';
 import { UserProvider } from '@auth0/nextjs-auth0';
 import { CacheProvider, EmotionCache } from '@emotion/react';
@@ -26,7 +30,7 @@ import { SnackbarProvider } from 'notistack';
 import LoadingSpinner from '../components/LoadingSpinner';
 import Navbar from '../components/Navbar/Navbar';
 import Leftbar from '../components/Leftbar/Leftbar';
-import Rightbar from '../components/Rightbar';
+import Rightbar from '../components/Rightbar/Rightbar';
 import { useApollo } from '../lib/graphql/apollo-client';
 import { useHomeQuery } from '../lib/graphql/operations/home.graphql';
 import { useUserQuery } from '../lib/graphql/operations/user.graphql';
@@ -150,28 +154,33 @@ const MyApp: React.FC<MyAppProps> = ({
             />
           </Head>
           <ColorModeContext.Provider value={colorModeContext}>
-            <ThemeProvider theme={theme}>
-              <SnackbarProvider ref={notistackRef}>
-                {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-                <CssBaseline />
-                {loading ? ( // Only show loading spinner
-                  <LoadingSpinner loading />
-                ) : userData?.user ? ( // Only show bars when user is signed in
-                  <>
-                    <Navbar />
-                    <Box sx={{ display: 'flex' }}>
-                      {homeData?.home && <Leftbar />}
-                      <Container sx={{ flexShrink: 1, my: 3 }}>
-                        <Component {...pageProps} />
-                      </Container>
-                      {homeData?.home && <Rightbar />}
-                    </Box>
-                  </>
-                ) : (
-                  <Component {...pageProps} />
-                )}
-              </SnackbarProvider>
-            </ThemeProvider>
+            <LocalizationProvider
+              dateAdapter={AdapterDateFns}
+              locale={router.locale === 'de' ? deLocale : enLocale}
+            >
+              <ThemeProvider theme={theme}>
+                <SnackbarProvider ref={notistackRef}>
+                  {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+                  <CssBaseline />
+                  {loading ? ( // Only show loading spinner
+                    <LoadingSpinner loading />
+                  ) : userData?.user ? ( // Only show bars when user is signed in
+                    <>
+                      <Navbar />
+                      <Box sx={{ display: 'flex' }}>
+                        {homeData?.home && <Leftbar />}
+                        <Container sx={{ flexShrink: 1, my: 3 }}>
+                          <Component {...pageProps} />
+                        </Container>
+                        {homeData?.home && <Rightbar />}
+                      </Box>
+                    </>
+                  ) : (
+                    <Component {...pageProps} />
+                  )}
+                </SnackbarProvider>
+              </ThemeProvider>
+            </LocalizationProvider>
           </ColorModeContext.Provider>
         </CacheProvider>
       </UserProvider>

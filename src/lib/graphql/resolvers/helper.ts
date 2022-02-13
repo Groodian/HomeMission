@@ -9,19 +9,6 @@ import databaseConnection from '../../typeorm/connection';
 
 export default class Helper {
   /**
-   * Helper function that turns a string into a date or throws an error.
-   */
-  static getDateFromStringOrFail(value: string): Date {
-    if (isNaN(Date.parse(value))) {
-      throw Error(
-        `Failed to turn value ${value} into a date! Check that it has the format yyyy-mm-dd.'`
-      );
-    } else {
-      return new Date(value);
-    }
-  }
-
-  /**
    * Helper function that returns the user and fails if user is not authenticated.
    */
   static async getMeOrFail(session: Session) {

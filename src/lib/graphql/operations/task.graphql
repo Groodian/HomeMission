@@ -45,7 +45,7 @@ query OpenTasks {
   }
 }
 
-mutation CreateTask($date: String!, $type: String!) {
+mutation CreateTask($date: Float!, $type: String!) {
   createTask(date: $date, type: $type) {
     id
     date
@@ -81,4 +81,3 @@ mutation UnassignTask($task: String!) {
     }
   }
 }
-

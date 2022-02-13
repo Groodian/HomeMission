@@ -33,7 +33,12 @@ const LeaveHome: React.FC = () => {
         </ListItemIcon>
         <ListItemText primary={t('leave-home')} />
       </ListItem>
-      <Dialog open={open} aria-labelledby="dialog-title" maxWidth={'md'}>
+      <Dialog
+        open={open}
+        onClose={() => setOpen(false)}
+        aria-labelledby="dialog-title"
+        maxWidth={'md'}
+      >
         <DialogTitle id="dialog-title">{t('dialog-title')}</DialogTitle>
         <DialogContent>
           <DialogContentText color={(theme) => theme.palette.warning.main}>
@@ -41,7 +46,11 @@ const LeaveHome: React.FC = () => {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button variant="outlined" onClick={() => setOpen(false)}>
+          <Button
+            variant="outlined"
+            onClick={() => setOpen(false)}
+            disabled={loading}
+          >
             {t('dialog-cancel')}
           </Button>
           <LoadingButton

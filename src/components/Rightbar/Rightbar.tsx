@@ -2,10 +2,10 @@ import React from 'react';
 import { CircularProgress, Container, styled } from '@mui/material';
 import { useTranslation } from 'next-i18next';
 import RightbarItem from './RightbarItem';
-import Task from '../entities/task';
-import { useOpenTasksQuery } from '../lib/graphql/operations/task.graphql';
+import Task from '../../entities/task';
+import { useOpenTasksQuery } from '../../lib/graphql/operations/task.graphql';
 import { useSnackbar } from 'notistack';
-import StyledDrawer from './StyledDrawer';
+import StyledDrawer from '../StyledDrawer';
 
 const Header = styled('h3')({
   textAlign: 'center',
@@ -15,7 +15,7 @@ const Subtext = styled('p')(({ theme }) => ({
   textAlign: 'center',
 }));
 
-const Rightbar = () => {
+const Rightbar: React.FC = () => {
   const { t } = useTranslation('common', { keyPrefix: 'Rightbar' });
   const { enqueueSnackbar } = useSnackbar();
 
