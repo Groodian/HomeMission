@@ -14,7 +14,7 @@ services:
   homemission:
     image: registry.code.fbi.h-da.de/isttomare/wg-organisierspiel
     ports:
-      - 80:80
+      - 5000:80
     env_file:
       - .env.local
     environment:

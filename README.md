@@ -23,7 +23,7 @@ Use prebuilt Docker container:
 
 1. Login to GitLab registry: `docker login registry.code.fbi.h-da.de`.
 2. Start application: `docker-compose -f docker-compose.prod.yml --env-file=.env.local up -d`.
-3. Open in browser: [`http://localhost`](http://localhost).
+3. Open in browser: [`http://localhost:5000`](http://localhost:5000).
 
 Or build locally:
 
