@@ -39,7 +39,6 @@ const UserMenu: React.FC = () => {
   const handleChangeName: React.FormEventHandler<HTMLFormElement> = async (
     event
   ) => {
-    event.preventDefault();
     const name = newName?.trim();
     if (!name) return;
     try {
@@ -48,6 +47,7 @@ const UserMenu: React.FC = () => {
         variant: 'success',
       });
     } catch (err) {
+      event.preventDefault();
       enqueueSnackbar(t('change-name-error'), { variant: 'error' });
     }
     setNewName(null);
