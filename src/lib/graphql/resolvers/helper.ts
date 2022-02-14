@@ -15,7 +15,7 @@ export default class Helper {
     try {
       // get user from database
       return await User.findOneOrFail(session.user.sub as string, {
-        relations: ['home'],
+        loadRelationIds: true,
       });
     } catch (e) {
       throw Error('Failed to get user!');
@@ -29,7 +29,7 @@ export default class Helper {
     const user = await this.getMeOrFail(session);
     if (!user.home)
       throw Error('Failed to get users home! Check that user has a home.');
-    return user.home;
+    return Home.findOneOrFail(user.home, { loadRelationIds: true });
   }
 
   /**
