@@ -9,16 +9,20 @@ import {
   DialogTitle,
   FormControlLabel,
   Grid,
+  IconButton,
   Slider,
   Switch,
   TextField,
+  Tooltip,
 } from '@mui/material';
 import { DatePicker, LoadingButton } from '@mui/lab';
+import { Delete } from '@mui/icons-material';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { useSnackbar } from 'notistack';
 import {
   useCreateTaskTypeMutation,
+  useRemoveTaskTypeMutation,
   useTaskTypesQuery,
 } from '../../lib/graphql/operations/tasktype.graphql';
 import { useCreateTaskMutation } from '../../lib/graphql/operations/task.graphql';
@@ -39,6 +43,9 @@ const AddTaskDialog: React.FC<AddTaskDialogProps> = ({
   const router = useRouter();
 
   const { error, data } = useTaskTypesQuery();
+  const [removeType] = useRemoveTaskTypeMutation({
+    refetchQueries: ['TaskTypes'],
+  });
   const [createType, { loading: typeLoading, reset: typeReset }] =
     useCreateTaskTypeMutation({ refetchQueries: ['TaskTypes'] });
   const [createTask, { loading: taskLoading, reset: taskReset }] =
@@ -72,6 +79,20 @@ const AddTaskDialog: React.FC<AddTaskDialogProps> = ({
   }, [error]);
 
   const selectedType = data?.taskTypes.find(({ name }) => name === type);
+
+  async function handleDeleteType(typeName: string) {
+    const typeId = data?.taskTypes.find(({ name }) => name === typeName)?.id;
+    try {
+      await removeType({ variables: { type: typeId || '' } });
+      enqueueSnackbar(t('delete-type-success', { type: typeName }), {
+        variant: 'success',
+      });
+    } catch (err) {
+      enqueueSnackbar(t('delete-type-error', { type: typeName }), {
+        variant: 'error',
+      });
+    }
+  }
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (
     event
@@ -160,6 +181,26 @@ const AddTaskDialog: React.FC<AddTaskDialogProps> = ({
                 freeSolo
                 renderInput={(params) => (
                   <TextField {...params} label={t('type-label')} required />
+                )}
+                renderOption={(props, option) => (
+                  <li {...props}>
+                    {option}
+                    <Tooltip
+                      title={t('delete-type', { type: option }) as string}
+                      placement="right"
+                    >
+                      <IconButton
+                        size="small"
+                        sx={{ ml: 'auto' }}
+                        onClick={(event) => {
+                          event.stopPropagation();
+                          handleDeleteType(option);
+                        }}
+                      >
+                        <Delete fontSize="small" />
+                      </IconButton>
+                    </Tooltip>
+                  </li>
                 )}
                 options={data?.taskTypes.map((type) => type.name) || []}
                 value={type}
