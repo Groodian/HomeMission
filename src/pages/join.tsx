@@ -111,7 +111,7 @@ const Join: NextPage = () => {
   );
 
   const ConfirmDialog = (
-    <Dialog open={!!code} aria-labelledby="dialog-title">
+    <Dialog open={Boolean(code)} aria-labelledby="dialog-title">
       <DialogTitle id="dialog-title">{t('dialog-title', { code })}</DialogTitle>
       {data?.home && (
         <DialogContent>
@@ -134,7 +134,7 @@ const Join: NextPage = () => {
           color={data?.home ? 'warning' : 'success'}
           onClick={() => handleJoinHome(code as string)}
         >
-          {t('dialog-accept')}
+          {t('join-button')}
         </LoadingButton>
       </DialogActions>
     </Dialog>

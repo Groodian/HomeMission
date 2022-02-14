@@ -26,6 +26,11 @@
     "rename-tooltip": "Change name of home",
     "rename-success": "Changed name of home to '{{newName}}'",
     "rename-error": "Could not change name of home",
+    "change-name": "Change name",
+    "new-name": "New name",
+    "dialog-cancel": "Cancel",
+    "change-name-success": "Changed name to '{{newName}}'",
+    "change-name-error": "Could not change name",
     "no-roommates-tooltip": "Your roommates will be shown here. Invite them."
   },
 

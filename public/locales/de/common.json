@@ -24,8 +24,13 @@
     "settings": "Einstellungen anzeigen",
     "language": "Sprache",
     "rename-tooltip": "Name der WG ändern",
-    "rename-success": "Name der WG auf '{{newName}}' geändert",
+    "rename-success": "Name der WG zu '{{newName}}' geändert",
     "rename-error": "Name der WG konnte nicht geändert werden",
+    "change-name": "Namen ändern",
+    "new-name": "Neuer Name",
+    "dialog-cancel": "Abbrechen",
+    "change-name-success": "Name zu '{{newName}}' geändert",
+    "change-name-error": "Name konnte nicht geändert werden",
     "no-roommates-tooltip" : "Hier werden deine Mitbewohner angezeigt. Lade sie ein."
   },
 

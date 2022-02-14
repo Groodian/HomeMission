@@ -58,4 +58,34 @@ describe('User resolver with', () => {
     },
     timeoutLength
   );
+
+  it(
+    'RenameUser mutation returns the new name',
+    async () => {
+      await database.insertUsers();
+
+      const body = {
+        operationName: 'RenameUser',
+        query: `
+        mutation RenameUser($name: String!) {
+          renameUser(name: $name) {
+            id
+            name
+            picture
+            points
+          }
+        }
+      `,
+        variables: { name: 'new-name' },
+      };
+
+      const res = await testGraphql(body, 'user-1');
+
+      expect(res.end).toHaveBeenNthCalledWith(
+        1,
+        '{"data":{"renameUser":{"id":"user-1","name":"new-name","picture":"picture-1","points":0}}}\n'
+      );
+    },
+    timeoutLength
+  );
 });

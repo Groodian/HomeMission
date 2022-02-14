@@ -12,6 +12,5 @@
   "join-error": "Der WG mit dem Code '{{code}}' konnte nicht beigetreten werden",
   "warning": "Achtung: Du befindest dich bereits in einer WG! Wenn du der neuen WG beitrittst gehen alle deine Punkte und Aufgaben verloren!",
   "dialog-title": "Der WG mit dem Code '{{code}}' beitreten?",
-  "dialog-cancel": "Abbrechen",
-  "dialog-accept": "Ja!"
+  "dialog-cancel": "Abbrechen"
 }

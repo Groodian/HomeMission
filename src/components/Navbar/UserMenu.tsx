@@ -1,37 +1,66 @@
 import React from 'react';
 import {
   Avatar,
-  Box,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Divider,
   IconButton,
   ListItemIcon,
   Menu,
   MenuItem,
+  TextField,
   Tooltip,
   Typography,
 } from '@mui/material';
-import { Logout } from '@mui/icons-material';
+import { LoadingButton } from '@mui/lab';
+import { Edit, Logout } from '@mui/icons-material';
 import { useTranslation } from 'next-i18next';
-import { useUserQuery } from '../../lib/graphql/operations/user.graphql';
+import {
+  useRenameUserMutation,
+  useUserQuery,
+} from '../../lib/graphql/operations/user.graphql';
+import { useSnackbar } from 'notistack';
 
 const UserMenu: React.FC = () => {
   const { t } = useTranslation('common', { keyPrefix: 'Navbar' });
-  const { data: userData } = useUserQuery();
+  const { enqueueSnackbar } = useSnackbar();
+
+  const { data } = useUserQuery();
+  const [renameUser, { loading }] = useRenameUserMutation();
 
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
   );
-  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget);
-  };
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
+  const [newName, setNewName] = React.useState<string | null>(null);
+
+  const handleChangeName: React.FormEventHandler<HTMLFormElement> = async (
+    event
+  ) => {
+    event.preventDefault();
+    const name = newName?.trim();
+    if (!name) return;
+    try {
+      await renameUser({ variables: { name } });
+      enqueueSnackbar(t('change-name-success', { newName: name }), {
+        variant: 'success',
+      });
+    } catch (err) {
+      enqueueSnackbar(t('change-name-error'), { variant: 'error' });
+    }
+    setNewName(null);
   };
 
-  return userData?.user ? (
-    <Box>
+  return data?.user ? (
+    <>
       <Tooltip title={t('settings') as string}>
-        <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-          <Avatar alt={userData.user.name} src={userData.user.picture} />
+        <IconButton
+          onClick={(event) => setAnchorElUser(event.currentTarget)}
+          sx={{ p: 0 }}
+        >
+          <Avatar alt={data.user.name} src={data.user.picture} />
         </IconButton>
       </Tooltip>
       <Menu
@@ -48,19 +77,62 @@ const UserMenu: React.FC = () => {
           horizontal: 'right',
         }}
         open={Boolean(anchorElUser)}
-        onClose={handleCloseUserMenu}
+        onClose={() => setAnchorElUser(null)}
       >
+        <Typography fontWeight="bold" px={'16px'} py={'6px'}>
+          Hi {data.user.name}
+        </Typography>
+        <Divider />
         <MenuItem
-          key={'logout'}
-          onClick={() => window.location.assign('/api/auth/logout')}
+          onClick={() => {
+            setNewName('');
+            setAnchorElUser(null);
+          }}
         >
+          <ListItemIcon>
+            <Edit fontSize="small" />
+          </ListItemIcon>
+          <Typography>{t('change-name')}</Typography>
+        </MenuItem>
+        <MenuItem onClick={() => window.location.assign('/api/auth/logout')}>
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>
-          <Typography textAlign="center">{t('logout')}</Typography>
+          <Typography>{t('logout')}</Typography>
         </MenuItem>
       </Menu>
-    </Box>
+      <Dialog open={newName !== null} aria-labelledby="dialog-title">
+        <form onSubmit={handleChangeName}>
+          <DialogTitle id="dialog-title">{t('change-name')}</DialogTitle>
+          <DialogContent>
+            <TextField
+              required
+              autoFocus
+              label={t('new-name')}
+              value={newName}
+              onChange={(event) => setNewName(event.target.value)}
+              disabled={loading}
+              fullWidth
+              margin="dense"
+              variant="outlined"
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button
+              type="button"
+              onClick={() => setNewName(null)}
+              disabled={loading}
+              variant="outlined"
+            >
+              {t('dialog-cancel')}
+            </Button>
+            <LoadingButton type="submit" loading={loading} variant="outlined">
+              {t('change-name')}
+            </LoadingButton>
+          </DialogActions>
+        </form>
+      </Dialog>
+    </>
   ) : null;
 };
 

@@ -6,3 +6,12 @@ query User {
     points
   }
 }
+
+mutation RenameUser($name: String!) {
+  renameUser(name: $name) {
+    id
+    name
+    picture
+    points
+  }
+}

@@ -12,6 +12,5 @@
   "join-error": "Could not join home with code '{{code}}'",
   "warning": "Warning: You are already part of a home! If you join the new home all your points and tasks will be lost!",
   "dialog-title": "Join home with code '{{code}}'?",
-  "dialog-cancel": "Cancel",
-  "dialog-accept": "Yes!"
+  "dialog-cancel": "Cancel"
 }
