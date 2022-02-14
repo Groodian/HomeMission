@@ -1,0 +1,21 @@
+query Statistics ($start: String!, $end: String!) {
+  homeStatistic (start: $start, end:$end) {
+    data {
+      date
+      pointsDay
+      pointsWeek
+    }
+  }
+  userStatistics(start: $start, end: $end) {
+    user {
+      id
+      name
+      picture
+    }
+    data {
+      date
+      pointsDay
+      pointsWeek
+    }
+  }
+}

@@ -56,6 +56,6 @@
     "no-text-info": "Alles erledigt!",
     "error-message": "Offene Aufgaben konnten nicht geladen werden",
     "tooltip-avatar": "Du bist zugeordnet",
-    "tooltip-loop": "Teil einer Serie"
+    "tooltip-loop": "Aufgabe wiederholt sich"
   }
 }

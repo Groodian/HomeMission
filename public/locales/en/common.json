@@ -56,6 +56,6 @@
     "no-text-info": "You are all caught up!",
     "error-message": "Could not load open tasks",
     "tooltip-avatar": "You are assigned",
-    "tooltip-loop": "Part of a series"
+    "tooltip-loop": "Recurring task"
   }
 }

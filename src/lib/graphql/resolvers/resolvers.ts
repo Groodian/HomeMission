@@ -4,6 +4,8 @@ import TaskTypeResolver from './tasktype.resolver';
 import TaskResolver from './task.resolver';
 import TaskSeriesResolver from './taskseries.resolver';
 import TaskReceiptResolver from './taskreceipt.resolver';
+import UserStatisticsResolver from './statistics/userstatistics.resolver';
+import HomeStatisticsResolver from './statistics/homestatistics.resolver';
 
 const resolvers = [
   UserResolver,
@@ -12,6 +14,8 @@ const resolvers = [
   TaskResolver,
   TaskSeriesResolver,
   TaskReceiptResolver,
+  HomeStatisticsResolver,
+  UserStatisticsResolver,
 ] as const;
 
 export default resolvers;
