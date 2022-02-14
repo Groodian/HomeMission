@@ -148,7 +148,7 @@ const AddTaskDialog: React.FC<AddTaskDialogProps> = ({
               <DatePicker
                 label={t('date-label')}
                 value={date}
-                onChange={(newDate) => setDate(newDate)}
+                onChange={(newDate) => newDate && setDate(newDate.valueOf())}
                 minDate={Date.now()}
                 mask={router.locale === 'de' ? '__.__.____' : '__/__/____'}
                 renderInput={(params) => <TextField {...params} required />}
@@ -248,7 +248,7 @@ const AddTaskDialog: React.FC<AddTaskDialogProps> = ({
             {t('dialog-cancel')}
           </Button>
           <LoadingButton type="submit" loading={loading} variant="outlined">
-            {t('add-task')}
+            {recurring ? t('add-tasks') : t('add-task')}
           </LoadingButton>
         </DialogActions>
       </form>

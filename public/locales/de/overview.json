@@ -37,6 +37,7 @@
 
   "AddTaskDialog": {
     "add-task": "Aufgabe hinzufügen",
+    "add-tasks": "Aufgaben hinzufügen",
     "dialog-cancel": "Abbrechen",
     "load-type-error": "Aufgabentypen konnten nicht geladen werden",
     "create-type-success": "Aufgabentyp '{{type}}' erstellt",

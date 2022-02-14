@@ -37,6 +37,7 @@
 
   "AddTaskDialog": {
     "add-task": "Add task",
+    "add-tasks": "Add tasks",
     "dialog-cancel": "Cancel",
     "load-type-error": "Could not load task types",
     "create-type-success": "Created task type '{{type}}'",
