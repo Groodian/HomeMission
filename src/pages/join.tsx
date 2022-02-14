@@ -18,6 +18,7 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import { useSnackbar } from 'notistack';
+import { useApolloClient } from '@apollo/client';
 import {
   HomeDocument,
   useCreateHomeMutation,
@@ -30,6 +31,7 @@ const Join: NextPage = () => {
   const { t } = useTranslation('join');
   const { enqueueSnackbar } = useSnackbar();
 
+  const apolloClient = useApolloClient();
   const { data } = useHomeQuery();
   const [joinHome, { loading: loadingJoin, error }] = useJoinHomeMutation();
   const [createHome, { loading: loadingCreate }] = useCreateHomeMutation();
@@ -167,6 +169,7 @@ const Join: NextPage = () => {
       enqueueSnackbar(t('join-success', { name: data?.joinHome.name }), {
         variant: 'success',
       });
+      await apolloClient.clearStore();
       router.push((router.query.returnTo as string) || '/overview');
     } catch (err) {
       enqueueSnackbar(t('join-error', { code }), { variant: 'error' });
@@ -189,6 +192,7 @@ const Join: NextPage = () => {
       enqueueSnackbar(t('create-success', { name: data?.createHome.name }), {
         variant: 'success',
       });
+      await apolloClient.clearStore();
       router.push((router.query.returnTo as string) || '/overview');
     } catch (err) {
       enqueueSnackbar(t('create-error'), { variant: 'error' });

@@ -105,7 +105,7 @@ const Leftbar = () => {
             </ListItem>
           ))}
           <Divider />
-          <Tooltip title={t('invite-tooltip') as string}>
+          <Tooltip title={t('invite-tooltip') as string} placement="right">
             <ListItem
               button
               onClick={() => {

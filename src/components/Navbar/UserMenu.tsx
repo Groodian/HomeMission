@@ -29,7 +29,9 @@ const UserMenu: React.FC = () => {
   const { enqueueSnackbar } = useSnackbar();
 
   const { data } = useUserQuery();
-  const [renameUser, { loading }] = useRenameUserMutation();
+  const [renameUser, { loading }] = useRenameUserMutation({
+    refetchQueries: 'all',
+  });
 
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
@@ -39,6 +41,7 @@ const UserMenu: React.FC = () => {
   const handleChangeName: React.FormEventHandler<HTMLFormElement> = async (
     event
   ) => {
+    event.preventDefault();
     const name = newName?.trim();
     if (!name) return;
     try {
@@ -47,7 +50,6 @@ const UserMenu: React.FC = () => {
         variant: 'success',
       });
     } catch (err) {
-      event.preventDefault();
       enqueueSnackbar(t('change-name-error'), { variant: 'error' });
     }
     setNewName(null);
