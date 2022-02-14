@@ -45,7 +45,7 @@ const Navbar: React.FC = () => {
           </Box>
           <LanguageSelect />
           <ThemeSwitch
-            defaultChecked={theme.palette.mode === 'dark'}
+            checked={theme.palette.mode === 'dark'}
             onChange={(event) => {
               colorMode.setMode(event.target.checked ? 'dark' : 'light');
             }}

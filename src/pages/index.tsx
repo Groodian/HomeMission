@@ -73,6 +73,7 @@ const Welcome: NextPage = () => {
                   background: '#FC6342',
                 },
               }}
+              variant="text"
               onClick={() => {
                 const returnTo = encodeURIComponent(
                   (router.query.returnTo as string) || '/'

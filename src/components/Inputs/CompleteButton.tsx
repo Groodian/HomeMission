@@ -24,8 +24,7 @@ const CompleteButton: React.FC<CompleteButtonProps> = ({
   return (
     <LoadingButton
       sx={{ width: '100%', marginTop: '0.5em' }}
-      variant={'outlined'}
-      color={'success'}
+      color="success"
       loading={loading}
       onClick={async () => {
         try {

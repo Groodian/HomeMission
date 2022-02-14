@@ -53,7 +53,7 @@ const HomeData: React.FC = () => {
           </Tooltip>
         }
       >
-        <Typography mx="1em" variant={'h4'} component="span">
+        <Typography mx="1em" variant="h4" component="span">
           {nameValue !== undefined ? (
             <TextField
               id="new-name-input"

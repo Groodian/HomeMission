@@ -51,8 +51,7 @@ const RightbarItem: React.FC<RightBarItemProps> = ({
   const RecurringIcon = (
     <Tooltip title={t('tooltip-loop') as string}>
       <Loop
-        sx={{ verticalAlign: 'sub', marginLeft: '0.25em' }}
-        fontSize={'small'}
+        sx={{ verticalAlign: 'sub', marginLeft: '0.25em', fontSize: 'small' }}
       />
     </Tooltip>
   );

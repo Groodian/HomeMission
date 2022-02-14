@@ -46,7 +46,7 @@ const LanguageSelect: React.FC = () => {
             });
           }}
         >
-          <MenuItem value={'de'}>
+          <MenuItem value="de">
             <Box component="span" sx={{ mr: 2 }}>
               <Image
                 width="16"
@@ -57,7 +57,7 @@ const LanguageSelect: React.FC = () => {
             </Box>
             Deutsch
           </MenuItem>
-          <MenuItem value={'en'}>
+          <MenuItem value="en">
             <Box component="span" sx={{ mr: 2 }}>
               <Image
                 width="16"

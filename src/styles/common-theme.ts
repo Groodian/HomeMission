@@ -1,6 +1,9 @@
-import { ThemeOptions } from '@mui/material/styles';
+import { ThemeOptions } from '@mui/material';
+import { LoadingButtonProps } from '@mui/lab';
 
-const commonTheme: ThemeOptions = {
+const commonTheme: ThemeOptions & {
+  components: { MuiLoadingButton: LoadingButtonProps };
+} = {
   components: {
     MuiTypography: {
       defaultProps: {
@@ -13,8 +16,9 @@ const commonTheme: ThemeOptions = {
         },
       },
     },
+    MuiButton: { defaultProps: { variant: 'outlined' } },
+    MuiLoadingButton: { defaultProps: { variant: 'outlined' } },
   },
-  typography: { h5: undefined, h6: undefined },
 };
 
 export default commonTheme;

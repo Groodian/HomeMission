@@ -50,8 +50,8 @@ const EditAssignSelect: React.FC<EditButtonProps> = ({ task }) => {
           padding: '0 0 0 0.5em ',
         },
       }}
-      value={''}
-      size={'small'}
+      value=""
+      size="small"
       onChange={handleAssigneeSelect}
     >
       <MenuItem value="">

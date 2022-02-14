@@ -56,14 +56,12 @@ const Join: NextPage = () => {
           required
           label={t('create-input-label')}
           disabled={loadingCreate || loadingJoin}
-          variant="outlined"
           size="small"
         />
         <LoadingButton
           loading={loadingCreate}
           disabled={loadingJoin}
           type="submit"
-          variant="outlined"
           sx={{ width: '9em' }}
         >
           {t('create-button')}
@@ -91,7 +89,6 @@ const Join: NextPage = () => {
           disabled={loadingCreate || loadingJoin}
           error={error && !changed}
           onChange={() => setChanged(true)}
-          variant="outlined"
           size="small"
           sx={{
             [`& .${inputBaseClasses.input}`]: { textTransform: 'uppercase' },
@@ -101,7 +98,6 @@ const Join: NextPage = () => {
           loading={loadingJoin}
           disabled={loadingCreate}
           type="submit"
-          variant="outlined"
           sx={{ width: '9em' }}
         >
           {t('join-button')}
@@ -121,16 +117,11 @@ const Join: NextPage = () => {
         </DialogContent>
       )}
       <DialogActions>
-        <Button
-          variant="outlined"
-          onClick={() => router.push('/join')}
-          disabled={loadingJoin}
-        >
+        <Button onClick={() => router.push('/join')} disabled={loadingJoin}>
           {t('dialog-cancel')}
         </Button>
         <LoadingButton
           loading={loadingJoin}
-          variant="outlined"
           color={data?.home ? 'warning' : 'success'}
           onClick={() => handleJoinHome(code as string)}
         >

@@ -79,7 +79,7 @@ const UserMenu: React.FC = () => {
         open={Boolean(anchorElUser)}
         onClose={() => setAnchorElUser(null)}
       >
-        <Typography fontWeight="bold" px={'16px'} py={'6px'}>
+        <Typography fontWeight="bold" px="16px" py="6px">
           Hi {data.user.name}
         </Typography>
         <Divider />
@@ -101,7 +101,11 @@ const UserMenu: React.FC = () => {
           <Typography>{t('logout')}</Typography>
         </MenuItem>
       </Menu>
-      <Dialog open={newName !== null} aria-labelledby="dialog-title">
+      <Dialog
+        open={newName !== null}
+        onClose={() => setNewName(null)}
+        aria-labelledby="dialog-title"
+      >
         <form onSubmit={handleChangeName}>
           <DialogTitle id="dialog-title">{t('change-name')}</DialogTitle>
           <DialogContent>
@@ -114,7 +118,6 @@ const UserMenu: React.FC = () => {
               disabled={loading}
               fullWidth
               margin="dense"
-              variant="outlined"
             />
           </DialogContent>
           <DialogActions>
@@ -122,11 +125,10 @@ const UserMenu: React.FC = () => {
               type="button"
               onClick={() => setNewName(null)}
               disabled={loading}
-              variant="outlined"
             >
               {t('dialog-cancel')}
             </Button>
-            <LoadingButton type="submit" loading={loading} variant="outlined">
+            <LoadingButton type="submit" loading={loading}>
               {t('change-name')}
             </LoadingButton>
           </DialogActions>

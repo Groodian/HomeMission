@@ -214,7 +214,6 @@ const AddTaskDialog: React.FC<AddTaskDialogProps> = ({
                 }}
                 inputProps={{ min: 1, max: 52 }}
                 disabled={!recurring || loading}
-                variant="outlined"
                 fullWidth
               />
             </Grid>
@@ -232,22 +231,16 @@ const AddTaskDialog: React.FC<AddTaskDialogProps> = ({
                 }}
                 inputProps={{ min: 1, max: 52 }}
                 disabled={!recurring || loading}
-                variant="outlined"
                 fullWidth
               />
             </Grid>
           </Grid>
         </DialogContent>
         <DialogActions>
-          <Button
-            type="button"
-            variant="outlined"
-            onClick={onCloseDialog}
-            disabled={loading}
-          >
+          <Button type="button" onClick={onCloseDialog} disabled={loading}>
             {t('dialog-cancel')}
           </Button>
-          <LoadingButton type="submit" loading={loading} variant="outlined">
+          <LoadingButton type="submit" loading={loading}>
             {recurring ? t('add-tasks') : t('add-task')}
           </LoadingButton>
         </DialogActions>

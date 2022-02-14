@@ -1,6 +1,6 @@
 import React from 'react';
 import { ButtonGroup, Tooltip } from '@mui/material';
-import { LoadingButton, LoadingButtonProps } from '@mui/lab';
+import { LoadingButton } from '@mui/lab';
 import { useTranslation } from 'next-i18next';
 import Task from '../../entities/task';
 import { useDeleteTaskMutation } from '../../lib/graphql/operations/task.graphql';
@@ -14,12 +14,6 @@ export enum Type {
   single,
   series,
 }
-
-const commonLoadingButtonProps: Partial<LoadingButtonProps> = {
-  sx: { width: '100%' },
-  variant: 'outlined',
-  color: 'error',
-};
 
 type DeleteButtonProps = {
   task: Task;
@@ -39,9 +33,10 @@ const DeleteButton: React.FC<DeleteButtonProps> = ({ task, type }) => {
 
   return type === Type.single ? (
     <LoadingButton
-      {...commonLoadingButtonProps}
       loading={loadingSingle}
       onClick={handleOnClickSingle}
+      fullWidth
+      color="error"
     >
       {t('delete-single')}
     </LoadingButton>
@@ -49,18 +44,20 @@ const DeleteButton: React.FC<DeleteButtonProps> = ({ task, type }) => {
     <ButtonGroup sx={{ marginTop: '0.5em' }}>
       <Tooltip title={t('delete-series-all-tooltip') as string}>
         <LoadingButton
-          {...commonLoadingButtonProps}
           loading={loadingSeriesAll}
           onClick={handleOnClickAll}
+          fullWidth
+          color="error"
         >
           {t('delete-series-all')}
         </LoadingButton>
       </Tooltip>
       <Tooltip title={t('delete-series-sub-tooltip') as string}>
         <LoadingButton
-          {...commonLoadingButtonProps}
           loading={loadingSeriesSub}
           onClick={handleOnClickSub}
+          fullWidth
+          color="error"
         >
           {t('delete-series-sub')}
         </LoadingButton>
