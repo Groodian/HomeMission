@@ -1,4 +1,5 @@
 import { Session } from '@auth0/nextjs-auth0';
+import { i18n } from 'next-i18next';
 import {
   Arg,
   Authorized,
@@ -97,11 +98,13 @@ export default class HomeResolver implements ResolverInterface<Home> {
   @Mutation(() => Home)
   async createHome(
     @CurrentSession() session: Session,
-    @Arg('name') name: string
+    @Arg('name') name: string,
+    @Arg('language') language: string
   ) {
     await databaseConnection();
     try {
       const createdHome = await new Home(name).save();
+      await this.generateDefaultTaskTypes(createdHome, language);
       return this.addUserToHome(createdHome, session);
     } catch (e) {
       throw Error('Failed to create home.');
@@ -190,5 +193,20 @@ export default class HomeResolver implements ResolverInterface<Home> {
     } catch (e) {
       throw Error(`Failed to find home with code ${code}`);
     }
+  }
+
+  private async generateDefaultTaskTypes(home: Home, language: string) {
+    if (!i18n) throw new Error('Failed to load translations. i18n is null.');
+    const t = i18n.getFixedT(language, 'server_default-tasks');
+    const taskTypes = [
+      new TaskType(t('vacuum'), 50, home),
+      new TaskType(t('clean-kitchen'), 50, home),
+      new TaskType(t('clean-bath'), 50, home),
+      new TaskType(t('wash-windows'), 50, home),
+      new TaskType(t('wash-dishes'), 30, home),
+      new TaskType(t('take-out-garbage'), 20, home),
+      new TaskType(t('water-plants'), 10, home),
+    ];
+    await TaskType.save(taskTypes);
   }
 }

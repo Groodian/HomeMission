@@ -69,6 +69,7 @@ const Join: NextPage = () => {
           {t('create-button')}
         </LoadingButton>
       </Stack>
+      <Typography mt={1}>{t('default-types')}</Typography>
     </form>
   );
 
@@ -153,6 +154,29 @@ const Join: NextPage = () => {
     </Container>
   );
 
+  async function handleCreateHome(name: string) {
+    try {
+      const { data } = await createHome({
+        variables: { name, language: router.locale || 'en' },
+        update(cache, { data }) {
+          if (!data) return;
+          setRedirectPending(true);
+          cache.writeQuery({
+            query: HomeDocument,
+            data: { home: data.createHome },
+          });
+        },
+      });
+      enqueueSnackbar(t('create-success', { name: data?.createHome.name }), {
+        variant: 'success',
+      });
+      await apolloClient.clearStore();
+      router.push((router.query.returnTo as string) || '/overview');
+    } catch (err) {
+      enqueueSnackbar(t('create-error'), { variant: 'error' });
+    }
+  }
+
   async function handleJoinHome(code: string) {
     try {
       const { data } = await joinHome({
@@ -173,29 +197,6 @@ const Join: NextPage = () => {
       router.push((router.query.returnTo as string) || '/overview');
     } catch (err) {
       enqueueSnackbar(t('join-error', { code }), { variant: 'error' });
-    }
-  }
-
-  async function handleCreateHome(name: string) {
-    try {
-      const { data } = await createHome({
-        variables: { name },
-        update(cache, { data }) {
-          if (!data) return;
-          setRedirectPending(true);
-          cache.writeQuery({
-            query: HomeDocument,
-            data: { home: data.createHome },
-          });
-        },
-      });
-      enqueueSnackbar(t('create-success', { name: data?.createHome.name }), {
-        variant: 'success',
-      });
-      await apolloClient.clearStore();
-      router.push((router.query.returnTo as string) || '/overview');
-    } catch (err) {
-      enqueueSnackbar(t('create-error'), { variant: 'error' });
     }
   }
 };

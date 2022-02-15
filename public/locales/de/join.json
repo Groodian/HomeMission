@@ -5,6 +5,7 @@
   "create-button": "Erstellen",
   "create-success": "WG '{{name}}' erstellt",
   "create-error": "Die WG konnte nicht erstellt werden",
+  "default-types": "Vordefinierte Aufgabentypen werden in Deutsch erstellt.",
   "join-text": "Oder einer WG beitreten",
   "join-input-label": "Einladungscode",
   "join-button": "Beitreten",

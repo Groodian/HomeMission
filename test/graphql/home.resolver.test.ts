@@ -1,4 +1,20 @@
+import { TFunction } from 'next-i18next';
 import { database, testGraphql, timeoutLength } from './testUtils';
+
+// Mock localization
+jest.mock('next-i18next', () => ({
+  i18n: {
+    getFixedT(
+      lng: string | readonly string[],
+      ns?: string | readonly string[] | undefined,
+      keyPrefix?: string | undefined
+    ) {
+      const t: TFunction = (key, options) =>
+        `key: ${key}, options: ${options}, lng: ${lng}, ns: ${ns}, keyPrefix: ${keyPrefix}`;
+      return t;
+    },
+  },
+}));
 
 describe('Home resolver with', () => {
   beforeEach(database.reset, timeoutLength); // High timeoutLength for GitLab pipeline
@@ -46,21 +62,42 @@ describe('Home resolver with', () => {
   );
 
   it(
-    'CreateHome mutation returns the home that user creates',
+    'CreateHome mutation returns the home that user creates and default tasks EN',
     async () => {
       await database.insertUsers();
 
       const body = {
         operationName: 'CreateHome',
         query: createHomeQuery,
-        variables: { name: 'my-home' },
+        variables: { name: 'my-home', language: 'en' },
       };
 
       const res = await testGraphql(body, 'user-1');
 
       expect(res.end).toHaveBeenNthCalledWith(
         1,
-        '{"data":{"createHome":{"name":"my-home"}}}\n'
+        '{"data":{"createHome":{"name":"my-home","taskTypes":[{"id":"1","name":"key: vacuum, options: undefined, lng: en, ns: server_default-tasks, keyPrefix: undefined","points":50},{"id":"2","name":"key: clean-kitchen, options: undefined, lng: en, ns: server_default-tasks, keyPrefix: undefined","points":50},{"id":"3","name":"key: clean-bath, options: undefined, lng: en, ns: server_default-tasks, keyPrefix: undefined","points":50},{"id":"4","name":"key: wash-windows, options: undefined, lng: en, ns: server_default-tasks, keyPrefix: undefined","points":50},{"id":"5","name":"key: wash-dishes, options: undefined, lng: en, ns: server_default-tasks, keyPrefix: undefined","points":30},{"id":"6","name":"key: take-out-garbage, options: undefined, lng: en, ns: server_default-tasks, keyPrefix: undefined","points":20},{"id":"7","name":"key: water-plants, options: undefined, lng: en, ns: server_default-tasks, keyPrefix: undefined","points":10}]}}}\n'
+      );
+    },
+    timeoutLength
+  );
+
+  it(
+    'CreateHome mutation returns the home that user creates and default tasks DE',
+    async () => {
+      await database.insertUsers();
+
+      const body = {
+        operationName: 'CreateHome',
+        query: createHomeQuery,
+        variables: { name: 'my-home', language: 'de' },
+      };
+
+      const res = await testGraphql(body, 'user-1');
+
+      expect(res.end).toHaveBeenNthCalledWith(
+        1,
+        '{"data":{"createHome":{"name":"my-home","taskTypes":[{"id":"1","name":"key: vacuum, options: undefined, lng: de, ns: server_default-tasks, keyPrefix: undefined","points":50},{"id":"2","name":"key: clean-kitchen, options: undefined, lng: de, ns: server_default-tasks, keyPrefix: undefined","points":50},{"id":"3","name":"key: clean-bath, options: undefined, lng: de, ns: server_default-tasks, keyPrefix: undefined","points":50},{"id":"4","name":"key: wash-windows, options: undefined, lng: de, ns: server_default-tasks, keyPrefix: undefined","points":50},{"id":"5","name":"key: wash-dishes, options: undefined, lng: de, ns: server_default-tasks, keyPrefix: undefined","points":30},{"id":"6","name":"key: take-out-garbage, options: undefined, lng: de, ns: server_default-tasks, keyPrefix: undefined","points":20},{"id":"7","name":"key: water-plants, options: undefined, lng: de, ns: server_default-tasks, keyPrefix: undefined","points":10}]}}}\n'
       );
     },
     timeoutLength
@@ -167,9 +204,14 @@ describe('Home resolver with', () => {
   `;
 
   const createHomeQuery = `
-    mutation CreateHome($name: String!) {
-      createHome(name: $name) {
+    mutation CreateHome($name: String!, $language: String!) {
+      createHome(name: $name, language: $language) {
         name
+        taskTypes {
+          id
+          name
+          points
+        }
       }
     }
   `;

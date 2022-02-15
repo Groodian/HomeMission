@@ -11,8 +11,8 @@ query Home {
   }
 }
 
-mutation CreateHome($name: String!) {
-  createHome(name: $name) {
+mutation CreateHome($name: String!, $language: String!) {
+  createHome(name: $name, language: $language) {
     id
     name
     code
@@ -49,7 +49,6 @@ mutation RenameHome($name: String!) {
     }
   }
 }
-
 
 mutation LeaveHome {
   leaveHome {
