@@ -170,7 +170,7 @@ const Join: NextPage = () => {
       enqueueSnackbar(t('create-success', { name: data?.createHome.name }), {
         variant: 'success',
       });
-      await apolloClient.clearStore();
+      await apolloClient.resetStore();
       router.push((router.query.returnTo as string) || '/overview');
     } catch (err) {
       enqueueSnackbar(t('create-error'), { variant: 'error' });
@@ -193,7 +193,7 @@ const Join: NextPage = () => {
       enqueueSnackbar(t('join-success', { name: data?.joinHome.name }), {
         variant: 'success',
       });
-      await apolloClient.clearStore();
+      await apolloClient.resetStore();
       router.push((router.query.returnTo as string) || '/overview');
     } catch (err) {
       enqueueSnackbar(t('join-error', { code }), { variant: 'error' });

@@ -14,9 +14,7 @@ export default class Helper {
   static async getMeOrFail(session: Session) {
     try {
       // get user from database
-      return await User.findOneOrFail(session.user.sub as string, {
-        loadRelationIds: true,
-      });
+      return await User.findOneOrFail(session.user.sub as string);
     } catch (e) {
       throw Error('Failed to get user!');
     }
@@ -26,7 +24,9 @@ export default class Helper {
    * Helper function that returns the users home and fails if user has no home.
    */
   static async getHomeOrFail(session: Session) {
-    const user = await this.getMeOrFail(session);
+    const user = await User.findOneOrFail(session.user.sub as string, {
+      loadRelationIds: true,
+    });
     if (!user.home)
       throw Error('Failed to get users home! Check that user has a home.');
     return Home.findOneOrFail(user.home, { loadRelationIds: true });
