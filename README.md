@@ -14,6 +14,9 @@ To run the application you need to install [Node.js](https://nodejs.org/) and [D
 
 ### Production
 
+#### Live Server
+[homemission.net](https://homemission.net)
+#### Setup
 Define secrets:
 
 1. Copy [`.env.example`](.env.example) to `/.env.local` and set a `DATABASE_PASSWORD` and `AUTH0_SECRET` and change `AUTH0_BASE_URL` to url in the last step of the two following variants.
@@ -298,3 +301,28 @@ For the GitLab pipeline to succeed, make sure to [register](https://docs.gitlab.
 1. `docker run --rm -it -v gitlab-runner-config:/etc/gitlab-runner gitlab/gitlab-runner:latest register --url https://code.fbi.h-da.de/ --tag-list docker --executor docker --docker-image "docker:20.10.12" --docker-privileged --docker-volumes "/certs/client"`
 2. Follow the interactive configuration. The registration token can be found [here](https://code.fbi.h-da.de/isttomare/wg-organisierspiel/-/settings/ci_cd) at 'Runners'.
 3. `docker run -d --name gitlab-runner --restart always -v /var/run/docker.sock:/var/run/docker.sock -v gitlab-runner-config:/etc/gitlab-runner gitlab/gitlab-runner:latest`
+
+### AWS Setup
+##### EC2 Instance 
+- t2.micro
+- ubuntu-focal-20.04-amd64-server-20211129
+- Elastic IP
+- Inbound rules: 
+  - ssh (22) - any ip address
+  - http (80) - any ip address
+  - https (443) - any ip address
+- Applications in Use:
+  - [nginx](#nginx-setup)
+  - git
+  - docker
+
+##### nginx setup
+- Port 5000 is mapped to Port 443
+- incoming http requests will be redirected to https
+- SSL certificate is created via certbot (letsencrypt)
+
+##### Connection via SSH
+ssh -i [PEM-Key] ubuntu@[IP-Address]
+##### Domain
+- [homemission.net](https://homemission.net)
+- Address record: Elastic IP 
