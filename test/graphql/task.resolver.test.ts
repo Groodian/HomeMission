@@ -43,7 +43,7 @@ describe('Task resolver with', () => {
 
       expect(res.end).toHaveBeenNthCalledWith(
         1,
-        '{"data":{"tasks":[{"id":"1","date":"2022-01-02T00:00:00.000Z","type":{"id":"1","name":"name-1","points":1},"series":null,"receipt":null,"assignee":null},{"id":"2","date":"2022-01-03T00:00:00.000Z","type":{"id":"1","name":"name-1","points":1},"series":null,"receipt":null,"assignee":null}]}}\n'
+        '{"data":{"tasks":[{"id":"1","date":"2022-01-01T00:00:00.000Z","type":{"id":"1","name":"name-1","points":1},"series":null,"receipt":null,"assignee":null},{"id":"2","date":"2022-01-02T00:00:00.000Z","type":{"id":"1","name":"name-1","points":1},"series":null,"receipt":null,"assignee":null}]}}\n'
       );
     },
     timeoutLength
@@ -258,7 +258,7 @@ describe('Task resolver with', () => {
 
       expect(res.end).toHaveBeenNthCalledWith(
         1,
-        '{"data":{"assignTask":{"id":"1","date":"2022-01-03T00:00:00.000Z","assignee":{"id":"user-1","name":"name-1","picture":"picture-1"}}}}\n'
+        '{"data":{"assignTask":{"id":"1","date":"2022-01-01T00:00:00.000Z","assignee":{"id":"user-1","name":"name-1","picture":"picture-1"}}}}\n'
       );
     },
     timeoutLength
@@ -284,7 +284,7 @@ describe('Task resolver with', () => {
 
       expect(res.end).toHaveBeenNthCalledWith(
         1,
-        '{"data":{"assignTask":{"id":"1","date":"2022-01-03T00:00:00.000Z","assignee":{"id":"user-2","name":"name-2","picture":"picture-2"}}}}\n'
+        '{"data":{"assignTask":{"id":"1","date":"2022-01-01T00:00:00.000Z","assignee":{"id":"user-2","name":"name-2","picture":"picture-2"}}}}\n'
       );
     },
     timeoutLength
@@ -386,7 +386,7 @@ describe('Task resolver with', () => {
 
       expect(res.end).toHaveBeenNthCalledWith(
         1,
-        '{"data":{"unassignTask":{"id":"1","date":"2022-01-03T00:00:00.000Z","assignee":null}}}\n'
+        '{"data":{"unassignTask":{"id":"1","date":"2022-01-01T00:00:00.000Z","assignee":null}}}\n'
       );
     },
     timeoutLength

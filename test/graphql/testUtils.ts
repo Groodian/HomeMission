@@ -127,11 +127,11 @@ export const database = {
     const homeEntity = typeEntity.relatedHome;
     const date = start;
 
-    for (let i = 1; i <= count; i++) {
-      date.setDate(date.getDate() + (count - 1));
-
+    for (let i = 0; i < count; i++) {
       const task = new Task(date, homeEntity as Home, typeEntity);
       await task.save();
+
+      date.setDate(date.getDate() + (count - 1));
     }
   },
 
@@ -167,10 +167,10 @@ export const database = {
     }
   },
 
-  async insertReceipt(user: string, task: string) {
+  async insertReceipt(user: string | null, task: string, date?: Date) {
     await databaseConnection();
 
-    const userEntity = await User.findOneOrFail(user);
+    const userEntity = user ? await User.findOneOrFail(user) : null;
     const taskEntity = await Task.findOneOrFail(task, {
       relations: ['type', 'relatedHome'],
     });
@@ -179,10 +179,12 @@ export const database = {
 
     const receipt = new TaskReceipt(
       homeEntity,
-      userEntity,
+      userEntity as User,
       typeEntity.name,
       typeEntity.points
     );
+
+    if (date) receipt.completionDate = date;
 
     await receipt.save();
 

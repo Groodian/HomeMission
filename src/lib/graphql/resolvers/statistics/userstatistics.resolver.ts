@@ -43,6 +43,11 @@ export default class UserStatisticsResolver
     const startDate = new Date(start);
     const endDate = new Date(end);
 
+    if (startDate.getTime() > endDate.getTime())
+      throw Error(
+        'Could not create statistic for users because start date must be before end date'
+      );
+
     // create a user-datapoint-tuple for each user
     const userAndDataPointsArrays: UserAndDataPoints[] = home.users.map(
       (user) => ({

@@ -29,6 +29,11 @@ export default class HomeStatisticsResolver {
     const startDate = new Date(start);
     const endDate = new Date(end);
 
+    if (startDate.getTime() > endDate.getTime())
+      throw Error(
+        'Could not create statistic for home because start date must be before end date'
+      );
+
     try {
       const receipts = await TaskReceipt.find({
         where: {

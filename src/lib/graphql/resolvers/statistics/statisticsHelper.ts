@@ -10,7 +10,7 @@ function getBlankDataPointsArray(startDate: Date, stopDate: Date) {
   let indexDate = startDate;
   while (indexDate <= stopDate) {
     dataPoints.push(new DataPoint(indexDate));
-    indexDate = new Date(indexDate.setDate(indexDate.getDate() + 1));
+    indexDate = new Date(indexDate.getTime() + 24 * 60 * 60 * 1000);
   }
   return dataPoints;
 }
@@ -21,8 +21,8 @@ function getBlankDataPointsArray(startDate: Date, stopDate: Date) {
  * @param date2
  */
 function _getDatesDifference(date1: Date, date2: Date): number {
-  date1.setUTCHours(0, 0, 0, 0);
-  date2.setUTCHours(0, 0, 0, 0);
+  date1.setHours(0, 0, 0, 0);
+  date2.setHours(0, 0, 0, 0);
   const diffTime = date2.getTime() - date1.getTime();
   return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 }
