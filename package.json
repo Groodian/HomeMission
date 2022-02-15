@@ -10,7 +10,7 @@
     "type-check": "tsc --incremental --pretty --noEmit --tsBuildInfoFile ./.next/cache/.tsbuildinfo",
     "format": "prettier --write .",
     "lint": "eslint . --ext ts --ext tsx --ext js",
-    "test": "jest --forceExit --detectOpenHandles",
+    "test": "SET TZ=UTC && jest --forceExit --detectOpenHandles",
     "test:ci": "jest --forceExit --detectOpenHandles --ci --reporters=default --reporters=jest-junit",
     "test-all": "npm run codegen && npm run lint && npm run type-check && npm test",
     "prepare": "husky install && npm run codegen"

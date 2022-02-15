@@ -77,7 +77,7 @@ describe('Statistics resolvers with', () => {
       const res = await testGraphql(body, 'user-1');
       expect(res.end).toHaveBeenNthCalledWith(
         1,
-        '{"data":{"homeStatistic":{"data":[{"date":"2021-12-31T23:00:00.000Z","pointsDay":2,"pointsWeek":2},{"date":"2022-01-01T23:00:00.000Z","pointsDay":1,"pointsWeek":3},{"date":"2022-01-02T23:00:00.000Z","pointsDay":0,"pointsWeek":3},{"date":"2022-01-03T23:00:00.000Z","pointsDay":0,"pointsWeek":3},{"date":"2022-01-04T23:00:00.000Z","pointsDay":0,"pointsWeek":3},{"date":"2022-01-05T23:00:00.000Z","pointsDay":1,"pointsWeek":4},{"date":"2022-01-06T23:00:00.000Z","pointsDay":0,"pointsWeek":4},{"date":"2022-01-07T23:00:00.000Z","pointsDay":0,"pointsWeek":2}]}}}\n'
+        '{"data":{"homeStatistic":{"data":[{"date":"2022-01-01T00:00:00.000Z","pointsDay":2,"pointsWeek":2},{"date":"2022-01-02T00:00:00.000Z","pointsDay":1,"pointsWeek":3},{"date":"2022-01-03T00:00:00.000Z","pointsDay":0,"pointsWeek":3},{"date":"2022-01-04T00:00:00.000Z","pointsDay":0,"pointsWeek":3},{"date":"2022-01-05T00:00:00.000Z","pointsDay":0,"pointsWeek":3},{"date":"2022-01-06T00:00:00.000Z","pointsDay":1,"pointsWeek":4},{"date":"2022-01-07T00:00:00.000Z","pointsDay":0,"pointsWeek":4},{"date":"2022-01-08T00:00:00.000Z","pointsDay":0,"pointsWeek":2}]}}}\n'
       );
     },
     timeoutLength
@@ -108,7 +108,7 @@ describe('Statistics resolvers with', () => {
       const res = await testGraphql(body, 'user-1');
       expect(res.end).toHaveBeenNthCalledWith(
         1,
-        '{"data":{"homeStatistic":{"data":[{"date":"2021-12-31T23:00:00.000Z","pointsDay":2,"pointsWeek":2},{"date":"2022-01-01T23:00:00.000Z","pointsDay":1,"pointsWeek":3},{"date":"2022-01-02T23:00:00.000Z","pointsDay":0,"pointsWeek":3},{"date":"2022-01-03T23:00:00.000Z","pointsDay":0,"pointsWeek":3},{"date":"2022-01-04T23:00:00.000Z","pointsDay":0,"pointsWeek":3},{"date":"2022-01-05T23:00:00.000Z","pointsDay":1,"pointsWeek":4},{"date":"2022-01-06T23:00:00.000Z","pointsDay":0,"pointsWeek":4},{"date":"2022-01-07T23:00:00.000Z","pointsDay":0,"pointsWeek":2}]}}}\n'
+        '{"data":{"homeStatistic":{"data":[{"date":"2022-01-01T00:00:00.000Z","pointsDay":2,"pointsWeek":2},{"date":"2022-01-02T00:00:00.000Z","pointsDay":1,"pointsWeek":3},{"date":"2022-01-03T00:00:00.000Z","pointsDay":0,"pointsWeek":3},{"date":"2022-01-04T00:00:00.000Z","pointsDay":0,"pointsWeek":3},{"date":"2022-01-05T00:00:00.000Z","pointsDay":0,"pointsWeek":3},{"date":"2022-01-06T00:00:00.000Z","pointsDay":1,"pointsWeek":4},{"date":"2022-01-07T00:00:00.000Z","pointsDay":0,"pointsWeek":4},{"date":"2022-01-08T00:00:00.000Z","pointsDay":0,"pointsWeek":2}]}}}\n'
       );
     },
     timeoutLength
@@ -138,18 +138,12 @@ describe('Statistics resolvers with', () => {
       const res = await testGraphql(body, 'user-1');
       expect(res.end).toHaveBeenNthCalledWith(
         1,
-        '{"data":{"homeStatistic":{"data":[{"date":"2021-12-31T23:00:00.000Z","pointsDay":2,"pointsWeek":2},{"date":"2022-01-01T23:00:00.000Z","pointsDay":1,"pointsWeek":3},{"date":"2022-01-02T23:00:00.000Z","pointsDay":0,"pointsWeek":3},{"date":"2022-01-03T23:00:00.000Z","pointsDay":0,"pointsWeek":3},{"date":"2022-01-04T23:00:00.000Z","pointsDay":0,"pointsWeek":3},{"date":"2022-01-05T23:00:00.000Z","pointsDay":1,"pointsWeek":4},{"date":"2022-01-06T23:00:00.000Z","pointsDay":0,"pointsWeek":4},{"date":"2022-01-07T23:00:00.000Z","pointsDay":0,"pointsWeek":2}]}}}\n'
+        '{"data":{"homeStatistic":{"data":[{"date":"2022-01-01T00:00:00.000Z","pointsDay":2,"pointsWeek":2},{"date":"2022-01-02T00:00:00.000Z","pointsDay":1,"pointsWeek":3},{"date":"2022-01-03T00:00:00.000Z","pointsDay":0,"pointsWeek":3},{"date":"2022-01-04T00:00:00.000Z","pointsDay":0,"pointsWeek":3},{"date":"2022-01-05T00:00:00.000Z","pointsDay":0,"pointsWeek":3},{"date":"2022-01-06T00:00:00.000Z","pointsDay":1,"pointsWeek":4},{"date":"2022-01-07T00:00:00.000Z","pointsDay":0,"pointsWeek":4},{"date":"2022-01-08T00:00:00.000Z","pointsDay":0,"pointsWeek":2}]}}}\n'
       );
     },
     timeoutLength
   );
 
-  /** -------------------------------  */
-  /** -------------------------------  */
-  /** -------------------------------  */
-  /** -------------------------------  */
-  /** -------------------------------  */
-  /** -------------------------------  */
   /** -------------------------------  */
 
   it(
@@ -220,7 +214,7 @@ describe('Statistics resolvers with', () => {
       const res = await testGraphql(body, 'user-1');
       expect(res.end).toHaveBeenNthCalledWith(
         1,
-        '{"data":{"userStatistics":[{"user":{"id":"user-1"},"data":[{"date":"2021-12-31T23:00:00.000Z","pointsDay":2,"pointsWeek":2},{"date":"2022-01-01T23:00:00.000Z","pointsDay":1,"pointsWeek":3},{"date":"2022-01-02T23:00:00.000Z","pointsDay":0,"pointsWeek":3},{"date":"2022-01-03T23:00:00.000Z","pointsDay":0,"pointsWeek":3},{"date":"2022-01-04T23:00:00.000Z","pointsDay":0,"pointsWeek":3},{"date":"2022-01-05T23:00:00.000Z","pointsDay":1,"pointsWeek":4},{"date":"2022-01-06T23:00:00.000Z","pointsDay":0,"pointsWeek":4},{"date":"2022-01-07T23:00:00.000Z","pointsDay":0,"pointsWeek":2}]},{"user":null,"data":[{"date":"2021-12-31T23:00:00.000Z","pointsDay":0,"pointsWeek":0},{"date":"2022-01-02T00:00:00.000Z","pointsDay":0,"pointsWeek":0},{"date":"2022-01-03T00:00:00.000Z","pointsDay":0,"pointsWeek":0},{"date":"2022-01-04T00:00:00.000Z","pointsDay":0,"pointsWeek":0},{"date":"2022-01-05T00:00:00.000Z","pointsDay":0,"pointsWeek":0},{"date":"2022-01-06T00:00:00.000Z","pointsDay":0,"pointsWeek":0},{"date":"2022-01-07T00:00:00.000Z","pointsDay":0,"pointsWeek":0},{"date":"2022-01-08T00:00:00.000Z","pointsDay":0,"pointsWeek":0}]}]}}\n'
+        '{"data":{"userStatistics":[{"user":{"id":"user-1"},"data":[{"date":"2022-01-01T00:00:00.000Z","pointsDay":2,"pointsWeek":2},{"date":"2022-01-02T00:00:00.000Z","pointsDay":1,"pointsWeek":3},{"date":"2022-01-03T00:00:00.000Z","pointsDay":0,"pointsWeek":3},{"date":"2022-01-04T00:00:00.000Z","pointsDay":0,"pointsWeek":3},{"date":"2022-01-05T00:00:00.000Z","pointsDay":0,"pointsWeek":3},{"date":"2022-01-06T00:00:00.000Z","pointsDay":1,"pointsWeek":4},{"date":"2022-01-07T00:00:00.000Z","pointsDay":0,"pointsWeek":4},{"date":"2022-01-08T00:00:00.000Z","pointsDay":0,"pointsWeek":2}]},{"user":null,"data":[{"date":"2022-01-01T00:00:00.000Z","pointsDay":0,"pointsWeek":0},{"date":"2022-01-02T00:00:00.000Z","pointsDay":0,"pointsWeek":0},{"date":"2022-01-03T00:00:00.000Z","pointsDay":0,"pointsWeek":0},{"date":"2022-01-04T00:00:00.000Z","pointsDay":0,"pointsWeek":0},{"date":"2022-01-05T00:00:00.000Z","pointsDay":0,"pointsWeek":0},{"date":"2022-01-06T00:00:00.000Z","pointsDay":0,"pointsWeek":0},{"date":"2022-01-07T00:00:00.000Z","pointsDay":0,"pointsWeek":0},{"date":"2022-01-08T00:00:00.000Z","pointsDay":0,"pointsWeek":0}]}]}}\n'
       );
     },
     timeoutLength
@@ -251,7 +245,7 @@ describe('Statistics resolvers with', () => {
       const res = await testGraphql(body, 'user-1');
       expect(res.end).toHaveBeenNthCalledWith(
         1,
-        '{"data":{"userStatistics":[{"user":{"id":"user-1"},"data":[{"date":"2021-12-31T23:00:00.000Z","pointsDay":1,"pointsWeek":1},{"date":"2022-01-01T23:00:00.000Z","pointsDay":0,"pointsWeek":1},{"date":"2022-01-02T23:00:00.000Z","pointsDay":0,"pointsWeek":1},{"date":"2022-01-03T23:00:00.000Z","pointsDay":0,"pointsWeek":1},{"date":"2022-01-04T23:00:00.000Z","pointsDay":0,"pointsWeek":1},{"date":"2022-01-05T23:00:00.000Z","pointsDay":1,"pointsWeek":2},{"date":"2022-01-06T23:00:00.000Z","pointsDay":0,"pointsWeek":2},{"date":"2022-01-07T23:00:00.000Z","pointsDay":0,"pointsWeek":1}]},{"user":{"id":"user-2"},"data":[{"date":"2021-12-31T23:00:00.000Z","pointsDay":1,"pointsWeek":1},{"date":"2022-01-01T23:00:00.000Z","pointsDay":1,"pointsWeek":2},{"date":"2022-01-02T23:00:00.000Z","pointsDay":0,"pointsWeek":2},{"date":"2022-01-03T23:00:00.000Z","pointsDay":0,"pointsWeek":2},{"date":"2022-01-04T23:00:00.000Z","pointsDay":0,"pointsWeek":2},{"date":"2022-01-05T23:00:00.000Z","pointsDay":0,"pointsWeek":2},{"date":"2022-01-06T23:00:00.000Z","pointsDay":0,"pointsWeek":2},{"date":"2022-01-07T23:00:00.000Z","pointsDay":0,"pointsWeek":1}]},{"user":null,"data":[{"date":"2021-12-31T23:00:00.000Z","pointsDay":0,"pointsWeek":0},{"date":"2022-01-02T00:00:00.000Z","pointsDay":0,"pointsWeek":0},{"date":"2022-01-03T00:00:00.000Z","pointsDay":0,"pointsWeek":0},{"date":"2022-01-04T00:00:00.000Z","pointsDay":0,"pointsWeek":0},{"date":"2022-01-05T00:00:00.000Z","pointsDay":0,"pointsWeek":0},{"date":"2022-01-06T00:00:00.000Z","pointsDay":0,"pointsWeek":0},{"date":"2022-01-07T00:00:00.000Z","pointsDay":0,"pointsWeek":0},{"date":"2022-01-08T00:00:00.000Z","pointsDay":0,"pointsWeek":0}]}]}}\n'
+        '{"data":{"userStatistics":[{"user":{"id":"user-1"},"data":[{"date":"2022-01-01T00:00:00.000Z","pointsDay":1,"pointsWeek":1},{"date":"2022-01-02T00:00:00.000Z","pointsDay":0,"pointsWeek":1},{"date":"2022-01-03T00:00:00.000Z","pointsDay":0,"pointsWeek":1},{"date":"2022-01-04T00:00:00.000Z","pointsDay":0,"pointsWeek":1},{"date":"2022-01-05T00:00:00.000Z","pointsDay":0,"pointsWeek":1},{"date":"2022-01-06T00:00:00.000Z","pointsDay":1,"pointsWeek":2},{"date":"2022-01-07T00:00:00.000Z","pointsDay":0,"pointsWeek":2},{"date":"2022-01-08T00:00:00.000Z","pointsDay":0,"pointsWeek":1}]},{"user":{"id":"user-2"},"data":[{"date":"2022-01-01T00:00:00.000Z","pointsDay":1,"pointsWeek":1},{"date":"2022-01-02T00:00:00.000Z","pointsDay":1,"pointsWeek":2},{"date":"2022-01-03T00:00:00.000Z","pointsDay":0,"pointsWeek":2},{"date":"2022-01-04T00:00:00.000Z","pointsDay":0,"pointsWeek":2},{"date":"2022-01-05T00:00:00.000Z","pointsDay":0,"pointsWeek":2},{"date":"2022-01-06T00:00:00.000Z","pointsDay":0,"pointsWeek":2},{"date":"2022-01-07T00:00:00.000Z","pointsDay":0,"pointsWeek":2},{"date":"2022-01-08T00:00:00.000Z","pointsDay":0,"pointsWeek":1}]},{"user":null,"data":[{"date":"2022-01-01T00:00:00.000Z","pointsDay":0,"pointsWeek":0},{"date":"2022-01-02T00:00:00.000Z","pointsDay":0,"pointsWeek":0},{"date":"2022-01-03T00:00:00.000Z","pointsDay":0,"pointsWeek":0},{"date":"2022-01-04T00:00:00.000Z","pointsDay":0,"pointsWeek":0},{"date":"2022-01-05T00:00:00.000Z","pointsDay":0,"pointsWeek":0},{"date":"2022-01-06T00:00:00.000Z","pointsDay":0,"pointsWeek":0},{"date":"2022-01-07T00:00:00.000Z","pointsDay":0,"pointsWeek":0},{"date":"2022-01-08T00:00:00.000Z","pointsDay":0,"pointsWeek":0}]}]}}\n'
       );
     },
     timeoutLength
@@ -281,7 +275,7 @@ describe('Statistics resolvers with', () => {
       const res = await testGraphql(body, 'user-1');
       expect(res.end).toHaveBeenNthCalledWith(
         1,
-        '{"data":{"userStatistics":[{"user":{"id":"user-1"},"data":[{"date":"2021-12-31T23:00:00.000Z","pointsDay":1,"pointsWeek":1},{"date":"2022-01-01T23:00:00.000Z","pointsDay":0,"pointsWeek":1},{"date":"2022-01-02T23:00:00.000Z","pointsDay":0,"pointsWeek":1},{"date":"2022-01-03T23:00:00.000Z","pointsDay":0,"pointsWeek":1},{"date":"2022-01-04T23:00:00.000Z","pointsDay":0,"pointsWeek":1},{"date":"2022-01-05T23:00:00.000Z","pointsDay":0,"pointsWeek":1},{"date":"2022-01-06T23:00:00.000Z","pointsDay":0,"pointsWeek":1},{"date":"2022-01-07T23:00:00.000Z","pointsDay":0,"pointsWeek":0}]},{"user":null,"data":[{"date":"2021-12-31T23:00:00.000Z","pointsDay":1,"pointsWeek":1},{"date":"2022-01-01T23:00:00.000Z","pointsDay":1,"pointsWeek":2},{"date":"2022-01-02T23:00:00.000Z","pointsDay":0,"pointsWeek":2},{"date":"2022-01-03T23:00:00.000Z","pointsDay":0,"pointsWeek":2},{"date":"2022-01-04T23:00:00.000Z","pointsDay":0,"pointsWeek":2},{"date":"2022-01-05T23:00:00.000Z","pointsDay":1,"pointsWeek":3},{"date":"2022-01-06T23:00:00.000Z","pointsDay":0,"pointsWeek":3},{"date":"2022-01-07T23:00:00.000Z","pointsDay":0,"pointsWeek":2}]}]}}\n'
+        '{"data":{"userStatistics":[{"user":{"id":"user-1"},"data":[{"date":"2022-01-01T00:00:00.000Z","pointsDay":1,"pointsWeek":1},{"date":"2022-01-02T00:00:00.000Z","pointsDay":0,"pointsWeek":1},{"date":"2022-01-03T00:00:00.000Z","pointsDay":0,"pointsWeek":1},{"date":"2022-01-04T00:00:00.000Z","pointsDay":0,"pointsWeek":1},{"date":"2022-01-05T00:00:00.000Z","pointsDay":0,"pointsWeek":1},{"date":"2022-01-06T00:00:00.000Z","pointsDay":0,"pointsWeek":1},{"date":"2022-01-07T00:00:00.000Z","pointsDay":0,"pointsWeek":1},{"date":"2022-01-08T00:00:00.000Z","pointsDay":0,"pointsWeek":0}]},{"user":null,"data":[{"date":"2022-01-01T00:00:00.000Z","pointsDay":1,"pointsWeek":1},{"date":"2022-01-02T00:00:00.000Z","pointsDay":1,"pointsWeek":2},{"date":"2022-01-03T00:00:00.000Z","pointsDay":0,"pointsWeek":2},{"date":"2022-01-04T00:00:00.000Z","pointsDay":0,"pointsWeek":2},{"date":"2022-01-05T00:00:00.000Z","pointsDay":0,"pointsWeek":2},{"date":"2022-01-06T00:00:00.000Z","pointsDay":1,"pointsWeek":3},{"date":"2022-01-07T00:00:00.000Z","pointsDay":0,"pointsWeek":3},{"date":"2022-01-08T00:00:00.000Z","pointsDay":0,"pointsWeek":2}]}]}}\n'
       );
     },
     timeoutLength
