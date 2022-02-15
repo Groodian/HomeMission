@@ -80,6 +80,10 @@ export default class TaskReceiptResolver
       const receipt = new TaskReceipt(home, user, type.name, type.points);
       await receipt.save();
 
+      // update points
+      user.points += type.points;
+      await user.save();
+
       // create reference from task to receipt
       taskItem.receipt = receipt;
       await taskItem.save();

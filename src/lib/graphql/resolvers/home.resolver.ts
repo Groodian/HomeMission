@@ -158,6 +158,7 @@ export default class HomeResolver implements ResolverInterface<Home> {
     const user = await Helper.getMeOrFail(session);
     try {
       user.home = null;
+      user.points = 0;
       await user.save();
       return null;
     } catch (e) {
@@ -172,6 +173,9 @@ export default class HomeResolver implements ResolverInterface<Home> {
 
       // add reference
       user.home = home;
+
+      // set points to zero
+      user.points = 0;
 
       // save
       await user.save();
