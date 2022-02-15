@@ -200,9 +200,8 @@ export default class HomeResolver implements ResolverInterface<Home> {
     const t = i18n.getFixedT(language, 'server_default-tasks');
     const taskTypes = [
       new TaskType(t('vacuum'), 50, home),
-      new TaskType(t('clean-kitchen'), 50, home),
-      new TaskType(t('clean-bath'), 50, home),
-      new TaskType(t('wash-windows'), 50, home),
+      new TaskType(t('clean-kitchen'), 60, home),
+      new TaskType(t('clean-bath'), 60, home),
       new TaskType(t('wash-dishes'), 30, home),
       new TaskType(t('take-out-garbage'), 20, home),
       new TaskType(t('water-plants'), 10, home),
