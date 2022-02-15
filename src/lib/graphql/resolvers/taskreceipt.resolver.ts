@@ -15,6 +15,7 @@ import User from '../../../entities/user';
 import CurrentSession from '../../auth0/current-session';
 import databaseConnection from '../../typeorm/connection';
 import Helper from './helper';
+import TaskType from '../../../entities/tasktype';
 
 @Resolver(TaskReceipt)
 export default class TaskReceiptResolver
@@ -65,8 +66,14 @@ export default class TaskReceiptResolver
           taskItem.receipt
         )}.`
       );
-    const type = await Helper.getTypeOrFail(String(taskItem?.type), home.id);
     const user = await Helper.getMeOrFail(session);
+
+    // get type directly because it might not have reference to home anymore
+    const type = await TaskType.findOneOrFail(String(taskItem?.type), {
+      loadRelationIds: true,
+    });
+    if (type.relatedHome && String(type.relatedHome) !== String(home.id))
+      throw Error('Failed to execute! Task does not belong to users home.');
 
     try {
       // create receipt and save it
