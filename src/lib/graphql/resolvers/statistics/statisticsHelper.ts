@@ -20,30 +20,11 @@ function getBlankDataPointsArray(startDate: Date, stopDate: Date) {
  * @param date1
  * @param date2
  */
-function _getDatesDifference(date1: Date, date2: Date): number {
+function getDatesDifference(date1: Date, date2: Date): number {
   date1.setHours(0, 0, 0, 0);
   date2.setHours(0, 0, 0, 0);
   const diffTime = date2.getTime() - date1.getTime();
   return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 }
 
-/**
- * Checks if two dates are on the same day.
- * @param date1
- * @param date2
- */
-function compareDatesDay(date1: Date, date2: Date): boolean {
-  return _getDatesDifference(date1, date2) === 0;
-}
-
-/**
- * Checks if dates are in a 7 day range of each other (kind of)
- * @param date1
- * @param date2
- */
-function compareDatesWeek(date1: Date, date2: Date): boolean {
-  const difference = _getDatesDifference(date1, date2);
-  return difference < 7 && difference >= 0;
-}
-
-export { compareDatesWeek, compareDatesDay, getBlankDataPointsArray };
+export { getBlankDataPointsArray, getDatesDifference };

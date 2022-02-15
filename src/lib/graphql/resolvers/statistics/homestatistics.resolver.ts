@@ -7,9 +7,8 @@ import TaskReceipt from '../../../../entities/taskreceipt';
 import HomeStatistic from '../../../../entities/statistics/homeStatistic';
 import Helper from '../helper';
 import {
-  compareDatesWeek,
-  compareDatesDay,
   getBlankDataPointsArray,
+  getDatesDifference,
 } from './statisticsHelper';
 
 @Resolver(HomeStatistic)
@@ -50,16 +49,13 @@ export default class HomeStatisticsResolver {
 
       // iterate through all receipts and attribute appropriate points
       for (const receipt of receipts) {
-        // check every data point if the date matches the completion date of the receipt
-        for (const dataPoint of dataPoints) {
-          if (compareDatesWeek(receipt.completionDate, dataPoint.date)) {
-            dataPoint.addPointsWeek(receipt.points);
+        // get index of receipt completion date in dataPoints array
+        const index = getDatesDifference(startDate, receipt.completionDate);
 
-            if (compareDatesDay(receipt.completionDate, dataPoint.date)) {
-              dataPoint.addPointsDay(receipt.points);
-            }
-          }
-        }
+        // add points to dataPoints of that day and the following week
+        dataPoints[index]?.addPointsDay(receipt.points);
+        for (let i = 0; i < 7; i++)
+          dataPoints[index + i]?.addPointsWeek(receipt.points);
       }
 
       return new HomeStatistic(dataPoints);

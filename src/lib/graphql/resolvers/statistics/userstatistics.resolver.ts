@@ -17,9 +17,8 @@ import UserStatistic from '../../../../entities/statistics/userStatistic';
 import DataPoint from '../../../../entities/statistics/dataPoint';
 import Helper from '../helper';
 import {
-  compareDatesDay,
-  compareDatesWeek,
   getBlankDataPointsArray,
+  getDatesDifference,
 } from './statisticsHelper';
 
 type UserAndDataPoints = { user: User | null; dataPoints: DataPoint[] };
@@ -76,21 +75,18 @@ export default class UserStatisticsResolver
 
       // iterate through all receipts and attribute appropriate points
       for (const receipt of receipts) {
-        // first: identify who the receipt belongs to and set variable dataPoints to their dataPoints
+        // identify who the receipt belongs to and set variable dataPoints to their dataPoints
         const dataPoints =
           userAndDataPointsArrays.filter((e) => receipt.completer === e.user)[0]
             ?.dataPoints || nullDataPoints;
 
-        // second: check every data point if the date matches the completion date of the receipt
-        for (const dataPoint of dataPoints) {
-          if (compareDatesWeek(receipt.completionDate, dataPoint.date)) {
-            dataPoint.addPointsWeek(receipt.points);
+        // get index of receipt completion date in dataPoints array
+        const index = getDatesDifference(startDate, receipt.completionDate);
 
-            if (compareDatesDay(receipt.completionDate, dataPoint.date)) {
-              dataPoint.addPointsDay(receipt.points);
-            }
-          }
-        }
+        // add points to dataPoints of that day and the following week
+        dataPoints[index]?.addPointsDay(receipt.points);
+        for (let i = 0; i < 7; i++)
+          dataPoints[index + i]?.addPointsWeek(receipt.points);
       }
 
       // concatenate user-datapoint-tuples from roommates with user-datapoint-tuple from orphaned receipts, then map into return format
