@@ -1,5 +1,5 @@
-query Statistics ($start: String!, $end: String!) {
-  homeStatistic (start: $start, end:$end) {
+query Statistics($start: Float!, $end: Float!) {
+  homeStatistic(start: $start, end: $end) {
     data {
       date
       pointsDay

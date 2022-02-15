@@ -19,7 +19,10 @@ describe('Statistics resolvers with', () => {
       const body = {
         operationName: 'HomeStatistic',
         query: homeStatisticQuery,
-        variables: { start: '2022-01-01', end: '2021-12-30' },
+        variables: {
+          start: new Date('2022-01-01').valueOf(),
+          end: new Date('2021-12-30').valueOf(),
+        },
       };
 
       const res = await testGraphql(body, 'user-1');
@@ -41,7 +44,10 @@ describe('Statistics resolvers with', () => {
       const body = {
         operationName: 'HomeStatistic',
         query: homeStatisticQuery,
-        variables: { start: '2022-01-01', end: '2022-01-08' },
+        variables: {
+          start: new Date('2022-01-01').valueOf(),
+          end: new Date('2022-01-08').valueOf(),
+        },
       };
 
       const res = await testGraphql(body, 'user-1');
@@ -71,7 +77,10 @@ describe('Statistics resolvers with', () => {
       const body = {
         operationName: 'HomeStatistic',
         query: homeStatisticQuery,
-        variables: { start: '2022-01-01', end: '2022-01-08' },
+        variables: {
+          start: new Date('2022-01-01').valueOf(),
+          end: new Date('2022-01-08').valueOf(),
+        },
       };
 
       const res = await testGraphql(body, 'user-1');
@@ -102,7 +111,10 @@ describe('Statistics resolvers with', () => {
       const body = {
         operationName: 'HomeStatistic',
         query: homeStatisticQuery,
-        variables: { start: '2022-01-01', end: '2022-01-08' },
+        variables: {
+          start: new Date('2022-01-01').valueOf(),
+          end: new Date('2022-01-08').valueOf(),
+        },
       };
 
       const res = await testGraphql(body, 'user-1');
@@ -132,7 +144,10 @@ describe('Statistics resolvers with', () => {
       const body = {
         operationName: 'HomeStatistic',
         query: homeStatisticQuery,
-        variables: { start: '2022-01-01', end: '2022-01-08' },
+        variables: {
+          start: new Date('2022-01-01').valueOf(),
+          end: new Date('2022-01-08').valueOf(),
+        },
       };
 
       const res = await testGraphql(body, 'user-1');
@@ -156,7 +171,10 @@ describe('Statistics resolvers with', () => {
       const body = {
         operationName: 'UserStatistics',
         query: userStatisticsQuery,
-        variables: { start: '2022-01-01', end: '2021-12-30' },
+        variables: {
+          start: new Date('2022-01-01').valueOf(),
+          end: new Date('2021-12-30').valueOf(),
+        },
       };
 
       const res = await testGraphql(body, 'user-1');
@@ -178,7 +196,10 @@ describe('Statistics resolvers with', () => {
       const body = {
         operationName: 'UserStatistics',
         query: userStatisticsQuery,
-        variables: { start: '2022-01-01', end: '2022-01-08' },
+        variables: {
+          start: new Date('2022-01-01').valueOf(),
+          end: new Date('2022-01-08').valueOf(),
+        },
       };
 
       const res = await testGraphql(body, 'user-1');
@@ -208,7 +229,10 @@ describe('Statistics resolvers with', () => {
       const body = {
         operationName: 'UserStatistics',
         query: userStatisticsQuery,
-        variables: { start: '2022-01-01', end: '2022-01-08' },
+        variables: {
+          start: new Date('2022-01-01').valueOf(),
+          end: new Date('2022-01-08').valueOf(),
+        },
       };
 
       const res = await testGraphql(body, 'user-1');
@@ -239,7 +263,10 @@ describe('Statistics resolvers with', () => {
       const body = {
         operationName: 'UserStatistics',
         query: userStatisticsQuery,
-        variables: { start: '2022-01-01', end: '2022-01-08' },
+        variables: {
+          start: new Date('2022-01-01').valueOf(),
+          end: new Date('2022-01-08').valueOf(),
+        },
       };
 
       const res = await testGraphql(body, 'user-1');
@@ -269,7 +296,10 @@ describe('Statistics resolvers with', () => {
       const body = {
         operationName: 'UserStatistics',
         query: userStatisticsQuery,
-        variables: { start: '2022-01-01', end: '2022-01-08' },
+        variables: {
+          start: new Date('2022-01-01').valueOf(),
+          end: new Date('2022-01-08').valueOf(),
+        },
       };
 
       const res = await testGraphql(body, 'user-1');
@@ -282,8 +312,8 @@ describe('Statistics resolvers with', () => {
   );
 
   const homeStatisticQuery = `
-    query HomeStatistic ($start: String!, $end: String!) {
-      homeStatistic (start: $start, end:$end) {
+    query HomeStatistic($start: Float!, $end: Float!) {
+      homeStatistic(start: $start, end: $end) {
         data {
           date
           pointsDay
@@ -294,7 +324,7 @@ describe('Statistics resolvers with', () => {
   `;
 
   const userStatisticsQuery = `
-    query UserStatistics ($start: String!, $end: String!) {
+    query UserStatistics($start: Float!, $end: Float!) {
       userStatistics(start: $start, end: $end) {
         user {
           id

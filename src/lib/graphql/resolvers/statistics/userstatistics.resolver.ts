@@ -35,15 +35,15 @@ export default class UserStatisticsResolver
   @Query(() => [UserStatistic])
   async userStatistics(
     @CurrentSession() session: Session,
-    @Arg('start') start: string,
-    @Arg('end') end: string
+    @Arg('start') start: number,
+    @Arg('end') end: number
   ) {
     await databaseConnection();
     const home = await Helper.getHomeOrFail(session);
     const startDate = new Date(start);
     const endDate = new Date(end);
 
-    if (startDate.getTime() > endDate.getTime())
+    if (start > end)
       throw Error(
         'Could not create statistic for users because start date must be before end date'
       );
@@ -67,7 +67,7 @@ export default class UserStatisticsResolver
         where: {
           relatedHome: home.id,
           completionDate: Between(
-            new Date(startDate.getTime() - 7 * 24 * 60 * 60 * 1000),
+            new Date(start - 7 * 24 * 60 * 60 * 1000),
             endDate
           ),
         },
