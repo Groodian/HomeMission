@@ -1,12 +1,14 @@
 import React from 'react';
 import {
-  Container,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
+  Divider,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
   Tooltip,
-  Typography,
 } from '@mui/material';
 import { GetStaticProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
@@ -28,40 +30,54 @@ const History: NextPage = () => {
   }, [error]);
 
   return (
-    <Container maxWidth="sm">
+    <TableContainer component={Paper}>
+      <Divider />
       <LoadingSpinner loading={loading} />
-      <Typography variant="h3">{t('title')}</Typography>
-      <List>
-        {data?.home?.history.map((history) => (
-          <ListItem key={history.id}>
-            <ListItemIcon>
-              <Image
-                src={history.user.picture}
-                alt={t('profile-picture-alt', { history })}
-                width={80}
-                height={80}
-              />
-            </ListItemIcon>
-            <List>
-              <ListItem>
-                <ListItemText>{history.user.name}</ListItemText>
-              </ListItem>
-              <ListItem>
-                <ListItemText>{formatText(history, t)}</ListItemText>
-              </ListItem>
-            </List>
-            <Tooltip
-              placement="bottom-start"
-              title={new Date(history.date).toLocaleString(router.locale)}
-            >
-              <ListItemText>
-                {t('ago', { time: formatTime(history.date, t) })}
-              </ListItemText>
-            </Tooltip>
-          </ListItem>
-        ))}
-      </List>
-    </Container>
+      <Table>
+        <TableHead sx={{ background: '#a3c4e1' }}>
+          <TableRow>
+            <TableCell>
+              <b>User Avatar</b>
+            </TableCell>
+            <TableCell>
+              <b>User name</b>
+            </TableCell>
+            <TableCell>
+              <b>Activity</b>
+            </TableCell>
+            <TableCell>
+              <b>Date</b>
+            </TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {data?.home?.history.map((history) => (
+            <TableRow key={history.id}>
+              <TableCell>
+                <Image
+                  src={history.user.picture}
+                  alt={t('profile-picture-alt', { history })}
+                  width={40}
+                  height={40}
+                />
+              </TableCell>
+
+              <TableCell>{history.user.name}</TableCell>
+
+              <TableCell>{formatText(history, t)}</TableCell>
+              <TableCell>
+                <Tooltip
+                  placement="bottom-start"
+                  title={new Date(history.date).toLocaleString(router.locale)}
+                >
+                  <p>{t('ago', { time: formatTime(history.date, t) })}</p>
+                </Tooltip>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 };
 
