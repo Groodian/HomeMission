@@ -18,6 +18,7 @@ import Image from 'next/image';
 import { useSnackbar } from 'notistack';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { useHistoryQuery } from '../lib/graphql/operations/history.graphql';
+import { NextRouter, useRouter } from 'next/router';
 
 const History: NextPage = () => {
   const { t } = useTranslation(['history']);
@@ -64,7 +65,7 @@ const History: NextPage = () => {
 
               <TableCell>{history.user.name}</TableCell>
 
-              <TableCell>{formatText(history, t)}</TableCell>
+              <TableCell>{formatText(history, t, router)}</TableCell>
               <TableCell>
                 <Tooltip
                   placement="bottom-start"
@@ -81,8 +82,16 @@ const History: NextPage = () => {
   );
 };
 
-const formatText = (history: any, t: any): string => {
-  return t((history.type as string).replaceAll('_', '-').toLowerCase());
+const formatText = (history: any, t: any, router: NextRouter): string => {
+  let date = '';
+  if (history.task) {
+    date = new Date(history.task.date).toLocaleDateString(router.locale);
+  }
+
+  return t((history.type as string).replaceAll('_', '-').toLowerCase(), {
+    history,
+    date,
+  });
 };
 
 const formatTime = (date: any, t: any): string => {

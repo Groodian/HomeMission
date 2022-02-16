@@ -3,12 +3,25 @@ query History {
     id
     history {
       id
-      date
-      type
       user {
         name
         picture
       }
+      date
+      type
+      taskType {
+        name
+      }
+      task {
+        date
+        type {
+          name
+        }
+      }
+      affectedUser {
+        name
+      }
+      extraInfo
     }
   }
 }

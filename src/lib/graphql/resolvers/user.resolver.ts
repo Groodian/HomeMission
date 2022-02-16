@@ -34,22 +34,31 @@ export default class UserResolver {
   ) {
     await databaseConnection();
     const user = await Helper.getMeOrFail(session);
-    const home = await Helper.getHomeOrFail(session);
+
+    let home = null;
+    try {
+      home = await Helper.getHomeOrFail(session);
+    } catch (e) {
+      // if the user has no home dont save in history
+    }
+
     try {
       user.name = name;
 
       // save
       const userSaved = await user.save();
-      await Helper.createHistory(
-        home,
-        userSaved,
-        HistoryType.USER_RENAME,
-        null,
-        null,
-        null,
-        null,
-        name
-      );
+      if (home) {
+        await Helper.createHistory(
+          home,
+          userSaved,
+          HistoryType.USER_RENAME,
+          null,
+          null,
+          null,
+          null,
+          name
+        );
+      }
 
       return userSaved;
     } catch (e) {

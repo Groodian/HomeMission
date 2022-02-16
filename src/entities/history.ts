@@ -67,7 +67,7 @@ export default class History extends BaseEntity {
   /**
    * The user that triggered the event.
    */
-  @ManyToOne('User', 'history', { eager: true })
+  @ManyToOne('User', 'history')
   @Field({ description: 'The user that triggered the event.' })
   user!: User;
 
@@ -98,7 +98,7 @@ export default class History extends BaseEntity {
   affectedUser!: User | null;
 
   @Column({ nullable: true })
-  @Field()
+  @Field(() => String, { nullable: true })
   extraInfo!: string | null;
 
   constructor() {
