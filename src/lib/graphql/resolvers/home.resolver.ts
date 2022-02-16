@@ -56,7 +56,10 @@ export default class HomeResolver implements ResolverInterface<Home> {
     description: 'The history entries for the home.',
   })
   async history(@Root() home: Home) {
-    return await History.find({ where: { home: home.id } });
+    return await History.find({
+      where: { home: home.id },
+      order: { date: 'DESC' },
+    });
   }
 
   /**
