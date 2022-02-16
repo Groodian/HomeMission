@@ -6,7 +6,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useSnackbar } from 'notistack';
-import homeMissionLogo from '../../public/home_mission_grey.png';
+import homeMissionLogo from '../../public/home_mission_grey_notitle.png';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { useHomeQuery } from '../lib/graphql/operations/home.graphql';
 
@@ -88,8 +88,8 @@ const Welcome: NextPage = () => {
             <Image
               alt={t('title', { ns: 'common' })}
               src={homeMissionLogo}
-              width="340px"
-              height="340px"
+              width="280px"
+              height="280px"
             />
           </Grid>
         </Grid>
