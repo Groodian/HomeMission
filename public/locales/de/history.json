@@ -2,8 +2,11 @@
   "title" : "Historie",
   "profile-picture-alt": "Profilbild von {{history.user.name}}",
   "ago": "vor {{time}}",
+  "home-created": "Hat die WG erstellt",
+  "home-renamed": "Hat die WG umbenannt",
   "user-join": "Ist der WG beigetreten",
   "user-leave": "Hat die WG verlassen",
+  "user-rename": "Hat sich umbenannt",
   "task-type-created": "Hat einen Aufgabentyp erstellt",
   "task-type-deleted": "Hat einen Aufgabentyp gelöscht",
   "task-type-updated": "Hat einen Aufgabentyp bearbeitet",
@@ -15,5 +18,7 @@
   "task-deleted": "Hat eine Aufgabe gelöscht",
   "task-updated": "Hat eine Aufgabe bearbeitet",
   "task-completed": "Hat eine Aufgabe abgeschlossen",
+  "task-assigned": "Hat eine Person einer Aufgabe zugeordnet",
+  "task-unassigned": "Hat von einer Person die zuordnung für eine Aufgabe aufgehoben",
   "error-message": "Tätigkeitsverlauf konnte nicht geladen werden"
 }

@@ -109,8 +109,19 @@ Generate default task types in the specified language.`,
     language: string
   ) {
     await databaseConnection();
+    const user = await Helper.getMeOrFail(session);
     try {
       const createdHome = await new Home(name).save();
+
+      await Helper.createHistory(
+        createdHome,
+        user,
+        HistoryType.HOME_CREATED,
+        null,
+        null,
+        null
+      );
+
       await this.generateDefaultTaskTypes(createdHome, language);
       return this.addUserToHome(createdHome, session);
     } catch (e) {
@@ -156,9 +167,22 @@ Generate default task types in the specified language.`,
   ) {
     await databaseConnection();
     const home = await Helper.getHomeOrFail(session);
+    const user = await Helper.getMeOrFail(session);
     try {
       home.name = name;
-      return await home.save();
+
+      // save
+      const homeSaved = await home.save();
+      await Helper.createHistory(
+        homeSaved,
+        user,
+        HistoryType.HOME_RENAME,
+        null,
+        null,
+        null
+      );
+
+      return homeSaved;
     } catch (e) {
       throw Error('Failed to rename home!');
     }
@@ -175,10 +199,22 @@ Generate default task types in the specified language.`,
   async leaveHome(@CurrentSession() session: Session) {
     await databaseConnection();
     const user = await Helper.getMeOrFail(session);
+    const home = await Helper.getHomeOrFail(session);
     try {
       user.home = null;
       user.points = 0;
+
+      // save
       await user.save();
+      await Helper.createHistory(
+        home,
+        user,
+        HistoryType.USER_LEAVE,
+        null,
+        null,
+        null
+      );
+
       return null;
     } catch (e) {
       throw Error('Failed to leave home!');

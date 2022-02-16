@@ -159,15 +159,19 @@ Null if the task has not been completed.`,
 
     try {
       const task = new Task(validDate, home, taskType);
+
+      // save
+      const savedTask = await task.save();
       await Helper.createHistory(
         home,
         user,
         HistoryType.TASK_CREATED,
         null,
         null,
-        task
+        savedTask
       );
-      return await task.save();
+
+      return savedTask;
     } catch (e) {
       throw Error(
         'Failed to create task! Check that type is valid and part of users home.'
@@ -198,16 +202,19 @@ The task must belong to the users home.`,
     try {
       taskEntity.assignee = null;
       taskEntity.relatedHome = null;
-      await taskEntity.save();
+
+      // save
+      const savedTaskEntity = await taskEntity.save();
       await Helper.createHistory(
         home,
         user,
         HistoryType.TASK_DELETED,
         null,
         null,
-        taskEntity
+        savedTaskEntity
       );
-      return taskEntity;
+
+      return savedTaskEntity;
     } catch (e) {
       throw Error('Failed to delete task!');
     }
@@ -233,12 +240,25 @@ The task must belong to the users home.`,
   ) {
     await databaseConnection();
     const home = await Helper.getHomeOrFail(session);
+    const user = await Helper.getMeOrFail(session);
     const taskEntity = await Helper.getTaskOrFail(task, home.id);
     const roommate = await Helper.getRoommateOrFail(assignee, home.id);
 
     try {
       taskEntity.assignee = roommate.id as any; // Only save id for field resolver
-      return await taskEntity.save();
+
+      // save
+      const taskEntriySaved = await taskEntity.save();
+      await Helper.createHistory(
+        home,
+        user,
+        HistoryType.TASK_ASSIGNED,
+        null,
+        null,
+        taskEntriySaved
+      );
+
+      return taskEntriySaved;
     } catch (e) {
       throw Error('Failed to assign task!');
     }
@@ -261,6 +281,7 @@ The task must belong to the users home.`,
   ) {
     await databaseConnection();
     const home = await Helper.getHomeOrFail(session);
+    const user = await Helper.getMeOrFail(session);
     const taskEntity = await Helper.getTaskOrFail(task, home.id);
 
     if (!taskEntity.assignee) {
@@ -270,7 +291,19 @@ The task must belong to the users home.`,
     }
     try {
       taskEntity.assignee = null;
-      return await taskEntity.save();
+
+      // save
+      const taskEntriySaved = await taskEntity.save();
+      await Helper.createHistory(
+        home,
+        user,
+        HistoryType.TASK_UNASSIGNED,
+        null,
+        null,
+        taskEntriySaved
+      );
+
+      return taskEntriySaved;
     } catch (e) {
       throw Error(`Failed to remove assignee from task ${taskEntity.id}!`);
     }

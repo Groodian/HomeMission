@@ -2,8 +2,11 @@
   "title" : "History",
   "profile-picture-alt": "Profile picture of {{history.user.name}}",
   "ago": "{{time}} ago",
+  "home-created": "Created the home",
+  "home-renamed": "Renamed the home",
   "user-join": "Joined a home",
   "user-leave": "Left a home",
+  "user-rename": "Changed name",
   "task-type-created": "Created a task type",
   "task-type-deleted": "Deleted a task type",
   "task-type-updated": "Edited a task type",
@@ -15,5 +18,7 @@
   "task-deleted": "Deleted a task",
   "task-updated": "Edited a task",
   "task-completed": "Completed a task",
+  "task-assigned": "Assigned a task to someone",
+  "task-unassigned": "Unassigned someone from a task",
   "error-message": "Could not load history"
 }

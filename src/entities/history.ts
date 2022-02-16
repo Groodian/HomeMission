@@ -3,9 +3,7 @@ import {
   BaseEntity,
   Column,
   Entity,
-  JoinColumn,
   ManyToOne,
-  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import Home from './home';
@@ -18,8 +16,11 @@ import TaskSeries from './taskseries';
  * The event type of a history entry.
  */
 export enum HistoryType {
+  HOME_CREATED = 'home_created',
+  HOME_RENAME = 'home_rename',
   USER_JOIN = 'user_join',
   USER_LEAVE = 'user_leave',
+  USER_RENAME = 'user_rename',
   TASK_TYPE_CREATED = 'task_type_created',
   TASK_TYPE_DELETED = 'task_type_deleted',
   TASK_TYPE_UPDATED = 'task_type_updated',
@@ -31,6 +32,8 @@ export enum HistoryType {
   TASK_DELETED = 'task_deleted',
   TASK_UPDATED = 'task_updated',
   TASK_COMPLETED = 'task_completed',
+  TASK_ASSIGNED = 'task_assigned',
+  TASK_UNASSIGNED = 'task_unassigned',
 }
 
 registerEnumType(HistoryType, {
@@ -82,16 +85,13 @@ export default class History extends BaseEntity {
   @Field(() => HistoryType, { description: 'The type of the event.' })
   type!: HistoryType;
 
-  @OneToOne('TaskType', { nullable: true })
-  @JoinColumn()
+  @ManyToOne('TaskType', { nullable: true })
   taskType!: TaskType | null;
 
-  @OneToOne('TaskSeries', { nullable: true })
-  @JoinColumn()
+  @ManyToOne('TaskSeries', { nullable: true })
   taskSeries!: TaskSeries | null;
 
-  @OneToOne('Task', { nullable: true })
-  @JoinColumn()
+  @ManyToOne('Task', { nullable: true })
   task!: Task | null;
 
   constructor() {

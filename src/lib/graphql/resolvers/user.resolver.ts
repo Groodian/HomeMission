@@ -4,6 +4,7 @@ import User from '../../../entities/user';
 import CurrentSession from '../../auth0/current-session';
 import databaseConnection from '../../typeorm/connection';
 import Helper from './helper';
+import { HistoryType } from '../../../entities/history';
 
 @Resolver(User)
 export default class UserResolver {
@@ -33,9 +34,22 @@ export default class UserResolver {
   ) {
     await databaseConnection();
     const user = await Helper.getMeOrFail(session);
+    const home = await Helper.getHomeOrFail(session);
     try {
       user.name = name;
-      return await user.save();
+
+      // save
+      const userSaved = await user.save();
+      await Helper.createHistory(
+        home,
+        userSaved,
+        HistoryType.USER_RENAME,
+        null,
+        null,
+        null
+      );
+
+      return userSaved;
     } catch (e) {
       throw Error('Failed to rename user!');
     }
