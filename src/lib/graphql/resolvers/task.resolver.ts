@@ -168,7 +168,9 @@ Null if the task has not been completed.`,
         HistoryType.TASK_CREATED,
         null,
         null,
-        savedTask
+        savedTask,
+        null,
+        null
       );
 
       return savedTask;
@@ -211,7 +213,9 @@ The task must belong to the users home.`,
         HistoryType.TASK_DELETED,
         null,
         null,
-        savedTaskEntity
+        savedTaskEntity,
+        null,
+        null
       );
 
       return savedTaskEntity;
@@ -255,7 +259,9 @@ The task must belong to the users home.`,
         HistoryType.TASK_ASSIGNED,
         null,
         null,
-        taskEntriySaved
+        taskEntriySaved,
+        roommate,
+        null
       );
 
       return taskEntriySaved;
@@ -290,6 +296,7 @@ The task must belong to the users home.`,
       );
     }
     try {
+      const roommate = taskEntity.assignee;
       taskEntity.assignee = null;
 
       // save
@@ -300,7 +307,9 @@ The task must belong to the users home.`,
         HistoryType.TASK_UNASSIGNED,
         null,
         null,
-        taskEntriySaved
+        taskEntriySaved,
+        roommate,
+        null
       );
 
       return taskEntriySaved;

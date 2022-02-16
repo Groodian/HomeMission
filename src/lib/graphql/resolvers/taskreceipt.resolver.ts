@@ -106,7 +106,9 @@ The authenticated user is saved as completer.`,
         HistoryType.TASK_COMPLETED,
         null,
         null,
-        taskItem
+        taskItem,
+        null,
+        null
       );
 
       receipt.completer = receipt.completer.id as any; // Only save id for field resolver

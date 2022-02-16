@@ -64,6 +64,8 @@ export default class TaskSeriesResolver {
         HistoryType.TASK_SERIES_CREATED,
         null,
         taskSeries,
+        null,
+        null,
         null
       );
 
@@ -111,6 +113,8 @@ The series must belong to the users home.`,
         HistoryType.TASK_SERIES_DELETED,
         null,
         taskSeries,
+        null,
+        null,
         null
       );
 
@@ -165,6 +169,8 @@ The series must belong to the users home.`,
         HistoryType.TASK_SERIES_SUB_DELETED,
         null,
         taskSeries,
+        null,
+        null,
         null
       );
 

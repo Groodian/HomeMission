@@ -46,7 +46,9 @@ export default class UserResolver {
         HistoryType.USER_RENAME,
         null,
         null,
-        null
+        null,
+        null,
+        name
       );
 
       return userSaved;

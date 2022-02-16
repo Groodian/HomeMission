@@ -94,6 +94,13 @@ export default class History extends BaseEntity {
   @ManyToOne('Task', { nullable: true })
   task!: Task | null;
 
+  @ManyToOne('User', { nullable: true })
+  affectedUser!: User | null;
+
+  @Column({ nullable: true })
+  @Field()
+  extraInfo!: string | null;
+
   constructor() {
     super();
     this.date = new Date().toISOString();

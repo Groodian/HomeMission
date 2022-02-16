@@ -109,7 +109,9 @@ export default class Helper {
     type: HistoryType,
     taskType: TaskType | null,
     taskSeries: TaskSeries | null,
-    task: Task | null
+    task: Task | null,
+    affectedUser: User | null,
+    extraInfo: string | null
   ): Promise<History> {
     try {
       await databaseConnection();
@@ -121,6 +123,8 @@ export default class Helper {
       history.taskType = taskType;
       history.taskSeries = taskSeries;
       history.task = task;
+      history.affectedUser = affectedUser;
+      history.extraInfo = extraInfo;
       await history.save();
 
       return history;

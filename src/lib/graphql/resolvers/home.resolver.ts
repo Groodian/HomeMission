@@ -119,6 +119,8 @@ Generate default task types in the specified language.`,
         HistoryType.HOME_CREATED,
         null,
         null,
+        null,
+        null,
         null
       );
 
@@ -179,7 +181,9 @@ Generate default task types in the specified language.`,
         HistoryType.HOME_RENAME,
         null,
         null,
-        null
+        null,
+        null,
+        name
       );
 
       return homeSaved;
@@ -212,6 +216,8 @@ Generate default task types in the specified language.`,
         HistoryType.USER_LEAVE,
         null,
         null,
+        null,
+        null,
         null
       );
 
@@ -238,6 +244,8 @@ Generate default task types in the specified language.`,
         home,
         user,
         HistoryType.USER_JOIN,
+        null,
+        null,
         null,
         null,
         null

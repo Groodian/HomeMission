@@ -60,6 +60,8 @@ export default class TaskTypeResolver {
         HistoryType.TASK_TYPE_CREATED,
         savedTaskType,
         null,
+        null,
+        null,
         null
       );
 
@@ -100,6 +102,8 @@ The task type must belong to the users home.`,
         user,
         HistoryType.TASK_TYPE_DELETED,
         savedTaskType,
+        null,
+        null,
         null,
         null
       );
