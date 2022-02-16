@@ -1,40 +1,49 @@
+import React from 'react';
 import { Grid } from '@mui/material';
-import { NextPage } from 'next';
-import BarChart from '../components/Charts/BarChart';
-import { ProfileCard } from '../components/Cards/ProfileCard';
-import { ProgressCard } from '../components/Cards/ProgressCard';
-import ActivityPieChart from '../components/Charts/ActivityPieChart';
-import { AccountCard } from '../components/Cards/AccountCard';
+import { GetStaticProps, NextPage } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next';
+import { useRoommatesQuery } from '../lib/graphql/operations/roommates.graphql';
+import { BarSeries } from '@devexpress/dx-react-chart-material-ui';
+import ChartCard from '../components/statistics-page/ChartCard';
+import ProgressCard from '../components/statistics-page/ProgressCard';
+import InlineDiamond from '../components/InlineDiamond';
 
 const Statistics: NextPage = () => {
+  const { t } = useTranslation('statistics');
+  const { loading, data } = useRoommatesQuery();
+
   return (
-    <Grid container spacing={2}>
-      <Grid item xs={4}>
-        <AccountCard />
+    <Grid container spacing={2} sx={{ justifyContent: 'space-evenly' }}>
+      <Grid item lg={4} xs={6}>
+        <ProgressCard title={t('weekly-progress')} progress={75.5} />
       </Grid>
-      <Grid item xs={8}>
-        <ProfileCard />
+      <Grid item lg={4} xs={6}>
+        <ProgressCard title={t('monthly-progress')} progress={46.941} />
       </Grid>
-      <Grid item md={3} xs={6}>
-        <ProgressCard />
-      </Grid>
-      <Grid item md={3} xs={6}>
-        <ProgressCard />
-      </Grid>
-      <Grid item md={3} xs={6}>
-        <ProgressCard />
-      </Grid>
-      <Grid item md={3} xs={6}>
-        <ProgressCard />
-      </Grid>
-      <Grid item xs={12} md={6}>
-        <BarChart />
-      </Grid>
-      <Grid item xs={12} md={6}>
-        <ActivityPieChart />
+      <Grid item lg={6} xs={12}>
+        <ChartCard
+          title={
+            <>
+              <InlineDiamond /> {t('per-user')}
+            </>
+          }
+          loading={loading}
+          data={data?.home?.users}
+        >
+          <BarSeries argumentField="name" valueField="points" />
+        </ChartCard>
       </Grid>
     </Grid>
   );
+};
+
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale || '', ['statistics', 'common'])),
+    },
+  };
 };
 
 export default Statistics;
