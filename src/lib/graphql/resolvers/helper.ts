@@ -106,7 +106,10 @@ export default class Helper {
   static async createHistory(
     home: Home,
     user: User,
-    type: HistoryType
+    type: HistoryType,
+    taskType: TaskType | null,
+    taskSeries: TaskSeries | null,
+    task: Task | null
   ): Promise<History> {
     try {
       await databaseConnection();
@@ -115,6 +118,9 @@ export default class Helper {
       history.home = home;
       history.user = user;
       history.type = type;
+      history.taskType = taskType;
+      history.taskSeries = taskSeries;
+      history.task = task;
       await history.save();
 
       return history;

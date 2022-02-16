@@ -3,11 +3,16 @@ import {
   BaseEntity,
   Column,
   Entity,
+  JoinColumn,
   ManyToOne,
+  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import Home from './home';
 import User from './user';
+import Task from './task';
+import TaskType from './tasktype';
+import TaskSeries from './taskseries';
 
 /**
  * The event type of a history entry.
@@ -76,6 +81,18 @@ export default class History extends BaseEntity {
   @Column({ type: 'enum', enum: HistoryType })
   @Field(() => HistoryType, { description: 'The type of the event.' })
   type!: HistoryType;
+
+  @OneToOne('TaskType', { nullable: true })
+  @JoinColumn()
+  taskType!: TaskType | null;
+
+  @OneToOne('TaskSeries', { nullable: true })
+  @JoinColumn()
+  taskSeries!: TaskSeries | null;
+
+  @OneToOne('Task', { nullable: true })
+  @JoinColumn()
+  task!: Task | null;
 
   constructor() {
     super();

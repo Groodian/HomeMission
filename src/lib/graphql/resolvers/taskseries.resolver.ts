@@ -58,7 +58,14 @@ export default class TaskSeriesResolver {
         date.setDate(date.getDate() + interval * 7);
       }
 
-      await Helper.createHistory(home, user, HistoryType.TASK_SERIES_CREATED);
+      await Helper.createHistory(
+        home,
+        user,
+        HistoryType.TASK_SERIES_CREATED,
+        null,
+        taskSeries,
+        null
+      );
 
       return taskSeries;
     } catch (e) {
@@ -98,7 +105,14 @@ The series must belong to the users home.`,
       taskSeries.relatedHome = null;
       await taskSeries.save();
 
-      await Helper.createHistory(home, user, HistoryType.TASK_SERIES_DELETED);
+      await Helper.createHistory(
+        home,
+        user,
+        HistoryType.TASK_SERIES_DELETED,
+        null,
+        taskSeries,
+        null
+      );
 
       return taskSeries;
     } catch (e) {
@@ -148,7 +162,10 @@ The series must belong to the users home.`,
       await Helper.createHistory(
         home,
         user,
-        HistoryType.TASK_SERIES_SUB_DELETED
+        HistoryType.TASK_SERIES_SUB_DELETED,
+        null,
+        taskSeries,
+        null
       );
 
       return taskSeries;

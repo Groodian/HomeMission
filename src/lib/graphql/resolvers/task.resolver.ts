@@ -159,7 +159,14 @@ Null if the task has not been completed.`,
 
     try {
       const task = new Task(validDate, home, taskType);
-      await Helper.createHistory(home, user, HistoryType.TASK_CREATED);
+      await Helper.createHistory(
+        home,
+        user,
+        HistoryType.TASK_CREATED,
+        null,
+        null,
+        task
+      );
       return await task.save();
     } catch (e) {
       throw Error(
@@ -192,7 +199,14 @@ The task must belong to the users home.`,
       taskEntity.assignee = null;
       taskEntity.relatedHome = null;
       await taskEntity.save();
-      await Helper.createHistory(home, user, HistoryType.TASK_DELETED);
+      await Helper.createHistory(
+        home,
+        user,
+        HistoryType.TASK_DELETED,
+        null,
+        null,
+        taskEntity
+      );
       return taskEntity;
     } catch (e) {
       throw Error('Failed to delete task!');

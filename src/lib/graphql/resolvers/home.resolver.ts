@@ -198,7 +198,14 @@ Generate default task types in the specified language.`,
 
       // save
       await user.save();
-      await Helper.createHistory(home, user, HistoryType.USER_JOIN);
+      await Helper.createHistory(
+        home,
+        user,
+        HistoryType.USER_JOIN,
+        null,
+        null,
+        null
+      );
 
       // return the home
       return home;
