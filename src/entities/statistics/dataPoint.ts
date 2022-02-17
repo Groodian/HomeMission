@@ -1,14 +1,30 @@
 import { Field, ObjectType } from 'type-graphql';
 
-@ObjectType()
+/**
+ * No database entity.
+ * Each data point contains the points per day and per week for a specific date.
+ */
+@ObjectType({
+  description: `No database entity.
+The data points contains the points per day and per week for a specific date.`,
+})
 export default class DataPoint {
-  @Field()
+  /**
+   * The date that the points were calculated for.
+   */
+  @Field({ description: 'The date that the points were calculated for.' })
   date: Date;
 
-  @Field()
+  /**
+   * Sum of achieved points at this day.
+   */
+  @Field({ description: 'Sum of achieved points at this day.' })
   pointsDay: number;
 
-  @Field()
+  /**
+   * Sum of achieved points in the last 7 days.
+   */
+  @Field({ description: 'Sum of achieved points in the last 7 days.' })
   pointsWeek: number;
 
   addPointsDay(value: number) {

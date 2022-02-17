@@ -9,6 +9,9 @@ import {
 import Home from './home';
 import User from './user';
 
+/**
+ * The event type of a history entry.
+ */
 export enum HistoryType {
   USER_JOIN = 'user_join',
   USER_LEAVE = 'user_leave',
@@ -27,29 +30,51 @@ export enum HistoryType {
 
 registerEnumType(HistoryType, {
   name: 'HistoryType',
-  description: 'Type of a history entry',
+  description: 'The event type of a history entry.',
 });
 
+/**
+ * The activity history of a home.
+ * Is used to document all events.
+ */
 @Entity()
-@ObjectType()
+@ObjectType({
+  description: `The activity history of a home.
+Is used to document all events.`,
+})
 export default class History extends BaseEntity {
+  /**
+   * The id is automatically generated.
+   */
   @PrimaryGeneratedColumn()
-  @Field(() => ID)
+  @Field(() => ID, { description: 'The id is automatically generated.' })
   id!: string;
 
+  /**
+   * The home that this history entry belongs to.
+   */
   @ManyToOne('Home', 'history')
   home!: Home;
 
+  /**
+   * The user that triggered the event.
+   */
   @ManyToOne('User', 'history', { eager: true })
-  @Field()
+  @Field({ description: 'The user that triggered the event.' })
   user!: User;
 
+  /**
+   * The date when the event was recorded.
+   */
   @Column()
-  @Field()
+  @Field({ description: 'The date when the event was recorded.' })
   date!: string;
 
+  /**
+   * The type of the event.
+   */
   @Column({ type: 'enum', enum: HistoryType })
-  @Field(() => HistoryType)
+  @Field(() => HistoryType, { description: 'The type of the event.' })
   type!: HistoryType;
 
   constructor() {

@@ -22,7 +22,7 @@ import { useRouter } from 'next/router';
 import { useSnackbar } from 'notistack';
 import {
   useCreateTaskTypeMutation,
-  useRemoveTaskTypeMutation,
+  useDeleteTaskTypeMutation,
   useTaskTypesQuery,
 } from '../../lib/graphql/operations/tasktype.graphql';
 import { useCreateTaskMutation } from '../../lib/graphql/operations/task.graphql';
@@ -43,7 +43,7 @@ const AddTaskDialog: React.FC<AddTaskDialogProps> = ({
   const router = useRouter();
 
   const { error, data } = useTaskTypesQuery();
-  const [removeType] = useRemoveTaskTypeMutation({
+  const [deleteType] = useDeleteTaskTypeMutation({
     refetchQueries: ['TaskTypes'],
   });
   const [createType, { loading: typeLoading, reset: typeReset }] =
@@ -83,7 +83,7 @@ const AddTaskDialog: React.FC<AddTaskDialogProps> = ({
   async function handleDeleteType(typeName: string) {
     const typeId = data?.taskTypes.find(({ name }) => name === typeName)?.id;
     try {
-      await removeType({ variables: { type: typeId || '' } });
+      await deleteType({ variables: { type: typeId || '' } });
       enqueueSnackbar(t('delete-type-success', { type: typeName }), {
         variant: 'success',
       });

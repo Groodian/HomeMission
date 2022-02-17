@@ -23,10 +23,12 @@ import Helper from './helper';
 @Resolver(Task)
 export default class TaskResolver implements ResolverInterface<Task> {
   /**
-   * Get all tasks including their task types that belong to the users home.
+   * Get all tasks that belong to the users home.
    */
   @Authorized()
-  @Query(() => [Task])
+  @Query(() => [Task], {
+    description: 'Get all tasks that belong to the users home.',
+  })
   async tasks(@CurrentSession() session: Session) {
     await databaseConnection();
     const home = await Helper.getHomeOrFail(session);
@@ -43,9 +45,13 @@ export default class TaskResolver implements ResolverInterface<Task> {
 
   /**
    * Get open tasks that have not been completed yet and are not assigned to another user.
+   * Only load tasks max two weeks in the past and max for weeks in the future.
    */
   @Authorized()
-  @Query(() => [Task])
+  @Query(() => [Task], {
+    description: `Get open tasks that have not been completed yet and are not assigned to another user.
+Only load tasks max two weeks in the past and max for weeks in the future.`,
+  })
   async openTasks(@CurrentSession() session: Session) {
     await databaseConnection();
     const home = await Helper.getHomeOrFail(session);
@@ -86,23 +92,45 @@ export default class TaskResolver implements ResolverInterface<Task> {
   /**
    * Only load task type if required.
    */
-  @FieldResolver(() => TaskType)
+  @FieldResolver(() => TaskType, {
+    description: 'The type of the task (e.g. vacuum).',
+  })
   async type(@Root() task: Task) {
-    return task.type ? await TaskType.findOne(task.type) : null;
+    return (await TaskType.findOne(task.type)) as TaskType;
   }
 
   /**
    * Only load task series if required.
    */
-  @FieldResolver(() => TaskSeries, { nullable: true })
+  @FieldResolver(() => TaskSeries, {
+    nullable: true,
+    description: `The series that the task belongs to.
+Null if the task does not belong to a series.`,
+  })
   async series(@Root() task: Task) {
     return task.series ? await TaskSeries.findOne(task.series) : null;
   }
 
   /**
+   * Only load user assigned to task if required.
+   */
+  @FieldResolver(() => User, {
+    nullable: true,
+    description: `The user that the task is assigned to.
+Null if no user is assigned.`,
+  })
+  async assignee(@Root() task: Task) {
+    return task.assignee ? await User.findOne(task.assignee) : null;
+  }
+
+  /**
    * Only load task receipt if required.
    */
-  @FieldResolver(() => TaskReceipt, { nullable: true })
+  @FieldResolver(() => TaskReceipt, {
+    nullable: true,
+    description: `The receipt of the task if it is completed.
+Null otherwise.`,
+  })
   async receipt(@Root() task: Task) {
     return task.receipt
       ? await TaskReceipt.findOne(task.receipt, { loadRelationIds: true })
@@ -110,22 +138,18 @@ export default class TaskResolver implements ResolverInterface<Task> {
   }
 
   /**
-   * Only load user assigned to task if required.
-   */
-  @FieldResolver(() => User, { nullable: true })
-  async assignee(@Root() task: Task) {
-    return task.assignee ? await User.findOne(task.assignee) : null;
-  }
-
-  /**
    * Create a new task.
+   * @param date The date when the task should be completed.
+   * @param type The id of the task type.
    */
   @Authorized()
-  @Mutation(() => Task)
+  @Mutation(() => Task, { description: 'Create a new task.' })
   async createTask(
     @CurrentSession() session: Session,
-    @Arg('date') date: number,
-    @Arg('type') type: string
+    @Arg('date', { description: 'The date when the task should be completed.' })
+    date: number,
+    @Arg('type', { description: 'The id of the task type.' })
+    type: string
   ) {
     await databaseConnection();
     const home = await Helper.getHomeOrFail(session);
@@ -145,13 +169,19 @@ export default class TaskResolver implements ResolverInterface<Task> {
   }
 
   /**
-   * Delete an existing task. The task must belong to the users home.
+   * Delete an existing task by removing its related home.
+   * The task must belong to the users home.
+   * @param task The id of the task to delete.
    */
   @Authorized()
-  @Mutation(() => Task)
+  @Mutation(() => Task, {
+    description: `Delete an existing task by removing its related home.
+The task must belong to the users home.`,
+  })
   async deleteTask(
     @CurrentSession() session: Session,
-    @Arg('task') task: string
+    @Arg('task', { description: 'The id of the task to delete.' })
+    task: string
   ) {
     await databaseConnection();
     const home = await Helper.getHomeOrFail(session);
@@ -170,14 +200,22 @@ export default class TaskResolver implements ResolverInterface<Task> {
   }
 
   /**
-   * Assign a user to a task. The task must belong to the users home.
+   * Assign a roommate to a task.
+   * The task must belong to the users home.
+   * @param task The id of the task to be assigned.
+   * @param assign The new assignee of the task.
    */
   @Authorized()
-  @Mutation(() => Task)
+  @Mutation(() => Task, {
+    description: `Assign a roommate to a task.
+The task must belong to the users home.`,
+  })
   async assignTask(
     @CurrentSession() session: Session,
-    @Arg('task') task: string,
-    @Arg('user') assignee: string
+    @Arg('task', { description: 'The task to be assigned.' })
+    task: string,
+    @Arg('user', { description: 'The new assignee of the task.' })
+    assignee: string
   ) {
     await databaseConnection();
     const home = await Helper.getHomeOrFail(session);
@@ -193,13 +231,19 @@ export default class TaskResolver implements ResolverInterface<Task> {
   }
 
   /**
-   * Remove assignee from task. The task must belong to the users home.
+   * Remove assignee from task.
+   * The task must belong to the users home.
+   * @param task The id of the task to unassign.
    */
   @Authorized()
-  @Mutation(() => Task)
+  @Mutation(() => Task, {
+    description: `Remove assignee from task.
+The task must belong to the users home.`,
+  })
   async unassignTask(
     @CurrentSession() session: Session,
-    @Arg('task') task: string
+    @Arg('task', { description: 'The id of the task to unassign.' })
+    task: string
   ) {
     await databaseConnection();
     const home = await Helper.getHomeOrFail(session);

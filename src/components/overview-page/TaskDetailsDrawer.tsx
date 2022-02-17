@@ -73,9 +73,9 @@ const TaskDetailsDrawer: React.FC<TaskDetailsDrawerProps> = ({
 
   const TaskSection = task && (
     <Section>
-      <Subheader>{task.type?.name}</Subheader>
+      <Subheader>{task.type.name}</Subheader>
       <Text>
-        {task.type?.points} <InlineDiamond />
+        {task.type.points} <InlineDiamond />
       </Text>
       <TextMuted>
         {new Date(task.date).toLocaleDateString(router.locale)}
@@ -95,7 +95,7 @@ const TaskDetailsDrawer: React.FC<TaskDetailsDrawerProps> = ({
     </Section>
   );
 
-  const CompleterSection = task && task.receipt && task.receipt.completer && (
+  const CompleterSection = task?.receipt && (
     <Section>
       <Subheader>{t('completed-by')}</Subheader>
       <AvatarAndName user={task.receipt.completer} />

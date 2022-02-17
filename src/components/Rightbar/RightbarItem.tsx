@@ -65,11 +65,11 @@ const RightbarItem: React.FC<RightBarItemProps> = ({
             fontWeight: 'bold',
           }}
         >
-          {task.type?.name}
+          {task.type.name}
         </TaskText>
         <br />
         <TaskText>
-          {task.type?.points} <InlineDiamond />
+          {task.type.points} <InlineDiamond />
         </TaskText>
         <TaskText sx={{ color: 'text.secondary' }}>
           {new Date(task.date).toLocaleDateString(router.locale)}

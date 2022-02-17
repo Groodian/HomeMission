@@ -9,30 +9,57 @@ import {
 import Home from './home';
 import User from './user';
 
+/**
+ * The receipt of a task when the task is completed.
+ */
 @Entity()
-@ObjectType()
+@ObjectType({
+  description: 'The receipt of a task when the task is completed.',
+})
 export default class TaskReceipt extends BaseEntity {
+  /**
+   * The id is automatically generated.
+   */
   @PrimaryGeneratedColumn()
-  @Field(() => ID)
+  @Field(() => ID, { description: 'The id is automatically generated.' })
   id!: string;
 
+  /**
+   * The date when the task was completed.
+   */
   @Column()
-  @Field()
+  @Field({ description: 'The date when the task was completed.' })
   completionDate!: Date;
 
+  /**
+   * Copy of the name of the task type to disable cascading.
+   */
   @Column()
-  @Field()
+  @Field({
+    description: 'Copy of the name of the task type to disable cascading.',
+  })
   name!: string;
 
+  /**
+   * Copy of the points of the task type to disable cascading.
+   */
   @Column()
-  @Field()
+  @Field({
+    description: 'Copy of the points of the task type to disable cascading.',
+  })
   points!: number;
 
+  /**
+   * The user that completed the task.
+   */
+  @ManyToOne('User', 'receipts')
+  completer: User;
+
+  /**
+   * The home that the task belongs to.
+   */
   @ManyToOne('Home', 'taskReceipts')
   relatedHome: Home;
-
-  @ManyToOne('User', 'receipts')
-  completer: User | undefined | null;
 
   constructor(home: Home, completer: User, name: string, points: number) {
     super();

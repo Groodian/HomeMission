@@ -2,11 +2,104 @@
 
 <img src="./public/home_mission_grey.png" width = "300">
 
+## [homemission.net](https://homemission.net)
+
+You can join the test home with this [invitation link](https://homemission.net/join?code=ABCDEF) or the invitation code ABCDEF. <!-- TODO -->
+
 ## Concept
 
 - Game that enables homes to organize themselves better &rarr; gamification of task assignments makes completion of tasks more enjoyable
 - Score for roommates based on finished tasks (Taking out the trash etc.)
 - Multiple homes, one user is part of a home and can complete tasks which gives the user points (points vary by task)
+
+## Following Contents <!-- TODO -->
+
+- [Features](#features)
+- [Run Application](#run-application)
+  - [Production](#production)
+  - [Development](#development)
+- [Contribute](#contribute)
+  - [Folder Structure](#folder-structure)
+  - [Data Structure](#data-structure)
+  - [Routes](#routes)
+  - [Technology](#technology)
+  - [Setup Development Environment](#setup-development-environment)
+  - [AWS Setup](#aws-setup)
+- [Retrospective](#retrospective)
+
+## Features <!-- TODO -->
+
+### General
+
+- Custom logo and favicon
+- HTTPS for production
+- Light and dark mode
+- English and German
+- Feedback messages, tooltips and loading indicators
+
+### Welcome Page
+
+- Always redirect to the welcome page if user is not logged in
+- Log in / Sign up with Auth0
+
+### Join Page
+
+- Always redirect to the join page if user has no home
+- Create a home with a name and default task types in the selected language
+- Join a home with an invitation code
+- Show dialog if user tries to join with invitation link
+
+### Overview Page
+
+- Large calendar shows tasks for dates
+- Create new tasks when clicking onto icon in date cell
+  - Date selection (date from date cell is selected by default)
+  - Task type selection (new task type is created if none is selected)
+  - Delete task types
+  - Show points for selected task type / modify points for new task type
+  - Option to create a series
+- Show task details when clicked on task
+  - Complete task
+  - Assign / unassign task or completion info
+  - Delete one task / all tasks from a series / following
+
+### Statistics Page <!-- TODO -->
+
+- Show weekly / monthly progress of task completion
+- Show charts of points
+
+### History Page <!-- TODO -->
+
+- Document every action to prevent abuse
+
+### Navbar
+
+- Only show when user is logged in
+- Logo with link to overview page
+- Home name with edit
+- Roommates with invite button
+- Display points (automatically updated)
+- Langauge selection
+- Color mode switch
+- User menu with name, edit name and logout button
+
+### Left Bar
+
+- Links to pages
+- Invite button
+- Leave home button
+
+### Right Bar
+
+- Open tasks (unassigned or assigned to current user and two weeks in the past / four in the future)
+- Complete task
+
+### Automation
+
+- Automated code formatting, linting and testing enforced by git hooks and continuous integration pipeline
+- Automated building of docker images and saving in the registry
+- Automated deployment to AWS with continuous deployment pipeline
+- Simple production start with docker-compose
 
 ## Run Application
 
@@ -14,9 +107,6 @@ To run the application you need to install [Node.js](https://nodejs.org/) and [D
 
 ### Production
 
-#### Live Server
-[homemission.net](https://homemission.net)
-#### Setup
 Define secrets:
 
 1. Copy [`.env.example`](.env.example) to `/.env.local` and set a `DATABASE_PASSWORD` and `AUTH0_SECRET` and change `AUTH0_BASE_URL` to url in the last step of the two following variants.
@@ -55,13 +145,18 @@ Next.js specific folders are omitted. See [Next.js](#nextjs)
 - [`/.husky/`](.husky):
   Commit Hooks.
   See [husky](#husky).
+- [`/public/locales/`](public/locales):
+  Translation files.
+  See [next-i18next](#next-i18next).
 - [`/src/`](src)
   - [`components/`](src/components):
     [React Components](https://reactjs.org/docs/components-and-props.html) to be used in Pages.
   - [`entities/`](src/entities):
-    Server Data Structure.
+    Server-Side Data Structure.
     See [TypeGraphQL](#typegraphql) and [TypeORM](#typeorm).
   - [`lib/`](src/lib)
+    - [`auth0/`](src/lib/auth0): Check Auth0 authentication with TypeGraphQL.
+      See [TypeGraphQL](#typegraphql) and [Auth0](#auth0).
     - [`graphql/`](src/lib/graphql):
       See [GraphQL](#graphql).
       - [`operations/`](src/lib/graphql/operations):
@@ -86,11 +181,8 @@ Next.js specific folders are omitted. See [Next.js](#nextjs)
       See [TypeORM](#typeorm).
       - [`connection.ts`](src/lib/typeorm/connection.ts):
         Database Connection and Config.
-    - [`auth0-auth-checker.ts`](src/lib/auth0-auth-checker.ts): Check Auth0 authentication with TypeGraphQL.
-      See [TypeGraphQL](#typegraphql) and [Auth0](#auth0).
   - [`styles/`](src/styles):
-    - [`theme.ts`](src/styles/theme.ts):
-      [Theming](https://mui.com/customization/theming/)
+      [Theming](https://mui.com/customization/theming/).
       See [MUI](#mui).
 - [`/test/`](test):
   See [Jest](#jest).
@@ -98,6 +190,8 @@ Next.js specific folders are omitted. See [Next.js](#nextjs)
   See [EditorConfig](#editorconfig).
 - [`/.eslintrc.json`](.eslintrc.json):
   See [ESLint](#eslint).
+- [`/.gitlab-ci.yml`](.gitlab-ci.yml):
+  GitLab pipeline with build, test and deploy jobs.
 - [`/.graphql-let.yml`](.graphql-let.yml):
   See [graphql-let](#graphql-let).
 - [`/.prettierrc`](.prettierrc):
@@ -107,24 +201,393 @@ Next.js specific folders are omitted. See [Next.js](#nextjs)
 - [`/docker-compose.yml`](docker-compose.yml):
   Docker Container for Database.
   See [MySQL](#mysql).
+- [`/Dockerfile`](Dockerfile):
+  Build production Docker image.
 - [`/jest.config.js`](jest.config.js):
   See [Jest](#jest).
 - [`/next-i18next.config.js`](next-i18next.config.js):
   See [next-i18next](#next-i18next).
-- [`/push-docker-image.sh`](push-docker-image.sh):
-  Build and push a docker image to the GitLab registry.
 - [`/tsconfig.json`](tsconfig.json):
   See [TypeScript](#typescript).
 
+### Data Structure
+
+The entities are defined in [`/src/entities/`](src/entities). The GraphQL schema is emitted to [`/schema.gql`](schema.gql) and available in the [GraphQL Playground](http://localhost:3000/api/graphql) when in [development mode](#development) together with a documentation. The GraphQL types are the same as the database entities (See [TypeGraphQL](#typegraphql) and [TypeORM](#typeorm)).
+
+<!-- TODO -->
+
+```graphql
+# Users are saved in Auth0 and a copy is saved when the user logs in.
+# The name can be changed and the picture is updated by Auth0 on every log in.
+type User {
+  # The id is provided by Auth0.
+  id: ID!
+
+  # The name is initially provided by Auth0 and can be updated by the user.
+  name: String!
+
+  # The picture is provided by Auth0 and is updated on every log in.
+  picture: String!
+
+  # The points of the user are increased on task completion and reset when the home changes.
+  points: Float!
+}
+
+# Home is the main entity.
+# Homes are created by users.
+# Users can give their home a name.
+# Users can invite others by giving them the code (invitation code) of their home.
+# Each home has its own set of Tasks, created and maintained by members of the home.
+type Home {
+  # The id is automatically generated.
+  id: ID!
+
+  # The name of the home.
+  name: String!
+
+  # The invitation code of the home.
+  # Is automatically generated.
+  # 6 alphanumeric uppercase characters.
+  code: String!
+
+  # The users that are part of the home (roommates).
+  users: [User!]!
+
+  # The history entries for the home.
+  history: [History!]!
+
+  # The available task types.
+  taskTypes: [TaskType!]!
+
+  # Tasks that belong to the home.
+  tasks: [Task!]!
+
+  # Task receipts that belong to the home.
+  receipts: [TaskReceipt!]!
+}
+
+# The activity history of a home.
+# Is used to document all events.
+type History {
+  # The id is automatically generated.
+  id: ID!
+
+  # The user that triggered the event.
+  user: User!
+
+  # The date when the event was recorded.
+  date: String!
+
+  # The type of the event.
+  type: HistoryType!
+}
+
+# The event type of a history entry.
+enum HistoryType {
+  USER_JOIN
+  USER_LEAVE
+  TASK_TYPE_CREATED
+  TASK_TYPE_DELETED
+  TASK_TYPE_UPDATED
+  TASK_SERIES_CREATED
+  TASK_SERIES_DELETED
+  TASK_SERIES_SUB_DELETED
+  TASK_SERIES_UPDATED
+  TASK_CREATED
+  TASK_DELETED
+  TASK_UPDATED
+  TASK_COMPLETED
+}
+
+# A template with name and points for tasks.
+type TaskType {
+  # The id is automatically generated.
+  id: ID!
+
+  # The name of the task type (e.g. vacuum).
+  name: String!
+
+  # The points of the task.
+  points: Float!
+}
+
+# A task saves a task type at a specific date.
+# It can belong to a series an may have an assignee.
+# It also has a receipt if the task is completed.
+type Task {
+  # The id is automatically generated.
+  id: ID!
+
+  # The date when this task should be completed.
+  date: DateTime!
+
+  # The type of the task (e.g. vacuum).
+  type: TaskType!
+
+  # The series that the task belongs to.
+  # Null if the task does not belong to a series.
+  series: TaskSeries
+
+  # The user that the task is assigned to.
+  # Null if no user is assigned.
+  assignee: User
+
+  # The receipt of the task if it is completed.
+  # Null otherwise.
+  receipt: TaskReceipt
+}
+
+# The javascript `Date` as string. Type represents date and time as the ISO Date string.
+scalar DateTime
+
+# A series of tasks.
+# Is used to delete multiple tasks belonging to the same series.
+type TaskSeries {
+  # The id is automatically generated.
+  id: ID!
+}
+
+# The receipt of a task when the task is completed.
+type TaskReceipt {
+  # The id is automatically generated.
+  id: ID!
+
+  # The date when the task was completed.
+  completionDate: DateTime!
+
+  # Copy of the name of the task type to disable cascading.
+  name: String!
+
+  # Copy of the points of the task type to disable cascading.
+  points: Float!
+
+  # The user that completed the task.
+  completer: User!
+}
+
+type UserStatistic implements Statistic {
+  # The calculated data points for the user.
+  data: [DataPoint!]!
+
+  # The user that the statistic belongs to.
+  # Is null for the aggregated statistic of users that left the home.
+  user: User
+}
+
+# An array of data points that contain the calculated points.
+interface Statistic {
+  # The calculated data points.
+  data: [DataPoint!]!
+}
+
+# No database entity.
+# The data points contains the points per day and per week for a specific date.
+type DataPoint {
+  # The date that the points were calculated for.
+  date: DateTime!
+
+  # Sum of achieved points at this day.
+  pointsDay: Float!
+
+  # Sum of achieved points in the last 7 days.
+  pointsWeek: Float!
+}
+
+# No database entity.
+# A statistic for a specific home.
+type HomeStatistic implements Statistic {
+  # The calculated data points for the home.
+  data: [DataPoint!]!
+}
+```
+
 ### Routes
+
+#### Next.js Pages
 
 In Next.js the routes match the paths in the file system. The pages are located in [`/src/pages/`](src/pages) (See [Next.js](#nextjs)).
 
+- [`/`](src/pages/index.tsx): The user will always be redirected to this welcome page if he is not logged in. Links to the Auth0 login page. The `returnTo` query parameter saves the initially requested page to return to after login.
+- [`/api/auth/login`](src/pages/api/auth/[...auth0].ts): Redirects to the Auth0 login page.
+- [`/api/auth/logout`](src/pages/api/auth/[...auth0].ts): Redirects to Auth0 logout.
+- [`/join`](src/pages/join.tsx): The user will always be redirected to the join page if he is logged in but has no home. The `returnTo` query parameter saves the initially requested page to return to after joining a home. If the `code` query parameter is present a dialog will ask the user if he would like to join the home with the invitation code.
+- [`/overview`](src/pages/overview.tsx): The main page. The user will be redirected from the welcome page and the logo in the navbar links to this page.
+- [`/statistics`](src/pages/statistics.tsx)
+- [`/history`](src/pages/history.tsx)
+- [404 page](src/pages/404.tsx) is shown for every other route.
+
+The user can navigate between the pages with the left bar.
+
+#### GraphQL Operations
+
 The GraphQL server is available at the route [`/api/graphql`](src/pages/api/graphql.ts) (See [GraphQL](#graphql)). In [development mode](#development), you can use the [GraphQL Playground](http://localhost:3000/api/graphql). The available operations are also documented there.
 
-### Data Structure
+<!-- TODO -->
+```graphql
+type Query {
+  # Get the authenticated user from the database or null if the user is not authenticated.
+  user: User
 
-The entities are defined in [`/src/entities/`](src/entities). The GraphQL schema is emitted to [`/schema.gql`](schema.gql) and available in the [GraphQL Playground](http://localhost:3000/api/graphql) when in [development mode](#development).
+  # Get the home of the authenticated user from the database or null if the user has no home.
+  home: Home
+
+  # Get all task types that belong to the users home.
+  taskTypes: [TaskType!]!
+
+  # Get all tasks that belong to the users home.
+  tasks: [Task!]!
+
+  # Get open tasks that have not been completed yet and are not assigned to another user.
+  # Only load tasks max two weeks in the past and max for weeks in the future.
+  openTasks: [Task!]!
+
+  # Get all receipts that are correlated to the users home.
+  receipts: [TaskReceipt!]!
+
+  # Generate the statistics for each user of home.
+  # Calculate the sum of points achieved per day and week per user.
+  # Include a statistic for users that left the home.
+  userStatistics(
+    # The end date of the statistics to generate.
+    end: Float!
+
+    # The start date of the statistics to generate.
+    start: Float!
+  ): [UserStatistic!]!
+
+  # Generate the statistics for a home.
+  # Calculate the sum of points achieved per day and week in the users home.
+  homeStatistic(
+    # The end date of the statistics to generate.
+    end: Float!
+
+    # The start date of the statistics to generate.
+    start: Float!
+  ): HomeStatistic!
+}
+
+type Mutation {
+  # Rename the authenticated user.
+  renameUser(
+    # The new name.
+    name: String!
+  ): User!
+
+  # Create a new home and add the authenticated user to it.
+  # Generate default task types in the specified language.
+  createHome(
+    # The language of the default tasks.
+    language: String!
+
+    # The name of the home.
+    name: String!
+  ): Home!
+
+  # Add the authenticated user to a home that has the requested invitation code.
+  joinHome(
+    # The invitation code.
+    code: String!
+  ): Home!
+
+  # Rename the home of the authenticated user.
+  renameHome(
+    # The new name.
+    name: String!
+  ): Home!
+
+  # Remove the authenticated user from the home.
+  leaveHome: Home
+
+  # Create a new task type.
+  createTaskType(
+    # The points that associated tasks will be worth.
+    points: Float!
+
+    # The name of the new task type (e.g. vacuum).
+    name: String!
+  ): TaskType!
+
+  # Delete a task type by removing its related home.
+  # The task type must belong to the users home.
+  deleteTaskType(
+    # The id of the task type to delete.
+    type: String!
+  ): TaskType!
+
+  # Create a new task.
+  createTask(
+    # The id of the task type.
+    type: String!
+
+    # The date when the task should be completed.
+    date: Float!
+  ): Task!
+
+  # Delete an existing task by removing its related home.
+  # The task must belong to the users home.
+  deleteTask(
+    # The id of the task to delete.
+    task: String!
+  ): Task!
+
+  # Assign a roommate to a task.
+  # The task must belong to the users home.
+  assignTask(
+    # The new assignee of the task.
+    user: String!
+
+    # The task to be assigned.
+    task: String!
+  ): Task!
+
+  # Remove assignee from task.
+  # The task must belong to the users home.
+  unassignTask(
+    # The id of the task to unassign.
+    task: String!
+  ): Task!
+
+  # Create a new task series and correlating tasks.
+  createTaskSeries(
+    # The id of the task type.
+    type: String!
+
+    # The number of tasks to create.
+    iterations: Float!
+
+    # The interval between tasks in weeks.
+    interval: Float!
+
+    # The date of the first task of the series.
+    start: Float!
+  ): TaskType!
+
+  # Delete all tasks correlating to a task series by removing their related home.
+  # The series must belong to the users home.
+  deleteTaskSeries(
+    # The id of the task series to delete.
+    series: String!
+  ): TaskSeries!
+
+  # Delete tasks correlating to a task series starting from a specified task by removing their related home.
+  # The series must belong to the users home.
+  deleteTaskSeriesSubsection(
+    # The id of the first task to delete.
+    start: String!
+
+    # The id of the task series to delete a subsection from.
+    series: String!
+  ): TaskSeries!
+
+  # Create a new receipt to complete a task.
+  # The task must belong to the users home.
+  # The authenticated user is saved as completer.
+  createTaskReceipt(
+    # The id of the task to complete.
+    task: String!
+  ): TaskReceipt!
+}
+```
 
 ### Technology
 
@@ -303,11 +766,13 @@ For the GitLab pipeline to succeed, make sure to [register](https://docs.gitlab.
 3. `docker run -d --name gitlab-runner --restart always -v /var/run/docker.sock:/var/run/docker.sock -v gitlab-runner-config:/etc/gitlab-runner gitlab/gitlab-runner:latest`
 
 ### AWS Setup
-##### EC2 Instance 
+
+#### EC2 Instance
+
 - t2.micro
 - ubuntu-focal-20.04-amd64-server-20211129
 - Elastic IP
-- Inbound rules: 
+- Inbound rules:
   - ssh (22) - any ip address
   - http (80) - any ip address
   - https (443) - any ip address
@@ -316,13 +781,40 @@ For the GitLab pipeline to succeed, make sure to [register](https://docs.gitlab.
   - git
   - docker
 
-##### nginx setup
+#### nginx setup
+
 - Port 5000 is mapped to Port 443
 - incoming http requests will be redirected to https
 - SSL certificate is created via certbot (letsencrypt)
 
-##### Connection via SSH
+#### Connection via SSH
+
 ssh -i [PEM-Key] ubuntu@[IP-Address]
-##### Domain
+
+#### Domain
+
 - [homemission.net](https://homemission.net)
-- Address record: Elastic IP 
+- Address record: Elastic IP
+
+## Retrospective <!-- TODO -->
+
+### Challenges
+
+- Difficulties with TypeORM relation loading
+- Apollo Client cache problems
+- Automated testing
+  - Localization on client side
+  - GraphQL and authorization on server side
+- h_da GitLab Runners cannot use Docker
+- Problems with Next.js compilation
+
+### Outlook
+
+- Achievements
+- Possibility to update task types, tasks, task series, receipts
+- Layout for small displays
+- Translate task types for different users
+- Subscribe to calendar events / export events
+- Use shared calendar for more events (e.g. vacation)
+- Money management
+- Grocery list

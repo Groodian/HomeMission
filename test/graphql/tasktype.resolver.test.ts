@@ -72,7 +72,7 @@ describe('Task type resolver with', () => {
   );
 
   it(
-    'RemoveTaskType mutation returns task type when it is removed from home',
+    'DeleteTaskType mutation returns task type when it is removed from home',
     async () => {
       await database.insertUsers();
       await database.insertHomes();
@@ -80,8 +80,8 @@ describe('Task type resolver with', () => {
       await database.addUserToHome('user-1', '1');
 
       const body = {
-        operationName: 'RemoveTaskType',
-        query: removeTaskTypeQuery,
+        operationName: 'DeleteTaskType',
+        query: deleteTaskTypeQuery,
         variables: { type: '1' },
       };
 
@@ -89,14 +89,14 @@ describe('Task type resolver with', () => {
 
       expect(res.end).toHaveBeenNthCalledWith(
         1,
-        '{"data":{"removeTaskType":{"id":"1","name":"name-1","points":1}}}\n'
+        '{"data":{"deleteTaskType":{"id":"1","name":"name-1","points":1}}}\n'
       );
     },
     timeoutLength
   );
 
   it(
-    'RemoveTaskType mutation returns error when task type cannot be found',
+    'DeleteTaskType mutation returns error when task type cannot be found',
     async () => {
       await database.insertUsers();
       await database.insertHomes();
@@ -104,8 +104,8 @@ describe('Task type resolver with', () => {
       await database.addUserToHome('user-1', '1');
 
       const body = {
-        operationName: 'RemoveTaskType',
-        query: removeTaskTypeQuery,
+        operationName: 'DeleteTaskType',
+        query: deleteTaskTypeQuery,
         variables: { type: 'foobar' },
       };
 
@@ -113,7 +113,7 @@ describe('Task type resolver with', () => {
 
       expect(res.end).toHaveBeenNthCalledWith(
         1,
-        '{"errors":[{"message":"Could not find any entity of type \\"TaskType\\" matching: \\"foobar\\"","locations":[{"line":3,"column":7}],"path":["removeTaskType"],"extensions":{"code":"INTERNAL_SERVER_ERROR","exception":{"message":"Could not find any entity of type \\"TaskType\\" matching: \\"foobar\\""}}}],"data":null}\n'
+        '{"errors":[{"message":"Could not find any entity of type \\"TaskType\\" matching: \\"foobar\\"","locations":[{"line":3,"column":7}],"path":["deleteTaskType"],"extensions":{"code":"INTERNAL_SERVER_ERROR","exception":{"message":"Could not find any entity of type \\"TaskType\\" matching: \\"foobar\\""}}}],"data":null}\n'
       );
     },
     timeoutLength
@@ -139,9 +139,9 @@ describe('Task type resolver with', () => {
     }
   `;
 
-  const removeTaskTypeQuery = `
-    mutation RemoveTaskType($type: String!) {
-      removeTaskType(type: $type) {
+  const deleteTaskTypeQuery = `
+    mutation DeleteTaskType($type: String!) {
+      deleteTaskType(type: $type) {
         id
         name
         points

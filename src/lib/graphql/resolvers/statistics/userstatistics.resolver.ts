@@ -18,14 +18,25 @@ type UserAndDataPoints = { user: User | null; dataPoints: DataPoint[] };
 @Resolver(UserStatistic)
 export default class UserStatisticsResolver {
   /**
-   * Generate the statistics for all users of home.
+   * Generate the statistics for each user of home.
+   * Calculate the sum of points achieved per day and week per user.
+   * Include a statistic for users that left the home.
+   * @param start The start date of the statistics to generate.
+   * @param end The end date of the statistics to generate.
    */
   @Authorized()
-  @Query(() => [UserStatistic])
+  @Query(() => [UserStatistic], {
+    description: `Generate the statistics for each user of home.
+Calculate the sum of points achieved per day and week per user.
+Include a statistic for users that left the home.`,
+  })
   async userStatistics(
     @CurrentSession() session: Session,
-    @Arg('start') start: number,
-    @Arg('end') end: number
+    // prettier-ignore
+    @Arg('start', { description: 'The start date of the statistics to generate.' })
+    start: number,
+    @Arg('end', { description: 'The end date of the statistics to generate.' })
+    end: number
   ) {
     await databaseConnection();
     const home = await Helper.getHomeOrFail(session, ['users']);

@@ -22,10 +22,14 @@ import Helper from './helper';
 @Resolver(Home)
 export default class HomeResolver implements ResolverInterface<Home> {
   /**
-   * Get the home of the authenticated user from the database or null if the user has no home.
+   * Get the home of the authenticated user from the database or null if the users has no home.
    */
   @Authorized()
-  @Query(() => Home, { nullable: true })
+  @Query(() => Home, {
+    nullable: true,
+    description:
+      'Get the home of the authenticated user from the database or null if the user has no home.',
+  })
   async home(@CurrentSession() session: Session) {
     await databaseConnection();
     try {
@@ -38,7 +42,9 @@ export default class HomeResolver implements ResolverInterface<Home> {
   /**
    * Only load users if required.
    */
-  @FieldResolver(() => [User])
+  @FieldResolver(() => [User], {
+    description: 'The users that are part of the home (roommates).',
+  })
   async users(@Root() home: Home) {
     return await User.find({ where: { home: home.id } });
   }
@@ -46,7 +52,9 @@ export default class HomeResolver implements ResolverInterface<Home> {
   /**
    * Only load history if required.
    */
-  @FieldResolver(() => [History])
+  @FieldResolver(() => [History], {
+    description: 'The history entries for the home.',
+  })
   async history(@Root() home: Home) {
     return await History.find({ where: { home: home.id } });
   }
@@ -54,7 +62,7 @@ export default class HomeResolver implements ResolverInterface<Home> {
   /**
    * Only load task types if required.
    */
-  @FieldResolver(() => [TaskType])
+  @FieldResolver(() => [TaskType], { description: 'The available task types.' })
   async taskTypes(@Root() home: Home) {
     return await TaskType.find({ where: { relatedHome: home.id } });
   }
@@ -62,7 +70,9 @@ export default class HomeResolver implements ResolverInterface<Home> {
   /**
    * Only load tasks if required.
    */
-  @FieldResolver(() => [Task])
+  @FieldResolver(() => [Task], {
+    description: 'Tasks that belong to the home.',
+  })
   async tasks(@Root() home: Home) {
     return await Task.find({ where: { relatedHome: home.id } });
   }
@@ -70,20 +80,30 @@ export default class HomeResolver implements ResolverInterface<Home> {
   /**
    * Only load task receipts if required.
    */
-  @FieldResolver(() => [TaskReceipt])
+  @FieldResolver(() => [TaskReceipt], {
+    description: 'Task receipts that belong to the home.',
+  })
   async receipts(@Root() home: Home) {
     return await TaskReceipt.find({ where: { relatedHome: home.id } });
   }
 
   /**
-   * Create a new home and add the user to it.
+   * Create a new home and add the authenticated user to it.
+   * Generate default task types in the specified language.
+   * @param name The name of the home.
+   * @param language The language of the default tasks.
    */
   @Authorized()
-  @Mutation(() => Home)
+  @Mutation(() => Home, {
+    description: `Create a new home and add the authenticated user to it.
+Generate default task types in the specified language.`,
+  })
   async createHome(
     @CurrentSession() session: Session,
-    @Arg('name') name: string,
-    @Arg('language') language: string
+    @Arg('name', { description: 'The name of the home.' })
+    name: string,
+    @Arg('language', { description: 'The language of the default tasks.' })
+    language: string
   ) {
     await databaseConnection();
     try {
@@ -96,13 +116,18 @@ export default class HomeResolver implements ResolverInterface<Home> {
   }
 
   /**
-   * Add user to a home that has the requested invitation code.
+   * Add the authenticated user to a home that has the requested invitation code.
+   * @param code The invitation code.
    */
   @Authorized()
-  @Mutation(() => Home)
+  @Mutation(() => Home, {
+    description:
+      'Add the authenticated user to a home that has the requested invitation code.',
+  })
   async joinHome(
     @CurrentSession() session: Session,
-    @Arg('code') code: string
+    @Arg('code', { description: 'The invitation code.' })
+    code: string
   ) {
     await databaseConnection();
     try {
@@ -114,13 +139,17 @@ export default class HomeResolver implements ResolverInterface<Home> {
   }
 
   /**
-   * Rename the home of the user.
+   * Rename the home of the authenticated user.
+   * @param name The new name.
    */
   @Authorized()
-  @Mutation(() => Home)
+  @Mutation(() => Home, {
+    description: 'Rename the home of the authenticated user.',
+  })
   async renameHome(
     @CurrentSession() session: Session,
-    @Arg('name') name: string
+    @Arg('name', { description: 'The new name.' })
+    name: string
   ) {
     await databaseConnection();
     const home = await Helper.getHomeOrFail(session);
@@ -133,10 +162,13 @@ export default class HomeResolver implements ResolverInterface<Home> {
   }
 
   /**
-   * Remove the user from the home.
+   * Remove the authenticated user from the home.
    */
   @Authorized()
-  @Mutation(() => Home, { nullable: true })
+  @Mutation(() => Home, {
+    nullable: true,
+    description: 'Remove the authenticated user from the home.',
+  })
   async leaveHome(@CurrentSession() session: Session) {
     await databaseConnection();
     const user = await Helper.getMeOrFail(session);

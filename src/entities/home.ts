@@ -13,40 +13,86 @@ import TaskSeries from './taskseries';
 import TaskType from './tasktype';
 import User from './user';
 
+/**
+ * Home is the main entity.
+ * Homes are created by users.
+ * Users can give their home a name.
+ * Users can invite others by giving them the code (invitation code) of their home.
+ * Each home has its own set of Tasks, created and maintained by members of the home.
+ */
 @Entity()
-@ObjectType()
+@ObjectType({
+  description: `Home is the main entity.
+Homes are created by users.
+Users can give their home a name.
+Users can invite others by giving them the code (invitation code) of their home.
+Each home has its own set of Tasks, created and maintained by members of the home.`,
+})
 export default class Home extends BaseEntity {
+  /**
+   * The id is automatically generated.
+   */
   @PrimaryGeneratedColumn()
-  @Field(() => ID)
+  @Field(() => ID, { description: 'The id is automatically generated.' })
   id!: string;
 
-  @Column({ default: 'Home' })
-  @Field()
+  /**
+   * The name of the home.
+   */
+  @Column()
+  @Field({ description: 'The name of the home.' })
   name!: string;
 
+  /**
+   * The invitation code of the home.
+   * Is automatically generated.
+   * 6 alphanumeric uppercase characters.
+   */
   @Column({ unique: true })
-  @Field()
+  @Field({
+    description: `The invitation code of the home.
+Is automatically generated.
+6 alphanumeric uppercase characters.`,
+  })
   code!: string;
 
+  /**
+   * The users that are part of the home (roommates).
+   */
   @OneToMany('User', 'home')
   users!: User[];
 
+  /**
+   * The history entries for the home.
+   */
   @OneToMany('History', 'home')
   history!: History[];
 
+  /**
+   * The available task types.
+   */
   @OneToMany('TaskType', 'relatedHome', {
     onDelete: 'CASCADE',
   })
   taskTypes!: TaskType[];
 
+  /**
+   * Task series that belong to the home.
+   */
   @OneToMany('TaskSeries', 'relatedHome', {
     onDelete: 'CASCADE',
   })
   taskSeries!: TaskSeries[];
 
+  /**
+   * Tasks that belong to the home.
+   */
   @OneToMany('Task', 'relatedHome', { onDelete: 'CASCADE' })
   tasks!: Task[];
 
+  /**
+   * Task receipts that belong to the home.
+   */
   @OneToMany('TaskReceipt', 'relatedHome', {
     onDelete: 'CASCADE',
   })

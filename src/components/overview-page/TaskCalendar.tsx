@@ -98,7 +98,7 @@ const TaskCalendar: React.FC<TaskCalendarProps> = ({
   const events: CEvent[] = tasks
     ? tasks.map((task) => {
         return {
-          title: task.type?.name + ': ' + task.type?.points,
+          title: task.type.name + ': ' + task.type.points,
           start: task.date,
           end: task.date,
           allDay: true,

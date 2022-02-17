@@ -229,7 +229,7 @@ describe('Task series resolver with', () => {
 
       expect(res.end).toHaveBeenNthCalledWith(
         1,
-        '{"errors":[{"message":"Failed to remove tasks from series! Start task is not part of task series.","locations":[{"line":3,"column":7}],"path":["deleteTaskSeriesSubsection"],"extensions":{"code":"INTERNAL_SERVER_ERROR"}}],"data":null}\n'
+        '{"errors":[{"message":"Failed to delete tasks from series! Start task is not part of task series.","locations":[{"line":3,"column":7}],"path":["deleteTaskSeriesSubsection"],"extensions":{"code":"INTERNAL_SERVER_ERROR"}}],"data":null}\n'
       );
     },
     timeoutLength

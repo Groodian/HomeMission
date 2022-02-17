@@ -15,13 +15,22 @@ import {
 export default class HomeStatisticsResolver {
   /**
    * Generate the statistics for a home.
+   * Calculate the sum of points achieved per day and week in the users home.
+   * @param start The start date of the statistics to generate.
+   * @param end The end date of the statistics to generate.
    */
   @Authorized()
-  @Query(() => HomeStatistic)
+  @Query(() => HomeStatistic, {
+    description: `Generate the statistics for a home.
+Calculate the sum of points achieved per day and week in the users home.`,
+  })
   async homeStatistic(
     @CurrentSession() session: Session,
-    @Arg('start') start: number,
-    @Arg('end') end: number
+    // prettier-ignore
+    @Arg('start', { description: 'The start date of the statistics to generate.' })
+    start: number,
+    @Arg('end', { description: 'The end date of the statistics to generate.' })
+    end: number
   ) {
     await databaseConnection();
     const home = await Helper.getHomeOrFail(session);

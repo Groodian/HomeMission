@@ -10,20 +10,26 @@ export default class UserResolver {
   /**
    * Get the authenticated user from the database or null if the user is not authenticated.
    */
-  @Query(() => User, { nullable: true })
+  @Query(() => User, {
+    nullable: true,
+    description:
+      'Get the authenticated user from the database or null if the user is not authenticated.',
+  })
   async user(@CurrentSession() session?: Session) {
     await databaseConnection();
     return await User.findOne((session?.user.sub as string) || '');
   }
 
   /**
-   * Rename the user.
+   * Rename the authenticated user.
+   * @param name The new name.
    */
   @Authorized()
-  @Mutation(() => User)
+  @Mutation(() => User, { description: 'Rename the authenticated user.' })
   async renameUser(
     @CurrentSession() session: Session,
-    @Arg('name') name: string
+    @Arg('name', { description: 'The new name.' })
+    name: string
   ) {
     await databaseConnection();
     const user = await Helper.getMeOrFail(session);

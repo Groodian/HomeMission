@@ -12,7 +12,9 @@ export default class TaskTypeResolver {
    * Get all task types that belong to the users home.
    */
   @Authorized()
-  @Query(() => [TaskType])
+  @Query(() => [TaskType], {
+    description: 'Get all task types that belong to the users home.',
+  })
   async taskTypes(@CurrentSession() session: Session) {
     await databaseConnection();
     const home = await Helper.getHomeOrFail(session);
@@ -28,13 +30,21 @@ export default class TaskTypeResolver {
 
   /**
    * Create a new task type.
+   * @param name The name of the new task type (e.g. vacuum).
+   * @param points The points that associated tasks will be worth.
    */
   @Authorized()
-  @Mutation(() => TaskType)
+  @Mutation(() => TaskType, { description: 'Create a new task type.' })
   async createTaskType(
     @CurrentSession() session: Session,
-    @Arg('name') name: string,
-    @Arg('points') points: number
+    @Arg('name', {
+      description: 'The name of the new task type (e.g. vacuum).',
+    })
+    name: string,
+    @Arg('points', {
+      description: 'The points that associated tasks will be worth.',
+    })
+    points: number
   ) {
     await databaseConnection();
     const home = await Helper.getHomeOrFail(session);
@@ -50,13 +60,19 @@ export default class TaskTypeResolver {
   }
 
   /**
-   * Remove a task type.
+   * Delete a task type by removing its related home.
+   * The task type must belong to the users home.
+   * @param type The id of the task type to delete.
    */
   @Authorized()
-  @Mutation(() => TaskType)
-  async removeTaskType(
+  @Mutation(() => TaskType, {
+    description: `Delete a task type by removing its related home.
+The task type must belong to the users home.`,
+  })
+  async deleteTaskType(
     @CurrentSession() session: Session,
-    @Arg('type') type: string
+    @Arg('type', { description: 'The id of the task type to delete.' })
+    type: string
   ) {
     await databaseConnection();
     const home = await Helper.getHomeOrFail(session);
@@ -69,7 +85,7 @@ export default class TaskTypeResolver {
       await Helper.createHistory(home, user, HistoryType.TASK_TYPE_DELETED);
       return await taskType.save();
     } catch (e) {
-      throw Error('Failed to remove task type!');
+      throw Error('Failed to delete task type!');
     }
   }
 }

@@ -25,7 +25,9 @@ export default class TaskReceiptResolver
    * Get all receipts that are correlated to the users home.
    */
   @Authorized()
-  @Query(() => [TaskReceipt])
+  @Query(() => [TaskReceipt], {
+    description: 'Get all receipts that are correlated to the users home.',
+  })
   async receipts(@CurrentSession() session: Session) {
     await databaseConnection();
     const home = await Helper.getHomeOrFail(session);
@@ -43,19 +45,29 @@ export default class TaskReceiptResolver
   /**
    * Only load related user if required.
    */
-  @FieldResolver(() => User)
+  @FieldResolver(() => User, {
+    description: 'The user that completed the task.',
+  })
   async completer(@Root() receipt: TaskReceipt) {
-    return receipt.completer ? await User.findOne(receipt.completer) : null;
+    return (await User.findOne(receipt.completer)) as User;
   }
 
   /**
-   * Create a new receipt.
+   * Create a new receipt to complete a task.
+   * The task must belong to the users home.
+   * The authenticated user is saved as completer.
+   * @param task The id of the task to complete.
    */
   @Authorized()
-  @Mutation(() => TaskReceipt)
+  @Mutation(() => TaskReceipt, {
+    description: `Create a new receipt to complete a task.
+The task must belong to the users home.
+The authenticated user is saved as completer.`,
+  })
   async createTaskReceipt(
     @CurrentSession() session: Session,
-    @Arg('task') task: string
+    @Arg('task', { description: 'The id of the task to complete.' })
+    task: string
   ) {
     await databaseConnection();
     const home = await Helper.getHomeOrFail(session);
@@ -90,7 +102,7 @@ export default class TaskReceiptResolver
 
       await Helper.createHistory(home, user, HistoryType.TASK_COMPLETED);
 
-      receipt.completer = receipt.completer?.id as any; // Only save id for field resolver
+      receipt.completer = receipt.completer.id as any; // Only save id for field resolver
 
       return receipt;
     } catch (e) {

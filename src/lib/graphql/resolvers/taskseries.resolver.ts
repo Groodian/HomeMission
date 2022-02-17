@@ -12,15 +12,25 @@ import Helper from './helper';
 export default class TaskSeriesResolver {
   /**
    * Create a new task series and correlating tasks.
+   * @param start The date of the first task of the series.
+   * @param interval The interval between tasks in weeks.
+   * @param iterations The number of tasks to create.
+   * @param type The id of the task type.
    */
   @Authorized()
-  @Mutation(() => TaskType)
+  @Mutation(() => TaskType, {
+    description: 'Create a new task series and correlating tasks.',
+  })
   async createTaskSeries(
     @CurrentSession() session: Session,
-    @Arg('start') start: number,
-    @Arg('interval') interval: number,
-    @Arg('iterations') iterations: number,
-    @Arg('type') type: string
+    @Arg('start', { description: 'The date of the first task of the series.' })
+    start: number,
+    @Arg('interval', { description: 'The interval between tasks in weeks.' })
+    interval: number,
+    @Arg('iterations', { description: 'The number of tasks to create.' })
+    iterations: number,
+    @Arg('type', { description: 'The id of the task type.' })
+    type: string
   ) {
     await databaseConnection();
     const home = await Helper.getHomeOrFail(session);
@@ -56,13 +66,19 @@ export default class TaskSeriesResolver {
   }
 
   /**
-   * Delete all tasks correlating to a task series.
+   * Delete all tasks correlating to a task series by removing their related home.
+   * The series must belong to the users home.
+   * @param series The id of the task series to delete.
    */
   @Authorized()
-  @Mutation(() => TaskSeries)
+  @Mutation(() => TaskSeries, {
+    description: `Delete all tasks correlating to a task series by removing their related home.
+The series must belong to the users home.`,
+  })
   async deleteTaskSeries(
     @CurrentSession() session: Session,
-    @Arg('series') series: string
+    @Arg('series', { description: 'The id of the task series to delete.' })
+    series: string
   ) {
     await databaseConnection();
     const home = await Helper.getHomeOrFail(session);
@@ -85,19 +101,28 @@ export default class TaskSeriesResolver {
 
       return taskSeries;
     } catch (e) {
-      throw Error('Failed to remove task series!');
+      throw Error('Failed to delete task series!');
     }
   }
 
   /**
-   * Delete tasks correlating to a task series starting from a specified task.
+   * Delete tasks correlating to a task series starting from a specified task by removing their related home.
+   * The series must belong to the users home.
+   * @param series The id of the task series to delete a subsection from.
+   * @param start The id of the first task to delete.
    */
   @Authorized()
-  @Mutation(() => TaskSeries)
+  @Mutation(() => TaskSeries, {
+    description: `Delete tasks correlating to a task series starting from a specified task by removing their related home.
+The series must belong to the users home.`,
+  })
   async deleteTaskSeriesSubsection(
     @CurrentSession() session: Session,
-    @Arg('series') series: string,
-    @Arg('start') start: string
+    // prettier-ignore
+    @Arg('series', { description: 'The id of the task series to delete a subsection from.' })
+    series: string,
+    @Arg('start', { description: 'The id of the first task to delete.' })
+    start: string
   ) {
     await databaseConnection();
     const home = await Helper.getHomeOrFail(session);
@@ -106,7 +131,7 @@ export default class TaskSeriesResolver {
     const startTask = await Helper.getTaskOrFail(start, home.id);
     if (String(startTask.series) !== String(taskSeries.id))
       throw Error(
-        'Failed to remove tasks from series! Start task is not part of task series.'
+        'Failed to delete tasks from series! Start task is not part of task series.'
       );
 
     try {
@@ -127,7 +152,7 @@ export default class TaskSeriesResolver {
 
       return taskSeries;
     } catch (e) {
-      throw Error('Failed to remove task series!');
+      throw Error('Failed to delete task series subsection!');
     }
   }
 }
