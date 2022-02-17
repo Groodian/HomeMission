@@ -9,7 +9,6 @@ import {
   SvgIcon,
   SxProps,
   Theme,
-  Tooltip,
   useTheme,
 } from '@mui/material';
 import {
@@ -22,8 +21,7 @@ import {
 import StyledDrawer from '../StyledDrawer';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
-import { useHomeQuery } from '../../lib/graphql/operations/home.graphql';
-import { useSnackbar } from 'notistack';
+import InviteDialog from '../InviteDialog';
 import LeaveHome from './LeaveHome';
 
 type Page = {
@@ -58,9 +56,6 @@ const Leftbar = () => {
   const { t } = useTranslation('common', { keyPrefix: 'Leftbar' });
   const theme = useTheme();
   const router = useRouter();
-  const { enqueueSnackbar } = useSnackbar();
-
-  const { data: homeData } = useHomeQuery();
 
   const pages: Page = [
     { url: 'overview', text: t('overview'), icon: DateRange },
@@ -69,6 +64,7 @@ const Leftbar = () => {
   ];
 
   const [open, setOpen] = React.useState(false);
+  const [inviteOpen, setInviteOpen] = React.useState(false);
 
   return (
     <StyledDrawer
@@ -105,24 +101,16 @@ const Leftbar = () => {
             </ListItem>
           ))}
           <Divider />
-          <Tooltip title={t('invite-tooltip') as string} placement="right">
-            <ListItem
-              button
-              onClick={() => {
-                navigator.clipboard.writeText(
-                  `${window.location.protocol}//${window.location.host}/join?code=${homeData?.home?.code}`
-                );
-                enqueueSnackbar(t('invite-info'), {
-                  variant: 'info',
-                });
-              }}
-            >
-              <ListItemIcon>
-                <GroupAdd />
-              </ListItemIcon>
-              <ListItemText primary={t('invite')} />
-            </ListItem>
-          </Tooltip>
+          <ListItem button onClick={() => setInviteOpen(true)}>
+            <ListItemIcon>
+              <GroupAdd />
+            </ListItemIcon>
+            <ListItemText primary={t('invite')} />
+          </ListItem>
+          <InviteDialog
+            open={inviteOpen}
+            onClose={() => setInviteOpen(false)}
+          />
           <LeaveHome />
         </List>
       </Box>

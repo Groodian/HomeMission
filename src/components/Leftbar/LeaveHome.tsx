@@ -41,7 +41,7 @@ const LeaveHome: React.FC = () => {
       >
         <DialogTitle id="dialog-title">{t('dialog-title')}</DialogTitle>
         <DialogContent>
-          <DialogContentText color={(theme) => theme.palette.warning.main}>
+          <DialogContentText color="warning.main">
             {t('dialog-warning')}
           </DialogContentText>
         </DialogContent>

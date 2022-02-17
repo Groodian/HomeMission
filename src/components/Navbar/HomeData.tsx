@@ -9,13 +9,14 @@ import {
   Tooltip,
   Typography,
 } from '@mui/material';
-import { Edit, Group } from '@mui/icons-material';
+import { Edit, GroupAdd } from '@mui/icons-material';
 import { useTranslation } from 'next-i18next';
 import { useSnackbar } from 'notistack';
 import {
   useHomeQuery,
   useRenameHomeMutation,
 } from '../../lib/graphql/operations/home.graphql';
+import InviteDialog from '../InviteDialog';
 
 const HomeData: React.FC = () => {
   const { t } = useTranslation('common', { keyPrefix: 'Navbar' });
@@ -23,6 +24,7 @@ const HomeData: React.FC = () => {
   const { data } = useHomeQuery();
   const [renameHome] = useRenameHomeMutation();
   const [nameValue, setNameValue] = React.useState<string>();
+  const [inviteOpen, setInviteOpen] = React.useState(false);
 
   const handleKeyDown: React.KeyboardEventHandler = (event) => {
     switch (event.key) {
@@ -81,20 +83,21 @@ const HomeData: React.FC = () => {
           )}
         </Typography>
       </Tooltip>
-      <AvatarGroup max={3}>
+      <AvatarGroup max={11}>
         {data.home.users.map((user) => (
           <Tooltip key={user.id} title={user.name}>
             <Avatar alt={user.name} src={user.picture} />
           </Tooltip>
         ))}
-        {data.home.users.length === 1 && (
-          <Tooltip title={t('no-roommates-tooltip') as string}>
+        <IconButton onClick={() => setInviteOpen(true)} sx={{ p: 0 }}>
+          <Tooltip title={t('invite-tooltip') as string}>
             <Avatar>
-              <Group />
+              <GroupAdd />
             </Avatar>
           </Tooltip>
-        )}
+        </IconButton>
       </AvatarGroup>
+      <InviteDialog open={inviteOpen} onClose={() => setInviteOpen(false)} />
     </>
   ) : null;
 

@@ -69,7 +69,9 @@ const Join: NextPage = () => {
           {t('create-button')}
         </LoadingButton>
       </Stack>
-      <Typography mt={1}>{t('default-types')}</Typography>
+      <Typography mt={1} variant="subtitle2">
+        {t('default-types')}
+      </Typography>
     </form>
   );
 
@@ -114,7 +116,7 @@ const Join: NextPage = () => {
       <DialogTitle id="dialog-title">{t('dialog-title', { code })}</DialogTitle>
       {data?.home && (
         <DialogContent>
-          <DialogContentText color={(theme) => theme.palette.warning.main}>
+          <DialogContentText color="warning.main">
             {t('warning')}
           </DialogContentText>
         </DialogContent>
@@ -141,9 +143,7 @@ const Join: NextPage = () => {
       <Stack spacing={2}>
         <Typography variant="h3">{t('title')}</Typography>
         {data?.home && (
-          <Typography color={(theme) => theme.palette.warning.main}>
-            {t('warning')}
-          </Typography>
+          <Typography color="warning.main">{t('warning')}</Typography>
         )}
         <Typography fontWeight="bold">{t('create-text')}</Typography>
         {CreateForm}

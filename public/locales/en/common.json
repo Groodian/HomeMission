@@ -31,7 +31,7 @@
     "dialog-cancel": "Cancel",
     "change-name-success": "Changed name to '{{newName}}'",
     "change-name-error": "Could not change name",
-    "no-roommates-tooltip": "Your roommates will be shown here. Invite them."
+    "invite-tooltip": "Invite your roommates"
   },
 
   "Leftbar": {
@@ -39,8 +39,6 @@
     "statistics": "Statistics",
     "activity": "Activity history",
     "invite": "Invite others",
-    "invite-tooltip": "Click to copy invitation link",
-    "invite-info": "Invitation link was copied to your clipboard",
     "LeaveHome": {
       "leave-home": "Leave home",
       "dialog-title": "Are you sure you want to leave this home?",
@@ -57,5 +55,13 @@
     "error-message": "Could not load open tasks",
     "tooltip-avatar": "You are assigned",
     "tooltip-loop": "Recurring task"
+  },
+
+  "InviteDialog": {
+    "invite-roommates": "Invite roommates",
+    "invitation-code": "Invitation Code",
+    "invitation-link": "Invitation Link",
+    "copy-tooltip": "Click to copy {{label}}",
+    "copy-info": "{{label}} was copied to your clipboard"
   }
 }

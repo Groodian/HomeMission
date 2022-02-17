@@ -1,20 +1,4 @@
-import { TFunction } from 'next-i18next';
 import { database, testGraphql, timeoutLength } from './testUtils';
-
-// Mock localization
-jest.mock('next-i18next', () => ({
-  i18n: {
-    getFixedT(
-      lng: string | readonly string[],
-      ns?: string | readonly string[] | undefined,
-      keyPrefix?: string | undefined
-    ) {
-      const t: TFunction = (key, options) =>
-        `key: ${key}, options: ${options}, lng: ${lng}, ns: ${ns}, keyPrefix: ${keyPrefix}`;
-      return t;
-    },
-  },
-}));
 
 describe('Home resolver with', () => {
   beforeEach(database.reset, timeoutLength); // High timeoutLength for GitLab pipeline
@@ -76,7 +60,7 @@ describe('Home resolver with', () => {
 
       expect(res.end).toHaveBeenNthCalledWith(
         1,
-        '{"data":{"createHome":{"name":"my-home","taskTypes":[{"id":"1","name":"key: vacuum, options: undefined, lng: en, ns: server_default-tasks, keyPrefix: undefined","points":50},{"id":"2","name":"key: clean-kitchen, options: undefined, lng: en, ns: server_default-tasks, keyPrefix: undefined","points":60},{"id":"3","name":"key: clean-bath, options: undefined, lng: en, ns: server_default-tasks, keyPrefix: undefined","points":60},{"id":"4","name":"key: wash-dishes, options: undefined, lng: en, ns: server_default-tasks, keyPrefix: undefined","points":30},{"id":"5","name":"key: take-out-garbage, options: undefined, lng: en, ns: server_default-tasks, keyPrefix: undefined","points":20},{"id":"6","name":"key: water-plants, options: undefined, lng: en, ns: server_default-tasks, keyPrefix: undefined","points":10}]}}}\n'
+        '{"data":{"createHome":{"name":"my-home","taskTypes":[{"id":"1","name":"Vacuum","points":50},{"id":"2","name":"Clean kitchen","points":60},{"id":"3","name":"Clean bath","points":60},{"id":"4","name":"Do dishes","points":30},{"id":"5","name":"Take out garbage","points":20},{"id":"6","name":"Water plants","points":10}]}}}\n'
       );
     },
     timeoutLength
@@ -97,7 +81,7 @@ describe('Home resolver with', () => {
 
       expect(res.end).toHaveBeenNthCalledWith(
         1,
-        '{"data":{"createHome":{"name":"my-home","taskTypes":[{"id":"1","name":"key: vacuum, options: undefined, lng: de, ns: server_default-tasks, keyPrefix: undefined","points":50},{"id":"2","name":"key: clean-kitchen, options: undefined, lng: de, ns: server_default-tasks, keyPrefix: undefined","points":60},{"id":"3","name":"key: clean-bath, options: undefined, lng: de, ns: server_default-tasks, keyPrefix: undefined","points":60},{"id":"4","name":"key: wash-dishes, options: undefined, lng: de, ns: server_default-tasks, keyPrefix: undefined","points":30},{"id":"5","name":"key: take-out-garbage, options: undefined, lng: de, ns: server_default-tasks, keyPrefix: undefined","points":20},{"id":"6","name":"key: water-plants, options: undefined, lng: de, ns: server_default-tasks, keyPrefix: undefined","points":10}]}}}\n'
+        '{"data":{"createHome":{"name":"my-home","taskTypes":[{"id":"1","name":"Staubsaugen","points":50},{"id":"2","name":"Küche putzen","points":60},{"id":"3","name":"Bad putzen","points":60},{"id":"4","name":"Geschirr spülen","points":30},{"id":"5","name":"Müll rausbringen","points":20},{"id":"6","name":"Pflanzen gießen","points":10}]}}}\n'
       );
     },
     timeoutLength

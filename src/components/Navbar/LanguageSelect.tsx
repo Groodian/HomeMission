@@ -19,9 +19,7 @@ const LanguageSelect: React.FC = () => {
       <FormControl fullWidth size="small">
         <InputLabel
           id="language-select-label"
-          sx={{
-            color: (theme) => `${theme.palette.text.primary} !important`,
-          }}
+          sx={{ color: (theme) => `${theme.palette.text.primary} !important` }}
         >
           {t('language')}
         </InputLabel>

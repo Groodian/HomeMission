@@ -2,15 +2,7 @@ import { Session } from '@auth0/nextjs-auth0';
 import CurrentSession from '../../../auth0/current-session';
 import databaseConnection from '../../../typeorm/connection';
 import { Between } from 'typeorm';
-import {
-  Arg,
-  Authorized,
-  FieldResolver,
-  Query,
-  Resolver,
-  ResolverInterface,
-  Root,
-} from 'type-graphql';
+import { Arg, Authorized, Query, Resolver } from 'type-graphql';
 import User from '../../../../entities/user';
 import TaskReceipt from '../../../../entities/taskreceipt';
 import UserStatistic from '../../../../entities/statistics/userStatistic';
@@ -24,9 +16,7 @@ import {
 type UserAndDataPoints = { user: User | null; dataPoints: DataPoint[] };
 
 @Resolver(UserStatistic)
-export default class UserStatisticsResolver
-  implements ResolverInterface<UserStatistic>
-{
+export default class UserStatisticsResolver {
   /**
    * Generate the statistics for all users of home.
    */
@@ -38,7 +28,7 @@ export default class UserStatisticsResolver
     @Arg('end') end: number
   ) {
     await databaseConnection();
-    const home = await Helper.getHomeOrFail(session);
+    const home = await Helper.getHomeOrFail(session, ['users']);
     const startDate = new Date(start);
     const endDate = new Date(end);
 
@@ -76,8 +66,9 @@ export default class UserStatisticsResolver
       // iterate through all receipts and attribute appropriate points
       for (const receipt of receipts) {
         // identify who the receipt belongs to and set variable dataPoints to their dataPoints
+        const completer = receipt.completer as unknown as string;
         const dataPoints =
-          userAndDataPointsArrays.filter((e) => receipt.completer === e.user)[0]
+          userAndDataPointsArrays.filter((e) => completer === e.user?.id)[0]
             ?.dataPoints || nullDataPoints;
 
         // get index of receipt completion date in dataPoints array
@@ -96,13 +87,5 @@ export default class UserStatisticsResolver
     } catch (e) {
       throw Error('Could not create user statistics for home');
     }
-  }
-
-  /**
-   * Only load related user if required.
-   */
-  @FieldResolver(() => User, { nullable: true })
-  async user(@Root() userStatistic: UserStatistic) {
-    return userStatistic.user ? await User.findOne(userStatistic.user) : null;
   }
 }

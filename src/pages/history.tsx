@@ -9,6 +9,7 @@ import {
   Typography,
 } from '@mui/material';
 import { GetStaticProps, NextPage } from 'next';
+import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Image from 'next/image';
@@ -19,6 +20,7 @@ import { useHistoryQuery } from '../lib/graphql/operations/history.graphql';
 const History: NextPage = () => {
   const { t } = useTranslation(['history']);
   const { enqueueSnackbar } = useSnackbar();
+  const router = useRouter();
   const { loading, error, data } = useHistoryQuery();
 
   React.useEffect(() => {
@@ -50,7 +52,7 @@ const History: NextPage = () => {
             </List>
             <Tooltip
               placement="bottom-start"
-              title={new Date(history.date).toLocaleString()}
+              title={new Date(history.date).toLocaleString(router.locale)}
             >
               <ListItemText>
                 {t('ago', { time: formatTime(history.date, t) })}

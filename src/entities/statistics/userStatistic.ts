@@ -1,5 +1,4 @@
 import { Field, ObjectType } from 'type-graphql';
-import { ManyToOne } from 'typeorm';
 import User from '../user';
 import Statistic from './statistic';
 import DataPoint from './dataPoint';
@@ -9,7 +8,7 @@ export default class UserStatistic implements Statistic {
   @Field(() => [DataPoint])
   data: DataPoint[];
 
-  @ManyToOne('User', 'receipts', { nullable: true })
+  @Field(() => User, { nullable: true })
   user?: User | null | undefined;
 
   constructor(user: User | null, data: DataPoint[]) {

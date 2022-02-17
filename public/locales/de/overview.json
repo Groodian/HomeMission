@@ -2,12 +2,9 @@
   "error-message": "Aufgaben konnten nicht geladen werden",
 
   "TaskCalendar": {
-    "next": "Danach",
-    "previous": "Davor",
     "today": "Heute",
-    "month": "Monat",
-    "week": "Woche",
-    "day": "Tag",
+    "previous": "Vorheriger Monat",
+    "next": "Nächster Monat",
     "add-task-tooltip": "Aufgabe hinzufügen"
   },
 

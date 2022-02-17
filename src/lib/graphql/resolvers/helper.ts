@@ -11,10 +11,12 @@ export default class Helper {
   /**
    * Helper function that returns the user and fails if user is not authenticated.
    */
-  static async getMeOrFail(session: Session) {
+  static async getMeOrFail(session: Session, relations?: string[]) {
     try {
       // get user from database
-      return await User.findOneOrFail(session.user.sub as string);
+      return await User.findOneOrFail(session.user.sub as string, {
+        relations,
+      });
     } catch (e) {
       throw Error('Failed to get user!');
     }
@@ -23,13 +25,13 @@ export default class Helper {
   /**
    * Helper function that returns the users home and fails if user has no home.
    */
-  static async getHomeOrFail(session: Session) {
+  static async getHomeOrFail(session: Session, relations: string[] = []) {
     const user = await User.findOneOrFail(session.user.sub as string, {
-      loadRelationIds: true,
+      relations: ['home', ...relations.map((relation) => 'home.' + relation)],
     });
     if (!user.home)
       throw Error('Failed to get users home! Check that user has a home.');
-    return Home.findOneOrFail(user.home, { loadRelationIds: true });
+    return user.home;
   }
 
   /**

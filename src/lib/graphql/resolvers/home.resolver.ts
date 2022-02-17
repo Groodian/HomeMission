@@ -1,5 +1,4 @@
 import { Session } from '@auth0/nextjs-auth0';
-import { i18n } from 'next-i18next';
 import {
   Arg,
   Authorized,
@@ -74,21 +73,6 @@ export default class HomeResolver implements ResolverInterface<Home> {
   @FieldResolver(() => [TaskReceipt])
   async receipts(@Root() home: Home) {
     return await TaskReceipt.find({ where: { relatedHome: home.id } });
-  }
-
-  // TODO: Remove
-  // ! Only for testing purposes.
-  /**
-   * Get all homes including the users and task types in the homes.
-   */
-  @Query(() => [Home])
-  async homes() {
-    try {
-      await databaseConnection();
-      return await Home.find({ relations: ['users', 'taskTypes', 'tasks'] });
-    } catch (e) {
-      throw Error('Failed to get all homes!');
-    }
   }
 
   /**
@@ -200,16 +184,33 @@ export default class HomeResolver implements ResolverInterface<Home> {
   }
 
   private async generateDefaultTaskTypes(home: Home, language: string) {
-    if (!i18n) throw new Error('Failed to load translations. i18n is null.');
-    const t = i18n.getFixedT(language, 'server_default-tasks');
+    const t = language === 'de' ? defaultTasksDe : defaultTasksEn;
     const taskTypes = [
-      new TaskType(t('vacuum'), 50, home),
-      new TaskType(t('clean-kitchen'), 60, home),
-      new TaskType(t('clean-bath'), 60, home),
-      new TaskType(t('wash-dishes'), 30, home),
-      new TaskType(t('take-out-garbage'), 20, home),
-      new TaskType(t('water-plants'), 10, home),
+      new TaskType(t['vacuum'], 50, home),
+      new TaskType(t['clean-kitchen'], 60, home),
+      new TaskType(t['clean-bath'], 60, home),
+      new TaskType(t['wash-dishes'], 30, home),
+      new TaskType(t['take-out-garbage'], 20, home),
+      new TaskType(t['water-plants'], 10, home),
     ];
     await TaskType.save(taskTypes);
   }
 }
+
+const defaultTasksDe = {
+  vacuum: 'Staubsaugen',
+  'clean-kitchen': 'Küche putzen',
+  'clean-bath': 'Bad putzen',
+  'wash-dishes': 'Geschirr spülen',
+  'take-out-garbage': 'Müll rausbringen',
+  'water-plants': 'Pflanzen gießen',
+};
+
+const defaultTasksEn = {
+  vacuum: 'Vacuum',
+  'clean-kitchen': 'Clean kitchen',
+  'clean-bath': 'Clean bath',
+  'wash-dishes': 'Do dishes',
+  'take-out-garbage': 'Take out garbage',
+  'water-plants': 'Water plants',
+};

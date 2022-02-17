@@ -16,7 +16,7 @@ To run the application you need to install [Node.js](https://nodejs.org/) and [D
 
 Define secrets:
 
-1. Copy [`.env.example`](.env.example) to `/.env.local` and set a `DATABASE_PASSWORD` and `AUTH0_SECRET`.
+1. Copy [`.env.example`](.env.example) to `/.env.local` and set a `DATABASE_PASSWORD` and `AUTH0_SECRET` and change `AUTH0_BASE_URL` to url in the last step of the two following variants.
 2. Copy the `AUTH0_CLIENT_SECRET` from [production Auth0 client](https://manage.auth0.com/dashboard/eu/wg-organisierspiel/applications/tsmSjPG8pw0w7M119EmQShEY2JayHHxS/settings).
 
 Use prebuilt Docker container:

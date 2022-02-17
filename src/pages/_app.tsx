@@ -53,7 +53,6 @@ interface MyAppProps extends AppProps {
   graphqlSchema: GraphQLSchema;
   emotionCache?: EmotionCache;
 }
-
 const MyApp: React.FC<MyAppProps> = ({
   Component,
   pageProps,
@@ -115,19 +114,6 @@ const MyApp: React.FC<MyAppProps> = ({
   const router = useRouter();
   let loading = true;
 
-  /**
-   * Helper to only redirect to a new page.
-   * Saves the initially requested path.
-   * @param pathname The destination.
-   */
-  function redirect(pathname: string) {
-    // Only redirect if target is different
-    if (router.pathname !== pathname) {
-      router.push({ pathname, query: { returnTo: router.asPath } });
-      loading = true;
-    }
-  }
-
   // Wait until data is loaded
   if (!userLoading && !homeLoading) {
     loading = false;
@@ -186,6 +172,19 @@ const MyApp: React.FC<MyAppProps> = ({
       </UserProvider>
     </ApolloProvider>
   );
+
+  /**
+   * Helper to only redirect to a new page.
+   * Saves the initially requested path.
+   * @param pathname The destination.
+   */
+  function redirect(pathname: string) {
+    // Only redirect if target is different
+    if (router.pathname !== pathname) {
+      router.push({ pathname, query: { returnTo: router.asPath } });
+      loading = true; // Wait until new page is loaded
+    }
+  }
 };
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {

@@ -26,12 +26,12 @@
     "rename-tooltip": "Name der WG ändern",
     "rename-success": "Name der WG zu '{{newName}}' geändert",
     "rename-error": "Name der WG konnte nicht geändert werden",
-    "change-name": "Namen ändern",
+    "change-name": "Name ändern",
     "new-name": "Neuer Name",
     "dialog-cancel": "Abbrechen",
     "change-name-success": "Name zu '{{newName}}' geändert",
     "change-name-error": "Name konnte nicht geändert werden",
-    "no-roommates-tooltip" : "Hier werden deine Mitbewohner angezeigt. Lade sie ein."
+    "invite-tooltip" : "Lade deine Mitbewohner ein"
   },
 
   "Leftbar": {
@@ -39,8 +39,6 @@
     "statistics": "Statistiken",
     "activity": "Tätigkeitsverlauf",
     "invite": "Einladen",
-    "invite-tooltip": "Einladungslink kopieren",
-    "invite-info": "Einladungslink wurde kopiert",
     "LeaveHome": {
       "leave-home": "WG verlassen",
       "dialog-title": "Bist du sicher, dass du die WG verlassen möchtest?",
@@ -57,5 +55,13 @@
     "error-message": "Offene Aufgaben konnten nicht geladen werden",
     "tooltip-avatar": "Du bist zugeordnet",
     "tooltip-loop": "Aufgabe wiederholt sich"
+  },
+
+  "InviteDialog": {
+    "invite-roommates": "Mitbewohner einladen",
+    "invitation-code": "Einladungscode",
+    "invitation-link": "Einladungslink",
+    "copy-tooltip": "{{label}} kopieren",
+    "copy-info": "{{label}} wurde kopiert"
   }
 }

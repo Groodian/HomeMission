@@ -1,6 +1,21 @@
 import React from 'react';
-import { Avatar, Badge, Box, IconButton, Tooltip } from '@mui/material';
-import { AddTask } from '@mui/icons-material';
+import {
+  Avatar,
+  Badge,
+  Box,
+  Button,
+  ButtonGroup,
+  IconButton,
+  Stack,
+  Tooltip,
+  Typography,
+} from '@mui/material';
+import {
+  AddTask,
+  ArrowBackIosNew,
+  ArrowForwardIos,
+  Today,
+} from '@mui/icons-material';
 import StyledCalendar from './StyledCalendar';
 import Task from '../../entities/task';
 import {
@@ -9,14 +24,13 @@ import {
   EventProps,
   EventWrapperProps,
   momentLocalizer,
+  ToolbarProps,
 } from 'react-big-calendar';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
-import 'moment/locale/fr';
 import 'moment/locale/de';
-import 'moment/locale/en-gb';
 import InlineDiamond from '../InlineDiamond';
 
 export type CEvent = {
@@ -79,6 +93,7 @@ const TaskCalendar: React.FC<TaskCalendarProps> = ({
   const { t } = useTranslation('overview', { keyPrefix: 'TaskCalendar' });
   const router = useRouter();
   const localizer = momentLocalizer(moment);
+  moment.locale(router.locale);
 
   const events: CEvent[] = tasks
     ? tasks.map((task) => {
@@ -92,21 +107,54 @@ const TaskCalendar: React.FC<TaskCalendarProps> = ({
       })
     : [];
 
-  // is passed to calendar to render date cell header
+  // is passed to calendar to render a custom toolbar
+  const CToolbarVisualize: React.FC<ToolbarProps<CEvent, object>> = ({
+    label,
+    onNavigate,
+  }) => {
+    return (
+      <Stack direction="row" spacing={3} mb={2}>
+        <ButtonGroup>
+          <Tooltip title={t('today') as string}>
+            <Button onClick={() => onNavigate('TODAY')}>
+              <Today />
+            </Button>
+          </Tooltip>
+          <Tooltip title={t('previous') as string}>
+            <Button onClick={() => onNavigate('PREV')}>
+              <ArrowBackIosNew />
+            </Button>
+          </Tooltip>
+          <Tooltip title={t('next') as string}>
+            <Button onClick={() => onNavigate('NEXT')}>
+              <ArrowForwardIos />
+            </Button>
+          </Tooltip>
+        </ButtonGroup>
+        <Typography variant="h4" component="span">
+          {label}
+        </Typography>
+      </Stack>
+    );
+  };
+
+  // is passed to calendar to render date cell header with create task button
   const CDateHeaderVisualize: React.FC<DateHeaderProps> = ({ date, label }) => {
+    const dateHasPassed =
+      date.valueOf() < new Date().setDate(new Date().getDate() - 1);
     return (
       <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-        <Tooltip title={t('add-task-tooltip') as string}>
-          <IconButton
-            size="small"
-            onClick={() => onAddTask(date)}
-            disabled={
-              date.valueOf() < new Date().setDate(new Date().getDate() - 1) // past dates
-            }
-          >
+        {dateHasPassed ? (
+          <IconButton size="small" disabled={true}>
             <AddTask fontSize="small" />
           </IconButton>
-        </Tooltip>
+        ) : (
+          <Tooltip title={t('add-task-tooltip') as string}>
+            <IconButton size="small" onClick={() => onAddTask(date)}>
+              <AddTask fontSize="small" />
+            </IconButton>
+          </Tooltip>
+        )}
         {label}
       </Box>
     );
@@ -116,22 +164,15 @@ const TaskCalendar: React.FC<TaskCalendarProps> = ({
     <StyledCalendar
       localizer={localizer}
       events={events}
-      culture={router.locale === 'de' ? 'de' : 'en-gb'}
+      culture={router.locale}
       style={{ height: '75vh' }}
       views={['month']}
       eventPropGetter={customEventPropGetter}
       components={{
-        event: CEventVisualize,
+        toolbar: CToolbarVisualize,
         eventWrapper: CEventWrapperVisualize,
+        event: CEventVisualize,
         month: { dateHeader: CDateHeaderVisualize },
-      }}
-      messages={{
-        next: t('next'),
-        previous: t('previous'),
-        today: t('today'),
-        month: t('month'),
-        week: t('week'),
-        day: t('day'),
       }}
       onSelectEvent={(event) => onSelectTask(event.resource)}
     />

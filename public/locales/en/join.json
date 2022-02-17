@@ -5,7 +5,7 @@
   "create-button": "Create",
   "create-success": "Created home '{{name}}'",
   "create-error": "Could not create home",
-  "default-types": "Default task types will be created in English.",
+  "default-types": "Default task types will be created in English. Configure the language to change this.",
   "join-text": "Or join a home",
   "join-input-label": "Invitation Code",
   "join-button": "Join",

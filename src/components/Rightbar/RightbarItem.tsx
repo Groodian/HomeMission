@@ -71,8 +71,8 @@ const RightbarItem: React.FC<RightBarItemProps> = ({
         <TaskText>
           {task.type?.points} <InlineDiamond />
         </TaskText>
-        <TaskText sx={{ color: (theme) => theme.palette.text.secondary }}>
-          {new Date(task.date).toLocaleString(router.locale).split(',')[0]}
+        <TaskText sx={{ color: 'text.secondary' }}>
+          {new Date(task.date).toLocaleDateString(router.locale)}
           {recurring && RecurringIcon}
         </TaskText>
         <CompleteButton task={task} />

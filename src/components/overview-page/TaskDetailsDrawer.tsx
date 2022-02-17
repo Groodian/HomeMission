@@ -78,7 +78,7 @@ const TaskDetailsDrawer: React.FC<TaskDetailsDrawerProps> = ({
         {task.type?.points} <InlineDiamond />
       </Text>
       <TextMuted>
-        {new Date(task.date).toLocaleString(router.locale).split(',')[0]}
+        {new Date(task.date).toLocaleDateString(router.locale)}
       </TextMuted>
     </Section>
   );
@@ -101,12 +101,12 @@ const TaskDetailsDrawer: React.FC<TaskDetailsDrawerProps> = ({
       <AvatarAndName user={task.receipt.completer} />
       <TextMuted sx={{ fontSize: '0.9em' }}>
         {t('completed-time', {
-          date: new Date(task.receipt.completionDate)
-            .toLocaleString(router.locale)
-            .split(',')[0],
-          time: new Date(task.receipt.completionDate)
-            .toLocaleString(router.locale)
-            .split(',')[1],
+          date: new Date(task.receipt.completionDate).toLocaleDateString(
+            router.locale
+          ),
+          time: new Date(task.receipt.completionDate).toLocaleTimeString(
+            router.locale
+          ),
         })}
       </TextMuted>
     </Section>

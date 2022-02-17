@@ -443,10 +443,10 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-9:focus::-ms-input-p
 .emotion-14 {
   margin: 0;
   font-family: "Roboto","Helvetica","Arial",sans-serif;
-  font-weight: 400;
-  font-size: 1rem;
-  line-height: 1.5;
-  letter-spacing: 0.00938em;
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.57;
+  letter-spacing: 0.00714em;
   margin-top: 8px;
 }
 
@@ -544,11 +544,11 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-9:focus::-ms-input-p
             />
           </button>
         </div>
-        <p
-          class="MuiTypography-root MuiTypography-body1 emotion-14"
+        <h6
+          class="MuiTypography-root MuiTypography-subtitle2 emotion-14"
         >
-          Default task types will be created in English.
-        </p>
+          Default task types will be created in English. Configure the language to change this.
+        </h6>
       </form>
       <p
         class="MuiTypography-root MuiTypography-body1 emotion-3"
@@ -1062,10 +1062,10 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-9:focus::-ms-input-p
 .emotion-14 {
   margin: 0;
   font-family: "Roboto","Helvetica","Arial",sans-serif;
-  font-weight: 400;
-  font-size: 1rem;
-  line-height: 1.5;
-  letter-spacing: 0.00938em;
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.57;
+  letter-spacing: 0.00714em;
   margin-top: 8px;
 }
 
@@ -1163,11 +1163,11 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-9:focus::-ms-input-p
             />
           </button>
         </div>
-        <p
-          class="MuiTypography-root MuiTypography-body1 emotion-14"
+        <h6
+          class="MuiTypography-root MuiTypography-subtitle2 emotion-14"
         >
-          Vordefinierte Aufgabentypen werden in Deutsch erstellt.
-        </p>
+          Vordefinierte Aufgabentypen werden in Deutsch erstellt. Passe die Sprache an, um dies zu ändern.
+        </h6>
       </form>
       <p
         class="MuiTypography-root MuiTypography-body1 emotion-3"
@@ -1691,10 +1691,10 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-10:focus::-ms-input-
 .emotion-15 {
   margin: 0;
   font-family: "Roboto","Helvetica","Arial",sans-serif;
-  font-weight: 400;
-  font-size: 1rem;
-  line-height: 1.5;
-  letter-spacing: 0.00938em;
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.57;
+  letter-spacing: 0.00714em;
   margin-top: 8px;
 }
 
@@ -1797,11 +1797,11 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-10:focus::-ms-input-
             />
           </button>
         </div>
-        <p
-          class="MuiTypography-root MuiTypography-body1 emotion-15"
+        <h6
+          class="MuiTypography-root MuiTypography-subtitle2 emotion-15"
         >
-          Default task types will be created in English.
-        </p>
+          Default task types will be created in English. Configure the language to change this.
+        </h6>
       </form>
       <p
         class="MuiTypography-root MuiTypography-body1 emotion-4"
