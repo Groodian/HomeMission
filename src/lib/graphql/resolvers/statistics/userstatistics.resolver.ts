@@ -43,6 +43,8 @@ Include a statistic for users that left the home.`,
     const startDate = new Date(start);
     const endDate = new Date(end);
 
+    let taskCompletedByUnknown = false;
+
     if (start > end)
       throw Error(
         'Could not create statistic for users because start date must be before end date'
@@ -78,9 +80,14 @@ Include a statistic for users that left the home.`,
       for (const receipt of receipts) {
         // identify who the receipt belongs to and set variable dataPoints to their dataPoints
         const completer = receipt.completer as unknown as string;
-        const dataPoints =
-          userAndDataPointsArrays.filter((e) => completer === e.user?.id)[0]
-            ?.dataPoints || nullDataPoints;
+        let dataPoints = userAndDataPointsArrays.filter(
+          (e) => completer === e.user?.id
+        )[0]?.dataPoints;
+
+        if (!dataPoints) {
+          taskCompletedByUnknown = true;
+          dataPoints = nullDataPoints;
+        }
 
         // get index of receipt completion date in dataPoints array
         const index = getDatesDifference(startDate, receipt.completionDate);
@@ -93,7 +100,11 @@ Include a statistic for users that left the home.`,
 
       // concatenate user-datapoint-tuples from roommates with user-datapoint-tuple from orphaned receipts, then map into return format
       return userAndDataPointsArrays
-        .concat([{ user: null, dataPoints: nullDataPoints }])
+        .concat(
+          taskCompletedByUnknown
+            ? [{ user: null, dataPoints: nullDataPoints }]
+            : []
+        )
         .map((tuple) => new UserStatistic(tuple.user, tuple.dataPoints));
     } catch (e) {
       throw Error('Could not create user statistics for home');
