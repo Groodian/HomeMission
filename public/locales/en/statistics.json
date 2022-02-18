@@ -1,5 +1,11 @@
 {
   "weekly-progress": "Tasks 7 days",
   "monthly-progress": "Tasks 30 days",
-  "per-user": "per roommate"
+  "home": "Combined Home",
+  "ex-roommates": "Former roommates",
+  "per-user": "per roommate",
+  "per-day": "per day",
+  "per-week": "per week",
+  "home-error-message": "Could not load statistic for home",
+  "user-error-message": "Could not load statistics for users"
 }

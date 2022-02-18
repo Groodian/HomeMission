@@ -1,5 +1,11 @@
 {
   "weekly-progress": "Aufgaben 7 Tage",
   "monthly-progress": "Aufgaben 30 Tage",
-  "per-user": "pro Mitbewohner"
+  "home": "Gesamte WG",
+  "ex-roommates": "Frühere Mitbewohner",
+  "per-user": "pro Mitbewohner",
+  "per-day": "pro Tag",
+  "per-week": "pro Woche",
+  "home-error-message": "Statistik für die WG konnte nicht geladen werden",
+  "user-error-message": "Statistiken für die Mitbewohner konnten nicht geladen werden"
 }
