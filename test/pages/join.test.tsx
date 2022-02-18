@@ -24,7 +24,7 @@ apolloCache.writeQuery({
   data: { home: null },
 });
 
-describe('Welcome page', () => {
+describe('Join page', () => {
   it('matches snapshot', async () => {
     const { asFragment } = await render(<Join />, { apolloCache });
     expect(asFragment()).toMatchSnapshot();

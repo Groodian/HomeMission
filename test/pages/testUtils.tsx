@@ -5,6 +5,7 @@ import { render, RenderOptions } from '@testing-library/react';
 import { readdirSync } from 'fs';
 import i18n from 'i18next';
 import Backend from 'i18next-fs-backend';
+import singletonRouter from 'next/router';
 import { SnackbarProvider } from 'notistack';
 import { join } from 'path';
 import { I18nextProvider, initReactI18next } from 'react-i18next';
@@ -42,6 +43,7 @@ async function customRender(
 ) {
   await initialized;
   await i18n.changeLanguage(initialState?.language || 'en');
+  singletonRouter.locale = initialState?.language || 'en';
 
   const Providers: React.FC = ({ children }) => (
     <I18nextProvider i18n={i18n}>

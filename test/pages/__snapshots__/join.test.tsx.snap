@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Welcome page matches snapshot 1`] = `
+exports[`Join page matches snapshot 1`] = `
 <DocumentFragment>
   .emotion-0 {
   width: 100%;
@@ -619,7 +619,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-9:focus::-ms-input-p
 </DocumentFragment>
 `;
 
-exports[`Welcome page matches snapshot DE 1`] = `
+exports[`Join page matches snapshot DE 1`] = `
 <DocumentFragment>
   .emotion-0 {
   width: 100%;
@@ -1238,7 +1238,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-9:focus::-ms-input-p
 </DocumentFragment>
 `;
 
-exports[`Welcome page shows warning when already in home 1`] = `
+exports[`Join page shows warning when already in home 1`] = `
 <DocumentFragment>
   .emotion-0 {
   width: 100%;

@@ -1,0 +1,117 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`404 page matches snapshot 1`] = `
+<DocumentFragment>
+  .emotion-0 {
+  text-align: center;
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.emotion-1 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 3rem;
+  line-height: 1.167;
+  letter-spacing: 0em;
+}
+
+.emotion-2 {
+  margin: 0;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  border-width: 0;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.12);
+  border-bottom-width: thin;
+}
+
+.emotion-3 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 1.5rem;
+  line-height: 1.334;
+  letter-spacing: 0em;
+}
+
+<div
+    class="MuiBox-root emotion-0"
+  >
+    <h1
+      class="MuiTypography-root MuiTypography-h3 emotion-1"
+    >
+      404
+    </h1>
+    <hr
+      class="MuiDivider-root MuiDivider-fullWidth emotion-2"
+    />
+    <h3
+      class="MuiTypography-root MuiTypography-h5 emotion-3"
+    >
+      This page could not be found.
+    </h3>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`404 page matches snapshot DE 1`] = `
+<DocumentFragment>
+  .emotion-0 {
+  text-align: center;
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.emotion-1 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 3rem;
+  line-height: 1.167;
+  letter-spacing: 0em;
+}
+
+.emotion-2 {
+  margin: 0;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  border-width: 0;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.12);
+  border-bottom-width: thin;
+}
+
+.emotion-3 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 1.5rem;
+  line-height: 1.334;
+  letter-spacing: 0em;
+}
+
+<div
+    class="MuiBox-root emotion-0"
+  >
+    <h1
+      class="MuiTypography-root MuiTypography-h3 emotion-1"
+    >
+      404
+    </h1>
+    <hr
+      class="MuiDivider-root MuiDivider-fullWidth emotion-2"
+    />
+    <h3
+      class="MuiTypography-root MuiTypography-h5 emotion-3"
+    >
+      Diese Seite konnte nicht gefunden werden.
+    </h3>
+  </div>
+</DocumentFragment>
+`;
