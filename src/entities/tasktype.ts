@@ -10,10 +10,10 @@ import Home from './home';
 import Task from './task';
 
 /**
- * A template with name and points for tasks.
+ * A template for tasks containing name and points.
  */
 @Entity()
-@ObjectType({ description: 'A template with name and points for tasks.' })
+@ObjectType({ description: 'A template for tasks containing name and points.' })
 export default class TaskType extends BaseEntity {
   /**
    * The id is automatically generated.
@@ -23,17 +23,17 @@ export default class TaskType extends BaseEntity {
   id!: string;
 
   /**
-   * The name of the task (e.g. vacuum).
+   * The name of the task.
    */
   @Column()
-  @Field({ description: 'The name of the task type (e.g. vacuum).' })
+  @Field({ description: 'The name of the task type.' })
   name!: string;
 
   /**
-   * The points of the task.
+   * The amount of points the task is worth.
    */
   @Column()
-  @Field({ description: 'The points of the task.' })
+  @Field({ description: 'The amount of points the task is worth.' })
   points!: number;
 
   /**
@@ -44,7 +44,7 @@ export default class TaskType extends BaseEntity {
 
   /**
    * The home that the task type belongs to.
-   * Null if the task is deleted.
+   * Null if the task type is deleted.
    */
   @ManyToOne('Home', 'taskTypes', { nullable: true })
   relatedHome?: Home | null | undefined;

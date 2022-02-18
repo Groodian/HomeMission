@@ -22,7 +22,7 @@ import Helper from './helper';
 @Resolver(Home)
 export default class HomeResolver implements ResolverInterface<Home> {
   /**
-   * Get the home of the authenticated user from the database or null if the users has no home.
+   * Get the home of the authenticated user from the database or null if the user has no home.
    */
   @Authorized()
   @Query(() => Home, {

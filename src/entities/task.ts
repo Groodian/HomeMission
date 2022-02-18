@@ -15,13 +15,13 @@ import TaskType from './tasktype';
 import User from './user';
 
 /**
- * A task saves a task type at a specific date.
- * It can belong to a series an may have an assignee.
+ * A task is an instantiation of a task type at a specific date.
+ * It can belong to a series and may have an assignee.
  * It also has a receipt if the task is completed.
  */
 @Entity()
 @ObjectType({
-  description: `A task saves a task type at a specific date.
+  description: `A task is an instantiation of a task type at a specific date.
 It can belong to a series an may have an assignee.
 It also has a receipt if the task is completed.`,
 })
@@ -37,11 +37,11 @@ export default class Task extends BaseEntity {
    * The date when the task should be completed.
    */
   @Column()
-  @Field({ description: 'The date when this task should be completed.' })
+  @Field({ description: 'The date when the task should be completed.' })
   date!: Date;
 
   /**
-   * The type of the task (e.g. vacuum).
+   * The type of the task.
    */
   @ManyToOne('TaskType', 'tasksOfType')
   type: TaskType;
@@ -61,8 +61,8 @@ export default class Task extends BaseEntity {
   assignee?: User | null | undefined;
 
   /**
-   * The receipt of the task if it is completed.
-   * Null otherwise.
+   * The receipt of the task.
+   * Null if the task has not been completed.
    */
   @OneToOne('TaskReceipt', { nullable: true })
   @JoinColumn()

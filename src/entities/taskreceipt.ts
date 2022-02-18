@@ -32,11 +32,11 @@ export default class TaskReceipt extends BaseEntity {
   completionDate!: Date;
 
   /**
-   * Copy of the name of the task type to disable cascading.
+   * Copy of the name of the task type to avoid cascading.
    */
   @Column()
   @Field({
-    description: 'Copy of the name of the task type to disable cascading.',
+    description: 'Copy of the name of the task type to avoid cascading.',
   })
   name!: string;
 

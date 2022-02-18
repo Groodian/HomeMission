@@ -30,19 +30,19 @@ export default class TaskTypeResolver {
 
   /**
    * Create a new task type.
-   * @param name The name of the new task type (e.g. vacuum).
-   * @param points The points that associated tasks will be worth.
+   * @param name The name of the new task type.
+   * @param points The amount of points that associated tasks will be worth.
    */
   @Authorized()
   @Mutation(() => TaskType, { description: 'Create a new task type.' })
   async createTaskType(
     @CurrentSession() session: Session,
     @Arg('name', {
-      description: 'The name of the new task type (e.g. vacuum).',
+      description: 'The name of the new task type.',
     })
     name: string,
     @Arg('points', {
-      description: 'The points that associated tasks will be worth.',
+      description: 'The amount of points that associated tasks will be worth.',
     })
     points: number
   ) {

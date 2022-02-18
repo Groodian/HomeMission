@@ -45,12 +45,12 @@ export default class TaskResolver implements ResolverInterface<Task> {
 
   /**
    * Get open tasks that have not been completed yet and are not assigned to another user.
-   * Only load tasks max two weeks in the past and max for weeks in the future.
+   * Only load tasks max two weeks in the past and max four weeks in the future.
    */
   @Authorized()
   @Query(() => [Task], {
     description: `Get open tasks that have not been completed yet and are not assigned to another user.
-Only load tasks max two weeks in the past and max for weeks in the future.`,
+Only load tasks max two weeks in the past and max four weeks in the future.`,
   })
   async openTasks(@CurrentSession() session: Session) {
     await databaseConnection();
@@ -93,7 +93,7 @@ Only load tasks max two weeks in the past and max for weeks in the future.`,
    * Only load task type if required.
    */
   @FieldResolver(() => TaskType, {
-    description: 'The type of the task (e.g. vacuum).',
+    description: 'The type of the task.',
   })
   async type(@Root() task: Task) {
     return (await TaskType.findOne(task.type)) as TaskType;
@@ -128,8 +128,8 @@ Null if no user is assigned.`,
    */
   @FieldResolver(() => TaskReceipt, {
     nullable: true,
-    description: `The receipt of the task if it is completed.
-Null otherwise.`,
+    description: `The receipt of the task.
+Null if the task has not been completed.`,
   })
   async receipt(@Root() task: Task) {
     return task.receipt
@@ -203,7 +203,7 @@ The task must belong to the users home.`,
    * Assign a roommate to a task.
    * The task must belong to the users home.
    * @param task The id of the task to be assigned.
-   * @param assign The new assignee of the task.
+   * @param assign The id of the new assignee of the task.
    */
   @Authorized()
   @Mutation(() => Task, {
@@ -212,9 +212,9 @@ The task must belong to the users home.`,
   })
   async assignTask(
     @CurrentSession() session: Session,
-    @Arg('task', { description: 'The task to be assigned.' })
+    @Arg('task', { description: 'The id of the task to be assigned.' })
     task: string,
-    @Arg('user', { description: 'The new assignee of the task.' })
+    @Arg('user', { description: 'The id of the new assignee of the task.' })
     assignee: string
   ) {
     await databaseConnection();

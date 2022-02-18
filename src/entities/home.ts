@@ -18,7 +18,7 @@ import User from './user';
  * Homes are created by users.
  * Users can give their home a name.
  * Users can invite others by giving them the code (invitation code) of their home.
- * Each home has its own set of Tasks, created and maintained by members of the home.
+ * Each home has its own set of tasks, created and maintained by members of the home.
  */
 @Entity()
 @ObjectType({
@@ -26,7 +26,7 @@ import User from './user';
 Homes are created by users.
 Users can give their home a name.
 Users can invite others by giving them the code (invitation code) of their home.
-Each home has its own set of Tasks, created and maintained by members of the home.`,
+Each home has its own set of tasks, created and maintained by members of the home.`,
 })
 export default class Home extends BaseEntity {
   /**
@@ -45,14 +45,12 @@ export default class Home extends BaseEntity {
 
   /**
    * The invitation code of the home.
-   * Is automatically generated.
-   * 6 alphanumeric uppercase characters.
+   * Automatically generated string consisting of 6 alphanumeric uppercase characters.
    */
   @Column({ unique: true })
   @Field({
     description: `The invitation code of the home.
-Is automatically generated.
-6 alphanumeric uppercase characters.`,
+Automatically generated string consisting of 6 alphanumeric uppercase characters.`,
   })
   code!: string;
 

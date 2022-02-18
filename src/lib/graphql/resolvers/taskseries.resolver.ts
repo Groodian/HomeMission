@@ -13,7 +13,7 @@ export default class TaskSeriesResolver {
   /**
    * Create a new task series and correlating tasks.
    * @param start The date of the first task of the series.
-   * @param interval The interval between tasks in weeks.
+   * @param interval The interval between tasks measured in weeks.
    * @param iterations The number of tasks to create.
    * @param type The id of the task type.
    */
@@ -25,7 +25,8 @@ export default class TaskSeriesResolver {
     @CurrentSession() session: Session,
     @Arg('start', { description: 'The date of the first task of the series.' })
     start: number,
-    @Arg('interval', { description: 'The interval between tasks in weeks.' })
+    // prettier-ignore
+    @Arg('interval', { description: 'The interval between tasks measured in weeks.' })
     interval: number,
     @Arg('iterations', { description: 'The number of tasks to create.' })
     iterations: number,

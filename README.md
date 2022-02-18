@@ -237,7 +237,7 @@ type User {
 # Homes are created by users.
 # Users can give their home a name.
 # Users can invite others by giving them the code (invitation code) of their home.
-# Each home has its own set of Tasks, created and maintained by members of the home.
+# Each home has its own set of tasks, created and maintained by members of the home.
 type Home {
   # The id is automatically generated.
   id: ID!
@@ -246,8 +246,7 @@ type Home {
   name: String!
 
   # The invitation code of the home.
-  # Is automatically generated.
-  # 6 alphanumeric uppercase characters.
+  # Automatically generated string consisting of 6 alphanumeric uppercase characters.
   code: String!
 
   # The users that are part of the home (roommates).
@@ -299,29 +298,29 @@ enum HistoryType {
   TASK_COMPLETED
 }
 
-# A template with name and points for tasks.
+# A template for tasks containing name and points.
 type TaskType {
   # The id is automatically generated.
   id: ID!
 
-  # The name of the task type (e.g. vacuum).
+  # The name of the task type.
   name: String!
 
-  # The points of the task.
+  # The amount of points the task is worth.
   points: Float!
 }
 
-# A task saves a task type at a specific date.
+# A task is an instantiation of a task type at a specific date.
 # It can belong to a series an may have an assignee.
 # It also has a receipt if the task is completed.
 type Task {
   # The id is automatically generated.
   id: ID!
 
-  # The date when this task should be completed.
+  # The date when the task should be completed.
   date: DateTime!
 
-  # The type of the task (e.g. vacuum).
+  # The type of the task.
   type: TaskType!
 
   # The series that the task belongs to.
@@ -332,8 +331,8 @@ type Task {
   # Null if no user is assigned.
   assignee: User
 
-  # The receipt of the task if it is completed.
-  # Null otherwise.
+  # The receipt of the task.
+  # Null if the task has not been completed.
   receipt: TaskReceipt
 }
 
@@ -341,7 +340,7 @@ type Task {
 scalar DateTime
 
 # A series of tasks.
-# Is used to delete multiple tasks belonging to the same series.
+# Is used to manage multiple tasks belonging to the same series.
 type TaskSeries {
   # The id is automatically generated.
   id: ID!
@@ -355,7 +354,7 @@ type TaskReceipt {
   # The date when the task was completed.
   completionDate: DateTime!
 
-  # Copy of the name of the task type to disable cascading.
+  # Copy of the name of the task type to avoid cascading.
   name: String!
 
   # Copy of the points of the task type to disable cascading.
@@ -438,7 +437,7 @@ type Query {
   tasks: [Task!]!
 
   # Get open tasks that have not been completed yet and are not assigned to another user.
-  # Only load tasks max two weeks in the past and max for weeks in the future.
+  # Only load tasks max two weeks in the past and max four weeks in the future.
   openTasks: [Task!]!
 
   # Get all receipts that are correlated to the users home.
@@ -500,10 +499,10 @@ type Mutation {
 
   # Create a new task type.
   createTaskType(
-    # The points that associated tasks will be worth.
+    # The amount of points that associated tasks will be worth.
     points: Float!
 
-    # The name of the new task type (e.g. vacuum).
+    # The name of the new task type.
     name: String!
   ): TaskType!
 
@@ -533,10 +532,10 @@ type Mutation {
   # Assign a roommate to a task.
   # The task must belong to the users home.
   assignTask(
-    # The new assignee of the task.
+    # The id of the new assignee of the task.
     user: String!
 
-    # The task to be assigned.
+    # The id of the task to be assigned.
     task: String!
   ): Task!
 
@@ -555,7 +554,7 @@ type Mutation {
     # The number of tasks to create.
     iterations: Float!
 
-    # The interval between tasks in weeks.
+    # The interval between tasks measured in weeks.
     interval: Float!
 
     # The date of the first task of the series.

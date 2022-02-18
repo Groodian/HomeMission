@@ -11,12 +11,12 @@ import Task from './task';
 
 /**
  * A series of tasks.
- * Is used to delete multiple tasks belonging to the same series.
+ * Is used to manage multiple tasks belonging to the same series.
  */
 @Entity()
 @ObjectType({
   description: `A series of tasks.
-Is used to delete multiple tasks belonging to the same series.`,
+Is used to manage multiple tasks belonging to the same series.`,
 })
 export default class TaskSeries extends BaseEntity {
   /**
