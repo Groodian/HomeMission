@@ -98,18 +98,12 @@ The authenticated user is saved as completer.`,
 
       // create reference from task to receipt
       taskItem.receipt = receipt;
-      await taskItem.save();
 
-      await Helper.createHistory(
-        home,
-        user,
-        HistoryType.TASK_COMPLETED,
-        null,
-        null,
-        taskItem,
-        null,
-        null
-      );
+      // save
+      await taskItem.save();
+      await Helper.createHistory(home, user, HistoryType.TASK_COMPLETED, {
+        task: taskItem,
+      });
 
       receipt.completer = receipt.completer.id as any; // Only save id for field resolver
 

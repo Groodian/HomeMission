@@ -161,19 +161,12 @@ Null if the task has not been completed.`,
       const task = new Task(validDate, home, taskType);
 
       // save
-      const savedTask = await task.save();
-      await Helper.createHistory(
-        home,
-        user,
-        HistoryType.TASK_CREATED,
-        null,
-        null,
-        savedTask,
-        null,
-        null
-      );
+      await task.save();
+      await Helper.createHistory(home, user, HistoryType.TASK_CREATED, {
+        task,
+      });
 
-      return savedTask;
+      return task;
     } catch (e) {
       throw Error(
         'Failed to create task! Check that type is valid and part of users home.'
@@ -206,19 +199,12 @@ The task must belong to the users home.`,
       taskEntity.relatedHome = null;
 
       // save
-      const savedTaskEntity = await taskEntity.save();
-      await Helper.createHistory(
-        home,
-        user,
-        HistoryType.TASK_DELETED,
-        null,
-        null,
-        savedTaskEntity,
-        null,
-        null
-      );
+      await taskEntity.save();
+      await Helper.createHistory(home, user, HistoryType.TASK_DELETED, {
+        task: taskEntity,
+      });
 
-      return savedTaskEntity;
+      return taskEntity;
     } catch (e) {
       throw Error('Failed to delete task!');
     }
@@ -252,19 +238,13 @@ The task must belong to the users home.`,
       taskEntity.assignee = roommate.id as any; // Only save id for field resolver
 
       // save
-      const taskEntriySaved = await taskEntity.save();
-      await Helper.createHistory(
-        home,
-        user,
-        HistoryType.TASK_ASSIGNED,
-        null,
-        null,
-        taskEntriySaved,
-        roommate,
-        null
-      );
+      await taskEntity.save();
+      await Helper.createHistory(home, user, HistoryType.TASK_ASSIGNED, {
+        task: taskEntity,
+        affectedUser: roommate,
+      });
 
-      return taskEntriySaved;
+      return taskEntity;
     } catch (e) {
       throw Error('Failed to assign task!');
     }
@@ -296,23 +276,17 @@ The task must belong to the users home.`,
       );
     }
     try {
-      const roommate = taskEntity.assignee;
+      const previousAssignee = taskEntity.assignee;
       taskEntity.assignee = null;
 
       // save
-      const taskEntriySaved = await taskEntity.save();
-      await Helper.createHistory(
-        home,
-        user,
-        HistoryType.TASK_UNASSIGNED,
-        null,
-        null,
-        taskEntriySaved,
-        roommate,
-        null
-      );
+      await taskEntity.save();
+      await Helper.createHistory(home, user, HistoryType.TASK_UNASSIGNED, {
+        task: taskEntity,
+        affectedUser: previousAssignee,
+      });
 
-      return taskEntriySaved;
+      return taskEntity;
     } catch (e) {
       throw Error(`Failed to remove assignee from task ${taskEntity.id}!`);
     }

@@ -22,7 +22,7 @@ const HomeData: React.FC = () => {
   const { t } = useTranslation('common', { keyPrefix: 'Navbar' });
   const { enqueueSnackbar } = useSnackbar();
   const { data } = useHomeQuery();
-  const [renameHome] = useRenameHomeMutation();
+  const [renameHome] = useRenameHomeMutation({ refetchQueries: ['History'] });
   const [nameValue, setNameValue] = React.useState<string>();
   const [inviteOpen, setInviteOpen] = React.useState(false);
 

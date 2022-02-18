@@ -115,7 +115,7 @@ const UserMenu: React.FC = () => {
               required
               autoFocus
               label={t('new-name')}
-              value={newName}
+              value={newName || ''}
               onChange={(event) => setNewName(event.target.value)}
               disabled={loading}
               fullWidth

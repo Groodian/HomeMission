@@ -44,7 +44,7 @@ export default class Task extends BaseEntity {
    * The type of the task.
    */
   @ManyToOne('TaskType', 'tasksOfType')
-  type: TaskType;
+  type!: TaskType;
 
   /**
    * The series that the task belongs to.

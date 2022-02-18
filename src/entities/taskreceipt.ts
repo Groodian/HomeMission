@@ -53,7 +53,7 @@ export default class TaskReceipt extends BaseEntity {
    * The user that completed the task.
    */
   @ManyToOne('User', 'receipts')
-  completer: User;
+  completer!: User;
 
   /**
    * The home that the task belongs to.

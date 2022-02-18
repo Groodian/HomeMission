@@ -107,11 +107,13 @@ export default class Helper {
     home: Home,
     user: User,
     type: HistoryType,
-    taskType: TaskType | null,
-    taskSeries: TaskSeries | null,
-    task: Task | null,
-    affectedUser: User | null,
-    extraInfo: string | null
+    relations?: {
+      taskType?: TaskType;
+      task?: Task;
+      taskSeries?: TaskSeries;
+      affectedUser?: User;
+      extraInfo?: string;
+    }
   ): Promise<History> {
     try {
       await databaseConnection();
@@ -120,14 +122,12 @@ export default class Helper {
       history.home = home;
       history.user = user;
       history.type = type;
-      history.taskType = taskType;
-      history.taskSeries = taskSeries;
-      history.task = task;
-      history.affectedUser = affectedUser;
-      history.extraInfo = extraInfo;
-      await history.save();
-
-      return history;
+      history.taskType = relations?.taskType || null;
+      history.task = relations?.task || null;
+      history.taskSeries = relations?.taskSeries || null;
+      history.affectedUser = relations?.affectedUser || null;
+      history.extraInfo = relations?.extraInfo || null;
+      return await history.save();
     } catch (e) {
       throw Error('Failed to create history!');
     }

@@ -1,10 +1,10 @@
 import { Session } from '@auth0/nextjs-auth0';
 import { Arg, Authorized, Mutation, Query, Resolver } from 'type-graphql';
+import { HistoryType } from '../../../entities/history';
 import User from '../../../entities/user';
 import CurrentSession from '../../auth0/current-session';
 import databaseConnection from '../../typeorm/connection';
 import Helper from './helper';
-import { HistoryType } from '../../../entities/history';
 
 @Resolver(User)
 export default class UserResolver {
@@ -46,21 +46,14 @@ export default class UserResolver {
       user.name = name;
 
       // save
-      const userSaved = await user.save();
+      await user.save();
       if (home) {
-        await Helper.createHistory(
-          home,
-          userSaved,
-          HistoryType.USER_RENAME,
-          null,
-          null,
-          null,
-          null,
-          name
-        );
+        await Helper.createHistory(home, user, HistoryType.USER_RENAME, {
+          extraInfo: name,
+        });
       }
 
-      return userSaved;
+      return user;
     } catch (e) {
       throw Error('Failed to rename user!');
     }

@@ -23,7 +23,7 @@ const DeleteButton: React.FC<DeleteButtonProps> = ({ task, type }) => {
   const { t } = useTranslation('overview', { keyPrefix: 'TaskDetailsDrawer' });
   const { enqueueSnackbar } = useSnackbar();
 
-  const refetchOptions = { refetchQueries: ['Tasks', 'OpenTasks'] };
+  const refetchOptions = { refetchQueries: ['Tasks', 'OpenTasks', 'History'] };
   const [deleteTask, { loading: loadingSingle }] =
     useDeleteTaskMutation(refetchOptions);
   const [deleteTaskSeries, { loading: loadingSeriesAll }] =

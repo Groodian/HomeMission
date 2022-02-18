@@ -271,20 +271,38 @@ type History {
   # The id is automatically generated.
   id: ID!
 
-  # The user that triggered the event.
-  user: User!
-
   # The date when the event was recorded.
   date: String!
 
   # The type of the event.
   type: HistoryType!
+
+  # The history may contain extra info.
+  extraInfo: String
+
+  # The user that triggered the event.
+  user: User!
+
+  # The history may contain a reference to a task type.
+  taskType: TaskType
+
+  # The history may contain a reference to a task.
+  task: Task
+
+  # The history may contain a reference to a task series.
+  taskSeries: TaskSeries
+
+  # The history may contain a reference to an affected user.
+  affectedUser: User
 }
 
 # The event type of a history entry.
 enum HistoryType {
+  HOME_CREATED
+  HOME_RENAMED
   USER_JOIN
   USER_LEAVE
+  USER_RENAME
   TASK_TYPE_CREATED
   TASK_TYPE_DELETED
   TASK_TYPE_UPDATED
@@ -296,6 +314,8 @@ enum HistoryType {
   TASK_DELETED
   TASK_UPDATED
   TASK_COMPLETED
+  TASK_ASSIGNED
+  TASK_UNASSIGNED
 }
 
 # A template for tasks containing name and points.

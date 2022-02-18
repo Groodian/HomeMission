@@ -17,7 +17,7 @@ import TaskSeries from './taskseries';
  */
 export enum HistoryType {
   HOME_CREATED = 'home_created',
-  HOME_RENAME = 'home_rename',
+  HOME_RENAMED = 'home_renamed',
   USER_JOIN = 'user_join',
   USER_LEAVE = 'user_leave',
   USER_RENAME = 'user_rename',
@@ -68,7 +68,6 @@ export default class History extends BaseEntity {
    * The user that triggered the event.
    */
   @ManyToOne('User', 'history')
-  @Field({ description: 'The user that triggered the event.' })
   user!: User;
 
   /**
@@ -85,21 +84,39 @@ export default class History extends BaseEntity {
   @Field(() => HistoryType, { description: 'The type of the event.' })
   type!: HistoryType;
 
+  /**
+   * The history may contain a reference to a task type.
+   */
   @ManyToOne('TaskType', { nullable: true })
-  taskType!: TaskType | null;
+  taskType?: TaskType | null | undefined;
 
-  @ManyToOne('TaskSeries', { nullable: true })
-  taskSeries!: TaskSeries | null;
-
+  /**
+   * The history may contain a reference to a task.
+   */
   @ManyToOne('Task', { nullable: true })
-  task!: Task | null;
+  task?: Task | null | undefined;
 
+  /**
+   * The history may contain a reference to a task series.
+   */
+  @ManyToOne('TaskSeries', { nullable: true })
+  taskSeries?: TaskSeries | null | undefined;
+
+  /**
+   * The history may contain a reference to an affected user.
+   */
   @ManyToOne('User', { nullable: true })
-  affectedUser!: User | null;
+  affectedUser?: User | null | undefined;
 
+  /**
+   * The history may contain extra info.
+   */
   @Column({ nullable: true })
-  @Field(() => String, { nullable: true })
-  extraInfo!: string | null;
+  @Field(() => String, {
+    nullable: true,
+    description: 'The history may contain extra info.',
+  })
+  extraInfo?: string | null | undefined;
 
   constructor() {
     super();

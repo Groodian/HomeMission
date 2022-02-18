@@ -1,7 +1,8 @@
 import React from 'react';
 import {
-  Divider,
+  Avatar,
   Paper,
+  Stack,
   Table,
   TableBody,
   TableCell,
@@ -9,45 +10,62 @@ import {
   TableHead,
   TableRow,
   Tooltip,
+  Typography,
 } from '@mui/material';
 import { GetStaticProps, NextPage } from 'next';
-import { useRouter } from 'next/router';
-import { useTranslation } from 'next-i18next';
+import { TFunction, useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import Image from 'next/image';
+import { NextRouter, useRouter } from 'next/router';
 import { useSnackbar } from 'notistack';
 import LoadingSpinner from '../components/LoadingSpinner';
-import { useHistoryQuery } from '../lib/graphql/operations/history.graphql';
-import { NextRouter, useRouter } from 'next/router';
+import {
+  HistoryQuery,
+  useHistoryQuery,
+} from '../lib/graphql/operations/history.graphql';
 
 const History: NextPage = () => {
   const { t } = useTranslation(['history']);
   const { enqueueSnackbar } = useSnackbar();
   const router = useRouter();
   const { loading, error, data } = useHistoryQuery();
+  const [updates, setUpdates] = React.useState(0);
 
   React.useEffect(() => {
     if (error) enqueueSnackbar(t('error-message'), { variant: 'error' });
   }, [error]);
 
+  // Rerender interval
+  React.useEffect(() => {
+    const newest = data?.home?.history[0]?.date;
+    // Only set rerender interval if there is a newest history entry
+    if (newest) {
+      const timeDifference = new Date().getTime() - new Date(newest).getTime();
+      setTimeout(
+        () => setUpdates(updates + 1),
+        timeDifference < 60000 ? 1000 : 60000 // Rerender every second or minute based on time difference to newest history entry
+      );
+    }
+  }, [data, updates]);
+
   return (
     <TableContainer component={Paper}>
-      <Divider />
       <LoadingSpinner loading={loading} />
       <Table>
-        <TableHead sx={{ background: '#a3c4e1' }}>
+        <TableHead
+          sx={{
+            background: ({ palette }) =>
+              palette.grey[palette.mode === 'light' ? 300 : 800],
+          }}
+        >
           <TableRow>
             <TableCell>
-              <b>User Avatar</b>
+              <b>{t('roommate')}</b>
             </TableCell>
             <TableCell>
-              <b>User name</b>
+              <b>{t('activity')}</b>
             </TableCell>
             <TableCell>
-              <b>Activity</b>
-            </TableCell>
-            <TableCell>
-              <b>Date</b>
+              <b>{t('time')}</b>
             </TableCell>
           </TableRow>
         </TableHead>
@@ -55,16 +73,18 @@ const History: NextPage = () => {
           {data?.home?.history.map((history) => (
             <TableRow key={history.id}>
               <TableCell>
-                <Image
-                  src={history.user.picture}
-                  alt={t('profile-picture-alt', { history })}
-                  width={40}
-                  height={40}
-                />
+                <Stack
+                  direction="row"
+                  spacing={2}
+                  sx={{ alignItems: 'center' }}
+                >
+                  <Avatar
+                    src={history.user.picture}
+                    alt={t('profile-picture-alt', { history })}
+                  />
+                  <Typography>{history.user.name}</Typography>
+                </Stack>
               </TableCell>
-
-              <TableCell>{history.user.name}</TableCell>
-
               <TableCell>{formatText(history, t, router)}</TableCell>
               <TableCell>
                 <Tooltip
@@ -82,7 +102,13 @@ const History: NextPage = () => {
   );
 };
 
-const formatText = (history: any, t: any, router: NextRouter): string => {
+type HistoryEntry = NonNullable<HistoryQuery['home']>['history'][number];
+
+function formatText(
+  history: HistoryEntry,
+  t: TFunction,
+  router: NextRouter
+): string {
   let date = '';
   if (history.task) {
     date = new Date(history.task.date).toLocaleDateString(router.locale);
@@ -92,15 +118,15 @@ const formatText = (history: any, t: any, router: NextRouter): string => {
     history,
     date,
   });
-};
+}
 
-const formatTime = (date: any, t: any): string => {
+function formatTime(date: string, t: TFunction): string {
   const seconds = Math.floor(
     (new Date().getTime() - new Date(date).getTime()) / 1000
   );
 
   let interval = seconds / 31536000;
-  if (interval > 1) {
+  if (interval >= 1) {
     interval = Math.floor(interval);
     if (interval == 1) {
       return interval + ' ' + t('year', { ns: 'common' });
@@ -110,7 +136,7 @@ const formatTime = (date: any, t: any): string => {
   }
 
   interval = seconds / 2592000;
-  if (interval > 1) {
+  if (interval >= 1) {
     interval = Math.floor(interval);
     if (interval == 1) {
       return interval + ' ' + t('month', { ns: 'common' });
@@ -120,7 +146,7 @@ const formatTime = (date: any, t: any): string => {
   }
 
   interval = seconds / 86400;
-  if (interval > 1) {
+  if (interval >= 1) {
     interval = Math.floor(interval);
     if (interval == 1) {
       return interval + ' ' + t('day', { ns: 'common' });
@@ -130,7 +156,7 @@ const formatTime = (date: any, t: any): string => {
   }
 
   interval = seconds / 3600;
-  if (interval > 1) {
+  if (interval >= 1) {
     interval = Math.floor(interval);
     if (interval == 1) {
       return interval + ' ' + t('hour', { ns: 'common' });
@@ -140,7 +166,7 @@ const formatTime = (date: any, t: any): string => {
   }
 
   interval = seconds / 60;
-  if (interval > 1) {
+  if (interval >= 1) {
     interval = Math.floor(interval);
     if (interval == 1) {
       return interval + ' ' + t('minute', { ns: 'common' });
@@ -155,7 +181,7 @@ const formatTime = (date: any, t: any): string => {
   } else {
     return interval + ' ' + t('seconds', { ns: 'common' });
   }
-};
+}
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   return {

@@ -51,21 +51,15 @@ export default class TaskTypeResolver {
     const user = await Helper.getMeOrFail(session);
 
     try {
-      const type = new TaskType(name, points, home);
+      const taskType = new TaskType(name, points, home);
 
-      const savedTaskType = await type.save();
-      await Helper.createHistory(
-        home,
-        user,
-        HistoryType.TASK_TYPE_CREATED,
-        savedTaskType,
-        null,
-        null,
-        null,
-        null
-      );
+      // save
+      await taskType.save();
+      await Helper.createHistory(home, user, HistoryType.TASK_TYPE_CREATED, {
+        taskType,
+      });
 
-      return savedTaskType;
+      return taskType;
     } catch (e) {
       throw Error('Failed to create task type!');
     }
@@ -96,19 +90,12 @@ The task type must belong to the users home.`,
       taskType.relatedHome = null;
 
       // save
-      const savedTaskType = await taskType.save();
-      await Helper.createHistory(
-        home,
-        user,
-        HistoryType.TASK_TYPE_DELETED,
-        savedTaskType,
-        null,
-        null,
-        null,
-        null
-      );
+      await taskType.save();
+      await Helper.createHistory(home, user, HistoryType.TASK_TYPE_DELETED, {
+        taskType,
+      });
 
-      return savedTaskType;
+      return taskType;
     } catch (e) {
       throw Error('Failed to delete task type!');
     }

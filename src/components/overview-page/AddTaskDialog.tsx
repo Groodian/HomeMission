@@ -44,14 +44,18 @@ const AddTaskDialog: React.FC<AddTaskDialogProps> = ({
 
   const { error, data } = useTaskTypesQuery();
   const [deleteType] = useDeleteTaskTypeMutation({
-    refetchQueries: ['TaskTypes'],
+    refetchQueries: ['TaskTypes', 'History'],
   });
   const [createType, { loading: typeLoading, reset: typeReset }] =
-    useCreateTaskTypeMutation({ refetchQueries: ['TaskTypes'] });
+    useCreateTaskTypeMutation({ refetchQueries: ['TaskTypes', 'History'] });
   const [createTask, { loading: taskLoading, reset: taskReset }] =
-    useCreateTaskMutation({ refetchQueries: ['Tasks', 'OpenTasks'] });
+    useCreateTaskMutation({
+      refetchQueries: ['Tasks', 'OpenTasks', 'History'],
+    });
   const [createSeries, { loading: seriesLoading, reset: seriesReset }] =
-    useCreateTaskSeriesMutation({ refetchQueries: ['Tasks', 'OpenTasks'] });
+    useCreateTaskSeriesMutation({
+      refetchQueries: ['Tasks', 'OpenTasks', 'History'],
+    });
   const loading = typeLoading || taskLoading || seriesLoading;
 
   const [date, setDate] = React.useState<number | null>(null);

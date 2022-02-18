@@ -1,5 +1,7 @@
 {
-  "title" : "Historie",
+  "roommate": "Mitbewohner",
+  "activity": "Aktivität",
+  "time": "Zeitpunkt",
   "profile-picture-alt": "Profilbild von {{history.user.name}}",
   "ago": "vor {{time}}",
   "home-created": "Hat die WG erstellt",

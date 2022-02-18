@@ -114,16 +114,7 @@ Generate default task types in the specified language.`,
     try {
       const createdHome = await new Home(name).save();
 
-      await Helper.createHistory(
-        createdHome,
-        user,
-        HistoryType.HOME_CREATED,
-        null,
-        null,
-        null,
-        null,
-        null
-      );
+      await Helper.createHistory(createdHome, user, HistoryType.HOME_CREATED);
 
       await this.generateDefaultTaskTypes(createdHome, language);
       return this.addUserToHome(createdHome, session);
@@ -175,19 +166,12 @@ Generate default task types in the specified language.`,
       home.name = name;
 
       // save
-      const homeSaved = await home.save();
-      await Helper.createHistory(
-        homeSaved,
-        user,
-        HistoryType.HOME_RENAME,
-        null,
-        null,
-        null,
-        null,
-        name
-      );
+      await home.save();
+      await Helper.createHistory(home, user, HistoryType.HOME_RENAMED, {
+        extraInfo: name,
+      });
 
-      return homeSaved;
+      return home;
     } catch (e) {
       throw Error('Failed to rename home!');
     }
@@ -203,24 +187,15 @@ Generate default task types in the specified language.`,
   })
   async leaveHome(@CurrentSession() session: Session) {
     await databaseConnection();
-    const user = await Helper.getMeOrFail(session);
     const home = await Helper.getHomeOrFail(session);
+    const user = await Helper.getMeOrFail(session);
     try {
       user.home = null;
       user.points = 0;
 
       // save
       await user.save();
-      await Helper.createHistory(
-        home,
-        user,
-        HistoryType.USER_LEAVE,
-        null,
-        null,
-        null,
-        null,
-        null
-      );
+      await Helper.createHistory(home, user, HistoryType.USER_LEAVE);
 
       return null;
     } catch (e) {
@@ -241,16 +216,7 @@ Generate default task types in the specified language.`,
 
       // save
       await user.save();
-      await Helper.createHistory(
-        home,
-        user,
-        HistoryType.USER_JOIN,
-        null,
-        null,
-        null,
-        null,
-        null
-      );
+      await Helper.createHistory(home, user, HistoryType.USER_JOIN);
 
       // return the home
       return home;
