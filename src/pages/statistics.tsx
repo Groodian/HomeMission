@@ -26,7 +26,8 @@ const Statistics: NextPage = () => {
   const [homeWeekToggle, setHomeWeekToggle] = React.useState(false);
   const [userWeekToggles, setUserWeekToggles] = React.useState<boolean[]>([]);
 
-  const { loading, data } = useRoommatesQuery();
+  const { loading: roommatesLoading, data: roommatesData } =
+    useRoommatesQuery();
   const [
     getHomeStatistic,
     {
@@ -98,6 +99,7 @@ const Statistics: NextPage = () => {
       <Grid item lg={4} xs={6}>
         <ProgressCard title={t('monthly-progress')} progress={46.941} />
       </Grid>
+
       <Grid item lg={6} xs={12}>
         <ChartCard
           title={
@@ -105,77 +107,84 @@ const Statistics: NextPage = () => {
               <InlineDiamond /> {t('per-user')}
             </>
           }
-          loading={loading}
-          data={data?.home?.users}
+          loading={roommatesLoading}
+          data={roommatesData?.home?.users}
         >
           <BarSeries argumentField="name" valueField="points" />
         </ChartCard>
       </Grid>
 
-      {homeStatisticData && (
-        <Grid item lg={6} xs={12}>
-          <ChartCard
-            title={
-              <>
-                {t('home')}: <InlineDiamond />{' '}
-                {!homeWeekToggle ? t('per-day') : t('per-week')}
-              </>
-            }
-            data={homeStatisticData.homeStatistic.data.map((dataPoint) => ({
-              date: shortenDate(dataPoint.date),
-              points: !homeWeekToggle
-                ? dataPoint.pointsDay
-                : dataPoint.pointsWeek,
-            }))}
-            loading={homeStatisticLoading}
-            toggle={true}
-            onToggle={(value) => setHomeWeekToggle(value)}
-          >
-            {!homeWeekToggle ? (
-              <BarSeries argumentField="date" valueField="points" />
-            ) : (
-              <LineSeries argumentField="date" valueField="points" />
-            )}
-          </ChartCard>
-        </Grid>
-      )}
+      <Grid item lg={6} xs={12}>
+        <ChartCard
+          title={
+            <>
+              {t('home')}: <InlineDiamond />{' '}
+              {!homeWeekToggle ? t('per-day') : t('per-week')}
+            </>
+          }
+          data={homeStatisticData?.homeStatistic?.data.map((dataPoint) => ({
+            date: shortenDate(dataPoint.date),
+            points: !homeWeekToggle
+              ? dataPoint.pointsDay
+              : dataPoint.pointsWeek,
+          }))}
+          loading={homeStatisticLoading}
+          toggle={true}
+          onToggle={(value) => setHomeWeekToggle(value)}
+        >
+          {!homeWeekToggle ? (
+            <BarSeries argumentField="date" valueField="points" />
+          ) : (
+            <LineSeries argumentField="date" valueField="points" />
+          )}
+        </ChartCard>
+      </Grid>
 
-      {userStatisticsData &&
-        userStatisticsData.userStatistics.map((userStatistic, index) => {
-          const dayMode = !userWeekToggles[index];
-          return (
-            <Grid item lg={6} xs={12} key={userStatistic.user?.id}>
-              <ChartCard
-                title={
-                  <>
-                    {userStatistic.user
-                      ? userStatistic.user.name
-                      : t('ex-roommates')}
-                    : <InlineDiamond /> {dayMode ? t('per-day') : t('per-week')}
-                  </>
-                }
-                data={userStatistic.data.map((dataPoint) => ({
-                  date: shortenDate(dataPoint.date),
-                  points: dayMode ? dataPoint.pointsDay : dataPoint.pointsWeek,
-                }))}
-                loading={userStatisticsLoading}
-                maxValue={dayMode ? maxPointsDay : maxPointsWeek}
-                toggle={true}
-                onToggle={(value) =>
-                  setUserWeekToggles(
-                    userWeekToggles.map((e, i) => (i !== index ? e : value))
-                  )
-                }
-              >
-                {dayMode ? (
-                  <BarSeries argumentField="date" valueField="points" />
-                ) : (
-                  <LineSeries argumentField="date" valueField="points" />
-                )}
-              </ChartCard>
+      {userStatisticsData
+        ? userStatisticsData.userStatistics.map((userStatistic, index) => {
+            const dayMode = !userWeekToggles[index];
+            return (
+              <Grid item lg={6} xs={12} key={userStatistic.user?.id}>
+                <ChartCard
+                  title={
+                    <>
+                      {userStatistic.user
+                        ? userStatistic.user.name
+                        : t('ex-roommates')}
+                      : <InlineDiamond />{' '}
+                      {dayMode ? t('per-day') : t('per-week')}
+                    </>
+                  }
+                  data={userStatistic.data.map((dataPoint) => ({
+                    date: shortenDate(dataPoint.date),
+                    points: dayMode
+                      ? dataPoint.pointsDay
+                      : dataPoint.pointsWeek,
+                  }))}
+                  loading={userStatisticsLoading}
+                  maxValue={dayMode ? maxPointsDay : maxPointsWeek}
+                  toggle={true}
+                  onToggle={(value) =>
+                    setUserWeekToggles(
+                      userWeekToggles.map((e, i) => (i !== index ? e : value))
+                    )
+                  }
+                >
+                  {dayMode ? (
+                    <BarSeries argumentField="date" valueField="points" />
+                  ) : (
+                    <LineSeries argumentField="date" valueField="points" />
+                  )}
+                </ChartCard>
+              </Grid>
+            );
+          })
+        : // show loading indicators if roommates data is first available
+          roommatesData?.home?.users.map((user) => (
+            <Grid item lg={6} xs={12} key={user.id}>
+              <ChartCard title={user.name} loading={true} />
             </Grid>
-          );
-        })}
+          ))}
     </Grid>
   );
 

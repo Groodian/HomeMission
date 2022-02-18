@@ -187,7 +187,7 @@ describe('Statistics resolvers with', () => {
   );
 
   it(
-    'UserStatistics query returns arrays of blank data points for user and nothing for unknown unknown when no tasks have been completed',
+    'UserStatistics query returns arrays of blank data points for user and nothing for unknown when no tasks have been completed',
     async () => {
       await database.insertUsers();
       await database.insertHomes();

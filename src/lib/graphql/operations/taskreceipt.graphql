@@ -11,8 +11,8 @@ query Receipts {
   }
 }
 
-mutation CreateTaskReceipt ($task: String!) {
-  createTaskReceipt (task: $task) {
+mutation CreateTaskReceipt($task: String!) {
+  createTaskReceipt(task: $task) {
     id
     completionDate
     completer {

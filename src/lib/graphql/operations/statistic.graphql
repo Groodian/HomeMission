@@ -1,4 +1,4 @@
-query HomeStatistic ($start: Float!, $end: Float!) {
+query HomeStatistic($start: Float!, $end: Float!) {
   homeStatistic(start: $start, end: $end) {
     data {
       date
@@ -8,7 +8,7 @@ query HomeStatistic ($start: Float!, $end: Float!) {
   }
 }
 
-query UserStatistics ($start: Float!, $end: Float!) {
+query UserStatistics($start: Float!, $end: Float!) {
   userStatistics(start: $start, end: $end) {
     user {
       id
