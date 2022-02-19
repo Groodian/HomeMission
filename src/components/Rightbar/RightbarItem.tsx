@@ -1,5 +1,12 @@
 import React from 'react';
-import { Avatar, Badge, Container, styled, Tooltip } from '@mui/material';
+import {
+  Avatar,
+  Badge,
+  Container,
+  IconButton,
+  styled,
+  Tooltip,
+} from '@mui/material';
 import { Loop } from '@mui/icons-material';
 import Task from '../../entities/task';
 import { useTranslation } from 'next-i18next';
@@ -28,11 +35,13 @@ type RightBarItemProps = {
   task: Task;
   picture?: string;
   recurring?: boolean;
+  onSelectTask?: (selectedTask: Task) => void;
 };
 const RightbarItem: React.FC<RightBarItemProps> = ({
   task,
   picture,
   recurring,
+  onSelectTask = () => undefined,
 }) => {
   const { t } = useTranslation('common', { keyPrefix: 'Rightbar' });
 
@@ -59,14 +68,16 @@ const RightbarItem: React.FC<RightBarItemProps> = ({
   return (
     <Badge style={{ width: '100%' }} badgeContent={avatar}>
       <TaskContainer>
-        <TaskText
-          sx={{
-            fontSize: '1.1em',
-            fontWeight: 'bold',
-          }}
-        >
-          {task.type.name}
-        </TaskText>
+        <IconButton size="small" onClick={() => onSelectTask(task)}>
+          <TaskText
+            sx={{
+              fontSize: '1.1em',
+              fontWeight: 'bold',
+            }}
+          >
+            {task.type.name}
+          </TaskText>
+        </IconButton>
         <br />
         <TaskText>
           {task.type.points} <InlineDiamond />

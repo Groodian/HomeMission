@@ -6,6 +6,7 @@ import Task from '../../entities/task';
 import { useOpenTasksQuery } from '../../lib/graphql/operations/task.graphql';
 import { useSnackbar } from 'notistack';
 import StyledDrawer from '../StyledDrawer';
+import TaskDetailsDrawer from '../overview-page/TaskDetailsDrawer';
 
 const Header = styled('h3')({
   textAlign: 'center',
@@ -16,6 +17,9 @@ const Subtext = styled('p')(({ theme }) => ({
 }));
 
 const Rightbar: React.FC = () => {
+  const [selectedTask, setSelectedTask] = React.useState<Task | undefined>(
+    undefined
+  );
   const { t } = useTranslation('common', { keyPrefix: 'Rightbar' });
   const { enqueueSnackbar } = useSnackbar();
 
@@ -27,7 +31,14 @@ const Rightbar: React.FC = () => {
 
   const sxWidths = [0, 0, '18em', '18em', '22em'];
 
-  return (
+  return selectedTask ? (
+    <Container>
+      <TaskDetailsDrawer
+        task={selectedTask}
+        onCloseDrawer={() => setSelectedTask(undefined)}
+      />
+    </Container>
+  ) : (
     <StyledDrawer
       variant="permanent"
       anchor="right"
@@ -49,6 +60,7 @@ const Rightbar: React.FC = () => {
                   task={task as Task}
                   picture={task.assignee?.picture}
                   recurring={task.series !== null}
+                  onSelectTask={setSelectedTask}
                 />
               );
             })
