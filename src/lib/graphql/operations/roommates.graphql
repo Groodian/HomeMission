@@ -1,5 +1,6 @@
 query Roommates {
   home {
+    id
     users {
       id
       name

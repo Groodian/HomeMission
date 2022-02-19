@@ -13,10 +13,12 @@ apolloCache.writeQuery({
         id
         date
         type {
+          id
           name
           points
         }
         assignee {
+          id
           picture
           name
         }
@@ -34,6 +36,7 @@ apolloCache.writeQuery({
         date: '2022-01-01',
         type: {
           __typename: 'TaskType',
+          id: '1',
           name: 'Vacuum',
           points: 40,
         },
@@ -46,11 +49,13 @@ apolloCache.writeQuery({
         date: '2022-01-02',
         type: {
           __typename: 'TaskType',
+          id: '2',
           name: 'Clean',
           points: 60,
         },
         assignee: {
           __typename: 'User',
+          id: '1',
           picture: 'Picture',
           name: 'User Name',
         },

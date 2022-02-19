@@ -98,7 +98,7 @@ describe('Task receipts resolver with', () => {
       let res = await testGraphql(body, 'user-1');
       expect(res.end).toHaveBeenNthCalledWith(
         1,
-        '{"data":{"createTaskReceipt":{"id":"1"}}}\n'
+        '{"data":{"createTaskReceipt":{"id":"1","completer":{"id":"user-1","name":"name-1","picture":"picture-1"}}}}\n'
       );
 
       // query that gets tasks
@@ -126,9 +126,14 @@ describe('Task receipts resolver with', () => {
   `;
 
   const createTaskReceiptQuery = `
-    mutation CreateTaskReceipt ($task: String!) {
-      createTaskReceipt (task: $task) {
+    mutation CreateTaskReceipt($task: String!) {
+      createTaskReceipt(task: $task) {
         id
+        completer {
+          id
+          name
+          picture
+        }
       }
     }
   `;

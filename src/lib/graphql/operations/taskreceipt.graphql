@@ -16,6 +16,7 @@ mutation CreateTaskReceipt($task: String!) {
     id
     completionDate
     completer {
+      id
       name
       picture
     }

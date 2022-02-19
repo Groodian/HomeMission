@@ -15,6 +15,7 @@ query Tasks {
       name
       completionDate
       completer {
+        id
         name
         picture
       }
@@ -32,10 +33,12 @@ query OpenTasks {
     id
     date
     type {
+      id
       name
       points
     }
     assignee {
+      id
       picture
       name
     }

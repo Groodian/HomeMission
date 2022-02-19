@@ -14,21 +14,26 @@ apolloCache.writeQuery({
         history {
           id
           user {
+            id
             name
             picture
           }
           date
           type
           taskType {
+            id
             name
           }
           task {
+            id
             date
             type {
+              id
               name
             }
           }
           affectedUser {
+            id
             name
           }
           extraInfo
@@ -42,7 +47,7 @@ apolloCache.writeQuery({
       history: [
         {
           id: '1',
-          user: { name: 'User 1', picture: 'Picture 1' },
+          user: { id: '1', name: 'User 1', picture: 'Picture 1' },
           date: '2022-01-10T11:59:59',
           type: 'home_created',
           taskType: null,
@@ -52,7 +57,7 @@ apolloCache.writeQuery({
         },
         {
           id: '2',
-          user: { name: 'User 1', picture: 'Picture 1' },
+          user: { id: '1', name: 'User 1', picture: 'Picture 1' },
           date: '2022-01-10T11:59:58',
           type: 'home_renamed',
           taskType: null,
@@ -62,7 +67,7 @@ apolloCache.writeQuery({
         },
         {
           id: '3',
-          user: { name: 'User 2', picture: 'Picture 2' },
+          user: { id: '2', name: 'User 2', picture: 'Picture 2' },
           date: '2022-01-10T11:59:00',
           type: 'user_join',
           taskType: null,
@@ -72,7 +77,7 @@ apolloCache.writeQuery({
         },
         {
           id: '4',
-          user: { name: 'User 2', picture: 'Picture 2' },
+          user: { id: '2', name: 'User 2', picture: 'Picture 2' },
           date: '2022-01-10T11:58:00',
           type: 'user_leave',
           taskType: null,
@@ -82,7 +87,7 @@ apolloCache.writeQuery({
         },
         {
           id: '5',
-          user: { name: 'User 2', picture: 'Picture 2' },
+          user: { id: '2', name: 'User 2', picture: 'Picture 2' },
           date: '2022-01-10T11:00:00',
           type: 'user_rename',
           taskType: null,
@@ -92,17 +97,17 @@ apolloCache.writeQuery({
         },
         {
           id: '6',
-          user: { name: 'User 2', picture: 'Picture 2' },
+          user: { id: '2', name: 'User 2', picture: 'Picture 2' },
           date: '2022-01-10T10:00:00',
           type: 'task_type_created',
-          taskType: { name: 'Task type' },
+          taskType: { id: '1', name: 'Task type' },
           task: null,
           affectedUser: null,
           extraInfo: null,
         },
         {
           id: '7',
-          user: { name: 'User 2', picture: 'Picture 2' },
+          user: { id: '2', name: 'User 2', picture: 'Picture 2' },
           date: '2022-01-09T12:00:00',
           type: 'task_series_created',
           taskType: null,
@@ -112,7 +117,7 @@ apolloCache.writeQuery({
         },
         {
           id: '8',
-          user: { name: 'User 2', picture: 'Picture 2' },
+          user: { id: '2', name: 'User 2', picture: 'Picture 2' },
           date: '2022-01-08T12:00:00',
           type: 'task_series_deleted',
           taskType: null,
@@ -122,7 +127,7 @@ apolloCache.writeQuery({
         },
         {
           id: '9',
-          user: { name: 'User 2', picture: 'Picture 2' },
+          user: { id: '2', name: 'User 2', picture: 'Picture 2' },
           date: '2021-12-10T12:00:00',
           type: 'task_series_sub_deleted',
           taskType: null,
@@ -132,52 +137,72 @@ apolloCache.writeQuery({
         },
         {
           id: '10',
-          user: { name: 'User 2', picture: 'Picture 2' },
+          user: { id: '2', name: 'User 2', picture: 'Picture 2' },
           date: '2021-11-10T12:00:00',
           type: 'task_created',
           taskType: null,
-          task: { date: new Date('2022-01-01'), type: { name: 'Task type' } },
+          task: {
+            id: '1',
+            date: new Date('2022-01-01'),
+            type: { id: '1', name: 'Task type' },
+          },
           affectedUser: null,
           extraInfo: null,
         },
         {
           id: '11',
-          user: { name: 'User 2', picture: 'Picture 2' },
+          user: { id: '2', name: 'User 2', picture: 'Picture 2' },
           date: '2021-01-10T12:00:00',
           type: 'task_deleted',
           taskType: null,
-          task: { date: new Date('2022-01-01'), type: { name: 'Task type' } },
+          task: {
+            id: '1',
+            date: new Date('2022-01-01'),
+            type: { id: '1', name: 'Task type' },
+          },
           affectedUser: null,
           extraInfo: null,
         },
         {
           id: '12',
-          user: { name: 'User 2', picture: 'Picture 2' },
+          user: { id: '2', name: 'User 2', picture: 'Picture 2' },
           date: '2020-01-10T12:00:00',
           type: 'task_completed',
           taskType: null,
-          task: { date: new Date('2022-01-01'), type: { name: 'Task type' } },
+          task: {
+            id: '1',
+            date: new Date('2022-01-01'),
+            type: { id: '1', name: 'Task type' },
+          },
           affectedUser: null,
           extraInfo: null,
         },
         {
           id: '13',
-          user: { name: 'User 2', picture: 'Picture 2' },
+          user: { id: '2', name: 'User 2', picture: 'Picture 2' },
           date: '2022-01-10T12:00:00',
           type: 'task_assigned',
           taskType: null,
-          task: { date: new Date('2022-01-01'), type: { name: 'Task type' } },
-          affectedUser: { name: 'User 1' },
+          task: {
+            id: '1',
+            date: new Date('2022-01-01'),
+            type: { id: '1', name: 'Task type' },
+          },
+          affectedUser: { id: '1', name: 'User 1' },
           extraInfo: null,
         },
         {
           id: '14',
-          user: { name: 'User 2', picture: 'Picture 2' },
+          user: { id: '2', name: 'User 2', picture: 'Picture 2' },
           date: '2022-01-10T12:00:00',
           type: 'task_unassigned',
           taskType: null,
-          task: { date: new Date('2022-01-01'), type: { name: 'Task type' } },
-          affectedUser: { name: 'User 1' },
+          task: {
+            id: '1',
+            date: new Date('2022-01-01'),
+            type: { id: '1', name: 'Task type' },
+          },
+          affectedUser: { id: '1', name: 'User 1' },
           extraInfo: null,
         },
       ],

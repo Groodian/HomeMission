@@ -10,6 +10,7 @@ apolloCache.writeQuery({
   query: gql`
     query Roommates {
       home {
+        id
         users {
           id
           name
@@ -21,6 +22,7 @@ apolloCache.writeQuery({
   `,
   data: {
     home: {
+      id: '1',
       users: [
         { id: '1', name: 'User 1', picture: 'Picture 1', points: 50 },
         { id: '2', name: 'User 2', picture: 'Picture 2', points: 100 },

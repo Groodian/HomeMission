@@ -4,21 +4,26 @@ query History {
     history {
       id
       user {
+        id
         name
         picture
       }
       date
       type
       taskType {
+        id
         name
       }
       task {
+        id
         date
         type {
+          id
           name
         }
       }
       affectedUser {
+        id
         name
       }
       extraInfo

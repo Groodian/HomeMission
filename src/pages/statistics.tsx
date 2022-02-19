@@ -136,7 +136,7 @@ const Statistics: NextPage = () => {
         ? userStatisticsData.userStatistics.map((userStatistic, index) => {
             const dayMode = !userWeekToggles[index];
             return (
-              <Grid item lg={6} xs={12} key={userStatistic.user?.id}>
+              <Grid item lg={6} xs={12} key={userStatistic.user?.id || 'null'}>
                 <ChartCard
                   title={
                     <>

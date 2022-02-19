@@ -76,7 +76,7 @@ describe('Task resolver with', () => {
 
       expect(res.end).toHaveBeenNthCalledWith(
         1,
-        '{"data":{"openTasks":[{"id":"7","type":{"name":"name-1","points":1},"assignee":null},{"id":"8","type":{"name":"name-1","points":1},"assignee":null},{"id":"9","type":{"name":"name-1","points":1},"assignee":null},{"id":"10","type":{"name":"name-1","points":1},"assignee":null}]}}\n'
+        '{"data":{"openTasks":[{"id":"7","type":{"id":"1","name":"name-1","points":1},"assignee":null},{"id":"8","type":{"id":"1","name":"name-1","points":1},"assignee":null},{"id":"9","type":{"id":"1","name":"name-1","points":1},"assignee":null},{"id":"10","type":{"id":"1","name":"name-1","points":1},"assignee":null}]}}\n'
       );
     },
     timeoutLength
@@ -106,7 +106,7 @@ describe('Task resolver with', () => {
 
       expect(res.end).toHaveBeenNthCalledWith(
         1,
-        '{"data":{"openTasks":[{"id":"1","type":{"name":"name-1","points":1},"assignee":{"id":"user-1","picture":"picture-1"}},{"id":"3","type":{"name":"name-1","points":1},"assignee":null}]}}\n'
+        '{"data":{"openTasks":[{"id":"1","type":{"id":"1","name":"name-1","points":1},"assignee":{"id":"user-1","picture":"picture-1","name":"name-1"}},{"id":"3","type":{"id":"1","name":"name-1","points":1},"assignee":null}]}}\n'
       );
     },
     timeoutLength
@@ -135,7 +135,7 @@ describe('Task resolver with', () => {
 
       expect(res.end).toHaveBeenNthCalledWith(
         1,
-        '{"data":{"openTasks":[{"id":"3","type":{"name":"name-1","points":1},"assignee":null}]}}\n'
+        '{"data":{"openTasks":[{"id":"3","type":{"id":"1","name":"name-1","points":1},"assignee":null}]}}\n'
       );
     },
     timeoutLength
@@ -423,12 +423,14 @@ describe('Task resolver with', () => {
       openTasks {
         id
         type {
+          id
           name
           points
         }
         assignee {
           id
           picture
+          name
         }
       }
     }
