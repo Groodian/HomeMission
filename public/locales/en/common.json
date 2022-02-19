@@ -13,6 +13,7 @@
   "year": "year",
   "years": "years",
   "complete": "Complete",
+  "complete-disabled": "Only tasks within the next week can be completed",
   "edit": "Edit",
   "unassign": "Unassign",
   "user-error": "Could not load user",

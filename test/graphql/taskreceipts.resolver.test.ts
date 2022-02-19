@@ -1,6 +1,8 @@
 import { database, testGraphql, timeoutLength } from './testUtils';
 
 describe('Task receipts resolver with', () => {
+  Date.now = jest.fn(() => new Date('2022-01-01T12:00:00').getTime());
+
   beforeEach(database.reset, timeoutLength); // High timeoutLength for GitLab pipeline
   afterAll(database.shutdown);
 
@@ -74,6 +76,31 @@ describe('Task receipts resolver with', () => {
       expect(res.end).toHaveBeenNthCalledWith(
         1,
         '{"errors":[{"message":"Failed to complete task! Task already has a receipt with id 1.","locations":[{"line":3,"column":7}],"path":["createTaskReceipt"],"extensions":{"code":"INTERNAL_SERVER_ERROR"}}],"data":null}\n'
+      );
+    },
+    timeoutLength
+  );
+
+  it(
+    'CreateTaskReceipt mutation returns error if task is further in the future than one week',
+    async () => {
+      await database.insertUsers();
+      await database.insertHomes();
+      await database.insertTaskTypes(1);
+      await database.insertTasks(1, undefined, new Date('2022-01-09'));
+      await database.addUserToHome('user-1', '1');
+
+      const body = {
+        operationName: 'CreateTaskReceipt',
+        query: createTaskReceiptQuery,
+        variables: { task: '1' },
+      };
+
+      const res = await testGraphql(body, 'user-1');
+
+      expect(res.end).toHaveBeenNthCalledWith(
+        1,
+        '{"errors":[{"message":"Failed to complete task! Task is further in the future than one week.","locations":[{"line":3,"column":7}],"path":["createTaskReceipt"],"extensions":{"code":"INTERNAL_SERVER_ERROR"}}],"data":null}\n'
       );
     },
     timeoutLength

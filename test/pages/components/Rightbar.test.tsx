@@ -46,7 +46,7 @@ apolloCache.writeQuery({
       {
         __typename: 'Task',
         id: '2',
-        date: '2022-01-02',
+        date: '2022-01-09',
         type: {
           __typename: 'TaskType',
           id: '2',
@@ -69,6 +69,8 @@ apolloCache.writeQuery({
 });
 
 describe('Rightbar', () => {
+  Date.now = jest.fn(() => new Date('2022-01-01T12:00:00').getTime());
+
   it('matches snapshot', async () => {
     const { asFragment } = await render(<Rightbar />, { apolloCache });
     expect(asFragment()).toMatchSnapshot();

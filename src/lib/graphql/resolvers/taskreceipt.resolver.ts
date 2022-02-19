@@ -55,6 +55,7 @@ export default class TaskReceiptResolver
   /**
    * Create a new receipt to complete a task.
    * The task must belong to the users home.
+   * The task cannot be further in the future than one week.
    * The authenticated user is saved as completer.
    * @param task The id of the task to complete.
    */
@@ -62,6 +63,7 @@ export default class TaskReceiptResolver
   @Mutation(() => TaskReceipt, {
     description: `Create a new receipt to complete a task.
 The task must belong to the users home.
+The task cannot be further in the future than one week.
 The authenticated user is saved as completer.`,
   })
   async createTaskReceipt(
@@ -77,6 +79,10 @@ The authenticated user is saved as completer.`,
         `Failed to complete task! Task already has a receipt with id ${String(
           taskItem.receipt
         )}.`
+      );
+    if (taskItem.date.getTime() > Date.now() + 7 * 24 * 60 * 60 * 1000)
+      throw Error(
+        `Failed to complete task! Task is further in the future than one week.`
       );
     const user = await Helper.getMeOrFail(session);
 

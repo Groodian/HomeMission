@@ -13,6 +13,7 @@
   "year": "Jahr",
   "years": "Jahren",
   "complete": "Erledigen",
+  "complete-disabled": "Es können nur Aufgaben innerhalb der nächsten Woche erledigt werden",
   "edit": "Editieren",
   "unassign": "Zuordnung entfernen",
   "user-error": "Nutzer konnte nicht geladen werden",

@@ -92,7 +92,7 @@ You can join the test home with this [invitation link](https://homemission.net/j
 ### Right Bar
 
 - Open tasks (unassigned or assigned to current user and two weeks in the past / four in the future)
-- Complete task
+- Complete task (disabled for tasks further in the future than one week)
 
 ### Automation
 
@@ -595,6 +595,7 @@ type Mutation {
 
   # Create a new receipt to complete a task.
   # The task must belong to the users home.
+  # The task cannot be further in the future than one week.
   # The authenticated user is saved as completer.
   createTaskReceipt(
     # The id of the task to complete.
