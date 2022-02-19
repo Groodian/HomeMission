@@ -70,7 +70,7 @@ const AddTaskDialog: React.FC<AddTaskDialogProps> = ({
     typeReset();
     taskReset();
     seriesReset();
-    setDate(newTaskDate?.valueOf() || null);
+    setDate(newTaskDate?.getTime() || null);
     setType('');
     setPoints(50);
     setRecurring(false);
@@ -102,10 +102,10 @@ const AddTaskDialog: React.FC<AddTaskDialogProps> = ({
     event
   ) => {
     event.preventDefault();
-    if (
-      date?.valueOf() &&
-      date > new Date().setDate(new Date().getDate() - 1) // No past dates
-    ) {
+
+    const today = new Date(Date.now());
+    today.setHours(0, 0, 0, 0);
+    if (date && date >= today.getTime()) {
       // Create new task type if it does not exits
       let createdType: TaskType | undefined = undefined;
       if (!selectedType) {

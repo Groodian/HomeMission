@@ -62,8 +62,8 @@ Only load tasks max two weeks in the past and max four weeks in the future.`,
         relatedHome: home.id, // condition: tasks must be from users home
         receipt: null, // condition: tasks must not be completed yet
         date: Between(
-          new Date(new Date().getTime() - 2 * 7 * 24 * 60 * 60 * 1000), // max two weeks into the past
-          new Date(new Date().getTime() + 4 * 7 * 24 * 60 * 60 * 1000) // max four weeks into the future
+          new Date(Date.now() - 2 * 7 * 24 * 60 * 60 * 1000), // max two weeks into the past
+          new Date(Date.now() + 4 * 7 * 24 * 60 * 60 * 1000) // max four weeks into the future
         ),
       };
 

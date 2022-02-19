@@ -39,7 +39,7 @@ const History: NextPage = () => {
     const newest = data?.home?.history[0]?.date;
     // Only set rerender interval if there is a newest history entry
     if (newest) {
-      const timeDifference = new Date().getTime() - new Date(newest).getTime();
+      const timeDifference = Date.now() - new Date(newest).getTime();
       setTimeout(
         () => setUpdates(updates + 1),
         timeDifference < 60000 ? 1000 : 60000 // Rerender every second or minute based on time difference to newest history entry
@@ -121,9 +121,7 @@ function formatText(
 }
 
 function formatTime(date: string, t: TFunction): string {
-  const seconds = Math.floor(
-    (new Date().getTime() - new Date(date).getTime()) / 1000
-  );
+  const seconds = Math.floor((Date.now() - new Date(date).getTime()) / 1000);
 
   let interval = seconds / 31536000;
   if (interval >= 1) {

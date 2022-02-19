@@ -120,6 +120,6 @@ export default class History extends BaseEntity {
 
   constructor() {
     super();
-    this.date = new Date().toISOString();
+    this.date = new Date(Date.now()).toISOString();
   }
 }

@@ -16,7 +16,7 @@ describe('Task series resolver with', () => {
         operationName: 'CreateTaskSeries',
         query: createTaskSeriesQuery,
         variables: {
-          start: new Date('2022-01-01').valueOf(),
+          start: new Date('2022-01-01').getTime(),
           type: '1',
           interval: 2,
           iterations: 6,
@@ -52,7 +52,7 @@ describe('Task series resolver with', () => {
         operationName: 'CreateTaskSeries',
         query: createTaskSeriesQuery,
         variables: {
-          start: new Date('2022-01-01').valueOf(),
+          start: new Date('2022-01-01').getTime(),
           type: '1',
           interval: 0,
           iterations: 6,
@@ -81,7 +81,7 @@ describe('Task series resolver with', () => {
         operationName: 'CreateTaskSeries',
         query: createTaskSeriesQuery,
         variables: {
-          start: new Date('2022-01-01').valueOf(),
+          start: new Date('2022-01-01').getTime(),
           type: '1',
           interval: 4,
           iterations: -2,

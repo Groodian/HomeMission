@@ -1,0 +1,1781 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`History page matches snapshot 1`] = `
+<DocumentFragment>
+  @keyframes animation-0 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes animation-1 {
+  0% {
+    stroke-dasharray: 1px,200px;
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dasharray: 100px,200px;
+    stroke-dashoffset: -15px;
+  }
+
+  100% {
+    stroke-dasharray: 100px,200px;
+    stroke-dashoffset: -125px;
+  }
+}
+
+.emotion-0 {
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.87);
+  -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border-radius: 4px;
+  box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);
+  width: 100%;
+  overflow-x: auto;
+}
+
+.emotion-1 {
+  position: fixed;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  -webkit-tap-highlight-color: transparent;
+  z-index: 1201;
+}
+
+.emotion-2 {
+  display: inline-block;
+  color: #1976d2;
+  -webkit-animation: animation-0 1.4s linear infinite;
+  animation: animation-0 1.4s linear infinite;
+}
+
+.emotion-3 {
+  display: block;
+}
+
+.emotion-4 {
+  stroke: currentColor;
+  stroke-dasharray: 80px,200px;
+  stroke-dashoffset: 0;
+  -webkit-animation: animation-1 1.4s ease-in-out infinite;
+  animation: animation-1 1.4s ease-in-out infinite;
+}
+
+.emotion-5 {
+  display: table;
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.emotion-5 caption {
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  padding: 16px;
+  color: rgba(0, 0, 0, 0.6);
+  text-align: left;
+  caption-side: bottom;
+}
+
+.emotion-6 {
+  display: table-header-group;
+  background: #e0e0e0;
+}
+
+.emotion-7 {
+  color: inherit;
+  display: table-row;
+  vertical-align: middle;
+  outline: 0;
+}
+
+.emotion-7.MuiTableRow-hover:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.emotion-7.Mui-selected {
+  background-color: rgba(25, 118, 210, 0.08);
+}
+
+.emotion-7.Mui-selected:hover {
+  background-color: rgba(25, 118, 210, 0.12);
+}
+
+.emotion-8 {
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+  letter-spacing: 0.01071em;
+  display: table-cell;
+  vertical-align: inherit;
+  border-bottom: 1px solid rgba(224, 224, 224, 1);
+  text-align: left;
+  padding: 16px;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.emotion-11 {
+  display: table-row-group;
+}
+
+.emotion-13 {
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  display: table-cell;
+  vertical-align: inherit;
+  border-bottom: 1px solid rgba(224, 224, 224, 1);
+  text-align: left;
+  padding: 16px;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.emotion-14 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-14>:not(style)+:not(style) {
+  margin: 0;
+  margin-left: 16px;
+}
+
+.emotion-15 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-size: 1.25rem;
+  line-height: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.emotion-16 {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  object-fit: cover;
+  color: transparent;
+  text-indent: 10000px;
+}
+
+.emotion-17 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+}
+
+<div
+    class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiTableContainer-root emotion-0"
+  >
+    <div
+      aria-hidden="true"
+      class="MuiBackdrop-root emotion-1"
+      style="opacity: 0; visibility: hidden;"
+    >
+      <span
+        class="MuiCircularProgress-root MuiCircularProgress-indeterminate MuiCircularProgress-colorPrimary emotion-2"
+        role="progressbar"
+        style="width: 10rem; height: 10rem;"
+      >
+        <svg
+          class="MuiCircularProgress-svg emotion-3"
+          viewBox="22 22 44 44"
+        >
+          <circle
+            class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate emotion-4"
+            cx="44"
+            cy="44"
+            fill="none"
+            r="19.5"
+            stroke-width="5"
+          />
+        </svg>
+      </span>
+    </div>
+    <table
+      class="MuiTable-root emotion-5"
+    >
+      <thead
+        class="MuiTableHead-root emotion-6"
+      >
+        <tr
+          class="MuiTableRow-root MuiTableRow-head emotion-7"
+        >
+          <th
+            class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium emotion-8"
+            scope="col"
+          >
+            <b>
+              Roommate
+            </b>
+          </th>
+          <th
+            class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium emotion-8"
+            scope="col"
+          >
+            <b>
+              Activity
+            </b>
+          </th>
+          <th
+            class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium emotion-8"
+            scope="col"
+          >
+            <b>
+              Time
+            </b>
+          </th>
+        </tr>
+      </thead>
+      <tbody
+        class="MuiTableBody-root emotion-11"
+      >
+        <tr
+          class="MuiTableRow-root emotion-7"
+        >
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <div
+              class="emotion-14"
+            >
+              <div
+                class="MuiAvatar-root MuiAvatar-circular emotion-15"
+              >
+                <img
+                  alt="Profile picture of User 1"
+                  class="MuiAvatar-img emotion-16"
+                  src="Picture 1"
+                />
+              </div>
+              <p
+                class="MuiTypography-root MuiTypography-body1 emotion-17"
+              >
+                User 1
+              </p>
+            </div>
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            Created home
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <p
+              aria-label="1/10/2022, 11:59:59 AM"
+              class=""
+              data-mui-internal-clone-element="true"
+            >
+              1 second ago
+            </p>
+          </td>
+        </tr>
+        <tr
+          class="MuiTableRow-root emotion-7"
+        >
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <div
+              class="emotion-14"
+            >
+              <div
+                class="MuiAvatar-root MuiAvatar-circular emotion-15"
+              >
+                <img
+                  alt="Profile picture of User 1"
+                  class="MuiAvatar-img emotion-16"
+                  src="Picture 1"
+                />
+              </div>
+              <p
+                class="MuiTypography-root MuiTypography-body1 emotion-17"
+              >
+                User 1
+              </p>
+            </div>
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            Renamed home to New name
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <p
+              aria-label="1/10/2022, 11:59:58 AM"
+              class=""
+              data-mui-internal-clone-element="true"
+            >
+              2 seconds ago
+            </p>
+          </td>
+        </tr>
+        <tr
+          class="MuiTableRow-root emotion-7"
+        >
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <div
+              class="emotion-14"
+            >
+              <div
+                class="MuiAvatar-root MuiAvatar-circular emotion-15"
+              >
+                <img
+                  alt="Profile picture of User 2"
+                  class="MuiAvatar-img emotion-16"
+                  src="Picture 2"
+                />
+              </div>
+              <p
+                class="MuiTypography-root MuiTypography-body1 emotion-17"
+              >
+                User 2
+              </p>
+            </div>
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            Joined home
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <p
+              aria-label="1/10/2022, 11:59:00 AM"
+              class=""
+              data-mui-internal-clone-element="true"
+            >
+              1 minute ago
+            </p>
+          </td>
+        </tr>
+        <tr
+          class="MuiTableRow-root emotion-7"
+        >
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <div
+              class="emotion-14"
+            >
+              <div
+                class="MuiAvatar-root MuiAvatar-circular emotion-15"
+              >
+                <img
+                  alt="Profile picture of User 2"
+                  class="MuiAvatar-img emotion-16"
+                  src="Picture 2"
+                />
+              </div>
+              <p
+                class="MuiTypography-root MuiTypography-body1 emotion-17"
+              >
+                User 2
+              </p>
+            </div>
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            Left home
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <p
+              aria-label="1/10/2022, 11:58:00 AM"
+              class=""
+              data-mui-internal-clone-element="true"
+            >
+              2 minutes ago
+            </p>
+          </td>
+        </tr>
+        <tr
+          class="MuiTableRow-root emotion-7"
+        >
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <div
+              class="emotion-14"
+            >
+              <div
+                class="MuiAvatar-root MuiAvatar-circular emotion-15"
+              >
+                <img
+                  alt="Profile picture of User 2"
+                  class="MuiAvatar-img emotion-16"
+                  src="Picture 2"
+                />
+              </div>
+              <p
+                class="MuiTypography-root MuiTypography-body1 emotion-17"
+              >
+                User 2
+              </p>
+            </div>
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            Changed name to New name
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <p
+              aria-label="1/10/2022, 11:00:00 AM"
+              class=""
+              data-mui-internal-clone-element="true"
+            >
+              1 hour ago
+            </p>
+          </td>
+        </tr>
+        <tr
+          class="MuiTableRow-root emotion-7"
+        >
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <div
+              class="emotion-14"
+            >
+              <div
+                class="MuiAvatar-root MuiAvatar-circular emotion-15"
+              >
+                <img
+                  alt="Profile picture of User 2"
+                  class="MuiAvatar-img emotion-16"
+                  src="Picture 2"
+                />
+              </div>
+              <p
+                class="MuiTypography-root MuiTypography-body1 emotion-17"
+              >
+                User 2
+              </p>
+            </div>
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            Created task type Task type
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <p
+              aria-label="1/10/2022, 10:00:00 AM"
+              class=""
+              data-mui-internal-clone-element="true"
+            >
+              2 hours ago
+            </p>
+          </td>
+        </tr>
+        <tr
+          class="MuiTableRow-root emotion-7"
+        >
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <div
+              class="emotion-14"
+            >
+              <div
+                class="MuiAvatar-root MuiAvatar-circular emotion-15"
+              >
+                <img
+                  alt="Profile picture of User 2"
+                  class="MuiAvatar-img emotion-16"
+                  src="Picture 2"
+                />
+              </div>
+              <p
+                class="MuiTypography-root MuiTypography-body1 emotion-17"
+              >
+                User 2
+              </p>
+            </div>
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            Created a task series
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <p
+              aria-label="1/9/2022, 12:00:00 PM"
+              class=""
+              data-mui-internal-clone-element="true"
+            >
+              1 day ago
+            </p>
+          </td>
+        </tr>
+        <tr
+          class="MuiTableRow-root emotion-7"
+        >
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <div
+              class="emotion-14"
+            >
+              <div
+                class="MuiAvatar-root MuiAvatar-circular emotion-15"
+              >
+                <img
+                  alt="Profile picture of User 2"
+                  class="MuiAvatar-img emotion-16"
+                  src="Picture 2"
+                />
+              </div>
+              <p
+                class="MuiTypography-root MuiTypography-body1 emotion-17"
+              >
+                User 2
+              </p>
+            </div>
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            Deleted a task series
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <p
+              aria-label="1/8/2022, 12:00:00 PM"
+              class=""
+              data-mui-internal-clone-element="true"
+            >
+              2 days ago
+            </p>
+          </td>
+        </tr>
+        <tr
+          class="MuiTableRow-root emotion-7"
+        >
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <div
+              class="emotion-14"
+            >
+              <div
+                class="MuiAvatar-root MuiAvatar-circular emotion-15"
+              >
+                <img
+                  alt="Profile picture of User 2"
+                  class="MuiAvatar-img emotion-16"
+                  src="Picture 2"
+                />
+              </div>
+              <p
+                class="MuiTypography-root MuiTypography-body1 emotion-17"
+              >
+                User 2
+              </p>
+            </div>
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            Deleted part of a task series
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <p
+              aria-label="12/10/2021, 12:00:00 PM"
+              class=""
+              data-mui-internal-clone-element="true"
+            >
+              1 month ago
+            </p>
+          </td>
+        </tr>
+        <tr
+          class="MuiTableRow-root emotion-7"
+        >
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <div
+              class="emotion-14"
+            >
+              <div
+                class="MuiAvatar-root MuiAvatar-circular emotion-15"
+              >
+                <img
+                  alt="Profile picture of User 2"
+                  class="MuiAvatar-img emotion-16"
+                  src="Picture 2"
+                />
+              </div>
+              <p
+                class="MuiTypography-root MuiTypography-body1 emotion-17"
+              >
+                User 2
+              </p>
+            </div>
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            Created task Task type for 1/1/2022
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <p
+              aria-label="11/10/2021, 12:00:00 PM"
+              class=""
+              data-mui-internal-clone-element="true"
+            >
+              2 months ago
+            </p>
+          </td>
+        </tr>
+        <tr
+          class="MuiTableRow-root emotion-7"
+        >
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <div
+              class="emotion-14"
+            >
+              <div
+                class="MuiAvatar-root MuiAvatar-circular emotion-15"
+              >
+                <img
+                  alt="Profile picture of User 2"
+                  class="MuiAvatar-img emotion-16"
+                  src="Picture 2"
+                />
+              </div>
+              <p
+                class="MuiTypography-root MuiTypography-body1 emotion-17"
+              >
+                User 2
+              </p>
+            </div>
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            Deleted task Task type for 1/1/2022
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <p
+              aria-label="1/10/2021, 12:00:00 PM"
+              class=""
+              data-mui-internal-clone-element="true"
+            >
+              1 year ago
+            </p>
+          </td>
+        </tr>
+        <tr
+          class="MuiTableRow-root emotion-7"
+        >
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <div
+              class="emotion-14"
+            >
+              <div
+                class="MuiAvatar-root MuiAvatar-circular emotion-15"
+              >
+                <img
+                  alt="Profile picture of User 2"
+                  class="MuiAvatar-img emotion-16"
+                  src="Picture 2"
+                />
+              </div>
+              <p
+                class="MuiTypography-root MuiTypography-body1 emotion-17"
+              >
+                User 2
+              </p>
+            </div>
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            Completed task Task type for 1/1/2022
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <p
+              aria-label="1/10/2020, 12:00:00 PM"
+              class=""
+              data-mui-internal-clone-element="true"
+            >
+              2 years ago
+            </p>
+          </td>
+        </tr>
+        <tr
+          class="MuiTableRow-root emotion-7"
+        >
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <div
+              class="emotion-14"
+            >
+              <div
+                class="MuiAvatar-root MuiAvatar-circular emotion-15"
+              >
+                <img
+                  alt="Profile picture of User 2"
+                  class="MuiAvatar-img emotion-16"
+                  src="Picture 2"
+                />
+              </div>
+              <p
+                class="MuiTypography-root MuiTypography-body1 emotion-17"
+              >
+                User 2
+              </p>
+            </div>
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            Assigned task Task type for 1/1/2022 to User 1
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <p
+              aria-label="1/10/2022, 12:00:00 PM"
+              class=""
+              data-mui-internal-clone-element="true"
+            >
+              0 seconds ago
+            </p>
+          </td>
+        </tr>
+        <tr
+          class="MuiTableRow-root emotion-7"
+        >
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <div
+              class="emotion-14"
+            >
+              <div
+                class="MuiAvatar-root MuiAvatar-circular emotion-15"
+              >
+                <img
+                  alt="Profile picture of User 2"
+                  class="MuiAvatar-img emotion-16"
+                  src="Picture 2"
+                />
+              </div>
+              <p
+                class="MuiTypography-root MuiTypography-body1 emotion-17"
+              >
+                User 2
+              </p>
+            </div>
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            Unassigned task Task type for 1/1/2022 from User 1
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <p
+              aria-label="1/10/2022, 12:00:00 PM"
+              class=""
+              data-mui-internal-clone-element="true"
+            >
+              0 seconds ago
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`History page matches snapshot DE 1`] = `
+<DocumentFragment>
+  @keyframes animation-0 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes animation-1 {
+  0% {
+    stroke-dasharray: 1px,200px;
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dasharray: 100px,200px;
+    stroke-dashoffset: -15px;
+  }
+
+  100% {
+    stroke-dasharray: 100px,200px;
+    stroke-dashoffset: -125px;
+  }
+}
+
+.emotion-0 {
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.87);
+  -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border-radius: 4px;
+  box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);
+  width: 100%;
+  overflow-x: auto;
+}
+
+.emotion-1 {
+  position: fixed;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  -webkit-tap-highlight-color: transparent;
+  z-index: 1201;
+}
+
+.emotion-2 {
+  display: inline-block;
+  color: #1976d2;
+  -webkit-animation: animation-0 1.4s linear infinite;
+  animation: animation-0 1.4s linear infinite;
+}
+
+.emotion-3 {
+  display: block;
+}
+
+.emotion-4 {
+  stroke: currentColor;
+  stroke-dasharray: 80px,200px;
+  stroke-dashoffset: 0;
+  -webkit-animation: animation-1 1.4s ease-in-out infinite;
+  animation: animation-1 1.4s ease-in-out infinite;
+}
+
+.emotion-5 {
+  display: table;
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.emotion-5 caption {
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  padding: 16px;
+  color: rgba(0, 0, 0, 0.6);
+  text-align: left;
+  caption-side: bottom;
+}
+
+.emotion-6 {
+  display: table-header-group;
+  background: #e0e0e0;
+}
+
+.emotion-7 {
+  color: inherit;
+  display: table-row;
+  vertical-align: middle;
+  outline: 0;
+}
+
+.emotion-7.MuiTableRow-hover:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.emotion-7.Mui-selected {
+  background-color: rgba(25, 118, 210, 0.08);
+}
+
+.emotion-7.Mui-selected:hover {
+  background-color: rgba(25, 118, 210, 0.12);
+}
+
+.emotion-8 {
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+  letter-spacing: 0.01071em;
+  display: table-cell;
+  vertical-align: inherit;
+  border-bottom: 1px solid rgba(224, 224, 224, 1);
+  text-align: left;
+  padding: 16px;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.emotion-11 {
+  display: table-row-group;
+}
+
+.emotion-13 {
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  display: table-cell;
+  vertical-align: inherit;
+  border-bottom: 1px solid rgba(224, 224, 224, 1);
+  text-align: left;
+  padding: 16px;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.emotion-14 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-14>:not(style)+:not(style) {
+  margin: 0;
+  margin-left: 16px;
+}
+
+.emotion-15 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-size: 1.25rem;
+  line-height: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.emotion-16 {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  object-fit: cover;
+  color: transparent;
+  text-indent: 10000px;
+}
+
+.emotion-17 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+}
+
+<div
+    class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiTableContainer-root emotion-0"
+  >
+    <div
+      aria-hidden="true"
+      class="MuiBackdrop-root emotion-1"
+      style="opacity: 0; visibility: hidden;"
+    >
+      <span
+        class="MuiCircularProgress-root MuiCircularProgress-indeterminate MuiCircularProgress-colorPrimary emotion-2"
+        role="progressbar"
+        style="width: 10rem; height: 10rem;"
+      >
+        <svg
+          class="MuiCircularProgress-svg emotion-3"
+          viewBox="22 22 44 44"
+        >
+          <circle
+            class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate emotion-4"
+            cx="44"
+            cy="44"
+            fill="none"
+            r="19.5"
+            stroke-width="5"
+          />
+        </svg>
+      </span>
+    </div>
+    <table
+      class="MuiTable-root emotion-5"
+    >
+      <thead
+        class="MuiTableHead-root emotion-6"
+      >
+        <tr
+          class="MuiTableRow-root MuiTableRow-head emotion-7"
+        >
+          <th
+            class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium emotion-8"
+            scope="col"
+          >
+            <b>
+              Mitbewohner
+            </b>
+          </th>
+          <th
+            class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium emotion-8"
+            scope="col"
+          >
+            <b>
+              Aktivität
+            </b>
+          </th>
+          <th
+            class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium emotion-8"
+            scope="col"
+          >
+            <b>
+              Zeitpunkt
+            </b>
+          </th>
+        </tr>
+      </thead>
+      <tbody
+        class="MuiTableBody-root emotion-11"
+      >
+        <tr
+          class="MuiTableRow-root emotion-7"
+        >
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <div
+              class="emotion-14"
+            >
+              <div
+                class="MuiAvatar-root MuiAvatar-circular emotion-15"
+              >
+                <img
+                  alt="Profilbild von User 1"
+                  class="MuiAvatar-img emotion-16"
+                  src="Picture 1"
+                />
+              </div>
+              <p
+                class="MuiTypography-root MuiTypography-body1 emotion-17"
+              >
+                User 1
+              </p>
+            </div>
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            Hat die WG erstellt
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <p
+              aria-label="10.1.2022, 11:59:59"
+              class=""
+              data-mui-internal-clone-element="true"
+            >
+              vor 1 Sekunde
+            </p>
+          </td>
+        </tr>
+        <tr
+          class="MuiTableRow-root emotion-7"
+        >
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <div
+              class="emotion-14"
+            >
+              <div
+                class="MuiAvatar-root MuiAvatar-circular emotion-15"
+              >
+                <img
+                  alt="Profilbild von User 1"
+                  class="MuiAvatar-img emotion-16"
+                  src="Picture 1"
+                />
+              </div>
+              <p
+                class="MuiTypography-root MuiTypography-body1 emotion-17"
+              >
+                User 1
+              </p>
+            </div>
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            Hat die WG in New name umbenannt
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <p
+              aria-label="10.1.2022, 11:59:58"
+              class=""
+              data-mui-internal-clone-element="true"
+            >
+              vor 2 Sekunden
+            </p>
+          </td>
+        </tr>
+        <tr
+          class="MuiTableRow-root emotion-7"
+        >
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <div
+              class="emotion-14"
+            >
+              <div
+                class="MuiAvatar-root MuiAvatar-circular emotion-15"
+              >
+                <img
+                  alt="Profilbild von User 2"
+                  class="MuiAvatar-img emotion-16"
+                  src="Picture 2"
+                />
+              </div>
+              <p
+                class="MuiTypography-root MuiTypography-body1 emotion-17"
+              >
+                User 2
+              </p>
+            </div>
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            Ist der WG beigetreten
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <p
+              aria-label="10.1.2022, 11:59:00"
+              class=""
+              data-mui-internal-clone-element="true"
+            >
+              vor 1 Minute
+            </p>
+          </td>
+        </tr>
+        <tr
+          class="MuiTableRow-root emotion-7"
+        >
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <div
+              class="emotion-14"
+            >
+              <div
+                class="MuiAvatar-root MuiAvatar-circular emotion-15"
+              >
+                <img
+                  alt="Profilbild von User 2"
+                  class="MuiAvatar-img emotion-16"
+                  src="Picture 2"
+                />
+              </div>
+              <p
+                class="MuiTypography-root MuiTypography-body1 emotion-17"
+              >
+                User 2
+              </p>
+            </div>
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            Hat die WG verlassen
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <p
+              aria-label="10.1.2022, 11:58:00"
+              class=""
+              data-mui-internal-clone-element="true"
+            >
+              vor 2 Minuten
+            </p>
+          </td>
+        </tr>
+        <tr
+          class="MuiTableRow-root emotion-7"
+        >
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <div
+              class="emotion-14"
+            >
+              <div
+                class="MuiAvatar-root MuiAvatar-circular emotion-15"
+              >
+                <img
+                  alt="Profilbild von User 2"
+                  class="MuiAvatar-img emotion-16"
+                  src="Picture 2"
+                />
+              </div>
+              <p
+                class="MuiTypography-root MuiTypography-body1 emotion-17"
+              >
+                User 2
+              </p>
+            </div>
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            Hat sich in New name umbenannt
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <p
+              aria-label="10.1.2022, 11:00:00"
+              class=""
+              data-mui-internal-clone-element="true"
+            >
+              vor 1 Stunde
+            </p>
+          </td>
+        </tr>
+        <tr
+          class="MuiTableRow-root emotion-7"
+        >
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <div
+              class="emotion-14"
+            >
+              <div
+                class="MuiAvatar-root MuiAvatar-circular emotion-15"
+              >
+                <img
+                  alt="Profilbild von User 2"
+                  class="MuiAvatar-img emotion-16"
+                  src="Picture 2"
+                />
+              </div>
+              <p
+                class="MuiTypography-root MuiTypography-body1 emotion-17"
+              >
+                User 2
+              </p>
+            </div>
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            Hat den Aufgabentyp Task type erstellt
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <p
+              aria-label="10.1.2022, 10:00:00"
+              class=""
+              data-mui-internal-clone-element="true"
+            >
+              vor 2 Stunden
+            </p>
+          </td>
+        </tr>
+        <tr
+          class="MuiTableRow-root emotion-7"
+        >
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <div
+              class="emotion-14"
+            >
+              <div
+                class="MuiAvatar-root MuiAvatar-circular emotion-15"
+              >
+                <img
+                  alt="Profilbild von User 2"
+                  class="MuiAvatar-img emotion-16"
+                  src="Picture 2"
+                />
+              </div>
+              <p
+                class="MuiTypography-root MuiTypography-body1 emotion-17"
+              >
+                User 2
+              </p>
+            </div>
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            Hat eine Aufgabenserie erstellt
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <p
+              aria-label="9.1.2022, 12:00:00"
+              class=""
+              data-mui-internal-clone-element="true"
+            >
+              vor 1 Tag
+            </p>
+          </td>
+        </tr>
+        <tr
+          class="MuiTableRow-root emotion-7"
+        >
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <div
+              class="emotion-14"
+            >
+              <div
+                class="MuiAvatar-root MuiAvatar-circular emotion-15"
+              >
+                <img
+                  alt="Profilbild von User 2"
+                  class="MuiAvatar-img emotion-16"
+                  src="Picture 2"
+                />
+              </div>
+              <p
+                class="MuiTypography-root MuiTypography-body1 emotion-17"
+              >
+                User 2
+              </p>
+            </div>
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            Hat eine Aufgabenserie gelöscht
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <p
+              aria-label="8.1.2022, 12:00:00"
+              class=""
+              data-mui-internal-clone-element="true"
+            >
+              vor 2 Tagen
+            </p>
+          </td>
+        </tr>
+        <tr
+          class="MuiTableRow-root emotion-7"
+        >
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <div
+              class="emotion-14"
+            >
+              <div
+                class="MuiAvatar-root MuiAvatar-circular emotion-15"
+              >
+                <img
+                  alt="Profilbild von User 2"
+                  class="MuiAvatar-img emotion-16"
+                  src="Picture 2"
+                />
+              </div>
+              <p
+                class="MuiTypography-root MuiTypography-body1 emotion-17"
+              >
+                User 2
+              </p>
+            </div>
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            Hat einen Teil einer Aufgabenserie gelöscht
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <p
+              aria-label="10.12.2021, 12:00:00"
+              class=""
+              data-mui-internal-clone-element="true"
+            >
+              vor 1 Monat
+            </p>
+          </td>
+        </tr>
+        <tr
+          class="MuiTableRow-root emotion-7"
+        >
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <div
+              class="emotion-14"
+            >
+              <div
+                class="MuiAvatar-root MuiAvatar-circular emotion-15"
+              >
+                <img
+                  alt="Profilbild von User 2"
+                  class="MuiAvatar-img emotion-16"
+                  src="Picture 2"
+                />
+              </div>
+              <p
+                class="MuiTypography-root MuiTypography-body1 emotion-17"
+              >
+                User 2
+              </p>
+            </div>
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            Hat die Aufgabe Task type für den 1.1.2022 erstellt
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <p
+              aria-label="10.11.2021, 12:00:00"
+              class=""
+              data-mui-internal-clone-element="true"
+            >
+              vor 2 Monaten
+            </p>
+          </td>
+        </tr>
+        <tr
+          class="MuiTableRow-root emotion-7"
+        >
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <div
+              class="emotion-14"
+            >
+              <div
+                class="MuiAvatar-root MuiAvatar-circular emotion-15"
+              >
+                <img
+                  alt="Profilbild von User 2"
+                  class="MuiAvatar-img emotion-16"
+                  src="Picture 2"
+                />
+              </div>
+              <p
+                class="MuiTypography-root MuiTypography-body1 emotion-17"
+              >
+                User 2
+              </p>
+            </div>
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            Hat die Aufgabe Task type für den 1.1.2022 gelöscht
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <p
+              aria-label="10.1.2021, 12:00:00"
+              class=""
+              data-mui-internal-clone-element="true"
+            >
+              vor 1 Jahr
+            </p>
+          </td>
+        </tr>
+        <tr
+          class="MuiTableRow-root emotion-7"
+        >
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <div
+              class="emotion-14"
+            >
+              <div
+                class="MuiAvatar-root MuiAvatar-circular emotion-15"
+              >
+                <img
+                  alt="Profilbild von User 2"
+                  class="MuiAvatar-img emotion-16"
+                  src="Picture 2"
+                />
+              </div>
+              <p
+                class="MuiTypography-root MuiTypography-body1 emotion-17"
+              >
+                User 2
+              </p>
+            </div>
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            Hat die Aufgabe Task type für den 1.1.2022 abgeschlossen
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <p
+              aria-label="10.1.2020, 12:00:00"
+              class=""
+              data-mui-internal-clone-element="true"
+            >
+              vor 2 Jahren
+            </p>
+          </td>
+        </tr>
+        <tr
+          class="MuiTableRow-root emotion-7"
+        >
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <div
+              class="emotion-14"
+            >
+              <div
+                class="MuiAvatar-root MuiAvatar-circular emotion-15"
+              >
+                <img
+                  alt="Profilbild von User 2"
+                  class="MuiAvatar-img emotion-16"
+                  src="Picture 2"
+                />
+              </div>
+              <p
+                class="MuiTypography-root MuiTypography-body1 emotion-17"
+              >
+                User 2
+              </p>
+            </div>
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            Hat die Aufgabe Task type für den 1.1.2022 User 1 zugewiesen
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <p
+              aria-label="10.1.2022, 12:00:00"
+              class=""
+              data-mui-internal-clone-element="true"
+            >
+              vor 0 Sekunden
+            </p>
+          </td>
+        </tr>
+        <tr
+          class="MuiTableRow-root emotion-7"
+        >
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <div
+              class="emotion-14"
+            >
+              <div
+                class="MuiAvatar-root MuiAvatar-circular emotion-15"
+              >
+                <img
+                  alt="Profilbild von User 2"
+                  class="MuiAvatar-img emotion-16"
+                  src="Picture 2"
+                />
+              </div>
+              <p
+                class="MuiTypography-root MuiTypography-body1 emotion-17"
+              >
+                User 2
+              </p>
+            </div>
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            Hat für die Aufgabe Task type für den 1.1.2022 die Zuweisung für User 1 aufgehoben
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-13"
+          >
+            <p
+              aria-label="10.1.2022, 12:00:00"
+              class=""
+              data-mui-internal-clone-element="true"
+            >
+              vor 0 Sekunden
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</DocumentFragment>
+`;

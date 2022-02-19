@@ -140,8 +140,9 @@ const TaskCalendar: React.FC<TaskCalendarProps> = ({
 
   // is passed to calendar to render date cell header with create task button
   const CDateHeaderVisualize: React.FC<DateHeaderProps> = ({ date, label }) => {
-    const dateHasPassed =
-      date.valueOf() < new Date().setDate(new Date().getDate() - 1);
+    const today = new Date(Date.now());
+    today.setHours(0, 0, 0, 0);
+    const dateHasPassed = date < today;
     return (
       <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
         {dateHasPassed ? (

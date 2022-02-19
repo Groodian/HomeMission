@@ -67,6 +67,6 @@ export default class TaskReceipt extends BaseEntity {
     this.completer = completer;
     this.name = name;
     this.points = points;
-    this.completionDate = new Date();
+    this.completionDate = new Date(Date.now());
   }
 }

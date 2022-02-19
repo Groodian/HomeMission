@@ -152,7 +152,7 @@ describe('Task resolver with', () => {
       const body = {
         operationName: 'CreateTask',
         query: createTaskQuery,
-        variables: { date: new Date('2023-01-01').valueOf(), type: '1' },
+        variables: { date: new Date('2023-01-01').getTime(), type: '1' },
       };
 
       const res = await testGraphql(body, 'user-1');
@@ -176,7 +176,7 @@ describe('Task resolver with', () => {
       const body = {
         operationName: 'CreateTask',
         query: createTaskQuery,
-        variables: { date: new Date('2023-01-01').valueOf(), type: 'foobar' },
+        variables: { date: new Date('2023-01-01').getTime(), type: 'foobar' },
       };
 
       const res = await testGraphql(body, 'user-1');
