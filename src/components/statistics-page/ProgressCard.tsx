@@ -13,7 +13,7 @@ import { useRouter } from 'next/router';
 
 type ProgressCardProps = {
   title: string;
-  progress: number;
+  progress?: number;
 };
 const ProgressCard: React.FC<ProgressCardProps> = ({ title, progress }) => {
   const router = useRouter();
@@ -25,13 +25,15 @@ const ProgressCard: React.FC<ProgressCardProps> = ({ title, progress }) => {
             <Typography gutterBottom variant="overline">
               {title}
             </Typography>
-            <Typography variant="h4" component="div">
-              {progress.toLocaleString(router.locale, {
-                maximumFractionDigits: 2,
-                minimumFractionDigits: 2,
-              })}{' '}
-              %
-            </Typography>
+            {progress && (
+              <Typography variant="h4" component="div">
+                {progress.toLocaleString(router.locale, {
+                  maximumFractionDigits: 2,
+                  minimumFractionDigits: 2,
+                })}{' '}
+                %
+              </Typography>
+            )}
           </Box>
           <Avatar
             sx={{
@@ -46,7 +48,7 @@ const ProgressCard: React.FC<ProgressCardProps> = ({ title, progress }) => {
         <Box pt={1}>
           <LinearProgress
             value={progress}
-            variant="determinate"
+            variant={progress ? 'determinate' : 'indeterminate'}
             sx={{ height: 8, borderRadius: 5 }}
           />
         </Box>

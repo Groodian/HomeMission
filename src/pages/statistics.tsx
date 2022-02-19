@@ -5,9 +5,9 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 import { useRoommatesQuery } from '../lib/graphql/operations/roommates.graphql';
 import {
-  useHomeStatisticLazyQuery,
-  useUserStatisticsLazyQuery,
-} from '../lib/graphql/operations/statistic.graphql';
+  useHomeStatisticQuery,
+  useUserStatisticsQuery,
+} from '../lib/graphql/operations/statistics.graphql';
 import { BarSeries } from '@devexpress/dx-react-chart-material-ui';
 import ChartCard from '../components/statistics-page/ChartCard';
 import ProgressCard from '../components/statistics-page/ProgressCard';
@@ -26,33 +26,19 @@ const Statistics: NextPage = () => {
   const [homeWeekToggle, setHomeWeekToggle] = React.useState(false);
   const [userWeekToggles, setUserWeekToggles] = React.useState<boolean[]>([]);
 
-  const { loading: roommatesLoading, data: roommatesData } =
-    useRoommatesQuery();
-  const [
-    getHomeStatistic,
-    {
-      data: homeStatisticData,
-      loading: homeStatisticLoading,
-      error: homeStatisticError,
-    },
-  ] = useHomeStatisticLazyQuery();
-  const [
-    getUserStatistics,
-    {
-      data: userStatisticsData,
-      loading: userStatisticsLoading,
-      error: userStatisticsError,
-    },
-  ] = useUserStatisticsLazyQuery();
-
-  React.useEffect(() => {
-    const variables = {
-      start: new Date().getTime() - 14 * 24 * 60 * 60 * 1000,
-      end: new Date().getTime(),
-    };
-    getHomeStatistic({ variables: variables });
-    getUserStatistics({ variables: variables });
-  }, []);
+  const { loading: roommatesLoading, data: roommatesData } = useRoommatesQuery({
+    fetchPolicy: 'cache-and-network',
+  });
+  const {
+    data: homeStatisticData,
+    loading: homeStatisticLoading,
+    error: homeStatisticError,
+  } = useHomeStatisticQuery({ fetchPolicy: 'cache-and-network' });
+  const {
+    data: userStatisticsData,
+    loading: userStatisticsLoading,
+    error: userStatisticsError,
+  } = useUserStatisticsQuery({ fetchPolicy: 'cache-and-network' });
 
   React.useEffect(() => {
     if (userStatisticsData) {
@@ -94,10 +80,16 @@ const Statistics: NextPage = () => {
   return (
     <Grid container spacing={2} sx={{ justifyContent: 'space-evenly' }}>
       <Grid item lg={4} xs={6}>
-        <ProgressCard title={t('weekly-progress')} progress={75.5} />
+        <ProgressCard
+          title={t('weekly-progress')}
+          progress={homeStatisticData?.homeStatistic.weeklyProgress}
+        />
       </Grid>
       <Grid item lg={4} xs={6}>
-        <ProgressCard title={t('monthly-progress')} progress={46.941} />
+        <ProgressCard
+          title={t('monthly-progress')}
+          progress={homeStatisticData?.homeStatistic.monthlyProgress}
+        />
       </Grid>
 
       <Grid item lg={6} xs={12}>

@@ -20,7 +20,31 @@ export default class HomeStatistic implements Statistic {
   })
   data: DataPoint[];
 
-  constructor(data: DataPoint[]) {
+  /**
+   * The calculated percentage of completed tasks in the next 7 days.
+   */
+  @Field({
+    description:
+      'The calculated percentage of completed tasks in the next 7 days.',
+  })
+  weeklyProgress: number;
+
+  /**
+   * The calculated percentage of completed tasks in the next 30 days.
+   */
+  @Field({
+    description:
+      'The calculated percentage of completed tasks in the next 30 days.',
+  })
+  monthlyProgress: number;
+
+  constructor(
+    data: DataPoint[],
+    weeklyProgress: number,
+    monthlyProgress: number
+  ) {
     this.data = data;
+    this.weeklyProgress = weeklyProgress;
+    this.monthlyProgress = monthlyProgress;
   }
 }

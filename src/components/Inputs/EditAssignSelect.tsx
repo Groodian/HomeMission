@@ -36,10 +36,10 @@ const EditAssignSelect: React.FC<EditButtonProps> = ({ task }) => {
 
   const { data: roommatesData } = useRoommatesQuery();
   const [assignTask] = useAssignTaskMutation({
-    refetchQueries: ['Tasks', 'OpenTasks', 'History'],
+    refetchQueries: ['Tasks', 'OpenTasks'],
   });
   const [unassignTask] = useUnassignTaskMutation({
-    refetchQueries: ['Tasks', 'OpenTasks', 'History'],
+    refetchQueries: ['Tasks', 'OpenTasks'],
   });
 
   return (

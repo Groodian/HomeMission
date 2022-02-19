@@ -18,7 +18,7 @@ const CompleteButton: React.FC<CompleteButtonProps> = ({
   const { enqueueSnackbar } = useSnackbar();
 
   const [createReceipt, { loading }] = useCreateTaskReceiptMutation({
-    refetchQueries: ['Tasks', 'OpenTasks', 'User', 'History'],
+    refetchQueries: 'all',
   });
 
   return (

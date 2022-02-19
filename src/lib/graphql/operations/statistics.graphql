@@ -1,0 +1,26 @@
+query HomeStatistic {
+  homeStatistic {
+    data {
+      date
+      pointsDay
+      pointsWeek
+    }
+    weeklyProgress
+    monthlyProgress
+  }
+}
+
+query UserStatistics {
+  userStatistics {
+    user {
+      id
+      name
+      picture
+    }
+    data {
+      date
+      pointsDay
+      pointsWeek
+    }
+  }
+}

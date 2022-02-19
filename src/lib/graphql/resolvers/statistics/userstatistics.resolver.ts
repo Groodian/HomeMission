@@ -2,7 +2,7 @@ import { Session } from '@auth0/nextjs-auth0';
 import CurrentSession from '../../../auth0/current-session';
 import databaseConnection from '../../../typeorm/connection';
 import { Between } from 'typeorm';
-import { Arg, Authorized, Query, Resolver } from 'type-graphql';
+import { Authorized, Query, Resolver } from 'type-graphql';
 import User from '../../../../entities/user';
 import TaskReceipt from '../../../../entities/taskreceipt';
 import UserStatistic from '../../../../entities/statistics/userStatistic';
@@ -19,58 +19,42 @@ type UserAndDataPoints = { user: User | null; dataPoints: DataPoint[] };
 export default class UserStatisticsResolver {
   /**
    * Generate the statistics for each user of home.
-   * Calculate the sum of points achieved per day and week per user.
+   * Calculate the sum of points achieved per day and week per user for the past two weeks.
    * Include a statistic for users that left the home.
-   * @param start The start date of the statistics to generate.
-   * @param end The end date of the statistics to generate.
    */
   @Authorized()
   @Query(() => [UserStatistic], {
     description: `Generate the statistics for each user of home.
-Calculate the sum of points achieved per day and week per user.
+Calculate the sum of points achieved per day and week per user for the past two weeks.
 Include a statistic for users that left the home.`,
   })
-  async userStatistics(
-    @CurrentSession() session: Session,
-    // prettier-ignore
-    @Arg('start', { description: 'The start date of the statistics to generate.' })
-    start: number,
-    @Arg('end', { description: 'The end date of the statistics to generate.' })
-    end: number
-  ) {
+  async userStatistics(@CurrentSession() session: Session) {
     await databaseConnection();
     const home = await Helper.getHomeOrFail(session, ['users']);
-    const startDate = new Date(start);
-    const endDate = new Date(end);
+    const today = new Date(Date.now());
+    today.setHours(0, 0, 0, 0);
+    const start = new Date(today.getTime() - 14 * 24 * 60 * 60 * 1000); // two weeks earlier
 
     let taskCompletedByUnknown = false;
-
-    if (start > end)
-      throw Error(
-        'Could not create statistic for users because start date must be before end date'
-      );
 
     // create a user-datapoint-tuple for each user
     const userAndDataPointsArrays: UserAndDataPoints[] = home.users.map(
       (user) => ({
         user: user,
-        dataPoints: getBlankDataPointsArray(startDate, endDate),
+        dataPoints: getBlankDataPointsArray(start, today),
       })
     );
 
     // create a user-datapoint-tuple for users that are no longer in the home
-    const nullDataPoints: DataPoint[] = getBlankDataPointsArray(
-      startDate,
-      endDate
-    );
+    const nullDataPoints: DataPoint[] = getBlankDataPointsArray(start, today);
 
     try {
       const receipts = await TaskReceipt.find({
         where: {
           relatedHome: home.id,
           completionDate: Between(
-            new Date(start - 7 * 24 * 60 * 60 * 1000),
-            endDate
+            new Date(start.getTime() - 7 * 24 * 60 * 60 * 1000), // start one week earlier for weekly points
+            new Date(today.getTime() + 1 * 24 * 60 * 60 * 1000) // tasks of whole day
           ),
         },
         loadRelationIds: true,
@@ -90,7 +74,7 @@ Include a statistic for users that left the home.`,
         }
 
         // get index of receipt completion date in dataPoints array
-        const index = getDatesDifference(startDate, receipt.completionDate);
+        const index = getDatesDifference(start, receipt.completionDate);
 
         // add points to dataPoints of that day and the following week
         dataPoints[index]?.addPointsDay(receipt.points);

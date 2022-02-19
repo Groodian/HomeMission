@@ -27,7 +27,9 @@ const History: NextPage = () => {
   const { t } = useTranslation(['history']);
   const { enqueueSnackbar } = useSnackbar();
   const router = useRouter();
-  const { loading, error, data } = useHistoryQuery();
+  const { loading, error, data } = useHistoryQuery({
+    fetchPolicy: 'cache-and-network',
+  });
   const [updates, setUpdates] = React.useState(0);
 
   React.useEffect(() => {

@@ -417,6 +417,12 @@ type DataPoint {
 type HomeStatistic implements Statistic {
   # The calculated data points for the home.
   data: [DataPoint!]!
+
+  # The calculated percentage of completed tasks in the next 7 days.
+  weeklyProgress: Float!
+
+  # The calculated percentage of completed tasks in the next 30 days.
+  monthlyProgress: Float!
 }
 ```
 
@@ -464,25 +470,14 @@ type Query {
   receipts: [TaskReceipt!]!
 
   # Generate the statistics for each user of home.
-  # Calculate the sum of points achieved per day and week per user.
+  # Calculate the sum of points achieved per day and week per user for the past two weeks.
   # Include a statistic for users that left the home.
-  userStatistics(
-    # The end date of the statistics to generate.
-    end: Float!
-
-    # The start date of the statistics to generate.
-    start: Float!
-  ): [UserStatistic!]!
+  userStatistics: [UserStatistic!]!
 
   # Generate the statistics for a home.
-  # Calculate the sum of points achieved per day and week in the users home.
-  homeStatistic(
-    # The end date of the statistics to generate.
-    end: Float!
-
-    # The start date of the statistics to generate.
-    start: Float!
-  ): HomeStatistic!
+  # Calculate the sum of points achieved per day and week in the users home for the past two weeks.
+  # Calculate the percentage of completed tasks in the next week and month.
+  homeStatistic: HomeStatistic!
 }
 
 type Mutation {
