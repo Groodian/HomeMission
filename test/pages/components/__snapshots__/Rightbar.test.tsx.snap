@@ -174,18 +174,137 @@ exports[`Rightbar matches snapshot 1`] = `
 }
 
 .emotion-6 {
-  padding-right: 1.2em;
-  display: inline-block;
-  font-size: 1.1em;
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+  font-size: 1.3em;
   font-weight: 700;
+  width: 100%;
 }
 
 .emotion-7 {
-  padding-right: 1.2em;
-  display: inline-block;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  background-color: transparent;
+  outline: 0;
+  border: 0;
+  margin: 0;
+  border-radius: 0;
+  padding: 0;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  vertical-align: middle;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  font-size: 1.5rem;
+  padding: 8px;
+  border-radius: 50%;
+  overflow: visible;
+  color: rgba(0, 0, 0, 0.54);
+  -webkit-transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  padding: 5px;
+  font-size: 1.125rem;
+  float: right;
+}
+
+.emotion-7::-moz-focus-inner {
+  border-style: none;
+}
+
+.emotion-7.Mui-disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+@media print {
+  .emotion-7 {
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+  }
+}
+
+.emotion-7:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+@media (hover: none) {
+  .emotion-7:hover {
+    background-color: transparent;
+  }
+}
+
+.emotion-7.Mui-disabled {
+  background-color: transparent;
+  color: rgba(0, 0, 0, 0.26);
 }
 
 .emotion-8 {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  fill: currentColor;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -webkit-transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  font-size: 1.25rem;
+}
+
+.emotion-9 {
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: inherit;
+}
+
+.emotion-10 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+  margin-right: 1.2em;
+}
+
+.emotion-11 {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -204,13 +323,17 @@ exports[`Rightbar matches snapshot 1`] = `
   color: #29b6f6;
 }
 
-.emotion-9 {
-  padding-right: 1.2em;
-  display: inline-block;
+.emotion-12 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
   color: rgba(0, 0, 0, 0.6);
 }
 
-.emotion-10 {
+.emotion-13 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -262,23 +385,23 @@ exports[`Rightbar matches snapshot 1`] = `
   margin-top: 0.5em;
 }
 
-.emotion-10::-moz-focus-inner {
+.emotion-13::-moz-focus-inner {
   border-style: none;
 }
 
-.emotion-10.Mui-disabled {
+.emotion-13.Mui-disabled {
   pointer-events: none;
   cursor: default;
 }
 
 @media print {
-  .emotion-10 {
+  .emotion-13 {
     -webkit-print-color-adjust: exact;
     color-adjust: exact;
   }
 }
 
-.emotion-10:hover {
+.emotion-13:hover {
   -webkit-text-decoration: none;
   text-decoration: none;
   background-color: rgba(46, 125, 50, 0.04);
@@ -286,40 +409,28 @@ exports[`Rightbar matches snapshot 1`] = `
 }
 
 @media (hover: none) {
-  .emotion-10:hover {
+  .emotion-13:hover {
     background-color: transparent;
   }
 }
 
-.emotion-10.Mui-disabled {
+.emotion-13.Mui-disabled {
   color: rgba(0, 0, 0, 0.26);
   border: 1px solid rgba(0, 0, 0, 0.12);
 }
 
-.emotion-10 .MuiLoadingButton-startIconLoadingStart,
-.emotion-10 .MuiLoadingButton-endIconLoadingEnd {
+.emotion-13 .MuiLoadingButton-startIconLoadingStart,
+.emotion-13 .MuiLoadingButton-endIconLoadingEnd {
   -webkit-transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   opacity: 0;
 }
 
-.emotion-10.MuiLoadingButton-loading {
+.emotion-13.MuiLoadingButton-loading {
   color: transparent;
 }
 
-.emotion-11 {
-  overflow: hidden;
-  pointer-events: none;
-  position: absolute;
-  z-index: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  border-radius: inherit;
-}
-
-.emotion-12 {
+.emotion-15 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -364,14 +475,14 @@ exports[`Rightbar matches snapshot 1`] = `
   transform-origin: 100% 0%;
 }
 
-.emotion-12.MuiBadge-invisible {
+.emotion-15.MuiBadge-invisible {
   -webkit-transform: scale(0) translate(50%, -50%);
   -moz-transform: scale(0) translate(50%, -50%);
   -ms-transform: scale(0) translate(50%, -50%);
   transform: scale(0) translate(50%, -50%);
 }
 
-.emotion-19 {
+.emotion-25 {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -391,7 +502,7 @@ exports[`Rightbar matches snapshot 1`] = `
   font-size: small;
 }
 
-.emotion-21 {
+.emotion-27 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -436,14 +547,14 @@ exports[`Rightbar matches snapshot 1`] = `
   transform-origin: 100% 0%;
 }
 
-.emotion-21.MuiBadge-invisible {
+.emotion-27.MuiBadge-invisible {
   -webkit-transform: scale(0) translate(50%, -50%);
   -moz-transform: scale(0) translate(50%, -50%);
   -ms-transform: scale(0) translate(50%, -50%);
   transform: scale(0) translate(50%, -50%);
 }
 
-.emotion-22 {
+.emotion-28 {
   position: relative;
   display: -webkit-box;
   display: -webkit-flex;
@@ -475,13 +586,89 @@ exports[`Rightbar matches snapshot 1`] = `
   height: 36px;
 }
 
-.emotion-23 {
+.emotion-29 {
   width: 100%;
   height: 100%;
   text-align: center;
   object-fit: cover;
   color: transparent;
   text-indent: 10000px;
+}
+
+.emotion-30 {
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  z-index: 1199;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-30 .MuiDrawer-paper {
+  height: calc(100% - 90px);
+  top: 90px;
+  box-sizing: border-box;
+}
+
+@media (min-width:0px) {
+  .emotion-30 {
+    width: none;
+  }
+}
+
+@media (min-width:600px) {
+  .emotion-30 {
+    width: none;
+  }
+}
+
+@media (min-width:900px) {
+  .emotion-30 {
+    width: 18em;
+  }
+}
+
+@media (min-width:1200px) {
+  .emotion-30 {
+    width: 18em;
+  }
+}
+
+@media (min-width:1536px) {
+  .emotion-30 {
+    width: 22em;
+  }
+}
+
+@media (min-width:0px) {
+  .emotion-30 .MuiDrawer-paper {
+    width: none;
+  }
+}
+
+@media (min-width:600px) {
+  .emotion-30 .MuiDrawer-paper {
+    width: none;
+  }
+}
+
+@media (min-width:900px) {
+  .emotion-30 .MuiDrawer-paper {
+    width: 18em;
+  }
+}
+
+@media (min-width:1200px) {
+  .emotion-30 .MuiDrawer-paper {
+    width: 18em;
+  }
+}
+
+@media (min-width:1536px) {
+  .emotion-30 .MuiDrawer-paper {
+    width: 22em;
+  }
 }
 
 <div
@@ -505,19 +692,40 @@ exports[`Rightbar matches snapshot 1`] = `
           <div
             class="MuiContainer-root MuiContainer-maxWidthLg emotion-5"
           >
-            <span
-              class="emotion-6"
+            <p
+              class="MuiTypography-root MuiTypography-body1 emotion-6"
             >
-              Vacuum
-            </span>
-            <br />
+              Vacuum 
+              <button
+                aria-label="Display task details"
+                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall emotion-7"
+                data-mui-internal-clone-element="true"
+                tabindex="0"
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall emotion-8"
+                  data-testid="SearchIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+                  />
+                </svg>
+                <span
+                  class="MuiTouchRipple-root emotion-9"
+                />
+              </button>
+            </p>
             <span
-              class="emotion-7"
+              class="MuiTypography-root MuiTypography-body1 emotion-10"
             >
               40 
               <svg
                 aria-hidden="true"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall emotion-8"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall emotion-11"
                 data-testid="DiamondIcon"
                 focusable="false"
                 viewBox="0 0 24 24"
@@ -528,7 +736,7 @@ exports[`Rightbar matches snapshot 1`] = `
               </svg>
             </span>
             <span
-              class="emotion-9"
+              class="MuiTypography-root MuiTypography-body1 emotion-12"
             >
               1/1/2022
             </span>
@@ -538,20 +746,20 @@ exports[`Rightbar matches snapshot 1`] = `
               data-mui-internal-clone-element="true"
             >
               <button
-                class="MuiLoadingButton-root MuiButton-root MuiButton-outlined MuiButton-outlinedSuccess MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root emotion-10"
-                id="mui-1"
+                class="MuiLoadingButton-root MuiButton-root MuiButton-outlined MuiButton-outlinedSuccess MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root emotion-13"
+                id="mui-2"
                 tabindex="0"
                 type="button"
               >
                 Complete
                 <span
-                  class="MuiTouchRipple-root emotion-11"
+                  class="MuiTouchRipple-root emotion-9"
                 />
               </button>
             </span>
           </div>
           <span
-            class="MuiBadge-anchorOriginTopRightRectangular MuiBadge-overlapRectangular MuiBadge-badge MuiBadge-standard MuiBadge-anchorOriginTopRight MuiBadge-invisible emotion-12"
+            class="MuiBadge-anchorOriginTopRightRectangular MuiBadge-overlapRectangular MuiBadge-badge MuiBadge-standard MuiBadge-anchorOriginTopRight MuiBadge-invisible emotion-15"
           />
         </span>
         <span
@@ -561,19 +769,40 @@ exports[`Rightbar matches snapshot 1`] = `
           <div
             class="MuiContainer-root MuiContainer-maxWidthLg emotion-5"
           >
-            <span
-              class="emotion-6"
+            <p
+              class="MuiTypography-root MuiTypography-body1 emotion-6"
             >
-              Clean
-            </span>
-            <br />
+              Clean 
+              <button
+                aria-label="Display task details"
+                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall emotion-7"
+                data-mui-internal-clone-element="true"
+                tabindex="0"
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall emotion-8"
+                  data-testid="SearchIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+                  />
+                </svg>
+                <span
+                  class="MuiTouchRipple-root emotion-9"
+                />
+              </button>
+            </p>
             <span
-              class="emotion-7"
+              class="MuiTypography-root MuiTypography-body1 emotion-10"
             >
               60 
               <svg
                 aria-hidden="true"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall emotion-8"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall emotion-11"
                 data-testid="DiamondIcon"
                 focusable="false"
                 viewBox="0 0 24 24"
@@ -584,13 +813,13 @@ exports[`Rightbar matches snapshot 1`] = `
               </svg>
             </span>
             <span
-              class="emotion-9"
+              class="MuiTypography-root MuiTypography-body1 emotion-12"
             >
               1/9/2022
               <svg
                 aria-hidden="true"
                 aria-label="Recurring task"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium emotion-19"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium emotion-25"
                 data-mui-internal-clone-element="true"
                 data-testid="LoopIcon"
                 focusable="false"
@@ -607,9 +836,9 @@ exports[`Rightbar matches snapshot 1`] = `
               data-mui-internal-clone-element="true"
             >
               <button
-                class="MuiLoadingButton-root MuiButton-root MuiButton-outlined MuiButton-outlinedSuccess MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root Mui-disabled emotion-10"
+                class="MuiLoadingButton-root MuiButton-root MuiButton-outlined MuiButton-outlinedSuccess MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root Mui-disabled emotion-13"
                 disabled=""
-                id="mui-4"
+                id="mui-6"
                 tabindex="-1"
                 type="button"
               >
@@ -618,21 +847,29 @@ exports[`Rightbar matches snapshot 1`] = `
             </span>
           </div>
           <span
-            class="MuiBadge-anchorOriginTopRightRectangular MuiBadge-overlapRectangular MuiBadge-badge MuiBadge-standard MuiBadge-anchorOriginTopRight emotion-21"
+            class="MuiBadge-anchorOriginTopRightRectangular MuiBadge-overlapRectangular MuiBadge-badge MuiBadge-standard MuiBadge-anchorOriginTopRight emotion-27"
           >
             <div
               aria-label="You are assigned"
-              class="MuiAvatar-root MuiAvatar-circular emotion-22"
+              class="MuiAvatar-root MuiAvatar-circular emotion-28"
               data-mui-internal-clone-element="true"
             >
               <img
                 alt="User Name"
-                class="MuiAvatar-img emotion-23"
+                class="MuiAvatar-img emotion-29"
                 src="Picture"
               />
             </div>
           </span>
         </span>
+        <div
+          class="MuiDrawer-root MuiDrawer-docked emotion-30"
+        >
+          <div
+            class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation0 MuiDrawer-paper MuiDrawer-paperAnchorRight MuiDrawer-paperAnchorDockedRight emotion-1"
+            style="visibility: hidden; webkit-transform: translateX(1024px); transform: translateX(1024px);"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -813,18 +1050,137 @@ exports[`Rightbar matches snapshot DE 1`] = `
 }
 
 .emotion-6 {
-  padding-right: 1.2em;
-  display: inline-block;
-  font-size: 1.1em;
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+  font-size: 1.3em;
   font-weight: 700;
+  width: 100%;
 }
 
 .emotion-7 {
-  padding-right: 1.2em;
-  display: inline-block;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  background-color: transparent;
+  outline: 0;
+  border: 0;
+  margin: 0;
+  border-radius: 0;
+  padding: 0;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  vertical-align: middle;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  font-size: 1.5rem;
+  padding: 8px;
+  border-radius: 50%;
+  overflow: visible;
+  color: rgba(0, 0, 0, 0.54);
+  -webkit-transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  padding: 5px;
+  font-size: 1.125rem;
+  float: right;
+}
+
+.emotion-7::-moz-focus-inner {
+  border-style: none;
+}
+
+.emotion-7.Mui-disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+@media print {
+  .emotion-7 {
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+  }
+}
+
+.emotion-7:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+@media (hover: none) {
+  .emotion-7:hover {
+    background-color: transparent;
+  }
+}
+
+.emotion-7.Mui-disabled {
+  background-color: transparent;
+  color: rgba(0, 0, 0, 0.26);
 }
 
 .emotion-8 {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  fill: currentColor;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -webkit-transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  font-size: 1.25rem;
+}
+
+.emotion-9 {
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: inherit;
+}
+
+.emotion-10 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+  margin-right: 1.2em;
+}
+
+.emotion-11 {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -843,13 +1199,17 @@ exports[`Rightbar matches snapshot DE 1`] = `
   color: #29b6f6;
 }
 
-.emotion-9 {
-  padding-right: 1.2em;
-  display: inline-block;
+.emotion-12 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
   color: rgba(0, 0, 0, 0.6);
 }
 
-.emotion-10 {
+.emotion-13 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -901,23 +1261,23 @@ exports[`Rightbar matches snapshot DE 1`] = `
   margin-top: 0.5em;
 }
 
-.emotion-10::-moz-focus-inner {
+.emotion-13::-moz-focus-inner {
   border-style: none;
 }
 
-.emotion-10.Mui-disabled {
+.emotion-13.Mui-disabled {
   pointer-events: none;
   cursor: default;
 }
 
 @media print {
-  .emotion-10 {
+  .emotion-13 {
     -webkit-print-color-adjust: exact;
     color-adjust: exact;
   }
 }
 
-.emotion-10:hover {
+.emotion-13:hover {
   -webkit-text-decoration: none;
   text-decoration: none;
   background-color: rgba(46, 125, 50, 0.04);
@@ -925,40 +1285,28 @@ exports[`Rightbar matches snapshot DE 1`] = `
 }
 
 @media (hover: none) {
-  .emotion-10:hover {
+  .emotion-13:hover {
     background-color: transparent;
   }
 }
 
-.emotion-10.Mui-disabled {
+.emotion-13.Mui-disabled {
   color: rgba(0, 0, 0, 0.26);
   border: 1px solid rgba(0, 0, 0, 0.12);
 }
 
-.emotion-10 .MuiLoadingButton-startIconLoadingStart,
-.emotion-10 .MuiLoadingButton-endIconLoadingEnd {
+.emotion-13 .MuiLoadingButton-startIconLoadingStart,
+.emotion-13 .MuiLoadingButton-endIconLoadingEnd {
   -webkit-transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   opacity: 0;
 }
 
-.emotion-10.MuiLoadingButton-loading {
+.emotion-13.MuiLoadingButton-loading {
   color: transparent;
 }
 
-.emotion-11 {
-  overflow: hidden;
-  pointer-events: none;
-  position: absolute;
-  z-index: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  border-radius: inherit;
-}
-
-.emotion-12 {
+.emotion-15 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1003,14 +1351,14 @@ exports[`Rightbar matches snapshot DE 1`] = `
   transform-origin: 100% 0%;
 }
 
-.emotion-12.MuiBadge-invisible {
+.emotion-15.MuiBadge-invisible {
   -webkit-transform: scale(0) translate(50%, -50%);
   -moz-transform: scale(0) translate(50%, -50%);
   -ms-transform: scale(0) translate(50%, -50%);
   transform: scale(0) translate(50%, -50%);
 }
 
-.emotion-19 {
+.emotion-25 {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -1030,7 +1378,7 @@ exports[`Rightbar matches snapshot DE 1`] = `
   font-size: small;
 }
 
-.emotion-21 {
+.emotion-27 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1075,14 +1423,14 @@ exports[`Rightbar matches snapshot DE 1`] = `
   transform-origin: 100% 0%;
 }
 
-.emotion-21.MuiBadge-invisible {
+.emotion-27.MuiBadge-invisible {
   -webkit-transform: scale(0) translate(50%, -50%);
   -moz-transform: scale(0) translate(50%, -50%);
   -ms-transform: scale(0) translate(50%, -50%);
   transform: scale(0) translate(50%, -50%);
 }
 
-.emotion-22 {
+.emotion-28 {
   position: relative;
   display: -webkit-box;
   display: -webkit-flex;
@@ -1114,13 +1462,89 @@ exports[`Rightbar matches snapshot DE 1`] = `
   height: 36px;
 }
 
-.emotion-23 {
+.emotion-29 {
   width: 100%;
   height: 100%;
   text-align: center;
   object-fit: cover;
   color: transparent;
   text-indent: 10000px;
+}
+
+.emotion-30 {
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  z-index: 1199;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-30 .MuiDrawer-paper {
+  height: calc(100% - 90px);
+  top: 90px;
+  box-sizing: border-box;
+}
+
+@media (min-width:0px) {
+  .emotion-30 {
+    width: none;
+  }
+}
+
+@media (min-width:600px) {
+  .emotion-30 {
+    width: none;
+  }
+}
+
+@media (min-width:900px) {
+  .emotion-30 {
+    width: 18em;
+  }
+}
+
+@media (min-width:1200px) {
+  .emotion-30 {
+    width: 18em;
+  }
+}
+
+@media (min-width:1536px) {
+  .emotion-30 {
+    width: 22em;
+  }
+}
+
+@media (min-width:0px) {
+  .emotion-30 .MuiDrawer-paper {
+    width: none;
+  }
+}
+
+@media (min-width:600px) {
+  .emotion-30 .MuiDrawer-paper {
+    width: none;
+  }
+}
+
+@media (min-width:900px) {
+  .emotion-30 .MuiDrawer-paper {
+    width: 18em;
+  }
+}
+
+@media (min-width:1200px) {
+  .emotion-30 .MuiDrawer-paper {
+    width: 18em;
+  }
+}
+
+@media (min-width:1536px) {
+  .emotion-30 .MuiDrawer-paper {
+    width: 22em;
+  }
 }
 
 <div
@@ -1144,19 +1568,40 @@ exports[`Rightbar matches snapshot DE 1`] = `
           <div
             class="MuiContainer-root MuiContainer-maxWidthLg emotion-5"
           >
-            <span
-              class="emotion-6"
+            <p
+              class="MuiTypography-root MuiTypography-body1 emotion-6"
             >
-              Vacuum
-            </span>
-            <br />
+              Vacuum 
+              <button
+                aria-label="Aufgabendetails anzeigen"
+                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall emotion-7"
+                data-mui-internal-clone-element="true"
+                tabindex="0"
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall emotion-8"
+                  data-testid="SearchIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+                  />
+                </svg>
+                <span
+                  class="MuiTouchRipple-root emotion-9"
+                />
+              </button>
+            </p>
             <span
-              class="emotion-7"
+              class="MuiTypography-root MuiTypography-body1 emotion-10"
             >
               40 
               <svg
                 aria-hidden="true"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall emotion-8"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall emotion-11"
                 data-testid="DiamondIcon"
                 focusable="false"
                 viewBox="0 0 24 24"
@@ -1167,7 +1612,7 @@ exports[`Rightbar matches snapshot DE 1`] = `
               </svg>
             </span>
             <span
-              class="emotion-9"
+              class="MuiTypography-root MuiTypography-body1 emotion-12"
             >
               1.1.2022
             </span>
@@ -1177,20 +1622,20 @@ exports[`Rightbar matches snapshot DE 1`] = `
               data-mui-internal-clone-element="true"
             >
               <button
-                class="MuiLoadingButton-root MuiButton-root MuiButton-outlined MuiButton-outlinedSuccess MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root emotion-10"
-                id="mui-7"
+                class="MuiLoadingButton-root MuiButton-root MuiButton-outlined MuiButton-outlinedSuccess MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root emotion-13"
+                id="mui-10"
                 tabindex="0"
                 type="button"
               >
                 Erledigen
                 <span
-                  class="MuiTouchRipple-root emotion-11"
+                  class="MuiTouchRipple-root emotion-9"
                 />
               </button>
             </span>
           </div>
           <span
-            class="MuiBadge-anchorOriginTopRightRectangular MuiBadge-overlapRectangular MuiBadge-badge MuiBadge-standard MuiBadge-anchorOriginTopRight MuiBadge-invisible emotion-12"
+            class="MuiBadge-anchorOriginTopRightRectangular MuiBadge-overlapRectangular MuiBadge-badge MuiBadge-standard MuiBadge-anchorOriginTopRight MuiBadge-invisible emotion-15"
           />
         </span>
         <span
@@ -1200,19 +1645,40 @@ exports[`Rightbar matches snapshot DE 1`] = `
           <div
             class="MuiContainer-root MuiContainer-maxWidthLg emotion-5"
           >
-            <span
-              class="emotion-6"
+            <p
+              class="MuiTypography-root MuiTypography-body1 emotion-6"
             >
-              Clean
-            </span>
-            <br />
+              Clean 
+              <button
+                aria-label="Aufgabendetails anzeigen"
+                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall emotion-7"
+                data-mui-internal-clone-element="true"
+                tabindex="0"
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall emotion-8"
+                  data-testid="SearchIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+                  />
+                </svg>
+                <span
+                  class="MuiTouchRipple-root emotion-9"
+                />
+              </button>
+            </p>
             <span
-              class="emotion-7"
+              class="MuiTypography-root MuiTypography-body1 emotion-10"
             >
               60 
               <svg
                 aria-hidden="true"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall emotion-8"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall emotion-11"
                 data-testid="DiamondIcon"
                 focusable="false"
                 viewBox="0 0 24 24"
@@ -1223,13 +1689,13 @@ exports[`Rightbar matches snapshot DE 1`] = `
               </svg>
             </span>
             <span
-              class="emotion-9"
+              class="MuiTypography-root MuiTypography-body1 emotion-12"
             >
               9.1.2022
               <svg
                 aria-hidden="true"
                 aria-label="Aufgabe wiederholt sich"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium emotion-19"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium emotion-25"
                 data-mui-internal-clone-element="true"
                 data-testid="LoopIcon"
                 focusable="false"
@@ -1246,9 +1712,9 @@ exports[`Rightbar matches snapshot DE 1`] = `
               data-mui-internal-clone-element="true"
             >
               <button
-                class="MuiLoadingButton-root MuiButton-root MuiButton-outlined MuiButton-outlinedSuccess MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root Mui-disabled emotion-10"
+                class="MuiLoadingButton-root MuiButton-root MuiButton-outlined MuiButton-outlinedSuccess MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root Mui-disabled emotion-13"
                 disabled=""
-                id="mui-10"
+                id="mui-14"
                 tabindex="-1"
                 type="button"
               >
@@ -1257,21 +1723,29 @@ exports[`Rightbar matches snapshot DE 1`] = `
             </span>
           </div>
           <span
-            class="MuiBadge-anchorOriginTopRightRectangular MuiBadge-overlapRectangular MuiBadge-badge MuiBadge-standard MuiBadge-anchorOriginTopRight emotion-21"
+            class="MuiBadge-anchorOriginTopRightRectangular MuiBadge-overlapRectangular MuiBadge-badge MuiBadge-standard MuiBadge-anchorOriginTopRight emotion-27"
           >
             <div
               aria-label="Du bist zugeordnet"
-              class="MuiAvatar-root MuiAvatar-circular emotion-22"
+              class="MuiAvatar-root MuiAvatar-circular emotion-28"
               data-mui-internal-clone-element="true"
             >
               <img
                 alt="User Name"
-                class="MuiAvatar-img emotion-23"
+                class="MuiAvatar-img emotion-29"
                 src="Picture"
               />
             </div>
           </span>
         </span>
+        <div
+          class="MuiDrawer-root MuiDrawer-docked emotion-30"
+        >
+          <div
+            class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation0 MuiDrawer-paper MuiDrawer-paperAnchorRight MuiDrawer-paperAnchorDockedRight emotion-1"
+            style="visibility: hidden; webkit-transform: translateX(1024px); transform: translateX(1024px);"
+          />
+        </div>
       </div>
     </div>
   </div>

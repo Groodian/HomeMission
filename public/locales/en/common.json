@@ -54,8 +54,33 @@
     "open-tasks": "Open tasks",
     "no-text-info": "You are all caught up!",
     "error-message": "Could not load open tasks",
+    "tooltip-details": "Display task details",
     "tooltip-avatar": "You are assigned",
     "tooltip-loop": "Recurring task"
+  },
+
+  "TaskDetailsDrawer": {
+    "task-details": "Task Details",
+    "completed-by": "Completed by",
+    "completed-time": "on {{date}} at {{time}}",
+    "assignee": "Assignee",
+    "no-assignee": "No Assignee",
+    "delete-single": "Delete",
+    "delete-series-all": "Delete all",
+    "delete-series-sub": "Delete following",
+    "delete-series-all-tooltip": "Delete all tasks from task series",
+    "delete-series-sub-tooltip": "Delete all following tasks from task series",
+    "delete-single-success": "Deleted task",
+    "delete-series-all-success": "Deleted all tasks from task series",
+    "delete-series-sub-success": "Deleted some tasks from task series",
+    "delete-single-error": "Could not delete task",
+    "delete-series-all-error": "Could not delete all tasks from task series",
+    "delete-series-sub-error": "Could not delete some tasks from task series",
+    "assign-success": "Assigned user to task",
+    "assign-error": "Could not assign user to task",
+    "unassign-success": "Removed assignee from task",
+    "unassign-error": "Could not remove assignee from task",
+    "already-assigned-info": "User is already assigned"
   },
 
   "InviteDialog": {

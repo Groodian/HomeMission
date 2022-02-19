@@ -30,7 +30,7 @@ type EditButtonProps = {
   task: Task;
 };
 const EditAssignSelect: React.FC<EditButtonProps> = ({ task }) => {
-  const { t } = useTranslation('overview', { keyPrefix: 'TaskDetailsDrawer' });
+  const { t } = useTranslation('common', { keyPrefix: 'TaskDetailsDrawer' });
   const { t: tc } = useTranslation('common');
   const { enqueueSnackbar } = useSnackbar();
 

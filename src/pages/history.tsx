@@ -24,7 +24,7 @@ import {
 } from '../lib/graphql/operations/history.graphql';
 
 const History: NextPage = () => {
-  const { t } = useTranslation(['history']);
+  const { t } = useTranslation('history');
   const { enqueueSnackbar } = useSnackbar();
   const router = useRouter();
   const { loading, error, data } = useHistoryQuery({

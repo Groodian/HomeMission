@@ -54,8 +54,33 @@
     "open-tasks": "Offene Aufgaben",
     "no-text-info": "Alles erledigt!",
     "error-message": "Offene Aufgaben konnten nicht geladen werden",
+    "tooltip-details": "Aufgabendetails anzeigen",
     "tooltip-avatar": "Du bist zugeordnet",
     "tooltip-loop": "Aufgabe wiederholt sich"
+  },
+
+  "TaskDetailsDrawer": {
+    "task-details": "Aufgabendetails",
+    "completed-by": "Erledigt von",
+    "completed-time": "am {{date}} um {{time}} Uhr",
+    "assignee": "Zuordnung",
+    "no-assignee": "Keine Zuordnung",
+    "delete-single": "Löschen",
+    "delete-series-all": "Alle löschen",
+    "delete-series-sub": "Folgende löschen",
+    "delete-series-all-tooltip": "Lösche alle Aufgaben der Aufgabenreihe",
+    "delete-series-sub-tooltip": "Lösche alle folgenden Aufgaben der Aufgabenreihe",
+    "delete-single-success": "Aufgabe gelöscht",
+    "delete-series-all-success": "Alle Aufgaben der Aufgabenreihe gelöscht",
+    "delete-series-sub-success": "Untermenge an Aufgaben der Aufgabenreihe gelöscht",
+    "delete-single-error": "Aufgabe konnte nicht gelöscht werden",
+    "delete-series-all-error": "Aufgaben der Aufgabenreihe konnten nicht gelöscht werden",
+    "delete-series-sub-error": "Untermenge an Aufgaben der Aufgabenreihe konnten nicht gelöscht werden",
+    "assign-success": "Aufgabe wurde zugeordnet",
+    "assign-error": "Aufgabe konnte nicht zugeordnet werden",
+    "unassign-success": "Zugeordneter wurde entfernt",
+    "unassign-error": "Zugeordneter konnte nicht entfernt werden",
+    "already-assigned-info": "Person ist schon zugeordnet"
   },
 
   "InviteDialog": {

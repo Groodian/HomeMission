@@ -6,7 +6,7 @@ import Task from '../../entities/task';
 import { useOpenTasksQuery } from '../../lib/graphql/operations/task.graphql';
 import { useSnackbar } from 'notistack';
 import StyledDrawer from '../StyledDrawer';
-import TaskDetailsDrawer from '../overview-page/TaskDetailsDrawer';
+import TaskDetailsDrawer from '../TaskDetailsDrawer';
 
 const Header = styled('h3')({
   textAlign: 'center',
@@ -17,13 +17,25 @@ const Subtext = styled('p')(({ theme }) => ({
 }));
 
 const Rightbar: React.FC = () => {
-  const [selectedTask, setSelectedTask] = React.useState<Task | undefined>(
-    undefined
-  );
   const { t } = useTranslation('common', { keyPrefix: 'Rightbar' });
   const { enqueueSnackbar } = useSnackbar();
 
+  const [selectedTask, setSelectedTask] = React.useState<Task | undefined>(
+    undefined
+  );
+
   const { data, loading, error } = useOpenTasksQuery();
+
+  // check if selected task needs to be updated
+  if (selectedTask && data) {
+    // matching task is either same (potentially updated) selected task or undefined if it was deleted
+    const matchingTask = data.openTasks.filter(
+      (t) => t.id === selectedTask.id
+    )[0] as Task | undefined;
+
+    // update selected task if something has changed
+    if (matchingTask !== selectedTask) setSelectedTask(matchingTask);
+  }
 
   React.useEffect(() => {
     if (error) enqueueSnackbar(t('error-message'), { variant: 'error' });
@@ -31,14 +43,7 @@ const Rightbar: React.FC = () => {
 
   const sxWidths = [0, 0, '18em', '18em', '22em'];
 
-  return selectedTask ? (
-    <Container>
-      <TaskDetailsDrawer
-        task={selectedTask}
-        onCloseDrawer={() => setSelectedTask(undefined)}
-      />
-    </Container>
-  ) : (
+  return (
     <StyledDrawer
       variant="permanent"
       anchor="right"
@@ -73,6 +78,10 @@ const Rightbar: React.FC = () => {
           </Subtext>
         )}
         {error && <Subtext>{t('error-message')}</Subtext>}
+        <TaskDetailsDrawer
+          task={selectedTask}
+          onCloseDrawer={() => setSelectedTask(undefined)}
+        />
       </Container>
     </StyledDrawer>
   );

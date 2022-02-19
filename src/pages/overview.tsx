@@ -6,13 +6,13 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useSnackbar } from 'notistack';
 import LoadingSpinner from '../components/LoadingSpinner';
 import TaskCalendar from '../components/overview-page/TaskCalendar';
-import TaskDetailsDrawer from '../components/overview-page/TaskDetailsDrawer';
+import TaskDetailsDrawer from '../components/TaskDetailsDrawer';
 import Task from '../entities/task';
 import { useTasksQuery } from '../lib/graphql/operations/task.graphql';
 import AddTaskDialog from '../components/overview-page/AddTaskDialog';
 
 const Overview: NextPage = () => {
-  const { t } = useTranslation(['overview']);
+  const { t } = useTranslation('overview');
   const { loading, error, data } = useTasksQuery();
   const { enqueueSnackbar } = useSnackbar();
 

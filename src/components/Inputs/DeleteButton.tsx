@@ -20,7 +20,7 @@ type DeleteButtonProps = {
   type: Type;
 };
 const DeleteButton: React.FC<DeleteButtonProps> = ({ task, type }) => {
-  const { t } = useTranslation('overview', { keyPrefix: 'TaskDetailsDrawer' });
+  const { t } = useTranslation('common', { keyPrefix: 'TaskDetailsDrawer' });
   const { enqueueSnackbar } = useSnackbar();
 
   const refetchOptions = { refetchQueries: ['Tasks', 'OpenTasks'] };

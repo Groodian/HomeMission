@@ -7,14 +7,14 @@ import {
   Typography,
 } from '@mui/material';
 import { Close } from '@mui/icons-material';
-import Task from '../../entities/task';
+import Task from '../entities/task';
 import { useTranslation } from 'next-i18next';
-import StyledDrawer from '../StyledDrawer';
-import CompleteButton from '../Inputs/CompleteButton';
+import StyledDrawer from './StyledDrawer';
+import CompleteButton from './Inputs/CompleteButton';
 import { useRouter } from 'next/router';
-import EditAssignSelect, { AvatarAndName } from '../Inputs/EditAssignSelect';
-import DeleteButton, { Type } from '../Inputs/DeleteButton';
-import InlineDiamond from '../InlineDiamond';
+import EditAssignSelect, { AvatarAndName } from './Inputs/EditAssignSelect';
+import DeleteButton, { Type } from './Inputs/DeleteButton';
+import InlineDiamond from './InlineDiamond';
 
 // Structural components
 const Section = styled(Container)({
@@ -50,7 +50,7 @@ const TaskDetailsDrawer: React.FC<TaskDetailsDrawerProps> = ({
   task,
   onCloseDrawer = () => undefined,
 }) => {
-  const { t } = useTranslation('overview', { keyPrefix: 'TaskDetailsDrawer' });
+  const { t } = useTranslation('common', { keyPrefix: 'TaskDetailsDrawer' });
 
   const router = useRouter();
 

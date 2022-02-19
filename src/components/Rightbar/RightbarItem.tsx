@@ -6,8 +6,9 @@ import {
   IconButton,
   styled,
   Tooltip,
+  Typography,
 } from '@mui/material';
-import { Loop } from '@mui/icons-material';
+import { Loop, Search } from '@mui/icons-material';
 import Task from '../../entities/task';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
@@ -25,11 +26,6 @@ const TaskContainer = styled(Container)(({ theme }) => ({
   overflowX: 'auto',
   marginBottom: '1.2em',
 }));
-
-const TaskText = styled('span')({
-  paddingRight: '1.2em',
-  display: 'inline-block',
-});
 
 type RightBarItemProps = {
   task: Task;
@@ -57,6 +53,14 @@ const RightbarItem: React.FC<RightBarItemProps> = ({
     </Tooltip>
   );
 
+  const DetailsIcon = (
+    <Tooltip title={t('tooltip-details') as string} sx={{ float: 'right' }}>
+      <IconButton size="small" onClick={() => onSelectTask(task)}>
+        <Search fontSize="small" />
+      </IconButton>
+    </Tooltip>
+  );
+
   const RecurringIcon = (
     <Tooltip title={t('tooltip-loop') as string}>
       <Loop
@@ -68,24 +72,16 @@ const RightbarItem: React.FC<RightBarItemProps> = ({
   return (
     <Badge style={{ width: '100%' }} badgeContent={avatar}>
       <TaskContainer>
-        <IconButton size="small" onClick={() => onSelectTask(task)}>
-          <TaskText
-            sx={{
-              fontSize: '1.1em',
-              fontWeight: 'bold',
-            }}
-          >
-            {task.type.name}
-          </TaskText>
-        </IconButton>
-        <br />
-        <TaskText>
+        <Typography fontSize="1.3em" fontWeight="bold" width="100%">
+          {task.type.name} {DetailsIcon}
+        </Typography>
+        <Typography component="span" mr="1.2em">
           {task.type.points} <InlineDiamond />
-        </TaskText>
-        <TaskText sx={{ color: 'text.secondary' }}>
+        </Typography>
+        <Typography component="span" color="text.secondary">
           {new Date(task.date).toLocaleDateString(router.locale)}
           {recurring && RecurringIcon}
-        </TaskText>
+        </Typography>
         <CompleteButton task={task} />
       </TaskContainer>
     </Badge>

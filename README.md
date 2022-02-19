@@ -59,9 +59,6 @@ You can join the test home with this [invitation link](https://homemission.net/j
   - Show points for selected task type / modify points for new task type
   - Option to create a series
 - Show task details when clicked on task
-  - Complete task
-  - Assign / unassign task or completion info
-  - Delete one task / all tasks from a series / following
 
 ### Statistics Page <!-- TODO -->
 
@@ -93,6 +90,13 @@ You can join the test home with this [invitation link](https://homemission.net/j
 
 - Open tasks (unassigned or assigned to current user and two weeks in the past / four in the future)
 - Complete task (disabled for tasks further in the future than one week)
+- Show task details when clicked on icon
+
+## Task Details Drawer
+
+- Complete task
+- Assign / unassign task or completion info
+- Delete one task / all tasks from a series / following
 
 ### Automation
 
@@ -182,8 +186,8 @@ Next.js specific folders are omitted. See [Next.js](#nextjs)
       - [`connection.ts`](src/lib/typeorm/connection.ts):
         Database Connection and Config.
   - [`styles/`](src/styles):
-      [Theming](https://mui.com/customization/theming/).
-      See [MUI](#mui).
+    [Theming](https://mui.com/customization/theming/).
+    See [MUI](#mui).
 - [`/test/`](test):
   See [Jest](#jest).
 - [`/.editorconfig`](.editorconfig):
@@ -448,6 +452,7 @@ The user can navigate between the pages with the left bar.
 The GraphQL server is available at the route [`/api/graphql`](src/pages/api/graphql.ts) (See [GraphQL](#graphql)). In [development mode](#development), you can use the [GraphQL Playground](http://localhost:3000/api/graphql). The available operations are also documented there.
 
 <!-- TODO -->
+
 ```graphql
 type Query {
   # Get the authenticated user from the database or null if the user is not authenticated.
