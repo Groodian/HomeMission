@@ -50,7 +50,7 @@ const ChartCard: React.FC<ChartCardProps> = ({
 }) => (
   <Card>
     <CardHeader
-      sx={{ fontSize: 20, color: 'primary.main', textAlign: 'center' }}
+      sx={{ color: 'primary.main', textAlign: 'center', height: 60 }}
       title={
         <>
           {title}

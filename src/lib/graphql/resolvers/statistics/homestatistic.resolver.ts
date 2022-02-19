@@ -61,9 +61,11 @@ Calculate the percentage of completed tasks in the next week and month.`,
       const week = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000);
       const [, totalWeeklyTasks] = await Task.findAndCount({
         date: Between(today, week),
+        relatedHome: home,
       });
       const [, completedWeeklyTasks] = await Task.findAndCount({
         date: Between(today, week),
+        relatedHome: home,
         receipt: Not(IsNull()),
       });
       const weeklyProgress =
@@ -72,9 +74,11 @@ Calculate the percentage of completed tasks in the next week and month.`,
       const month = new Date(today.getTime() + 30 * 24 * 60 * 60 * 1000);
       const [, totalMonthlyTasks] = await Task.findAndCount({
         date: Between(today, month),
+        relatedHome: home,
       });
       const [, completedMonthlyTasks] = await Task.findAndCount({
         date: Between(today, month),
+        relatedHome: home,
         receipt: Not(IsNull()),
       });
       const monthlyProgress =
