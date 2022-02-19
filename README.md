@@ -1,6 +1,6 @@
 # HomeMission
 
-<img src="./public/home_mission_grey.png" width = "300">
+<img src="./etc/homemission_logo.png" width = "150">
 
 ## [homemission.net](https://homemission.net)
 
