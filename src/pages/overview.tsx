@@ -8,17 +8,24 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import TaskCalendar from '../components/overview-page/TaskCalendar';
 import TaskDetailsDrawer from '../components/TaskDetailsDrawer';
 import Task from '../entities/task';
-import { useTasksQuery } from '../lib/graphql/operations/task.graphql';
+import {
+  TasksQuery,
+  useTasksQuery,
+} from '../lib/graphql/operations/task.graphql';
 import AddTaskDialog from '../components/overview-page/AddTaskDialog';
+import TasksAtDateDialog from '../components/overview-page/TasksAtDateDialog';
 
 const Overview: NextPage = () => {
   const { t } = useTranslation('overview');
   const { loading, error, data } = useTasksQuery();
   const { enqueueSnackbar } = useSnackbar();
 
-  const [selectedTask, setSelectedTask] = React.useState<Task | undefined>(
-    undefined
-  );
+  const [tasksAtDate, setTasksAtDate] = React.useState<
+    TasksQuery['tasks'] | undefined
+  >(undefined);
+  const [selectedTask, setSelectedTask] = React.useState<
+    TasksQuery['tasks'][number] | undefined
+  >(undefined);
   const [newTaskDate, setNewTaskDate] = React.useState<Date | undefined>(
     undefined
   );
@@ -43,13 +50,29 @@ const Overview: NextPage = () => {
       <LoadingSpinner loading={loading} />
       {data && (
         <TaskCalendar
-          tasks={data.tasks as Task[]}
+          tasks={data.tasks}
+          onShowAllAtDate={(date) => {
+            // find all tasks at the date
+            const tasks = data.tasks.filter(
+              (task) =>
+                new Date(task.date).getTime() >= date.getTime() &&
+                new Date(task.date).getTime() <
+                  date.getTime() + 1 * 24 * 60 * 60 * 1000
+            );
+            // open tasks at date dialog
+            setTasksAtDate(tasks);
+          }}
           onSelectTask={setSelectedTask}
           onAddTask={setNewTaskDate}
         />
       )}
+      <TasksAtDateDialog
+        tasksAtDate={tasksAtDate}
+        onSelectTask={setSelectedTask}
+        onCloseDialog={() => setTasksAtDate(undefined)}
+      />
       <TaskDetailsDrawer
-        task={selectedTask}
+        task={selectedTask as Task}
         onCloseDrawer={() => setSelectedTask(undefined)}
       />
       <AddTaskDialog

@@ -9,6 +9,7 @@ import {
   Stack,
   Tooltip,
   Typography,
+  useTheme,
 } from '@mui/material';
 import {
   AddTask,
@@ -17,7 +18,6 @@ import {
   Today,
 } from '@mui/icons-material';
 import StyledCalendar from './StyledCalendar';
-import Task from '../../entities/task';
 import {
   DateHeaderProps,
   EventPropGetter,
@@ -32,13 +32,14 @@ import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import 'moment/locale/de';
 import InlineDiamond from '../InlineDiamond';
+import { TasksQuery } from '../../lib/graphql/operations/task.graphql';
 
 export type CEvent = {
   title: string;
   start: Date;
   end: Date;
   allDay?: boolean;
-  resource: Task;
+  resource: TasksQuery['tasks'][number];
 };
 
 // is passed to calendar to render a user icon badge over calendar event if user is assigned
@@ -61,37 +62,31 @@ const CEventVisualize: React.FC<EventProps<CEvent>> = (props) => {
   const event = props.event;
   return (
     <span>
-      <strong>{event.resource.type?.name}</strong>
-      {event.resource.type?.points && (
+      <strong>{event.resource.type.name}</strong>
+      {event.resource.type.points && (
         <>
-          : {event.resource.type?.points} <InlineDiamond />
+          : {event.resource.type.points} <InlineDiamond />
         </>
       )}
     </span>
   );
 };
 
-// is passed to calendar to render calendar event container
-const customEventPropGetter: EventPropGetter<CEvent> = (event) => {
-  return {
-    style: {
-      backgroundColor: !event.resource.receipt ? 'grey' : 'green',
-    },
-  };
-};
-
 type TaskCalendarProps = {
-  tasks?: Task[];
-  onSelectTask?: (selectedTask: Task) => void;
+  tasks?: TasksQuery['tasks'];
+  onShowAllAtDate: (date: Date) => void;
+  onSelectTask?: (selectedTask: TasksQuery['tasks'][number]) => void;
   onAddTask?: (date: Date) => void;
 };
 const TaskCalendar: React.FC<TaskCalendarProps> = ({
   tasks,
+  onShowAllAtDate,
   onSelectTask = () => undefined,
   onAddTask = () => undefined,
 }) => {
   const { t } = useTranslation('overview', { keyPrefix: 'TaskCalendar' });
   const router = useRouter();
+  const theme = useTheme();
   const localizer = momentLocalizer(moment);
   moment.locale(router.locale);
 
@@ -161,6 +156,17 @@ const TaskCalendar: React.FC<TaskCalendarProps> = ({
     );
   };
 
+  // is passed to calendar to render calendar event container
+  const customEventPropGetter: EventPropGetter<CEvent> = (event) => {
+    return {
+      style: {
+        backgroundColor: event.resource.receipt
+          ? theme.palette.success.main
+          : 'grey',
+      },
+    };
+  };
+
   return (
     <StyledCalendar
       localizer={localizer}
@@ -175,7 +181,9 @@ const TaskCalendar: React.FC<TaskCalendarProps> = ({
         event: CEventVisualize,
         month: { dateHeader: CDateHeaderVisualize },
       }}
+      messages={{ showMore: (count) => t('show-more', { count }) }}
       onSelectEvent={(event) => onSelectTask(event.resource)}
+      onDrillDown={onShowAllAtDate}
     />
   );
 };

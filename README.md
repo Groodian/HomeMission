@@ -12,7 +12,7 @@ You can join the test home with this [invitation link](https://homemission.net/j
 - Score for roommates based on finished tasks (Taking out the trash etc.)
 - Multiple homes, one user is part of a home and can complete tasks which gives the user points (points vary by task)
 
-## Following Contents <!-- TODO -->
+## Following Contents
 
 - [Features](#features)
 - [Run Application](#run-application)
@@ -27,7 +27,7 @@ You can join the test home with this [invitation link](https://homemission.net/j
   - [AWS Setup](#aws-setup)
 - [Retrospective](#retrospective)
 
-## Features <!-- TODO -->
+## Features
 
 ### General
 
@@ -58,16 +58,18 @@ You can join the test home with this [invitation link](https://homemission.net/j
   - Delete task types
   - Show points for selected task type / modify points for new task type
   - Option to create a series
+- Show info and dialog on click if too many tasks are at one date
 - Show task details when clicked on task
 
-### Statistics Page <!-- TODO -->
+### Statistics Page
 
 - Show weekly / monthly progress of task completion
-- Show charts of points
+- Show charts of points per user and for the whole home
 
-### History Page <!-- TODO -->
+### History Page
 
 - Document every action to prevent abuse
+- Automated rerendering
 
 ### Navbar
 
@@ -217,8 +219,6 @@ Next.js specific folders are omitted. See [Next.js](#nextjs)
 ### Data Structure
 
 The entities are defined in [`/src/entities/`](src/entities). The GraphQL schema is emitted to [`/schema.gql`](schema.gql) and available in the [GraphQL Playground](http://localhost:3000/api/graphql) when in [development mode](#development) together with a documentation. The GraphQL types are the same as the database entities (See [TypeGraphQL](#typegraphql) and [TypeORM](#typeorm)).
-
-<!-- TODO -->
 
 ```graphql
 # Users are saved in Auth0 and a copy is saved when the user logs in.
@@ -450,8 +450,6 @@ The user can navigate between the pages with the left bar.
 #### GraphQL Operations
 
 The GraphQL server is available at the route [`/api/graphql`](src/pages/api/graphql.ts) (See [GraphQL](#graphql)). In [development mode](#development), you can use the [GraphQL Playground](http://localhost:3000/api/graphql). The available operations are also documented there.
-
-<!-- TODO -->
 
 ```graphql
 type Query {

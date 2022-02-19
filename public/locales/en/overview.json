@@ -1,11 +1,13 @@
 {
   "error-message": "Could not load tasks",
+  "all-tasks-at": "All tasks at {{date}}",
 
   "TaskCalendar": {
     "today": "Today",
     "previous": "Previous month",
     "next": "Next month",
-    "add-task-tooltip": "Add task"
+    "add-task-tooltip": "Add task",
+    "show-more": "+{{count}} more tasks"
   },
 
   "AddTaskDialog": {

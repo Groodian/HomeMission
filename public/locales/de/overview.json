@@ -1,11 +1,13 @@
 {
   "error-message": "Aufgaben konnten nicht geladen werden",
+  "all-tasks-at": "Alle Aufgaben am {{date}}",
 
   "TaskCalendar": {
     "today": "Heute",
     "previous": "Vorheriger Monat",
     "next": "Nächster Monat",
-    "add-task-tooltip": "Aufgabe hinzufügen"
+    "add-task-tooltip": "Aufgabe hinzufügen",
+    "show-more": "+{{count}} weitere Aufgaben"
   },
 
   "AddTaskDialog": {
