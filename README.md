@@ -220,6 +220,10 @@ Next.js specific folders are omitted. See [Next.js](#nextjs)
 
 The entities are defined in [`/src/entities/`](src/entities). The GraphQL schema is emitted to [`/schema.gql`](schema.gql) and available in the [GraphQL Playground](http://localhost:3000/api/graphql) when in [development mode](#development) together with a documentation. The GraphQL types are the same as the database entities (See [TypeGraphQL](#typegraphql) and [TypeORM](#typeorm)).
 
+The relationships of the different entities can be seen in the following:
+
+<img src="./etc/erm.png" width=600>
+
 ```graphql
 # Users are saved in Auth0 and a copy is saved when the user logs in.
 # The name can be changed and the picture is updated by Auth0 on every log in.
