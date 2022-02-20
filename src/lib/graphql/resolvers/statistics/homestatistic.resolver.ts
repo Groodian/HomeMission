@@ -58,6 +58,7 @@ Calculate the percentage of completed tasks in the next week and month.`,
       }
 
       // calculate progress
+      today.setDate(today.getDate() - 1);
       const week = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000);
       const [, totalWeeklyTasks] = await Task.findAndCount({
         date: Between(today, week),
@@ -68,8 +69,8 @@ Calculate the percentage of completed tasks in the next week and month.`,
         relatedHome: home,
         receipt: Not(IsNull()),
       });
-      const weeklyProgress =
-        (completedWeeklyTasks / totalWeeklyTasks) * 100 || 100; // not NaN
+      let weeklyProgress = (completedWeeklyTasks / totalWeeklyTasks) * 100;
+      if (isNaN(weeklyProgress)) weeklyProgress = 100;
 
       const month = new Date(today.getTime() + 30 * 24 * 60 * 60 * 1000);
       const [, totalMonthlyTasks] = await Task.findAndCount({
@@ -81,8 +82,8 @@ Calculate the percentage of completed tasks in the next week and month.`,
         relatedHome: home,
         receipt: Not(IsNull()),
       });
-      const monthlyProgress =
-        (completedMonthlyTasks / totalMonthlyTasks) * 100 || 100; // not NaN
+      let monthlyProgress = (completedMonthlyTasks / totalMonthlyTasks) * 100;
+      if (isNaN(monthlyProgress)) monthlyProgress = 100;
 
       return new HomeStatistic(dataPoints, weeklyProgress, monthlyProgress);
     } catch (e) {
