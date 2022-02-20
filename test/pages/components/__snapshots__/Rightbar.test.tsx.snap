@@ -595,82 +595,6 @@ exports[`Rightbar matches snapshot 1`] = `
   text-indent: 10000px;
 }
 
-.emotion-30 {
-  -webkit-flex: 0 0 auto;
-  -ms-flex: 0 0 auto;
-  flex: 0 0 auto;
-  z-index: 1199;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-}
-
-.emotion-30 .MuiDrawer-paper {
-  height: calc(100% - 90px);
-  top: 90px;
-  box-sizing: border-box;
-}
-
-@media (min-width:0px) {
-  .emotion-30 {
-    width: none;
-  }
-}
-
-@media (min-width:600px) {
-  .emotion-30 {
-    width: none;
-  }
-}
-
-@media (min-width:900px) {
-  .emotion-30 {
-    width: 18em;
-  }
-}
-
-@media (min-width:1200px) {
-  .emotion-30 {
-    width: 18em;
-  }
-}
-
-@media (min-width:1536px) {
-  .emotion-30 {
-    width: 22em;
-  }
-}
-
-@media (min-width:0px) {
-  .emotion-30 .MuiDrawer-paper {
-    width: none;
-  }
-}
-
-@media (min-width:600px) {
-  .emotion-30 .MuiDrawer-paper {
-    width: none;
-  }
-}
-
-@media (min-width:900px) {
-  .emotion-30 .MuiDrawer-paper {
-    width: 18em;
-  }
-}
-
-@media (min-width:1200px) {
-  .emotion-30 .MuiDrawer-paper {
-    width: 18em;
-  }
-}
-
-@media (min-width:1536px) {
-  .emotion-30 .MuiDrawer-paper {
-    width: 22em;
-  }
-}
-
 <div
     class="MuiDrawer-root MuiDrawer-docked emotion-0"
   >
@@ -862,14 +786,6 @@ exports[`Rightbar matches snapshot 1`] = `
             </div>
           </span>
         </span>
-        <div
-          class="MuiDrawer-root MuiDrawer-docked emotion-30"
-        >
-          <div
-            class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation0 MuiDrawer-paper MuiDrawer-paperAnchorRight MuiDrawer-paperAnchorDockedRight emotion-1"
-            style="visibility: hidden; webkit-transform: translateX(1024px); transform: translateX(1024px);"
-          />
-        </div>
       </div>
     </div>
   </div>
@@ -1471,82 +1387,6 @@ exports[`Rightbar matches snapshot DE 1`] = `
   text-indent: 10000px;
 }
 
-.emotion-30 {
-  -webkit-flex: 0 0 auto;
-  -ms-flex: 0 0 auto;
-  flex: 0 0 auto;
-  z-index: 1199;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-}
-
-.emotion-30 .MuiDrawer-paper {
-  height: calc(100% - 90px);
-  top: 90px;
-  box-sizing: border-box;
-}
-
-@media (min-width:0px) {
-  .emotion-30 {
-    width: none;
-  }
-}
-
-@media (min-width:600px) {
-  .emotion-30 {
-    width: none;
-  }
-}
-
-@media (min-width:900px) {
-  .emotion-30 {
-    width: 18em;
-  }
-}
-
-@media (min-width:1200px) {
-  .emotion-30 {
-    width: 18em;
-  }
-}
-
-@media (min-width:1536px) {
-  .emotion-30 {
-    width: 22em;
-  }
-}
-
-@media (min-width:0px) {
-  .emotion-30 .MuiDrawer-paper {
-    width: none;
-  }
-}
-
-@media (min-width:600px) {
-  .emotion-30 .MuiDrawer-paper {
-    width: none;
-  }
-}
-
-@media (min-width:900px) {
-  .emotion-30 .MuiDrawer-paper {
-    width: 18em;
-  }
-}
-
-@media (min-width:1200px) {
-  .emotion-30 .MuiDrawer-paper {
-    width: 18em;
-  }
-}
-
-@media (min-width:1536px) {
-  .emotion-30 .MuiDrawer-paper {
-    width: 22em;
-  }
-}
-
 <div
     class="MuiDrawer-root MuiDrawer-docked emotion-0"
   >
@@ -1738,14 +1578,6 @@ exports[`Rightbar matches snapshot DE 1`] = `
             </div>
           </span>
         </span>
-        <div
-          class="MuiDrawer-root MuiDrawer-docked emotion-30"
-        >
-          <div
-            class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation0 MuiDrawer-paper MuiDrawer-paperAnchorRight MuiDrawer-paperAnchorDockedRight emotion-1"
-            style="visibility: hidden; webkit-transform: translateX(1024px); transform: translateX(1024px);"
-          />
-        </div>
       </div>
     </div>
   </div>

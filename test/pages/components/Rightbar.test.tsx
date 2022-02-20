@@ -85,6 +85,7 @@ describe('Rightbar', () => {
   });
 
   it('shows info if there are no open tasks', async () => {
+    const apolloCache = new InMemoryCache();
     apolloCache.writeQuery({
       query: gql`
         query OpenTasks {

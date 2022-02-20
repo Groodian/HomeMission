@@ -38,15 +38,23 @@ import schema from '../lib/graphql/schema';
 import { createEmotionCache } from '../lib/mui/emotion';
 import darkTheme from '../styles/dark-theme';
 import lightTheme from '../styles/light-theme';
+import TaskDetailsDrawer from '../components/TaskDetailsDrawer';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
 
-type ModeContextTypes = {
+type ColorModeContextType = {
   setMode: (mode: string) => void;
 };
-export const ColorModeContext = createContext<ModeContextTypes>({
+export const ColorModeContext = createContext<ColorModeContextType>({
   setMode: () => undefined,
+});
+
+type TaskDetailsContextType = {
+  setSelectedTask: (taskId?: string) => void;
+};
+export const TaskDetailsContext = createContext<TaskDetailsContextType>({
+  setSelectedTask: () => undefined,
 });
 
 interface MyAppProps extends AppProps {
@@ -127,6 +135,11 @@ const MyApp: React.FC<MyAppProps> = ({
     }
   }
 
+  const [selectedTask, setSelectedTask] = React.useState<string | undefined>(
+    undefined
+  );
+  const taskDetailsContext = useMemo(() => ({ setSelectedTask }), []);
+
   return (
     <ApolloProvider client={apolloClient}>
       <UserProvider>
@@ -140,33 +153,39 @@ const MyApp: React.FC<MyAppProps> = ({
             />
           </Head>
           <ColorModeContext.Provider value={colorModeContext}>
-            <LocalizationProvider
-              dateAdapter={AdapterDateFns}
-              locale={router.locale === 'de' ? deLocale : enLocale}
-            >
-              <ThemeProvider theme={theme}>
-                <SnackbarProvider ref={notistackRef}>
-                  {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-                  <CssBaseline />
-                  {loading ? ( // Only show loading spinner
-                    <LoadingSpinner loading />
-                  ) : userData?.user ? ( // Only show bars when user is signed in
-                    <>
-                      <Navbar />
-                      <Box sx={{ display: 'flex' }}>
-                        {homeData?.home && <Leftbar />}
-                        <Container sx={{ flexShrink: 1, my: 3 }}>
-                          <Component {...pageProps} />
-                        </Container>
-                        {homeData?.home && <Rightbar />}
-                      </Box>
-                    </>
-                  ) : (
-                    <Component {...pageProps} />
-                  )}
-                </SnackbarProvider>
-              </ThemeProvider>
-            </LocalizationProvider>
+            <TaskDetailsContext.Provider value={taskDetailsContext}>
+              <LocalizationProvider
+                dateAdapter={AdapterDateFns}
+                locale={router.locale === 'de' ? deLocale : enLocale}
+              >
+                <ThemeProvider theme={theme}>
+                  <SnackbarProvider ref={notistackRef}>
+                    {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+                    <CssBaseline />
+                    {loading ? ( // Only show loading spinner
+                      <LoadingSpinner loading />
+                    ) : userData?.user ? ( // Only show bars when user is signed in
+                      <>
+                        <Navbar />
+                        <Box sx={{ display: 'flex' }}>
+                          {homeData?.home && <Leftbar />}
+                          <Container sx={{ flexShrink: 1, my: 3 }}>
+                            <Component {...pageProps} />
+                            <TaskDetailsDrawer
+                              taskId={selectedTask}
+                              onCloseDrawer={() => setSelectedTask(undefined)}
+                            />
+                          </Container>
+                          {homeData?.home && <Rightbar />}
+                        </Box>
+                      </>
+                    ) : (
+                      <Component {...pageProps} />
+                    )}
+                  </SnackbarProvider>
+                </ThemeProvider>
+              </LocalizationProvider>
+            </TaskDetailsContext.Provider>
           </ColorModeContext.Provider>
         </CacheProvider>
       </UserProvider>

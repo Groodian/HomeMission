@@ -5,6 +5,51 @@ describe('Task resolver with', () => {
   afterAll(database.shutdown);
 
   it(
+    'Task query returns null when task cannot be found',
+    async () => {
+      await database.insertUsers();
+      await database.insertHomes();
+      await database.addUserToHome('user-1', '1');
+
+      const body = {
+        operationName: 'Task',
+        query: taskQuery,
+        variables: { task: 'foobar' },
+      };
+
+      const res = await testGraphql(body, 'user-1');
+
+      expect(res.end).toHaveBeenNthCalledWith(1, '{"data":{"task":null}}\n');
+    },
+    timeoutLength
+  );
+
+  it(
+    'Task query returns a task by id',
+    async () => {
+      await database.insertUsers();
+      await database.insertHomes();
+      await database.insertTaskTypes(1);
+      await database.insertTasks();
+      await database.addUserToHome('user-1', '1');
+
+      const body = {
+        operationName: 'Task',
+        query: taskQuery,
+        variables: { task: '2' },
+      };
+
+      const res = await testGraphql(body, 'user-1');
+
+      expect(res.end).toHaveBeenNthCalledWith(
+        1,
+        '{"data":{"task":{"id":"2","date":"2022-01-03T00:00:00.000Z","type":{"id":"1","name":"name-1","points":1},"series":null,"receipt":null,"assignee":null}}}\n'
+      );
+    },
+    timeoutLength
+  );
+
+  it(
     'Tasks query returns an empty array when there are no tasks',
     async () => {
       await database.insertUsers();
@@ -391,6 +436,38 @@ describe('Task resolver with', () => {
     },
     timeoutLength
   );
+
+  const taskQuery = `
+    query Task($task: String!) {
+      task(task: $task) {
+        id
+        date
+        type {
+          id
+          name
+          points
+        }
+        series {
+          id
+        }
+        receipt {
+          id
+          name
+          completionDate
+          completer {
+            id
+            name
+            picture
+          }
+        }
+        assignee {
+          id
+          name
+          picture
+        }
+      }
+    }
+  `;
 
   const tasksQuery = `
     query Tasks {

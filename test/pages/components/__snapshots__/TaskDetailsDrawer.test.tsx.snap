@@ -1,0 +1,2446 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TaskDetailsDrawer matches snapshot 1`] = `
+<DocumentFragment>
+  .emotion-0 {
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  z-index: 1199;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-0 .MuiDrawer-paper {
+  height: calc(100% - 90px);
+  top: 90px;
+  box-sizing: border-box;
+}
+
+@media (min-width:0px) {
+  .emotion-0 {
+    width: none;
+  }
+}
+
+@media (min-width:600px) {
+  .emotion-0 {
+    width: none;
+  }
+}
+
+@media (min-width:900px) {
+  .emotion-0 {
+    width: 18em;
+  }
+}
+
+@media (min-width:1200px) {
+  .emotion-0 {
+    width: 18em;
+  }
+}
+
+@media (min-width:1536px) {
+  .emotion-0 {
+    width: 22em;
+  }
+}
+
+@media (min-width:0px) {
+  .emotion-0 .MuiDrawer-paper {
+    width: none;
+  }
+}
+
+@media (min-width:600px) {
+  .emotion-0 .MuiDrawer-paper {
+    width: none;
+  }
+}
+
+@media (min-width:900px) {
+  .emotion-0 .MuiDrawer-paper {
+    width: 18em;
+  }
+}
+
+@media (min-width:1200px) {
+  .emotion-0 .MuiDrawer-paper {
+    width: 18em;
+  }
+}
+
+@media (min-width:1536px) {
+  .emotion-0 .MuiDrawer-paper {
+    width: 22em;
+  }
+}
+
+.emotion-1 {
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.87);
+  -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  box-shadow: none;
+  overflow-y: auto;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 100%;
+  -webkit-flex: 1 0 auto;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
+  z-index: 1200;
+  -webkit-overflow-scrolling: touch;
+  position: fixed;
+  top: 0;
+  outline: 0;
+  right: 0;
+  border-left: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.emotion-2 {
+  width: 100%;
+  margin-left: auto;
+  box-sizing: border-box;
+  margin-right: auto;
+  display: block;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+@media (min-width:600px) {
+  .emotion-2 {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+@media (min-width:1200px) {
+  .emotion-2 {
+    max-width: 1200px;
+  }
+}
+
+.emotion-3 {
+  width: 100%;
+  margin-left: auto;
+  box-sizing: border-box;
+  margin-right: auto;
+  display: block;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding: 1em 0!important;
+}
+
+@media (min-width:600px) {
+  .emotion-3 {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+@media (min-width:1200px) {
+  .emotion-3 {
+    max-width: 1200px;
+  }
+}
+
+.emotion-4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+}
+
+.emotion-5 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+  word-break: break-word;
+  font-size: 1.1em;
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+.emotion-6 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  background-color: transparent;
+  outline: 0;
+  border: 0;
+  margin: 0;
+  border-radius: 0;
+  padding: 0;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  vertical-align: middle;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  font-size: 1.5rem;
+  padding: 8px;
+  border-radius: 50%;
+  overflow: visible;
+  color: rgba(0, 0, 0, 0.54);
+  -webkit-transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  -webkit-justify-content: flex-end;
+  justify-content: flex-end;
+  padding: 16 16px;
+}
+
+.emotion-6::-moz-focus-inner {
+  border-style: none;
+}
+
+.emotion-6.Mui-disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+@media print {
+  .emotion-6 {
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+  }
+}
+
+.emotion-6:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+@media (hover: none) {
+  .emotion-6:hover {
+    background-color: transparent;
+  }
+}
+
+.emotion-6.Mui-disabled {
+  background-color: transparent;
+  color: rgba(0, 0, 0, 0.26);
+}
+
+.emotion-7 {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  fill: currentColor;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -webkit-transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  font-size: 1.5rem;
+}
+
+.emotion-8 {
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: inherit;
+}
+
+.emotion-9 {
+  margin: 0;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  border-width: 0;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.12);
+  border-bottom-width: thin;
+}
+
+.emotion-11 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+  word-break: break-word;
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+.emotion-12 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+  word-break: break-word;
+  font-size: 1.1em;
+}
+
+.emotion-13 {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  fill: currentColor;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -webkit-transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  font-size: 1.25rem;
+  vertical-align: sub;
+  color: #29b6f6;
+}
+
+.emotion-14 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+  word-break: break-word;
+  font-size: 1.1em;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.emotion-18 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-size: 1.25rem;
+  line-height: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+}
+
+.emotion-19 {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  object-fit: cover;
+  color: transparent;
+  text-indent: 10000px;
+}
+
+.emotion-20 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+  word-break: break-word;
+  font-size: 1.1em;
+  font-size: 0.9em;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 0.9em;
+}
+
+.emotion-23 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  background-color: transparent;
+  outline: 0;
+  border: 0;
+  margin: 0;
+  border-radius: 0;
+  padding: 0;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  vertical-align: middle;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  color: inherit;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.75;
+  letter-spacing: 0.02857em;
+  text-transform: uppercase;
+  min-width: 64px;
+  padding: 5px 15px;
+  border-radius: 4px;
+  -webkit-transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border: 1px solid rgba(211, 47, 47, 0.5);
+  color: #d32f2f;
+  width: 100%;
+  -webkit-transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.emotion-23::-moz-focus-inner {
+  border-style: none;
+}
+
+.emotion-23.Mui-disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+@media print {
+  .emotion-23 {
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+  }
+}
+
+.emotion-23:hover {
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  background-color: rgba(211, 47, 47, 0.04);
+  border: 1px solid #d32f2f;
+}
+
+@media (hover: none) {
+  .emotion-23:hover {
+    background-color: transparent;
+  }
+}
+
+.emotion-23.Mui-disabled {
+  color: rgba(0, 0, 0, 0.26);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.emotion-23 .MuiLoadingButton-startIconLoadingStart,
+.emotion-23 .MuiLoadingButton-endIconLoadingEnd {
+  -webkit-transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  opacity: 0;
+}
+
+.emotion-23.MuiLoadingButton-loading {
+  color: transparent;
+}
+
+.emotion-25 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  border-radius: 4px;
+  margin-top: 0.5em;
+}
+
+.emotion-25 .MuiButtonGroup-grouped {
+  min-width: 40px;
+}
+
+.emotion-25 .MuiButtonGroup-grouped:not(:first-of-type) {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  margin-left: -1px;
+}
+
+.emotion-25 .MuiButtonGroup-grouped:not(:last-of-type) {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right-color: transparent;
+}
+
+.emotion-25 .MuiButtonGroup-grouped:not(:last-of-type):hover {
+  border-right-color: currentColor;
+}
+
+<div
+    class="MuiDrawer-root MuiDrawer-docked emotion-0"
+  >
+    <div
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation0 MuiDrawer-paper MuiDrawer-paperAnchorRight MuiDrawer-paperAnchorDockedRight emotion-1"
+    >
+      <div
+        class="MuiContainer-root MuiContainer-maxWidthLg emotion-2"
+      >
+        <div
+          class="MuiContainer-root MuiContainer-maxWidthLg emotion-3"
+        >
+          <span
+            class="emotion-4"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body1 emotion-5"
+            >
+              Task Details
+            </p>
+            <button
+              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium emotion-6"
+              tabindex="0"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium emotion-7"
+                data-testid="CloseIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                />
+              </svg>
+              <span
+                class="MuiTouchRipple-root emotion-8"
+              />
+            </button>
+          </span>
+        </div>
+        <hr
+          class="MuiDivider-root MuiDivider-fullWidth emotion-9"
+        />
+        <div
+          class="MuiContainer-root MuiContainer-maxWidthLg emotion-3"
+        >
+          <p
+            class="MuiTypography-root MuiTypography-body1 emotion-11"
+          >
+            Vacuum
+          </p>
+          <p
+            class="MuiTypography-root MuiTypography-body1 emotion-12"
+          >
+            40 
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall emotion-13"
+              data-testid="DiamondIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M12.16 3h-.32L9.21 8.25h5.58zm4.3 5.25h5.16L19 3h-5.16zm4.92 1.5h-8.63V20.1zM11.25 20.1V9.75H2.62zM7.54 8.25 10.16 3H5L2.38 8.25z"
+              />
+            </svg>
+          </p>
+          <p
+            class="MuiTypography-root MuiTypography-body1 emotion-14"
+          >
+            1/1/2022
+          </p>
+        </div>
+        <hr
+          class="MuiDivider-root MuiDivider-fullWidth emotion-9"
+        />
+        <div
+          class="MuiContainer-root MuiContainer-maxWidthLg emotion-3"
+        >
+          <p
+            class="MuiTypography-root MuiTypography-body1 emotion-11"
+          >
+            Completed by
+          </p>
+          <span
+            style="display: flex; overflow: clip; margin-top: 0.2em;"
+          >
+            <div
+              class="MuiAvatar-root MuiAvatar-circular emotion-18"
+            >
+              <img
+                alt="User 1"
+                class="MuiAvatar-img emotion-19"
+                src="Picture 1"
+              />
+            </div>
+            User 1
+          </span>
+          <p
+            class="MuiTypography-root MuiTypography-body1 emotion-20"
+          >
+            on 1/1/2022 at 12:00:00 AM
+          </p>
+        </div>
+        <hr
+          class="MuiDivider-root MuiDivider-fullWidth emotion-9"
+        />
+        <div
+          class="MuiContainer-root MuiContainer-maxWidthLg emotion-3"
+        >
+          <button
+            class="MuiLoadingButton-root MuiButton-root MuiButton-outlined MuiButton-outlinedError MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-fullWidth MuiButtonBase-root emotion-23"
+            id="mui-1"
+            tabindex="0"
+            type="button"
+          >
+            Delete
+            <span
+              class="MuiTouchRipple-root emotion-8"
+            />
+          </button>
+          <div
+            class="MuiButtonGroup-root MuiButtonGroup-outlined emotion-25"
+            role="group"
+          >
+            <button
+              aria-label="Delete all tasks from task series"
+              class="MuiLoadingButton-root MuiButton-root MuiButton-outlined MuiButton-outlinedError MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-fullWidth MuiButtonBase-root  MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedOutlined MuiButtonGroup-groupedOutlinedHorizontal MuiButtonGroup-groupedOutlinedPrimary emotion-23"
+              data-mui-internal-clone-element="true"
+              id="mui-2"
+              tabindex="0"
+              type="button"
+            >
+              Delete all
+              <span
+                class="MuiTouchRipple-root emotion-8"
+              />
+            </button>
+            <button
+              aria-label="Delete all following tasks from task series"
+              class="MuiLoadingButton-root MuiButton-root MuiButton-outlined MuiButton-outlinedError MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-fullWidth MuiButtonBase-root  MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedOutlined MuiButtonGroup-groupedOutlinedHorizontal MuiButtonGroup-groupedOutlinedPrimary emotion-23"
+              data-mui-internal-clone-element="true"
+              id="mui-4"
+              tabindex="0"
+              type="button"
+            >
+              Delete following
+              <span
+                class="MuiTouchRipple-root emotion-8"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`TaskDetailsDrawer matches snapshot DE 1`] = `
+<DocumentFragment>
+  .emotion-0 {
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  z-index: 1199;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-0 .MuiDrawer-paper {
+  height: calc(100% - 90px);
+  top: 90px;
+  box-sizing: border-box;
+}
+
+@media (min-width:0px) {
+  .emotion-0 {
+    width: none;
+  }
+}
+
+@media (min-width:600px) {
+  .emotion-0 {
+    width: none;
+  }
+}
+
+@media (min-width:900px) {
+  .emotion-0 {
+    width: 18em;
+  }
+}
+
+@media (min-width:1200px) {
+  .emotion-0 {
+    width: 18em;
+  }
+}
+
+@media (min-width:1536px) {
+  .emotion-0 {
+    width: 22em;
+  }
+}
+
+@media (min-width:0px) {
+  .emotion-0 .MuiDrawer-paper {
+    width: none;
+  }
+}
+
+@media (min-width:600px) {
+  .emotion-0 .MuiDrawer-paper {
+    width: none;
+  }
+}
+
+@media (min-width:900px) {
+  .emotion-0 .MuiDrawer-paper {
+    width: 18em;
+  }
+}
+
+@media (min-width:1200px) {
+  .emotion-0 .MuiDrawer-paper {
+    width: 18em;
+  }
+}
+
+@media (min-width:1536px) {
+  .emotion-0 .MuiDrawer-paper {
+    width: 22em;
+  }
+}
+
+.emotion-1 {
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.87);
+  -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  box-shadow: none;
+  overflow-y: auto;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 100%;
+  -webkit-flex: 1 0 auto;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
+  z-index: 1200;
+  -webkit-overflow-scrolling: touch;
+  position: fixed;
+  top: 0;
+  outline: 0;
+  right: 0;
+  border-left: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.emotion-2 {
+  width: 100%;
+  margin-left: auto;
+  box-sizing: border-box;
+  margin-right: auto;
+  display: block;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+@media (min-width:600px) {
+  .emotion-2 {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+@media (min-width:1200px) {
+  .emotion-2 {
+    max-width: 1200px;
+  }
+}
+
+.emotion-3 {
+  width: 100%;
+  margin-left: auto;
+  box-sizing: border-box;
+  margin-right: auto;
+  display: block;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding: 1em 0!important;
+}
+
+@media (min-width:600px) {
+  .emotion-3 {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+@media (min-width:1200px) {
+  .emotion-3 {
+    max-width: 1200px;
+  }
+}
+
+.emotion-4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+}
+
+.emotion-5 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+  word-break: break-word;
+  font-size: 1.1em;
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+.emotion-6 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  background-color: transparent;
+  outline: 0;
+  border: 0;
+  margin: 0;
+  border-radius: 0;
+  padding: 0;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  vertical-align: middle;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  font-size: 1.5rem;
+  padding: 8px;
+  border-radius: 50%;
+  overflow: visible;
+  color: rgba(0, 0, 0, 0.54);
+  -webkit-transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  -webkit-justify-content: flex-end;
+  justify-content: flex-end;
+  padding: 16 16px;
+}
+
+.emotion-6::-moz-focus-inner {
+  border-style: none;
+}
+
+.emotion-6.Mui-disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+@media print {
+  .emotion-6 {
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+  }
+}
+
+.emotion-6:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+@media (hover: none) {
+  .emotion-6:hover {
+    background-color: transparent;
+  }
+}
+
+.emotion-6.Mui-disabled {
+  background-color: transparent;
+  color: rgba(0, 0, 0, 0.26);
+}
+
+.emotion-7 {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  fill: currentColor;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -webkit-transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  font-size: 1.5rem;
+}
+
+.emotion-8 {
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: inherit;
+}
+
+.emotion-9 {
+  margin: 0;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  border-width: 0;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.12);
+  border-bottom-width: thin;
+}
+
+.emotion-11 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+  word-break: break-word;
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+.emotion-12 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+  word-break: break-word;
+  font-size: 1.1em;
+}
+
+.emotion-13 {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  fill: currentColor;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -webkit-transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  font-size: 1.25rem;
+  vertical-align: sub;
+  color: #29b6f6;
+}
+
+.emotion-14 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+  word-break: break-word;
+  font-size: 1.1em;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.emotion-18 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-size: 1.25rem;
+  line-height: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+}
+
+.emotion-19 {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  object-fit: cover;
+  color: transparent;
+  text-indent: 10000px;
+}
+
+.emotion-20 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+  word-break: break-word;
+  font-size: 1.1em;
+  font-size: 0.9em;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 0.9em;
+}
+
+.emotion-23 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  background-color: transparent;
+  outline: 0;
+  border: 0;
+  margin: 0;
+  border-radius: 0;
+  padding: 0;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  vertical-align: middle;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  color: inherit;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.75;
+  letter-spacing: 0.02857em;
+  text-transform: uppercase;
+  min-width: 64px;
+  padding: 5px 15px;
+  border-radius: 4px;
+  -webkit-transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border: 1px solid rgba(211, 47, 47, 0.5);
+  color: #d32f2f;
+  width: 100%;
+  -webkit-transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.emotion-23::-moz-focus-inner {
+  border-style: none;
+}
+
+.emotion-23.Mui-disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+@media print {
+  .emotion-23 {
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+  }
+}
+
+.emotion-23:hover {
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  background-color: rgba(211, 47, 47, 0.04);
+  border: 1px solid #d32f2f;
+}
+
+@media (hover: none) {
+  .emotion-23:hover {
+    background-color: transparent;
+  }
+}
+
+.emotion-23.Mui-disabled {
+  color: rgba(0, 0, 0, 0.26);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.emotion-23 .MuiLoadingButton-startIconLoadingStart,
+.emotion-23 .MuiLoadingButton-endIconLoadingEnd {
+  -webkit-transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  opacity: 0;
+}
+
+.emotion-23.MuiLoadingButton-loading {
+  color: transparent;
+}
+
+.emotion-25 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  border-radius: 4px;
+  margin-top: 0.5em;
+}
+
+.emotion-25 .MuiButtonGroup-grouped {
+  min-width: 40px;
+}
+
+.emotion-25 .MuiButtonGroup-grouped:not(:first-of-type) {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  margin-left: -1px;
+}
+
+.emotion-25 .MuiButtonGroup-grouped:not(:last-of-type) {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right-color: transparent;
+}
+
+.emotion-25 .MuiButtonGroup-grouped:not(:last-of-type):hover {
+  border-right-color: currentColor;
+}
+
+<div
+    class="MuiDrawer-root MuiDrawer-docked emotion-0"
+  >
+    <div
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation0 MuiDrawer-paper MuiDrawer-paperAnchorRight MuiDrawer-paperAnchorDockedRight emotion-1"
+    >
+      <div
+        class="MuiContainer-root MuiContainer-maxWidthLg emotion-2"
+      >
+        <div
+          class="MuiContainer-root MuiContainer-maxWidthLg emotion-3"
+        >
+          <span
+            class="emotion-4"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body1 emotion-5"
+            >
+              Aufgabendetails
+            </p>
+            <button
+              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium emotion-6"
+              tabindex="0"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium emotion-7"
+                data-testid="CloseIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                />
+              </svg>
+              <span
+                class="MuiTouchRipple-root emotion-8"
+              />
+            </button>
+          </span>
+        </div>
+        <hr
+          class="MuiDivider-root MuiDivider-fullWidth emotion-9"
+        />
+        <div
+          class="MuiContainer-root MuiContainer-maxWidthLg emotion-3"
+        >
+          <p
+            class="MuiTypography-root MuiTypography-body1 emotion-11"
+          >
+            Vacuum
+          </p>
+          <p
+            class="MuiTypography-root MuiTypography-body1 emotion-12"
+          >
+            40 
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall emotion-13"
+              data-testid="DiamondIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M12.16 3h-.32L9.21 8.25h5.58zm4.3 5.25h5.16L19 3h-5.16zm4.92 1.5h-8.63V20.1zM11.25 20.1V9.75H2.62zM7.54 8.25 10.16 3H5L2.38 8.25z"
+              />
+            </svg>
+          </p>
+          <p
+            class="MuiTypography-root MuiTypography-body1 emotion-14"
+          >
+            1.1.2022
+          </p>
+        </div>
+        <hr
+          class="MuiDivider-root MuiDivider-fullWidth emotion-9"
+        />
+        <div
+          class="MuiContainer-root MuiContainer-maxWidthLg emotion-3"
+        >
+          <p
+            class="MuiTypography-root MuiTypography-body1 emotion-11"
+          >
+            Erledigt von
+          </p>
+          <span
+            style="display: flex; overflow: clip; margin-top: 0.2em;"
+          >
+            <div
+              class="MuiAvatar-root MuiAvatar-circular emotion-18"
+            >
+              <img
+                alt="User 1"
+                class="MuiAvatar-img emotion-19"
+                src="Picture 1"
+              />
+            </div>
+            User 1
+          </span>
+          <p
+            class="MuiTypography-root MuiTypography-body1 emotion-20"
+          >
+            am 1.1.2022 um 00:00:00 Uhr
+          </p>
+        </div>
+        <hr
+          class="MuiDivider-root MuiDivider-fullWidth emotion-9"
+        />
+        <div
+          class="MuiContainer-root MuiContainer-maxWidthLg emotion-3"
+        >
+          <button
+            class="MuiLoadingButton-root MuiButton-root MuiButton-outlined MuiButton-outlinedError MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-fullWidth MuiButtonBase-root emotion-23"
+            id="mui-6"
+            tabindex="0"
+            type="button"
+          >
+            Löschen
+            <span
+              class="MuiTouchRipple-root emotion-8"
+            />
+          </button>
+          <div
+            class="MuiButtonGroup-root MuiButtonGroup-outlined emotion-25"
+            role="group"
+          >
+            <button
+              aria-label="Lösche alle Aufgaben der Aufgabenreihe"
+              class="MuiLoadingButton-root MuiButton-root MuiButton-outlined MuiButton-outlinedError MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-fullWidth MuiButtonBase-root  MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedOutlined MuiButtonGroup-groupedOutlinedHorizontal MuiButtonGroup-groupedOutlinedPrimary emotion-23"
+              data-mui-internal-clone-element="true"
+              id="mui-7"
+              tabindex="0"
+              type="button"
+            >
+              Alle löschen
+              <span
+                class="MuiTouchRipple-root emotion-8"
+              />
+            </button>
+            <button
+              aria-label="Lösche alle folgenden Aufgaben der Aufgabenreihe"
+              class="MuiLoadingButton-root MuiButton-root MuiButton-outlined MuiButton-outlinedError MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-fullWidth MuiButtonBase-root  MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedOutlined MuiButtonGroup-groupedOutlinedHorizontal MuiButtonGroup-groupedOutlinedPrimary emotion-23"
+              data-mui-internal-clone-element="true"
+              id="mui-9"
+              tabindex="0"
+              type="button"
+            >
+              Folgende löschen
+              <span
+                class="MuiTouchRipple-root emotion-8"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`TaskDetailsDrawer matches snapshot with assignee 1`] = `
+<DocumentFragment>
+  .emotion-0 {
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  z-index: 1199;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-0 .MuiDrawer-paper {
+  height: calc(100% - 90px);
+  top: 90px;
+  box-sizing: border-box;
+}
+
+@media (min-width:0px) {
+  .emotion-0 {
+    width: none;
+  }
+}
+
+@media (min-width:600px) {
+  .emotion-0 {
+    width: none;
+  }
+}
+
+@media (min-width:900px) {
+  .emotion-0 {
+    width: 18em;
+  }
+}
+
+@media (min-width:1200px) {
+  .emotion-0 {
+    width: 18em;
+  }
+}
+
+@media (min-width:1536px) {
+  .emotion-0 {
+    width: 22em;
+  }
+}
+
+@media (min-width:0px) {
+  .emotion-0 .MuiDrawer-paper {
+    width: none;
+  }
+}
+
+@media (min-width:600px) {
+  .emotion-0 .MuiDrawer-paper {
+    width: none;
+  }
+}
+
+@media (min-width:900px) {
+  .emotion-0 .MuiDrawer-paper {
+    width: 18em;
+  }
+}
+
+@media (min-width:1200px) {
+  .emotion-0 .MuiDrawer-paper {
+    width: 18em;
+  }
+}
+
+@media (min-width:1536px) {
+  .emotion-0 .MuiDrawer-paper {
+    width: 22em;
+  }
+}
+
+.emotion-1 {
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.87);
+  -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  box-shadow: none;
+  overflow-y: auto;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 100%;
+  -webkit-flex: 1 0 auto;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
+  z-index: 1200;
+  -webkit-overflow-scrolling: touch;
+  position: fixed;
+  top: 0;
+  outline: 0;
+  right: 0;
+  border-left: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.emotion-2 {
+  width: 100%;
+  margin-left: auto;
+  box-sizing: border-box;
+  margin-right: auto;
+  display: block;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+@media (min-width:600px) {
+  .emotion-2 {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+@media (min-width:1200px) {
+  .emotion-2 {
+    max-width: 1200px;
+  }
+}
+
+.emotion-3 {
+  width: 100%;
+  margin-left: auto;
+  box-sizing: border-box;
+  margin-right: auto;
+  display: block;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding: 1em 0!important;
+}
+
+@media (min-width:600px) {
+  .emotion-3 {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+@media (min-width:1200px) {
+  .emotion-3 {
+    max-width: 1200px;
+  }
+}
+
+.emotion-4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+}
+
+.emotion-5 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+  word-break: break-word;
+  font-size: 1.1em;
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+.emotion-6 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  background-color: transparent;
+  outline: 0;
+  border: 0;
+  margin: 0;
+  border-radius: 0;
+  padding: 0;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  vertical-align: middle;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  font-size: 1.5rem;
+  padding: 8px;
+  border-radius: 50%;
+  overflow: visible;
+  color: rgba(0, 0, 0, 0.54);
+  -webkit-transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  -webkit-justify-content: flex-end;
+  justify-content: flex-end;
+  padding: 16 16px;
+}
+
+.emotion-6::-moz-focus-inner {
+  border-style: none;
+}
+
+.emotion-6.Mui-disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+@media print {
+  .emotion-6 {
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+  }
+}
+
+.emotion-6:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+@media (hover: none) {
+  .emotion-6:hover {
+    background-color: transparent;
+  }
+}
+
+.emotion-6.Mui-disabled {
+  background-color: transparent;
+  color: rgba(0, 0, 0, 0.26);
+}
+
+.emotion-7 {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  fill: currentColor;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -webkit-transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  font-size: 1.5rem;
+}
+
+.emotion-8 {
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: inherit;
+}
+
+.emotion-9 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  background-color: transparent;
+  outline: 0;
+  border: 0;
+  margin: 0;
+  border-radius: 0;
+  padding: 0;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  vertical-align: middle;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  color: inherit;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.75;
+  letter-spacing: 0.02857em;
+  text-transform: uppercase;
+  min-width: 64px;
+  padding: 5px 15px;
+  border-radius: 4px;
+  -webkit-transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border: 1px solid rgba(46, 125, 50, 0.5);
+  color: #2e7d32;
+  -webkit-transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  width: 100%;
+  margin-top: 0.5em;
+}
+
+.emotion-9::-moz-focus-inner {
+  border-style: none;
+}
+
+.emotion-9.Mui-disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+@media print {
+  .emotion-9 {
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+  }
+}
+
+.emotion-9:hover {
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  background-color: rgba(46, 125, 50, 0.04);
+  border: 1px solid #2e7d32;
+}
+
+@media (hover: none) {
+  .emotion-9:hover {
+    background-color: transparent;
+  }
+}
+
+.emotion-9.Mui-disabled {
+  color: rgba(0, 0, 0, 0.26);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.emotion-9 .MuiLoadingButton-startIconLoadingStart,
+.emotion-9 .MuiLoadingButton-endIconLoadingEnd {
+  -webkit-transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  opacity: 0;
+}
+
+.emotion-9.MuiLoadingButton-loading {
+  color: transparent;
+}
+
+.emotion-10 {
+  margin: 0;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  border-width: 0;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.12);
+  border-bottom-width: thin;
+}
+
+.emotion-12 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+  word-break: break-word;
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+.emotion-13 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+  word-break: break-word;
+  font-size: 1.1em;
+}
+
+.emotion-14 {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  fill: currentColor;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -webkit-transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  font-size: 1.25rem;
+  vertical-align: sub;
+  color: #29b6f6;
+}
+
+.emotion-15 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+  word-break: break-word;
+  font-size: 1.1em;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.emotion-20 {
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.4375em;
+  letter-spacing: 0.00938em;
+  color: rgba(0, 0, 0, 0.87);
+  box-sizing: border-box;
+  position: relative;
+  cursor: text;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: relative;
+  border-radius: 4px;
+}
+
+.emotion-20.Mui-disabled {
+  color: rgba(0, 0, 0, 0.38);
+  cursor: default;
+}
+
+.emotion-20 div {
+  padding: 0 0 0 0.5em;
+}
+
+.emotion-20:hover .MuiOutlinedInput-notchedOutline {
+  border-color: rgba(0, 0, 0, 0.87);
+}
+
+@media (hover: none) {
+  .emotion-20:hover .MuiOutlinedInput-notchedOutline {
+    border-color: rgba(0, 0, 0, 0.23);
+  }
+}
+
+.emotion-20.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #1976d2;
+  border-width: 2px;
+}
+
+.emotion-20.Mui-error .MuiOutlinedInput-notchedOutline {
+  border-color: #d32f2f;
+}
+
+.emotion-20.Mui-disabled .MuiOutlinedInput-notchedOutline {
+  border-color: rgba(0, 0, 0, 0.26);
+}
+
+.emotion-20 div {
+  padding: 0 0 0 0.5em;
+}
+
+.emotion-21 {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font: inherit;
+  letter-spacing: inherit;
+  color: currentColor;
+  padding: 4px 0 5px;
+  border: 0;
+  box-sizing: content-box;
+  background: none;
+  height: 1.4375em;
+  margin: 0;
+  -webkit-tap-highlight-color: transparent;
+  display: block;
+  min-width: 0;
+  width: 100%;
+  -webkit-animation-name: mui-auto-fill-cancel;
+  animation-name: mui-auto-fill-cancel;
+  -webkit-animation-duration: 10ms;
+  animation-duration: 10ms;
+  padding-top: 1px;
+  padding: 8.5px 14px;
+}
+
+.emotion-21:focus {
+  border-radius: 4px;
+}
+
+.emotion-21::-ms-expand {
+  display: none;
+}
+
+.emotion-21.Mui-disabled {
+  cursor: default;
+}
+
+.emotion-21[multiple] {
+  height: auto;
+}
+
+.emotion-21:not([multiple]) option,
+.emotion-21:not([multiple]) optgroup {
+  background-color: #fff;
+}
+
+.emotion-21.emotion-21.emotion-21 {
+  padding-right: 32px;
+}
+
+.emotion-21.MuiSelect-select {
+  height: auto;
+  min-height: 1.4375em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.emotion-21::-webkit-input-placeholder {
+  color: currentColor;
+  opacity: 0.42;
+  -webkit-transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.emotion-21::-moz-placeholder {
+  color: currentColor;
+  opacity: 0.42;
+  -webkit-transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.emotion-21:-ms-input-placeholder {
+  color: currentColor;
+  opacity: 0.42;
+  -webkit-transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.emotion-21::-ms-input-placeholder {
+  color: currentColor;
+  opacity: 0.42;
+  -webkit-transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.emotion-21:focus {
+  outline: 0;
+}
+
+.emotion-21:invalid {
+  box-shadow: none;
+}
+
+.emotion-21::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-21::-webkit-input-placeholder {
+  opacity: 0!important;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-21::-moz-placeholder {
+  opacity: 0!important;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-21:-ms-input-placeholder {
+  opacity: 0!important;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-21::-ms-input-placeholder {
+  opacity: 0!important;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-21:focus::-webkit-input-placeholder {
+  opacity: 0.42;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-21:focus::-moz-placeholder {
+  opacity: 0.42;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-21:focus:-ms-input-placeholder {
+  opacity: 0.42;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-21:focus::-ms-input-placeholder {
+  opacity: 0.42;
+}
+
+.emotion-21.Mui-disabled {
+  opacity: 1;
+  -webkit-text-fill-color: rgba(0, 0, 0, 0.38);
+}
+
+.emotion-21:-webkit-autofill {
+  -webkit-animation-duration: 5000s;
+  animation-duration: 5000s;
+  -webkit-animation-name: mui-auto-fill;
+  animation-name: mui-auto-fill;
+}
+
+.emotion-21:-webkit-autofill {
+  border-radius: inherit;
+}
+
+.emotion-22 {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.emotion-23 {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  fill: currentColor;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -webkit-transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  font-size: 1.5rem;
+  position: absolute;
+  right: 7px;
+  top: calc(50% - .5em);
+  pointer-events: none;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.emotion-23.Mui-disabled {
+  color: rgba(0, 0, 0, 0.26);
+}
+
+.emotion-24 {
+  text-align: left;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  top: -5px;
+  left: 0;
+  margin: 0;
+  padding: 0 8px;
+  pointer-events: none;
+  border-radius: inherit;
+  border-style: solid;
+  border-width: 1px;
+  overflow: hidden;
+  min-width: 0%;
+  border-color: rgba(0, 0, 0, 0.23);
+}
+
+.emotion-25 {
+  float: unset;
+  padding: 0;
+  line-height: 11px;
+  -webkit-transition: width 150ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
+  transition: width 150ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
+}
+
+.emotion-26 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-size: 1.25rem;
+  line-height: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+}
+
+.emotion-27 {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  object-fit: cover;
+  color: transparent;
+  text-indent: 10000px;
+}
+
+.emotion-30 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  background-color: transparent;
+  outline: 0;
+  border: 0;
+  margin: 0;
+  border-radius: 0;
+  padding: 0;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  vertical-align: middle;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  color: inherit;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.75;
+  letter-spacing: 0.02857em;
+  text-transform: uppercase;
+  min-width: 64px;
+  padding: 5px 15px;
+  border-radius: 4px;
+  -webkit-transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border: 1px solid rgba(211, 47, 47, 0.5);
+  color: #d32f2f;
+  width: 100%;
+  -webkit-transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.emotion-30::-moz-focus-inner {
+  border-style: none;
+}
+
+.emotion-30.Mui-disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+@media print {
+  .emotion-30 {
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+  }
+}
+
+.emotion-30:hover {
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  background-color: rgba(211, 47, 47, 0.04);
+  border: 1px solid #d32f2f;
+}
+
+@media (hover: none) {
+  .emotion-30:hover {
+    background-color: transparent;
+  }
+}
+
+.emotion-30.Mui-disabled {
+  color: rgba(0, 0, 0, 0.26);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.emotion-30 .MuiLoadingButton-startIconLoadingStart,
+.emotion-30 .MuiLoadingButton-endIconLoadingEnd {
+  -webkit-transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  opacity: 0;
+}
+
+.emotion-30.MuiLoadingButton-loading {
+  color: transparent;
+}
+
+<div
+    class="MuiDrawer-root MuiDrawer-docked emotion-0"
+  >
+    <div
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation0 MuiDrawer-paper MuiDrawer-paperAnchorRight MuiDrawer-paperAnchorDockedRight emotion-1"
+    >
+      <div
+        class="MuiContainer-root MuiContainer-maxWidthLg emotion-2"
+      >
+        <div
+          class="MuiContainer-root MuiContainer-maxWidthLg emotion-3"
+        >
+          <span
+            class="emotion-4"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body1 emotion-5"
+            >
+              Task Details
+            </p>
+            <button
+              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium emotion-6"
+              tabindex="0"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium emotion-7"
+                data-testid="CloseIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                />
+              </svg>
+              <span
+                class="MuiTouchRipple-root emotion-8"
+              />
+            </button>
+          </span>
+          <span
+            aria-label="Only tasks within the next week can be completed"
+            class=""
+            data-mui-internal-clone-element="true"
+          >
+            <button
+              class="MuiLoadingButton-root MuiButton-root MuiButton-outlined MuiButton-outlinedSuccess MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root Mui-disabled emotion-9"
+              disabled=""
+              id="mui-11"
+              tabindex="-1"
+              type="button"
+            >
+              Complete
+            </button>
+          </span>
+        </div>
+        <hr
+          class="MuiDivider-root MuiDivider-fullWidth emotion-10"
+        />
+        <div
+          class="MuiContainer-root MuiContainer-maxWidthLg emotion-3"
+        >
+          <p
+            class="MuiTypography-root MuiTypography-body1 emotion-12"
+          >
+            Vacuum
+          </p>
+          <p
+            class="MuiTypography-root MuiTypography-body1 emotion-13"
+          >
+            40 
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall emotion-14"
+              data-testid="DiamondIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M12.16 3h-.32L9.21 8.25h5.58zm4.3 5.25h5.16L19 3h-5.16zm4.92 1.5h-8.63V20.1zM11.25 20.1V9.75H2.62zM7.54 8.25 10.16 3H5L2.38 8.25z"
+              />
+            </svg>
+          </p>
+          <p
+            class="MuiTypography-root MuiTypography-body1 emotion-15"
+          >
+            1/9/2022
+          </p>
+        </div>
+        <hr
+          class="MuiDivider-root MuiDivider-fullWidth emotion-10"
+        />
+        <div
+          class="MuiContainer-root MuiContainer-maxWidthLg emotion-3"
+        >
+          <span
+            class="emotion-4"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body1 emotion-12"
+            >
+              Assignee
+            </p>
+            <div
+              class="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-sizeSmall emotion-20"
+            >
+              <div
+                aria-expanded="false"
+                aria-haspopup="listbox"
+                class="MuiSelect-select MuiSelect-outlined MuiOutlinedInput-input MuiInputBase-input MuiInputBase-inputSizeSmall emotion-21"
+                role="button"
+                tabindex="0"
+              >
+                <em>
+                  Edit
+                </em>
+              </div>
+              <input
+                aria-hidden="true"
+                class="MuiSelect-nativeInput emotion-22"
+                tabindex="-1"
+                value=""
+              />
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconOutlined emotion-23"
+                data-testid="ArrowDropDownIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M7 10l5 5 5-5z"
+                />
+              </svg>
+              <fieldset
+                aria-hidden="true"
+                class="MuiOutlinedInput-notchedOutline emotion-24"
+              >
+                <legend
+                  class="emotion-25"
+                >
+                  <span
+                    class="notranslate"
+                  >
+                    ​
+                  </span>
+                </legend>
+              </fieldset>
+            </div>
+          </span>
+          <span
+            style="display: flex; overflow: clip; margin-top: 0.2em;"
+          >
+            <div
+              class="MuiAvatar-root MuiAvatar-circular emotion-26"
+            >
+              <img
+                alt="User 1"
+                class="MuiAvatar-img emotion-27"
+                src="Picture 1"
+              />
+            </div>
+            User 1
+          </span>
+        </div>
+        <hr
+          class="MuiDivider-root MuiDivider-fullWidth emotion-10"
+        />
+        <div
+          class="MuiContainer-root MuiContainer-maxWidthLg emotion-3"
+        >
+          <button
+            class="MuiLoadingButton-root MuiButton-root MuiButton-outlined MuiButton-outlinedError MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-fullWidth MuiButtonBase-root emotion-30"
+            id="mui-13"
+            tabindex="0"
+            type="button"
+          >
+            Delete
+            <span
+              class="MuiTouchRipple-root emotion-8"
+            />
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

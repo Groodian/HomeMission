@@ -9,6 +9,7 @@ import {
   useDeleteTaskSeriesSubsectionMutation,
 } from '../../lib/graphql/operations/taskseries.graphql';
 import { useSnackbar } from 'notistack';
+import { TaskDetailsContext } from '../../pages/_app';
 
 export enum Type {
   single,
@@ -22,6 +23,7 @@ type DeleteButtonProps = {
 const DeleteButton: React.FC<DeleteButtonProps> = ({ task, type }) => {
   const { t } = useTranslation('common', { keyPrefix: 'TaskDetailsDrawer' });
   const { enqueueSnackbar } = useSnackbar();
+  const { setSelectedTask } = React.useContext(TaskDetailsContext);
 
   const refetchOptions = { refetchQueries: ['Tasks', 'OpenTasks'] };
   const [deleteTask, { loading: loadingSingle }] =
@@ -71,6 +73,7 @@ const DeleteButton: React.FC<DeleteButtonProps> = ({ task, type }) => {
       enqueueSnackbar(t('delete-single-success'), {
         variant: 'success',
       });
+      setSelectedTask(undefined);
     } catch (e) {
       enqueueSnackbar(t('delete-single-error'), {
         variant: 'error',
@@ -87,6 +90,7 @@ const DeleteButton: React.FC<DeleteButtonProps> = ({ task, type }) => {
         enqueueSnackbar(t('delete-series-all-success'), {
           variant: 'success',
         });
+        setSelectedTask(undefined);
       } catch (e) {
         enqueueSnackbar(t('delete-series-all-error'), {
           variant: 'error',
@@ -103,6 +107,7 @@ const DeleteButton: React.FC<DeleteButtonProps> = ({ task, type }) => {
         enqueueSnackbar(t('delete-series-sub-success'), {
           variant: 'success',
         });
+        setSelectedTask(undefined);
       } catch (e) {
         enqueueSnackbar(t('delete-series-sub-error'), {
           variant: 'error',

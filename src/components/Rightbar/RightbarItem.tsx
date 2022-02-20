@@ -14,6 +14,7 @@ import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import CompleteButton from '../Inputs/CompleteButton';
 import InlineDiamond from '../InlineDiamond';
+import { TaskDetailsContext } from '../../pages/_app';
 
 const TaskContainer = styled(Container)(({ theme }) => ({
   backgroundColor: theme.palette.background.default,
@@ -31,17 +32,15 @@ type RightBarItemProps = {
   task: Task;
   picture?: string;
   recurring?: boolean;
-  onSelectTask?: (selectedTask: Task) => void;
 };
 const RightbarItem: React.FC<RightBarItemProps> = ({
   task,
   picture,
   recurring,
-  onSelectTask = () => undefined,
 }) => {
   const { t } = useTranslation('common', { keyPrefix: 'Rightbar' });
-
   const router = useRouter();
+  const { setSelectedTask } = React.useContext(TaskDetailsContext);
 
   const avatar = picture && (
     <Tooltip title={t('tooltip-avatar') as string}>
@@ -55,7 +54,7 @@ const RightbarItem: React.FC<RightBarItemProps> = ({
 
   const DetailsIcon = (
     <Tooltip title={t('tooltip-details') as string} sx={{ float: 'right' }}>
-      <IconButton size="small" onClick={() => onSelectTask(task)}>
+      <IconButton size="small" onClick={() => setSelectedTask(task.id)}>
         <Search fontSize="small" />
       </IconButton>
     </Tooltip>

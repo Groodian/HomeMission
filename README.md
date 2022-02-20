@@ -466,6 +466,12 @@ type Query {
   # Get all task types that belong to the users home.
   taskTypes: [TaskType!]!
 
+  # Get a task by id that belongs to the users home.
+  task(
+    # The id of the task.
+    task: String!
+  ): Task
+
   # Get all tasks that belong to the users home.
   tasks: [Task!]!
 

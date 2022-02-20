@@ -33,6 +33,7 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import 'moment/locale/de';
 import InlineDiamond from '../InlineDiamond';
 import { TasksQuery } from '../../lib/graphql/operations/task.graphql';
+import { TaskDetailsContext } from '../../pages/_app';
 
 export type CEvent = {
   title: string;
@@ -75,18 +76,17 @@ const CEventVisualize: React.FC<EventProps<CEvent>> = (props) => {
 type TaskCalendarProps = {
   tasks?: TasksQuery['tasks'];
   onShowAllAtDate: (date: Date) => void;
-  onSelectTask?: (selectedTask: TasksQuery['tasks'][number]) => void;
   onAddTask?: (date: Date) => void;
 };
 const TaskCalendar: React.FC<TaskCalendarProps> = ({
   tasks,
   onShowAllAtDate,
-  onSelectTask = () => undefined,
   onAddTask = () => undefined,
 }) => {
   const { t } = useTranslation('overview', { keyPrefix: 'TaskCalendar' });
   const router = useRouter();
   const theme = useTheme();
+  const { setSelectedTask } = React.useContext(TaskDetailsContext);
   const localizer = momentLocalizer(moment);
   moment.locale(router.locale);
 
@@ -182,7 +182,7 @@ const TaskCalendar: React.FC<TaskCalendarProps> = ({
         month: { dateHeader: CDateHeaderVisualize },
       }}
       messages={{ showMore: (count) => t('show-more', { count }) }}
-      onSelectEvent={(event) => onSelectTask(event.resource)}
+      onSelectEvent={(event) => setSelectedTask(event.resource.id)}
       onDrillDown={onShowAllAtDate}
     />
   );

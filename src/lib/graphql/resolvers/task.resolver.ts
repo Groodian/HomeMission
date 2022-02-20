@@ -23,6 +23,30 @@ import Helper from './helper';
 @Resolver(Task)
 export default class TaskResolver implements ResolverInterface<Task> {
   /**
+   * Get a task by id that belongs to the users home.
+   * @parm task The id of the task.
+   */
+  @Authorized()
+  @Query(() => Task, {
+    nullable: true,
+    description: 'Get a task by id that belongs to the users home.',
+  })
+  async task(
+    @CurrentSession() session: Session,
+    @Arg('task', { description: 'The id of the task.' })
+    task: string
+  ) {
+    await databaseConnection();
+    const home = await Helper.getHomeOrFail(session);
+
+    try {
+      return await Helper.getTaskOrFail(task, home.id);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  /**
    * Get all tasks that belong to the users home.
    */
   @Authorized()

@@ -11,19 +11,19 @@ import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { TasksQuery } from '../../lib/graphql/operations/task.graphql';
 import InlineDiamond from '../InlineDiamond';
+import { TaskDetailsContext } from '../../pages/_app';
 
 type TaskAtDateDialogProps = {
   tasksAtDate?: TasksQuery['tasks'];
-  onSelectTask?: (selectedTask: TasksQuery['tasks'][number]) => void;
   onCloseDialog?: () => void;
 };
 const TasksAtDateDialog: React.FC<TaskAtDateDialogProps> = ({
   tasksAtDate,
-  onSelectTask = () => undefined,
   onCloseDialog = () => undefined,
 }) => {
   const { t } = useTranslation('overview');
   const router = useRouter();
+  const { setSelectedTask } = React.useContext(TaskDetailsContext);
 
   return tasksAtDate ? (
     <Dialog open={true} onClose={onCloseDialog} aria-labelledby="dialog-title">
@@ -64,7 +64,7 @@ const TasksAtDateDialog: React.FC<TaskAtDateDialogProps> = ({
                 }
                 onClick={() => {
                   onCloseDialog();
-                  onSelectTask(task);
+                  setSelectedTask(task.id);
                 }}
               />
             );

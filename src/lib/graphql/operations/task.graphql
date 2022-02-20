@@ -1,3 +1,33 @@
+query Task($task: String!) {
+  task(task: $task) {
+    id
+    date
+    type {
+      id
+      name
+      points
+    }
+    series {
+      id
+    }
+    receipt {
+      id
+      name
+      completionDate
+      completer {
+        id
+        name
+        picture
+      }
+    }
+    assignee {
+      id
+      name
+      picture
+    }
+  }
+}
+
 query Tasks {
   tasks {
     id

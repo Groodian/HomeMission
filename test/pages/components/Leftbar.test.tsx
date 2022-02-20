@@ -29,12 +29,14 @@ apolloCache.writeQuery({
       id: '1',
       name: 'Home',
       code: 'ABCDEF',
-      users: {
-        __typename: 'User',
-        id: '1',
-        name: 'Name',
-        picture: 'Picture',
-      },
+      users: [
+        {
+          __typename: 'User',
+          id: '1',
+          name: 'Name',
+          picture: 'Picture',
+        },
+      ],
     },
   },
 });

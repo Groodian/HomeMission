@@ -15,6 +15,7 @@ import { useRouter } from 'next/router';
 import EditAssignSelect, { AvatarAndName } from './Inputs/EditAssignSelect';
 import DeleteButton, { Type } from './Inputs/DeleteButton';
 import InlineDiamond from './InlineDiamond';
+import { useTaskQuery } from '../lib/graphql/operations/task.graphql';
 
 // Structural components
 const Section = styled(Container)({
@@ -43,16 +44,17 @@ const Subheader = styled(Text)({
 });
 
 type TaskDetailsDrawerProps = {
-  task?: Task;
+  taskId?: string;
   onCloseDrawer?: () => void;
 };
 const TaskDetailsDrawer: React.FC<TaskDetailsDrawerProps> = ({
-  task,
+  taskId,
   onCloseDrawer = () => undefined,
 }) => {
   const { t } = useTranslation('common', { keyPrefix: 'TaskDetailsDrawer' });
-
   const router = useRouter();
+  const { data } = useTaskQuery({ variables: { task: taskId || '' } });
+  const task = data?.task as Task | null | undefined;
 
   const sxWidths = ['none', 'none', '18em', '18em', '22em'];
 
@@ -123,7 +125,7 @@ const TaskDetailsDrawer: React.FC<TaskDetailsDrawerProps> = ({
     <StyledDrawer
       variant="persistent"
       anchor="right"
-      open={task !== undefined}
+      open={Boolean(task)}
       sx={{
         width: sxWidths,
         '& .MuiDrawer-paper': {
