@@ -4,7 +4,7 @@
 
 ## [homemission.net](https://homemission.net)
 
-You can join the test home with this [invitation link](https://homemission.net/join?code=ABCDEF) or the invitation code ABCDEF. <!-- TODO -->
+You can join the test home with this [invitation link](https://homemission.net/join?code=CHQWIH) or the invitation code CHQWIH.
 
 ## Concept
 
@@ -824,7 +824,7 @@ ssh -i [PEM-Key] ubuntu@[IP-Address]
 - [homemission.net](https://homemission.net)
 - Address record: Elastic IP
 
-## Retrospective <!-- TODO -->
+## Retrospective
 
 ### Challenges
 
@@ -836,10 +836,18 @@ ssh -i [PEM-Key] ubuntu@[IP-Address]
 - h_da GitLab Runners cannot use Docker
 - Problems with Next.js compilation
 
+### Positive
+
+- Risks using Next.js, GraphQL, i18n payed off in the end
+- All commits were reviewed before merge
+- Production deployment
+
 ### Outlook
 
 - Achievements
 - Possibility to update task types, tasks, task series, receipts
+- Assignment of task series
+- Welcome dialog to display usage information
 - Layout for small displays
 - Translate task types for different users
 - Subscribe to calendar events / export events
